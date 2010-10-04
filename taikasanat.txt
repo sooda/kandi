@@ -1,0 +1,23 @@
+(dynamic) obstacle avoidance
+path planning
+vector field histogram
+dynamic window approach
+edge detection
+certainty grids
+potential field methods
+road map
+occupancy grid mapping
+bayes filter, bayes estimation
+robotic mapping
+map learning
+simultaneous localization and mapping (slam)
+radar, lidar, sonar
+path integration
+pose estimation
+ransac - random sample consenus
+correspondence problem
+Joint Compatibility Branch and Bound
+markov chain monte carlo mcmc
+real-time locating
+location awareness
+mahalanobis distance

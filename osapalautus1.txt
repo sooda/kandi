@@ -1,0 +1,61 @@
+Opiskelija palauttaa optimaan oman näkemyksen siitä mitä työ käsittelee.
+
+Lisäksi raportoidaan oma näkemys siitä, mikä on työn tarkoitus, tavoite ja tärkeimmät asiakokonaisuudet. 
+
+Raportti on vapaamuotoinen. Se voi sisältää sisällysluettelon ja johdannon tai tiivistelmähahmotelman. 
+
+Ohjaaja lukee sisältöehdotuksen läpi ja antaa palautetta. 
+
+Tarkoitus on jäsentää käsitteitä ja rajata sisältöä lopulliseen suuntaan.
+
+
+Esimerkkilaajuus palautukselle:
+1 sivu sisällysluetteloa (vähintään pääotsikot)
+1-3 sivua aiheeseen johdattelevaa tekstiä (tulevaa johdantotekstiäsi, josta käy ilmi aihekokonaisuuden hahmotus)
+10 tärkeintä lähdettä (artikkeleja ja/tai kirjoja mutta ei internet-sivuja)
+
+-------------------------------------------
+
+[virtual force field -juttua, vfh:n edeltäjä tms] Potential Field Methods and Their Inherent Limitations
+for Mobile Robot Navigation
+by
+Y. Koren, Senior Member, IEEE and J. Borenstein, Member, IEEE
+The University of Michigan, Ann Arbor
+
+
+[vfh-lyhytjuttu] Real-time Obstacle Avoidance for
+Fast Mobile Robots in Cluttered Environments
+by
+J. Borenstein and Y. Koren
+
+[jotain vähän muuta] Evolutionary Artiﬁcial Potential Fields and Their Application in Real Time Robot Path
+Planning
+Prahlad Vadakkepat, Kay Chen Tan and Wang Ming-Liang
+
+[rapidly exploring random tree, aika eri juttua] Real-Time Randomized Path Planning for Robot Navigation∗
+James Bruce (jbruce@cs.cmu.edu)
+Manuela Veloso (mmv@cs.cmu.edu)
+
+-------------------------------------------------
+
+- keskitytään liikkuviin kokonaisiin robotteihin, ei manipulaattoreihin
+- monta eri lähestymistapaa
+	- potentiaalikenttä
+	- joku puuhässäkkä
+	- muuten vaan väistely
+	- histogrammi
+- lokaali/globaali esteenväistely?
+	- onko ennalta tietoa maailmasta
+	- voipi olla reitti annettu etukäteen ja jotain staattista tietoa seinistä
+	- entä päivittyykö reitti/estetieto jonkin yhteyden kautta
+- paikannus?
+	- jos kartta annettu ennalta, niin miten pidetään kirjaa missä ja mihin suuntaan mennään?
+	- odometria on epätarkkaa pitkällä tähtäimellä
+	- entä jotain majakoita
+	- ennalta määrätyt tarkat maamerkit
+	- ulkotiloissa simohankalaa.
+- millaista tietoa tarvitaan ympäristöstä? anturointi? mittaustarkkuus ja häiriöt?
+	- ultraääni
+	- laserskanneri
+	- kamera ja konenäkö
+- pysähdyttävä anturoimaan / jatkuva liike mahdollinen?

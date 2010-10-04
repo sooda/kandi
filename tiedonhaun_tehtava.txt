@@ -1,0 +1,40 @@
+route planning AND obstacle avoidance AND robot AND dynamic
+real-time path planning AND potential field
+dynamic OR real-time AND robot AND path routing
+
+<turhaa>
+Science Direct (Elsevier) SD
+Scopus
+Academic Search Elite (EBSCO)
+Composites Industry Abstr. CSA
+Ebrary
+Ellibs	eKirjat 	  
+IEEE/IEE Electronic Library
+Teemu - teknillinen korkeakoulu
+CSA High Technology Research Database with Aerospace
+ACM - Association for Computing Machinery
+AES Electronic Library	eLehdet 	  
+CogPrints via SCIRUS 	eLehdet 	  
+Computer + Info Systems (CSA)	Viitetietokannat	  
+Computer Science Preprints	Portaalit, aihehakemistot	  
+Safari Tech Books Online (ProQuest)	eKirjat 	  
+Wiley Online Library
+</turhaa>
+
+Science Direct (Elsevier) SD
+Scopus
+Academic Search Elite (EBSCO)
+Composites Industry Abstr. CSA
+Ebrary
+IEEE/IEE Electronic Library
+Teemu - teknillinen korkeakoulu
+CSA High Technology Research Database with Aerospace
+ACM - Association for Computing Machinery
+Computer + Info Systems (CSA)
+Safari Tech Books Online (ProQuest)
+Wiley Online Library
+
+Computers and Electronics in Agriculture October 2010: (Volume 74, Issue 1) p. 80-90
+Computers & Operations Research January 2011: (Volume 38, Issue 1) p. 340-356
+International Journal of Computational Engineering Sciences. Vol. 4, no. 1, pp. 67-84. Mar. 2003
+google scholar
