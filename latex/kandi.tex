@@ -297,18 +297,18 @@ Keinopotentiaalikentät (artificial potential functions, artificial potential fie
 
 Tekniikan idea on, että robotin määränpää aiheuttaa robottiin voiman kohdetta päin tai reitin suuntaisesti. Jokainen lähistöllä oleva este vaikuttaa robotin potentiaalikenttään joka kokonaisuudessaan saa robotin hylkimään esteitä -- mitä lähemmäs estettä siirrytään, sitä suuremman ``voiman'' potentiaali aiheuttaa suoraan esteestä poispäin.
 
-Potentiaalikenttiä käytetään myös robottimanipulaattoreilla, mutta ne soveltuvat liikkuvillekin roboteille. \cite{warren2002apf}
+Potentiaalikenttiä käytetään myös robottimanipulaattoreilla, mutta ne soveltuvat liikkuvillekin roboteille.
 
+Ongelmana etenkin lokaali minimi, jonne voi jäädä jumiin.
 
-\cite{vadakkepat2002eapf}
-
+\cite{warren2002apf} \cite{vadakkepat2002eapf}
 
 
 \subsection{Histogrammit}
 
 Borestein ja Koren toteavat potentiaalikentät riittämättömiksi ja esittävät niihin pohjautuvan virtual force field -menetelmän \cite{koren1991potential} ja siitä edelleen kehittyneen vector field histogram -tekniikan \cite{borenstein2002vfh}. Virtuaalinen voimakenttä perustuu liukuvaan robotin mukana kulkevaan ruudukkoon, johon lasketaan varmuusarvoja esteistä. Vektorikenttähistogrammi jalostaa tätä eteenpäin rakentamalla ruudukosta suuntapohjaisen histogrammin.
 
-Tämä tapa soveltuu erityisesti häiriöiseen ja epävarmaan mittaukseen, ja sitä onkin testattu ultraäänisensoreilla joihin liittyy lähes ominaisesti tietynlaista häiriötä.
+Tämä tapa soveltuu erityisesti häiriöiseen ja epävarmaan mittaukseen, ja sitä onkin testattu ultraäänisensoreilla joihin liittyy lähes ominaisesti tietynlaista häiriötä. Ongelmallisia ovat kapeat käytävät, joissa robotti saattaa alkaa oskilloimaan seinästä toiseen.
 
 
 \subsection{Puumenetelmät}
@@ -317,12 +317,19 @@ Tämä tapa soveltuu erityisesti häiriöiseen ja epävarmaan mittaukseen, ja sitä on
 
 
 \subsection{Neuroverkot}
-\cite{glasius1995neural} \cite{yang2000neural}
+
+Neuroverkot soveltuvat sekä liikkuville roboteille että manipulaattoreille. \cite{yang2000neural} Ongelmana muun muassa hitaus verrattuna muihin; enemmän globaali kuin nopea lokaali menetelmä.
+
+Manipulaattoreille ja tunnetulle kartalle löytyy tutkimusta. \cite{yang2004neural} Kuten myös liikkuvillekin roboteille ennalta halutulle reitille. \cite{noguchi1997path}
+
+\cite{glasius1995neural}
+
 
 \subsection{Konenäkö}
 
 Konenäkö yleisesti soveltuu hyvin sisätiloissa seinien ja yksinkertaisten geometrioiden havainnointiin \cite[s. 245]{desouza2002vision}. Ulkotiloissa sisätilojen kaltaisia käytäviä ja huoneita ei ole, jolloin vastaavat menetelmät eivät välttämättä ole suoraan käytettävissä; tosin mikäli edessä on helposti samanlaista materiaalia, kuten puita tai suora autotie \cite[s. 255]{desouza2002vision}, toimii menetelmä hyvin.
 
+Syvyysnäkö stereokameralla on myös varteenotettava vaihtoehto tavanomaisille antureille. \cite{murray2002stereo} Kuvassa ei ole esimerkiksi ultraäänisensoreille tyypillistä häiriötä tai epätarkkuutta, mutta se on laskennallisesti raskaampi. Hyvällä resoluutiolla ja pienellä kohinalla tosin saavutetaan näkö suhteellisen pitkälle, mutta kapeammalla keilalla kuin jos robottia ympäröisi 360 asteen tutkavyö.
 
 \clearpage
 
