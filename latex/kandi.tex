@@ -202,12 +202,12 @@ linkcolor=blue,citecolor=black,pdfstartview=FitH]{hyperref}
 %% Finnish abstract
 %%
 %% Tiivistelmn avainsanat
-\keywords{taika, musta magia, ydinfysiikka, rajatiede}
+\keywords{taika, musta magia, ydinfysiikka, rajatieto}
 %% Tiivistelmn tekstiosa
 \begin{abstractpage}[finnish]
-Tutkitaan menetelmiä liikkuvien robottien reaaliaikaiseen esteenväistöön ja lokaaliin liikkeensuunnitteluun dynaamisessa ympristössä.
+Tutkitaan menetelmiä liikkuvien robottien reaaliaikaiseen esteenväistöön ja lokaaliin liikkeensuunnitteluun dynaamisessa ympäristössä.
 
-Eritellään eri anturointitekniikoita, niihin soveltuvia esteentunnistusalgoritmeja ja ohjausmenetelmiä maaliin pääsemiseksi osumatta ympäristön yllättäviin muutoksiin.
+Eritellään eri anturointitekniikoita, niihin soveltuvia esteentunnistusalgoritmeja ja robotin ohjaustapoja ja -malleja maaliin pääsemiseksi osumatta ympäristön yllättäviin muutoksiin.
 \end{abstractpage}
 
 \newpage
@@ -264,13 +264,13 @@ RRT	&	rapidly-exploring random tree
 
 Liikkuva robotti, robotin paikannus, esteenväistö sekä liikkeensuunnittelu ovat sellaisinaan hyvin laajoja käsitteitä. Tämän tekstin tarkoituksena on kartoittaa eri menetelmiä eri ympäristöihin, painottuen kuitenkin erityisesti ulkotiloissa maanpinnalla vaihtelevassa ympäristössä kulkeviin robotteihin. Tässä (ja myöhemmin) robotilla tarkoitetaan itsenäisesti liikkuvaa ajoneuvoa, kuten AGV:tä, eikä kiinteästi asennettavaa robottia kuten manipulaattorikäsivartta.
 
-Lokaaliin anturipohjaiseen esteenväistöön on luonnollisesti monia eri menetelmiä, joiden hyödyllisyys ja soveltuvuus riippuu robotin ympäristöstä ja anturien laadusta. Universaalia kaikkialle sopivaa lokaalia esteenväistöä ei ole olemassa. On tosin monia yleisiä menetelmiä (potentiaalikenttä, neuroverkot, satunnaispuut, jne, TODO: parit referenssit tähän) ja tilannekohtaista heuristiikkaa. Myös aiemmista osittain jalostettuja kehittyneempiä tapoja (VFH jne) on saatu kartoittamalla heikkoudet ja soveltamalla tiettyyn ympäristöön; monia on testattu käytännössä ja jotkut ovat jääneet vain kaavoiksi.
+Lokaaliin anturipohjaiseen esteenväistöön on luonnollisesti monia eri menetelmiä, joiden hyödyllisyys ja soveltuvuus riippuu robotin ympäristöstä ja anturien laadusta. Universaalia kaikkialle sopivaa lokaalia esteenväistöä ei ole olemassa. On tosin monia yleisiä menetelmiä (potentiaalikenttä, neuroverkot, satunnaispuut, jne, TODO: hyviä viitteitä tähän) ja tilannekohtaista heuristiikkaa. Myös aiemmista osittain jalostettuja kehittyneempiä tapoja (VFH jne) on saatu kartoittamalla heikkoudet ja soveltamalla tiettyyn ympäristöön; monia on testattu käytännössä, toisia simuloimalla ja jotkut ovat jääneet vain kaavoiksi.
 
 Globaalia liikkeensuunnittelua (kartta tiedossa etukäteen jonka mukaan reitti suunnitellaan) sivutaan myös hieman. Tässä työssä keskitytään kuitenkin yhtäkkisten, odottamattomien esteiden havaitsemiseen ja väistämiseen kun jonkinlainen reitti on tiedossa ennalta -- joko aiemmin tarkasti suunniteltu kartta mutkineen ja risteyksineen, tai summittainen ohje luokkaa "50 metriä pohjoiseen". Reitin ja/tai ympäristön muutoksia saatetaan myös päivittää robotille reaaliajassa. Aina ei kuitenkaan voida saada mitään ennakkotietoa ympäristöstä, jossa robotti kulkee; tällöin tieto pitää kartoittaa matkan varrella.
 
 Esteitä on havainnoitava jatkuvasti ja niitä voi väistää vasta havaitsemisen jlkeen. Yleisiä havainnointimenetelmiä ovat ultraäänianturit, laserskannerit ja konenäkö. Hyvillä menetelmillä anturointi onnistuu jatkuvasti; toisilla robotti joutuu välillä pysähtymään mittauksia varten.
 
-Esteiden ohi selviämisen lisäksi robotin on pysyttävä reitillään ja sen on jotenkin saatava tietoa sijainnistaan ja suunnastaan. Tämäkin riippuu robotin antureista ja niiden sopivuudesta ympristöön. Yleisesti käytettyjä tapoja paikannukseen ovat mm. odometria, maamerkit, gps, radiomajakat ja näkyvien seinien/maanmuotojen vertaaminen karttaan. Kaikki tavat ovat tosin jossain määrin epätarkkoja, joten virhearviot on otettava huomioon ja mielellään käytettävä useampaa tapaa rinnakkain.
+Esteiden ohi selviämisen lisäksi robotin on pysyttävä reitillään ja sen on jotenkin saatava tietoa sijainnistaan ja suunnastaan. Tämäkin riippuu robotin antureista ja niiden sopivuudesta ympäristöön. Yleisesti käytettyjä tapoja paikannukseen ovat mm. odometria, maamerkit, gps, radiomajakat ja näkyvien seinien/maanmuotojen vertaaminen karttaan. Kaikki tavat ovat tosin jossain määrin epätarkkoja, joten virhearviot on otettava huomioon ja mielellään käytettävä useampaa tapaa rinnakkain.
 
 TODO: kielioppi; filtteröi: tajunnanvirta -> tiedeteksti.
 
@@ -313,7 +313,7 @@ Tämä tapa soveltuu erityisesti häiriöiseen ja epävarmaan mittaukseen, ja sitä on
 
 \subsection{Puumenetelmät}
 
-(Execution extended) Rapidly-exploring random tree \cite{bruce2003rrt} käyttää hyväkseen jo olemassaolevaa dataa ajoympäristöstä.
+(Execution extended) Rapidly-exploring random tree \cite{bruce2003rrt} käyttää hyväkseen jo olemassaolevaa dataa ajoympäristöstä ja iteroi robotin varsin hyvin maaliin.
 
 
 \subsection{Neuroverkot}
@@ -329,7 +329,7 @@ Manipulaattoreille ja tunnetulle kartalle löytyy tutkimusta. \cite{yang2004neura
 
 Konenäkö yleisesti soveltuu hyvin sisätiloissa seinien ja yksinkertaisten geometrioiden havainnointiin \cite[s. 245]{desouza2002vision}. Ulkotiloissa sisätilojen kaltaisia käytäviä ja huoneita ei ole, jolloin vastaavat menetelmät eivät välttämättä ole suoraan käytettävissä; tosin mikäli edessä on helposti samanlaista materiaalia, kuten puita tai suora autotie \cite[s. 255]{desouza2002vision}, toimii menetelmä hyvin.
 
-Syvyysnäkö stereokameralla on myös varteenotettava vaihtoehto tavanomaisille antureille. \cite{murray2002stereo} Kuvassa ei ole esimerkiksi ultraäänisensoreille tyypillistä häiriötä tai epätarkkuutta, mutta se on laskennallisesti raskaampi. Hyvällä resoluutiolla ja pienellä kohinalla tosin saavutetaan näkö suhteellisen pitkälle, mutta kapeammalla keilalla kuin jos robottia ympäröisi 360 asteen tutkavyö.
+Syvyysnäkö stereokameralla on myös varteenotettava vaihtoehto tavanomaisille antureille. \cite{murray2002stereo} Kameralla otetussa kuvassa ei ole esimerkiksi ultraäänisensoreille tyypillistä häiriötä tai epätarkkuutta, mutta se on laskennallisesti raskaampi. Hyvällä resoluutiolla ja pienellä kohinalla tosin saavutetaan näkö suhteellisen pitkälle, mutta kapeammalla keilalla kuin jos robottia ympäröisi 360 asteen tutkavyö.
 
 \clearpage
 
