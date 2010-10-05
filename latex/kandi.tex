@@ -1,17 +1,17 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%                                                                %%
-%% Esimerkki opinnäytteen tekemisestä LaTeX:lla 20100316          %%
-%% Alkuperäinen versio Luis Costa,  muutokset Perttu Puska        %%
+%% Esimerkki opinnytteen tekemisest LaTeX:lla 20100316          %%
+%% Alkuperinen versio Luis Costa,  muutokset Perttu Puska        %%
 %%                                                                %%
-%% Tähän esimerkkiin kuuluu tiedostot                             %%
+%% Thn esimerkkiin kuuluu tiedostot                             %%
 %%               opinnaytepohja.tex (versio 1.3)                  %%
 %%               aaltothesis.sty (versio 1.3)                     %%
 %%               kuva1.eps                                        %%
 %%               kuva2.eps                                        %%
 %%                                                                %%
 %%                                                                %%
-%% Kääntäminen                                                    %%
+%% Kntminen                                                    %%
 %% latex:                                                         %%
 %%             $ latex opinnaytepohja                             %%
 %%             $ latex opinnaytepohja                             %%
@@ -21,41 +21,44 @@
 %%                                                                %%
 %%             $ dvips opinnaytepohja -o                          %%
 %%                                                                %%
-%% Selittävät kommentit on tässä esimerkissä varustettu           %%
-%% %%-merkeillä ja muutokset, joita käyttäjä voi tehdä,           %%
-%% on varustettu %-merkeillä                                      %%
+%% Selittvt kommentit on tss esimerkiss varustettu           %%
+%% %%-merkeill ja muutokset, joita kyttj voi tehd,           %%
+%% on varustettu %-merkeill                                      %%
 %%                                                                %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%% Käytä näitä, jos kirjoitat suomeksi
+%% Kyt nit, jos kirjoitat suomeksi
 %%
 %% Use these you write in Finnish
 \documentclass[finnish,12pt]{article}
-
-%% Käytä näitä, jos kirjoitat englanniksi
+%% Kyt nit, jos kirjoitat englanniksi
 %%
 %% Uncomment these if you write in English
 %\documentclass[english,12pt]{article}
 
-%% Tämä paketti on pakollinen
+%% Tm paketti on pakollinen
 %%
 %% This package is required
 \usepackage{aaltothesis}
 
-%% Jos käytät latex-komentoa käännettäessä (oletusarvo) 
-%% kuvat kannattaa tehdä eps-muotoon. Älä käytä ps-muotoisia kuvia!
-%% Käytä seuraavaa latex-komennon ja eps-kuvien kanssa 
+\usepackage{natbib}
+\bibliographystyle{plain} % finplain
+
+% \usepackage[utf8]{inputenc}
+%% Jos kytt latex-komentoa knnettess (oletusarvo) 
+%% kuvat kannattaa tehd eps-muotoon. l kyt ps-muotoisia kuvia!
+%% Kyt seuraavaa latex-komennon ja eps-kuvien kanssa 
 %%
 %% Use this if you run latex and use eps-format pictures
 \usepackage[dvips]{graphicx}
 
-%% Jos tääs käytät pdflatex-komentoa, 
-%% joka kääntää tekstin suoraan pdf-tiedostoksi ja kuvasi
+%% Jos ts kytt pdflatex-komentoa, 
+%% joka knt tekstin suoraan pdf-tiedostoksi ja kuvasi
 %% ovat esim. jpg-formaatissa tai pdf-formaatissa,   
-%% käytetään seuraavaa pakettia, kommentoi siis kommenttimerkki pois
+%% kytetn seuraavaa pakettia, kommentoi siis kommenttimerkki pois
 %% Huom! Tekstin marginaalit saattavat poiketa n. 2-5 mm
-%% suosituksesta, jos käytät pdflatex-komentoa!
+%% suosituksesta, jos kytt pdflatex-komentoa!
 %% 
 %% Use this if you run pdflatex and use jpg/pdf-format pictures
 %% Note that margins are not correct with pdflatex output. 
@@ -65,28 +68,28 @@
 %% Paketti toimii erityisen hyvin pdflatexin kanssa. 
 %%
 %% Use this if you want to get links and nice output with pdflatex
-%\usepackage[pdfpagemode=None,colorlinks=true,urlcolor=red,%
-%linkcolor=blue,citecolor=black,pdfstartview=FitH]{hyperref}
+\usepackage[pdfpagemode=None,colorlinks=true,urlcolor=red,%
+linkcolor=blue,citecolor=black,pdfstartview=FitH]{hyperref}
 
-%% Jos et jostain syystä tykkää käyttää
-%% edellistä hyperref pakettia, voit käyttää myös seuraavaa pakettia
-%% (tarvitaan lähinnä url-komennon määrittämiseen ja formatoimiseen)
+%% Jos et jostain syyst tykk kytt
+%% edellist hyperref pakettia, voit kytt mys seuraavaa pakettia
+%% (tarvitaan lhinn url-komennon mrittmiseen ja formatoimiseen)
 %%
 %% Use this if you do not like hyperref package - this
 %% defines url environment and formats it correctly
-\usepackage{url}
 
-%% Matematiikan fontteja, symboleja ja muotoiluja lisää, näitä tarvitaan usein 
+% \usepackage{url}
+%% Matematiikan fontteja, symboleja ja muotoiluja lis, nit tarvitaan usein 
 %%
 %% Use this if you write hard core mathematics, these are usually needed
 \usepackage{amsfonts,amssymb,amsbsy}  
 
-%% Vaakasuunnan mitat, ÄLÄ KOSKE!
+%% Vaakasuunnan mitat, L KOSKE!
 \setlength{\hoffset}{-1in}
 \setlength{\oddsidemargin}{35mm}
 \setlength{\evensidemargin}{25mm}
 \setlength{\textwidth}{15cm}
-%% Pystysuunnan mitat, ÄLÄ KOSKE!
+%% Pystysuunnan mitat, L KOSKE!
 \setlength{\voffset}{-1in}
 \setlength{\headsep}{7mm}
 \setlength{\headheight}{1em}
@@ -94,7 +97,7 @@
 \setlength{\textheight}{23cm}
 
 
-%% Kaikki mikä paperille tulostuu, on tämän jälkeen
+%% Kaikki mik paperille tulostuu, on tmn jlkeen
 %%
 %% Output starts here
 \begin{document}
@@ -102,8 +105,8 @@
 %% Korjaa vastaamaan korkeakouluasi
 %%
 %% Change the school field to describe your school 
-\university{aalto university}{aalto-yliopisto}
-\school{school of science and technology}{teknillinen korkeakoulu}
+\university{aalto university}{Aalto-yliopisto}
+\school{School of science and technology}{Teknillinen korkeakoulu}
 
 %% Korjaa seuraavat vastaamaan omaa tiedekuntaasi
 %%
@@ -112,14 +115,14 @@
 {Elektroniikan, tietoliikenteen ja automaation tiedekunta}%
 %%
 
-%% Vain kandityölle: Korjaa seuraavat vastaamaan tutkinto-ohjelmaasi
+%% Vain kanditylle: Korjaa seuraavat vastaamaan tutkinto-ohjelmaasi
 %%
 %% Only for B.Sc. thesis: Choose your degree programme. 
 \degreeprogram{Automation and control engineering}%
-{Automaatio- ja säätötekniikka}
+{Automaatio- ja s��t�tekniikka}
 %%
 
-%% Vain DI/M.Sc.- ja lisensiaatintyölle: valitse laitos, 
+%% Vain DI/M.Sc.- ja lisensiaatintylle: valitse laitos, 
 %% professuuri ja sen professuurikoodi. 
 %%
 %% Only for M.Sc. and Licentiate thesis: Choose your department,
@@ -130,7 +133,7 @@
 %\code{S-55}
 %%
 
-%% Valitse yksi näistä kolmesta
+%% Valitse yksi nist kolmesta
 %%
 %% Choose one of these:
 \univdegree{BSc}
@@ -140,13 +143,13 @@
 %% Oma nimi
 %%
 %% Should be self explanatory...
-\author{Konsta Hölttä}
+\author{Konsta H�ltt�}
 
-%% Opinnäytteen otsikko tulee vain tähän. Älä tavuta otsikkoa ja
-%% vältä liian pitkää otsikkotekstiä. Jos latex ryhmittelee otsikon
-%% huonosti, voit joutua pakottamaan rivinvaihdon \\ kontrollimerkillä.
-%% Muista että otsikkoja ei tavuteta! 
-%% Jos otsikossa on ja-sana, se ei jää rivin viimeiseksi sanaksi 
+%% Opinnytteen otsikko tulee vain thn. l tavuta otsikkoa ja
+%% vlt liian pitk otsikkoteksti. Jos latex ryhmittelee otsikon
+%% huonosti, voit joutua pakottamaan rivinvaihdon \\ kontrollimerkill.
+%% Muista ett otsikkoja ei tavuteta! 
+%% Jos otsikossa on ja-sana, se ei j rivin viimeiseksi sanaksi 
 %% vaan aloittaa uuden rivin.
 %% 
 %% Your thesis title. If the title is very long and the latex 
@@ -154,26 +157,27 @@
 %% break the lines yourself with \\ control character. 
 %% Do not hyphenate titles.
 % TODO
-\thesistitle{Esteenväistely}{Esteenväistely}
+\thesistitle{}{Esteenv�ist�- ja liikkeensuunnittelumenetelm�t liikkuville roboteille
+}
 
 \place{Espoo}
-%% Kandidaatintyön päivämäärä on sen esityspäivämäärä! 
+%% Kandidaatintyn pivmr on sen esityspivmr! 
 %% 
 %% For B.Sc. thesis use the date when you present your thesis. 
-\date{99.99.2010}
+\date{x.y.2010}
 
-%% Kandidaattiseminaarin vastuuopettaja tai diplomityön valvoja.
-%% Huomaa tittelissä "\" -merkki pisteen jälkeen, 
-%% ennen välilyöntiä ja seuraavaa merkkijonoa. 
-%% Näin tehdään, koska kyseessä ei ole lauseen loppu, jonka jälkeen tulee 
-%% hieman pidempi väli vaan halutaan tavallinen väli.
+%% Kandidaattiseminaarin vastuuopettaja tai diplomityn valvoja.
+%% Huomaa titteliss "\" -merkki pisteen jlkeen, 
+%% ennen vlilynti ja seuraavaa merkkijonoa. 
+%% Nin tehdn, koska kyseess ei ole lauseen loppu, jonka jlkeen tulee 
+%% hieman pidempi vli vaan halutaan tavallinen vli.
 %%
 %% B.Sc. or M.Sc. thesis supervisor 
 %% Note the "\" after the comma. This forces the following space to be 
 %% a normal interword space, not the space that starts a new sentence. 
 \supervisor{D.Sc.\ Ilkka Seilonen}{TkT Ilkka Seilonen}
 
-%% Kandidaatintyön ohjaaja(t) tai diplomityön ohjaaja(t)
+%% Kandidaatintyn ohjaaja(t) tai diplomityn ohjaaja(t)
 %% 
 %% B.Sc. or M.Sc. thesis instructor(s)
 %\instructor{Prof. Pirjo Professori}{Prof. Pirjo Professori}
@@ -187,42 +191,28 @@
 %% Logo language is set to be the same as the document language.
 \uselogo{red}{''}{tkk}
 
-%% Tehdään kansilehti
+%% Tehdn kansilehti
 %%
 %% Create the coverpage
 \makecoverpage
 
 
-%% Suomenkielinen tiivistelmä
+%% Suomenkielinen tiivistelm
 %% 
 %% Finnish abstract
 %%
-%% Tiivistelmän avainsanat
-\keywords{Avainsanoiksi valitaan kirjoituksen sisältöä keskeisesti kuvaavia
-käsitteitä}
-%% Tiivistelmän tekstiosa
+%% Tiivistelmn avainsanat
+\keywords{taika, musta magia, ydinfysiikka, rajatiede}
+%% Tiivistelmn tekstiosa
 \begin{abstractpage}[finnish]
-  Tiivistelmässä on lyhyt selvitys (noin 100 sanaa)
-  kirjoituksen tärkeimmästä sisällöstä: mitä ja miten on tutkittu,
-  sekä mitä tuloksia on saatu. 
-  Tiivistelmässä on lyhyt selvitys (noin 100 sanaa)
-  kirjoituksen tärkeimmästä sisällöstä: mitä ja miten on tutkittu,
-  sekä mitä tuloksia on saatu. 
+Tutkitaan menetelmi� liikkuvien robottien reaaliaikaiseen esteenv�ist��n ja lokaaliin liikkeensuunnitteluun dynaamisessa ymprist�ss�.
 
-  Tiivistelmässä on lyhyt selvitys (noin 100 sanaa)
-  kirjoituksen tärkeimmästä sisällöstä: mitä ja miten on tutkittu,
-  sekä mitä tuloksia on saatu. 
-  Tiivistelmässä on lyhyt selvitys (noin 100 sanaa)
-  kirjoituksen tärkeimmästä sisällöstä: mitä ja miten on tutkittu,
-  sekä mitä tuloksia on saatu. 
-  Tiivistelmässä on lyhyt selvitys (noin 100 sanaa)
-  kirjoituksen tärkeimmästä sisällöstä: mitä ja miten on tutkittu,
-  sekä mitä tuloksia on saatu. 
+Eritell��n eri anturointitekniikoita, niihin soveltuvia esteentunnistusalgoritmeja ja ohjausmenetelmi� maaliin p��semiseksi osumatta ymprist�n yll�tt�viin muutoksiin.
 \end{abstractpage}
 
 %% Pakotetaan uusi sivu varmuuden vuoksi, jotta 
-%% mahdollinen suomenkielinen ja englanninkielinen tiivistelmä
-%% eivät tule vahingossakaan samalle sivulle
+%% mahdollinen suomenkielinen ja englanninkielinen tiivistelm
+%% eivt tule vahingossakaan samalle sivulle
 %%
 %% Force new page so that English abstract starts from a new page
 \newpage
@@ -230,13 +220,13 @@ käsitteitä}
 %% English abstract, uncomment if you need one. 
 %% 
 %% Abstract keywords
-\keywords{Resistor, Resistance,\\ Temperature}
+%\keywords{Resistor, Resistance,\\ Temperature}
 %% Abstract text
-\begin{abstractpage}[english]
- Your abstract in English. Try to keep the abstract short, approximately 
- 100 words should be enough. Abstract explains your research topic, 
- the methods you have used, and the results you obtained.  
-\end{abstractpage}
+%\begin{abstractpage}[english]
+% Your abstract in English. Try to keep the abstract short, approximately 
+% 100 words should be enough. Abstract explains your research topic, 
+% the methods you have used, and the results you obtained.  
+%\end{abstractpage}
 %% Note that 
 %% if you are writting your master's thesis in English place the English
 %% abstract first followed by the possible Finnish abstract
@@ -246,30 +236,28 @@ käsitteitä}
 %% Preface
 \mysection{Esipuhe}
 %\mysection{Preface}
-Haluan kiittää Professori Pirjo 
-Professoria ja ohjaajaani Olli Ohjaajaa hyvästä ja 
-huonosta ohjauksesta.\\
+Glxblt. Huu haa, foo bar.\\
 
 \vspace{5cm}
-Otaniemi, 16.3.2010
+Otaniemi, x.y.2010
 
 \vspace{5mm}
-{\hfill Teemu T.\ A.\ Teekkari \hspace{1cm}}
+{\hfill Konsta H�ltt� \hspace{1cm}}
 
-%% Pakotetaan varmuuden vuoksi esipuheen jälkeinen osa
+%% Pakotetaan varmuuden vuoksi esipuheen jlkeinen osa
 %% alkamaan uudelta sivulta
 %%
 %% Force new page after preface
 \newpage
 
 
-%% Sisällysluettelo
-%% addcontentsline tekee pdf-tiedostoon viitteen sisällysluetteloa varten
+%% Sisllysluettelo
+%% addcontentsline tekee pdf-tiedostoon viitteen sisllysluetteloa varten
 %% 
 %% Table of contents. 
-\addcontentsline{toc}{section}{Sisällysluettelo}
+\addcontentsline{toc}{section}{Sis�llysluettelo}
 %\addcontentsline{toc}{section}{Contents}
-%% Tehdään sisällysluettelo
+%% Tehdn sisllysluettelo
 %%
 %% Create it. 
 \tableofcontents
@@ -280,60 +268,26 @@ Otaniemi, 16.3.2010
 %% Symbols and abbreviations
 \mysection{Symbolit ja lyhenteet}
 %\mysection{Symbols and abbreviations}
-\subsection*{Symbolit}
-%\subsection*{Symbols}
-
-\begin{tabular}{ll}
-%$|a_{ij}|^2$, $|a_i|^2$ & probability of two electrons having momenta
-%    $\boldsymbol p_i$ and $\boldsymbol p_j$ ($\boldsymbol p_i$ for $|a_i|^2$) \\
-%                 & at any given instant \\
-$\mathbf{B}$  & magneettivuon tiheys  \\
-$c$              & valon nopeus tyhjössä $\approx 3\times10^8$ [m/s]\\
-%$p$              & magnitude of momentum \\
-%$\boldsymbol p$, $\boldsymbol p_i$, $\boldsymbol p_i^{'}$  & momentum vector \\
-%$p$              & magnitude of momentum \\
-%$\boldsymbol p$, $\boldsymbol p_i$, $\boldsymbol p_i^{'}$  & momentum vector \\
-%$\boldsymbol P$  &  \\
-%$p_{\mathrm{F}}$ & Fermi momentum \\
-$\omega_{\mathrm{D}}$    & Debye-taajuus \\
-$\omega_{\mathrm{latt}}$ & hilan keskimääräinen fononitaajuus \\
-$\uparrow$       & elektronin spinin suunta ylöspäin\\
-$\downarrow$     & elektronin spinin suunta alaspäin
-\end{tabular}
-
-\subsection*{Operaattorit}
-%\subsection*{Opetators}
-
-\begin{tabular}{ll}
-$\nabla \times \mathbf{A}$              & vektorin $\mathbf{A}$ roottori\\
-$\displaystyle\frac{\mbox{d}}{\mbox{d} t}$ & derivaatta muuttujan $t$ suhteen\\
-[3mm]
-$\displaystyle\frac{\partial}{\partial t}$  & osittaisderivaatta muuttujan $t$ suhteen \\[3mm]
-$\sum_i $                       & Summa indeksin $i$ yli\\
-$\mathbf{A} \cdot \mathbf{B}$    & vektorien $\mathbf{A}$ ja $\mathbf{B}$ pistetulo
-\end{tabular}
 
 \subsection*{Lyhenteet}
 %\subsection*{Abbreviations}
 
 \begin{tabular}{ll}
-AC         & vaihtovirta \\
-APLAC      & an object-oriented analog circuit simulator and design tool \\
-           & (originally Analysis Program for Linear Active Circuits) \\
-BCS        & Bardeen-Cooper-Schrieffer \\ %% tavuviiva - nimien välissä 
-DC         & tasavirta \\
-TEM        & transverse eletromagnetic
+VFH	&	vector field histogram \\
+DWA	&	dynamic window approach \\
+AGV	&	automated guided vehicle \\
+RRT	&	rapidly-exploring random tree
 \end{tabular}
 
 
-%% Sivulaskurin viilausta opinnäytteen vaatimusten mukaan:
-%% Aloitetaan sivunumerointi arabialaisilla numeroilla (ja jätetään
-%% leipätekstin ensimmäinen sivu tyhjäksi, 
+%% Sivulaskurin viilausta opinnytteen vaatimusten mukaan:
+%% Aloitetaan sivunumerointi arabialaisilla numeroilla (ja jtetn
+%% leiptekstin ensimminen sivu tyhjksi, 
 %% ks. alla \thispagestyle{empty}).
-%% Pakotetaan lisäksi ensimmäinen varsinainen tekstisivu alkamaan 
+%% Pakotetaan lisksi ensimminen varsinainen tekstisivu alkamaan 
 %% uudelta sivulta clearpage-komennolla. 
 %% clearpage on melkein samanlainen kuin newpage, mutta 
-%% flushaa myös LaTeX:n floatit 
+%% flushaa mys LaTeX:n floatit 
 %% 
 %% Corrects the page numbering, there is no need to change these
 \cleardoublepage
@@ -342,7 +296,7 @@ TEM        & transverse eletromagnetic
 \setcounter{page}{1}
 
 
-%% Leipäteksti alkaa
+%% Leipteksti alkaa
 %%
 %% Text body begins. Note that since the text body
 %% is mostly in Finnish the majority of comments are
@@ -351,689 +305,69 @@ TEM        & transverse eletromagnetic
 \section{Johdanto}
 %\section{Introduction}
 
-%% Ensimmäinen sivu tyhjäksi
+%% Ensimminen sivu tyhjksi
 %% 
 %% Leave first page empty
 \thispagestyle{empty}
 
-Tämän tekstin lähteenä oleva tiedosto on opinnäytteen
-pohja, jota voi käyttää kandidaatintyössä, diplomityössä ja
-lisensiaatintyössä. Tekstin 
-lähteenä oleva tiedosto on kirjoitettu  \LaTeX-tiedoston rakenteen
-opiskelemista ajatellen. Tiedoston kommentit sisältävät
-tietoa, joka on hyödyllistä opinnäytettä kirjoitettaessa. 
+Liikkuva robotti, esteenv�ist� ja liikkeensuunnittelu ovat sellaisinaan hyvin laajoja k�sitteit�. T�m�n tekstin tarkoituksena on kartoittaa eri menetelmi� eri ymp�rist�ihin, painottuen kuitenkin erityisesti ulkotiloissa maanpinnalla vaihtelevassa ymprist�ss� kulkeviin robotteihin. T�ss� (ja my�hemmin) robotilla tarkoitetaan itsen�isesti liikkuvaa ajoneuvoa, kuten AGV:t�, eik� kiinte�sti asennettavia robotteja kuten manipulaattorik�sivarsia.
 
-%% Esimerkki luettelosta. Lyhyt ajatusviiva on käytössä
+Lokaaliin anturipohjaiseen esteenv�ist��n on luonnollisesti monia eri menetelmi�, joiden hy�dyllisyys ja soveltuvuus riippuu robotin ymp�rist�st� ja anturien laadusta. On monia yleisi� menetelmi� (potentiaalikentt�, neuroverkot, jne, TODO: parit referenssit t�h�n) sek my�s niist� osittain jalostettuja kehittyneempi� tapoja (VFH, RRT, jne) kartoittamalla heikkoudet ja soveltamalla tiettyyn ymp�rist��n; monia on testattu k�yt�nn�ss� ja jotkut ovat j��neet vain kaavoiksi.
+
+Globaalia liikkeensuunnittelua (kartta tiedossa etukteen jonka mukaan reitti suunnitellaan) sivutaan my�s hieman. Teksti keskittyy kuitenkin yht�kkisten, odottamattomien esteiden havaitsemiseen ja v�ist�miseen kun jonkinlainen reitti on tiedossa ennalta -- aiemmin tarkasti suunniteltu mutkineen ja risteyksineen, tai summittainen ohje luokkaa "50 metri pohjoiseen". Reitin ja/tai ymp�rist�n muutoksia saatetaan my�s p�ivitt�� robotille reaaliajassa.
+
+Aina ei v�lttmtt� voida saada mit��n ennakkotietoa ymp�rist�st�, jossa robotti kulkee; t�llin tieto pit�� kartoittaa matkan varrella. Jatkossa keskityt��n jonkinlaiseen kompromissiin t�ysin ennalta suunnitellun kartta/reitti-yhdistelm�n ja tyhj�lt� p�ydlt� l�htemisen v�lilt�.
+
+Esteit� on havainnoitava jatkuvasti ja niit voi v�ist�� vasta havaitsemisen jlkeen. Yleisi� havainnointimenetelmi� ovat ultra��nianturit, laserskannerit ja konen�k�. Hyvill� menetelmill� anturointi onnistuu jatkuvasti; toisilla robotti joutuu v�lill� pys�htym��n mittauksia varten.
+
+Esteiden ohi selvi�misen lis�ksi robotin on pysytt�v� reitill��n ja sen on jotenkin saatava tietoa sijainnistaan ja suunnastaan. T�m�kin riippuu robotin antureista ja niiden sopivuudesta ymprist��n. Yleisesti k�ytettyj� tapoja paikannukseen ovat mm. odometria, maamerkit, gps, radiomajakat ja n�kyvien seinien/maanmuotojen vertaaminen karttaan. Kaikki tavat ovat tosin jossain m��rin eptarkkoja, joten virhearviot on otettava huomioon ja mielell��n k�ytett�v� useampaa tapaa rinnakkain.
+
+TODO: kielioppi; filtter�i: tajunnanvirta -> tiede.
+
+\cite{bonin2008visual}
+
+
+%% Esimerkki luettelosta. Lyhyt ajatusviiva on kytss
 %% luettelossa, ja se on pituudeltaan
-%% en dash. Merkitään latex-koodissa --. 
-Johdanto selvittää samat asiat kuin tiivistelmä, mutta
-laveammin. Johdannossa kerrotaan yleensä seuraavat asiat
+%% en dash. Merkitn latex-koodissa --. 
 
-\begin{itemize}
-\item[--]Tutkimuksen taustaa ja tutkimusaiheen yleisluonteinen esittely
-\item[--]Tutkimuksen tavoitteet
-\item[--]Pääkysymys ja osaongelmat
-\item[--]Tutkimuksen rajaus ja keskeiset käsitteet.
-\end{itemize}
-
-Lyhyiden opinnäytteiden johdannot ovat yleensä liian pitkiä, joten
-johdannon paisuttamista on vältettävä. Diplomityöhön sopii johdanto,
-joka on 2--4 sivua. %% tässä on myös lyhyt ajatusviiva l. en dash.
-Kandidaatintyön johdannon on oltava diplomityön
-johdantoa lyhyempi. Sopivasti tiivistetty johdanto ei kaipaa alaotsikoita.
+%\begin{itemize}
+%\item[--]Tutkimuksen taustaa ja tutkimusaiheen yleisluonteinen esittely
+%\item[--]Tutkimuksen tavoitteet
+%\item[--]Pkysymys ja osaongelmat
+%\item[--]Tutkimuksen rajaus ja keskeiset ksitteet.
+%\end{itemize}
 
 
-%% Opinnäytteessä jokainen osa alkaa uudelta sivulta, joten \clearpage
+%% Opinnytteess jokainen osa alkaa uudelta sivulta, joten \clearpage
 %%
 %% In a thesis, every section starts a new page, hence \clearpage
 \clearpage
 
-\section{Aikaisempi tutkimus}
-% \section{Background}
+\section{Taustatutkimus}
 
-Tässä osassa selvitetään, mitä tutkimuksen kohteena olevasta
-aiheesta tiedetään entuudestaan. Selvityksen tulee kattaa
-tasapainoisesti koko tutkimuskenttä. 
-
-Kun opinnäytetyötä kirjoitetaan, on noudatettava 
-ohjeita, jotka koskevat opinnäytteen rakennetta,
-käytäntöjä, muotoseikkoja sekä ulkoasua. Esitellään näitä
-ohjeita tarkemmin.
-
-%% Osan hienojaottelua alaosiin, eikä välttämättä edes tarpeen,
-%% tässä vain esimerkkinä. Käytä harkintasi mukaan
-%% osan jaottelua, joskus alaotsikot selventävät asioita ja
-%% joskus vain sirpaloittavat tarpeettomasti tekstiä.
-%%  Jaottelu menee seuraavasti:
-%% \section{osan otsikko} 
-%% \subsection{alaotsikko}
-%% \subsubsection{ala-alaotsikko}
-%% Tätä pitemälle ei pidä jaotella. 
-%%
-%% Three levels of hierarchy in sectioning should be enough
-
-\subsection*{Rakenne}
-
-Opinnäytteen rakenteen tulee olla hyvän tieteellisen
-kirjoittamisen käytännön mukainen ja sisältää vähintään seuraavat
-osat:
-
-\begin{enumerate}
-\item Nimiölehti
-\item Tiivistelmä
-\item Sisällysluettelo
-\item Symboli- ja lyhenneluettelo
-\item \label{a} Johdanto
-%% Tässä alla on esimerkki lainausmerkkien käytöstä. Suomalaisen tekstin
-%% lainausmerkit eivät mene oikein latexissa (tai monissa muissakaan
-%% julkaisujärjestelmissä) kun käytetään
-%% "-merkkiä, koska latex käyttää amerikkalaista lainausmerkkien
-%% tulostustapaa. Vaihtoehtona voi käyttää kulmalainausmerkkejä, jotka
-%% myös tulostuvat oikein.
-\item  Aikaisempi tutkimus. Työn luonteen niin vaatiessa otsikko voi olla myös
-        >>Teoreettinen tausta>>  tai näiden otsikoiden yhdistelmä.
-\item Tutkimusaineisto ja -menetelmät %% yhdysmerkki - eli tavuviiva. 
-\item Tulokset
-\item \label{o} Tarkastelu. Työn luonteen niin vaatiessa otsikko voi
-      olla myös >>Johtopäätökset>> tai >>Yhteenveto>> 
-      tai edellä mainittujen otsikoiden yhdistelmä.
-\item Lähteet
-\item Liitteet.
-\end{enumerate}
-
-Tiivistelmän ja symboli- sekä lyhenneluetteloiden 
-väliin voi sijoittaa halutessaan esipuheen.  
-
-Työn osat \ref{a}-\ref{o} muodostavat \textit{tekstiosan.}  Työn
-yksittäisiä osia voidaan jakaa alaotsikoilla alaosiin, joita ei ole
-yllä esitetty. Alaotsikoiden käyttäminen selventää parhaimmillaan
-tekstiä, ja pahimmillaan sirpaloittaa sitä.  Sirpaloitumista voi estää
-huolehtimalla siitä, että samalla sivulla ei esiinny useampaa
-alaotsikkoa.  Tekstin jäsentelyssä on yleensä ongelmia, jos osassa on
-vain yksi alaosa, tai kirjoittaja joutuu käyttämään useampaa kuin
-kahta tasoa (osa ja alaosat): alaosien alaosat ovat harvoin tarpeen.
-\subsection*{Sivut ja kirjaintyypit}
-
-Opinnäytteen tulee olla kirjoitettu koneella tai
-tekstinkäsittelyohjelmalla yksipuolisesti A4-kokoiselle paperille.
-Kandidaatintyön tekstiosan sopiva pituus on noin 15--20 sivua ja
-diplomityön noin 60 sivua. Työtä ei ole syytä tarpeettomasti pidentää.
-
-Opinnäytteen tekstiosan kirjaintyypin tulee olla antiikva eli
-%% esimerkki pakkotavutuksesta; "serif-tyyppinen" on tavutuksen kannalta
-%% hankala, joten pakkotavutetaan se. 
-serif\--tyyp\-pi\-nen ja lisäksi kursivoimaton, lihavoimaton sekä kooltaan 12
-pistettä (kuten tässä esityksessä). Groteskeja eli \textsf{Sans
-  serif}-tyyppisiä kirjaintyyppejä (kuten Helvetica tai Arial) ei saa
-käyttää varsinaisessa tekstissä, mutta otsikoissa näitä voidaan
-käyttää.  Otsikoissa voidaan käyttää kooltaan edellä mainittua
-suurempaa kirjaintyyppiä sekä tyylikeinoja, kuten lihavointia tai
-kursivointia.  Tekstissä samantasoisten otsikoiden on kuitenkin oltava
-tyyliltään ja kirjainlajeiltaan yhteneväisiä.
-%% Esimerkki taulukosta
-\begin{table}[htb]
-%% Taulukon teksti
-\caption{Taulukoissa ja kuvissa kirjaintyypin voi valita
-tarkoituksenmukaisesti, mutta kuva- ja taulukkoteksteissä tulee
-käyttää samaa kirjaintyyppiä kuin varsinaisessa tekstissä. 
-Huomaa taulukon numeroinnin sijoittuminen taulukon yläpuolelle. \label{taulukko1}}
-\begin{center}
-\fbox{
-\begin{tabular}{c|l|r}
-\textbf{A} & 1 & $e^{j \omega t}$ \\ \hline
-\textsf{B} & 2 & ${\mathfrak R}(c)$ \\ \hline
-\texttt{C} & 3 & $ a \in \mathbb{A}$  
-\end{tabular}
-}
-\end{center}
-\end{table}
-
-Opinnäytteen vasen marginaali (sidonnan puoli) on
-35~mm % tässä ~ muodostaa ns. yhdistävän välilyönnin
-ja oikea 25~mm. Ylämarginaali on 25~mm. Leipätekstin korkeus on
-enimmillään 230mm. Tämän opinnäytepohjan marginaalien pitäisi olla
-paperille tulostettuna oikein, mutta tulostimesta ja paperista
-riippuen voi esiintyä yhden tai kahden millimetrin suuruisia eroja.
-%% Jos käännät tämän tekstin pdflatex-komennolla ja tulostat sen katselu-
-%% ohjelmasta, toteat todennäköisesti em. mittojen poikkeavan enemmän
-%% kuin 1-2 mm. 
-%% Tämä on seurausta pdf-tiedoston erilaisesta kirjaintyyppimäärityksestä.
-%% Korkeatasoista painotyötä varten käytä vain latex-komentoa ja 
-%% tulosta postscript-muotoon käännetystä tiedostosta. 
-\subsection*{Asemointi}
-
-%% Muutos vanhaan ohjeeseen verrattuna: aikaisemmassa ohjeessa
-%% kehotettiin käyttämään vasensuora-asettelua, mutta tässä
-%% ohjeessa ollaan luovuttu tuosta vaatimuksesta ja siirrytty
-%% huoliteltumpaan, painotuotteenomaisempaan suuntaan.  
-Tekstiosan tekstissä käytetään kappaleiden erottamiseen sisennystä,
-mutta ensimmäistä otsikon, väliotsikon tai muun katkon jälkeistä
-kappaletta ei sisennetä. Jos kuva tai muu katko tulee kappaleiden
-väliin, suositellaan katkon jälkeisen kappaleen sisentämistä.
-
-Mikäli oikea reuna halutaan tasata, tulee käyttää tavutusta ja lisäksi
-tarkistaa, ettei tekstiin jää lukemista häiritseviä pitkiä sanavälejä. Jos
-käytät opinnäytteen tekemisessä \LaTeX-järjestelmää, 
-tämä asia hoituu automaattisest.
-
-Opinnäytteen riviväli on 1, mikä on myös tämän opinnäytepohjan käytäntö. 
-Kappaleiden tulee yleensä olla ainakin kolmen rivin pituisia, mutta
-myös liian pitkiä kappaleita tulee välttää.  Tässä opinnäytepohjassa
-ei tekstin luonteen vuoksi voida täysin toteuttaa kappaleen pituutta koskevia
-vaatimuksia.
-
-Yksittäisiä, kappaleen päättäviä tai aloittavia rivejä sivun alussa
-tai lopussa on vältettävä koko työssä, myös luetteloissa ja
-liitteissä.
-
-\subsection*{Numerointi}
-
-Opinnäytteen jokainen osa alkaa uudelta sivulta. Alaosa aloittaa uuden
-sivun vain edellisen sivun täytyttyä.
-
-Työn osat numeroidaan siten, että johdanto on ensimmäinen numeroitava
-osa. Osien numeroinnissa käytetään arabialaisia numeroita.
-
-Nimiölehti, tiivistelmä, esipuhe, sisällysluettelo ja symboli- ja
-lyhenneluettelo numeroidaan esipuheesta tai tämän puuttuessa 
-ensimmäiseltä luettelosivulta alkaen roomalaisin numeroin.
-
-Sivunumerointi alkaa toiselta varsinaiselta tekstisivulta, ja 
-sivunumeroinnissa käytetään arabialaisia numeroita.
-
-Lähdeluettelo alkaa uudelta sivulta. Lähdeluettelon sivunumerointi 
-jatkuu viimeisestä tekstisivusta.
-
-Jokainen liite alkaa uudelta sivulta. Liitteiden sivunumerointi
-jatkuu viimeisestä lähdeluettelon sivusta.
-
-Sivunumero sijoitetaan sivun yläreunaan.
-
-Matemaattiset kaavat numeroidaan arabialaisin
-numeroin. Kaavanumerointi ei saa katketa osien välissä (eikä niin
-tapahdukaan, jos käytät tätä opinnäytepohjaa). Kaikkia kaavoja ei tarvitse
-numeroida, vaan kirjoittaja voi käyttää harkintaa numeroinnin
-tarpeellisuudessa.  Liitteissä olevat kaavat numeroidaan siten, että
-liitteen ajatellaan muodostavan numeroinnin kannalta itsenäisen ja
-yhtenäisen kokonaisuuden. Kaavan numero sijoitetaan oikealle puolelle
-alla olevan esimerkin mukaisesti
-\begin{equation}
-D(xy) = (Dx)y + x(Dy),  \hspace{3em} x,y \in \mathbb{A}.
-\end{equation}
-%% Kaavojen jälkeen ei yleensä laiteta sisennystä. 
-Kaikki kuvat ja taulukot numeroidaan erillisen juoksevan numeroinnin
-mukaisesti kuten taulukosta \ref{taulukko1} ja kuvasta \ref{kuva1} käy
-ilmi.  Liitteissä olevat kuvat ja taulukot numeroidaan siten, että
-liitteen ajatellaan muodostavan numeroinnin kannalta itsenäisen ja
-yhtenäisen kokonaisuuden. Liitteissä \ref{LiiteA} ja \ref{LiiteB} on
-esimerkkejä kaavojen (kaavat \ref{liitekaava1}--\ref{liitekaava2} tai
-kaavat \ref{liitekaava3}--\ref{liitekaava4}), kuvien (kuva
-\ref{liitekuva}) ja taulukoiden (taulukko \ref{liitetaulukko})
-numeroimisesta.  Liitteet numeroidaan suuraakkosin (esimerkiksi Liite
-A, Liite B tai pelkästään A, B).
-%% Tässä esimerkki kuva1.pdf -nimisen tiedoston tuomisesta kuvaksi.
-%% Komento \inclugraphics[parametrit]{argumentti} tuo kuvan.
-%% Komento \centering pakottaa kuvan keskelle. 
-%% Komento \caption luo kuvatekstin ja sen numeroinnin
-%% Parametrit htb pakottavat kuvan suunnilleen siihen 
-%% kohtaan, missä se esiintyy tekstin lähdekoodissa
-\begin{figure}[htb]
-\centering \includegraphics[height=5cm]{kuva1}
-\caption{Tämä on esimerkki numeroidusta kuvatekstistä. \label{kuva1}}
-\end{figure}
-
-\subsection*{Lähdeviittausten käyttö} 
-
-Lähdeviittaukset tulee tehdä huolellisesti ja johdonmukaisesti
-numeroviitejärjestelmän mukaisesti. Numeroviitteet järjestetään
-lähdeluetteloon viittausjärjestykseen, mutta jos lähdeluettelo
-on hyvin laaja (useita sivuja), järjestetään viitteet pääsanan 
-mukaiseen aakkosjärjestykseen. Alaviitejärjestelmää
-\footnote{Myöskään alaviitteenä olevia kommentteja \underline{ei} suositella
-käytettäviksi.} ei käytetä. 
-
-Viitteen sijoittelussa noudatetaan seuraavia sääntöjä:
-Jos viite kohdistuu vain yhteen virkkeeseen tai virkkeen 
-osaan, viite \cite{Kauranen} sijoitetaan virkkeen sisään ennen virkettä
-päättävää pistettä. Jos taas viite koskee tekstin useampaa
-virkettä tai kokonaista kappaletta, sijoitetaan viite kappaleen loppuun 
-pisteen jälkeen. \cite{Kauranen} 
-
-\subsection*{Lähdeluettelo} 
-
-Lähdeluettelossa esiintyy tavallisesti seuraavassa esitettäviä
-lähteitä, joista on numeroviitejärjestelmässä ilmoitettava
-asianomaisessa kohdassa vaaditut tiedot.
-
-%% Esimerkki korostamisesta. Lihavoinnin sijasta on tyylikkäämpää
-%% ja luettavampaa käyttää kursiivia.
-\textit{Kirjasta} ilmoitetaan seuraavat tiedot:
-
-\begin{itemize}
-\item[--]tekijät 
-\item[--]julkaisun nimi
-\item[--]painos, jos useita
-\item[--]kustannuspaikka
-\item[--]julkaisija tai kustantaja
-\item[--]julkaisuaika
-\item[--]mahdollinen sarjamerkintö. 
-\end{itemize}
-
-Viitteet \cite{Kauranen}--\cite{Koblitz} ovat esimerkkejä kirjan
-esittämisestä lähdeluettelossa. Viite \cite[s.\ 83--124]{Koblitz} on
-esimerkki lähdeluettelossa esiintyvän kirjan tiettyjen sivujen
-esittämisestä tekstissä.
-
-\textit{Artikkelista} kausijulkaisussa ilmoitetaan seuraavat tiedot:
-
-\begin{itemize}
-
-\item[--]tekijät
-\item[--]artikkelin nimi
-\item[--]kausijulkaisun nimi
-\item[--]julkaisuvuosi
-\item[--]kausijulkaisun volyymi tai ilmestymisvuosi
-\item[--]kausijulkaisun numero
-\item[--]sivut, joilla artikkeli on.
-\end{itemize}
-
-Viitteet \cite{bcs}--\cite{Deschamps} ovat esimerkkejä artikkelin
-esittämisestä lähdeluettelossa.
-
-\textit{Kokoomateoksen luvusta tai osasta} ilmoitetaan seuraavat tiedot:
-
-\begin{itemize}
-\item[--]luvun tai osan tekijät
-\item[--]luvun tai osan nimi
-\item[--]maininta >>Teoksessa>>
-\item[--]koko teoksen toimittajat sekä maininta >>(toim.)>>
-\item[--]koko teoksen tai konferenssin nimi
-\item[--]konferenssiesitelmän kyseessä ollessa sen pitopaikka ja -aika
-\item[--]painos, jos useita
-\item[--]kustannuspaikka
-\item[--]julkaisija tai kustantaja, jos aihetta tämän ilmoittamiseen on
-\item[--]julkaisuaika
-\item[--]sivut, joilla luku tai osa on 
-\item[--]mahdollinen sarjamerkintä.
-\end{itemize}
-
-Viitteet \cite{Sihvola}--\cite{Lindblom} ovat esimerkkejä
-kokoomateoksen luvun tai osan esittämisestä lähdeluettelossa. 
-
-\textit{Opinnäytetyöstä} ilmoitetaan seuraavat tiedot:
-
-\begin{itemize}
-\item[--]tekijä
-\item[--]työn nimi
-\item[--]opinnäytetyön tyyppi
-\item[--]oppilaitoksen nimi
-\item[--]osaston, laitoksen tai ohjelman nimi
-\item[--]oppilaitoksen sijaintipaikka
-\item[--]vuosiluku.
-\end{itemize}
-
-Viitteet \cite{Miinusmaa}--\cite{Lonnqvist} ovat esimerkkejä
-opinnäytteen esittämisestä lähdeluettelossa. 
-
-\textit{Standardista} ilmoitetaan seuraavat tiedot:
-
-\begin{itemize}
-\item[--]standardin tunnus ja numero
-\item[--]standardin nimi
-\item[--]painos, mikäli ei ole ensimmäinen
-\item[--]julkaisupaikka
-\item[--]julkaisija
-\item[--]julkaisuvuosi
-\item[--]sivumäärä.
-\end{itemize}
-Viite \cite{sfs} on esimerkki standardin esittämisestä opinnäytteen
-lähdeluettelossa. 
-
-\textit{Haastattelusta} ilmoitetaan seuraavat tiedot:
-
-\begin{itemize}
-\item[--]haastatellun henkilön nimi
-\item[--]haastatellun henkilön arvo tai asema
-\item[--]haastatellun henkilön edustama organisaatio
-\item[--]organisaation osoite
-\item[--]maininta siitä, että kyseessä on haastattelu ja haastattelun
-päivämäärä. 
-\end{itemize}
-
-Viite \cite{haastattelu} on esimerkki 
-haastattelun esittämisestä lähdeluettelossa.
-
-Osa sähköisessä muodossa olevista artikkeleista on saatavissa myös
-painettuina. \textit{Vain verkosta saatavissa olevasta artikkelista} esitetään
-seuraavat tiedot:
-
-\begin{itemize}
-\item[--]tekijät
-\item[--]artikkelin nimi
-\item[--]kausijulkaisun nimi
-\item[--]viestintyyppi
-\item[--]laitos tai volyymi
-\item[--]kausijulkaisun yksittäistä osaa koskeva merkintä tai numero
-\item[--]julkaisuvuosi tai maininta >>Päivitetty>> ja päivitysaika
-\item[--]maininta >>Viitattu>> ja viittaamisen ajankohta 
-\item[--]maininta >>Saatavissa>> ja URL tai 
-        maininta >>DOI>> ja DOI-numero (DOI=Digital Object Identifier).
-\end{itemize}
-
-Viitteet \cite{Ribeiro}--\cite{kone} ovat esimerkkejä sähköisessä
-muodossa olevan artikkelin esittämisestä opinnäytteen
-lähdeluettelossa.  Viitteet \cite{Ribeiro} ja \cite{Stieber} ovat
-saatavissa sekä painettuna että verkosta, joten viitteiden esitystapa
-mukailee painetun artikkelin viitteen esitystapaa, mutta sen lisäksi
-kerrotaan julkaisun olevan verkkolehti ja lehden olevan saatavissa
-myös painettuna.  Viite \cite{kone} on saatavissa vain verkosta ja
-siitä esitetään yllä vaaditut tiedot.
-
-Valitettavasti sähköisessä muodosssa olevasta artikkelista ei ole aina 
-saatavissa lai\-tos-, volyymi- tai numerotietoja.
-
-\textit{Sähköisessä muodossa olevasta opinnäytetyöstä} ilmoitetaan
-seuraavat tiedot:
- 
-\begin{itemize}
-\item[--]tekijä
-\item[--]työn nimi
-\item[--]viestintyyppi
-\item[--]opinnäytetyön tyyppi
-\item[--]oppilaitoksen nimi
-\item[--]osaston, laitoksen tai ohjelman nimi
-\item[--]oppilaitoksen sijaintipaikka
-\item[--]vuosiluku
-\item[--]viittamisen ajankohta
-\item[--]maininta >>Saatavissa>> ja URL tai 
-        maininta >>DOI>> ja DOI-numero.
-\end{itemize}
-
-Viite \cite{Adida} on esimerkki sähköisessä muodossa olevan
-opinnäytteen esittämisestä lähdeluettelossa.
-
-Viite \cite{viittaaminen} on esimerkki itsenäisen kirjoituksen sisältävästä
-verkkosivusta. Tällainen lähde on rinnastettavissa erillisteokseen.
-\textit{Verkkosivusta} esitetään tiedot:
-
-\begin{itemize}
-\item[--] tekijät
-\item[--] otsikko
-\item[--] maininta >>Päivitetty>> ja päivitysaika 
-\item[--] maininta >>Viitattu>> ja viittaamisen ajankohta
-\item[--] Maininta >>Saatavissa>> ja URL.
-\end{itemize}
-
-Joskus verkkosivun kirjoitus on jaettu useammalle sivulle, jolloin
-lähdeluetteloon kirjataan vain sellainen verkko-osoite, joka koskee
-koko kirjoitusta tai sen etusivua, ellei sitten 
-todella tarkoiteta kirjoituksen yksittäistä sivua. 
-
-\subsection*{Muuta huomioitavaa lähdeluettelossa}
-
-%% Muutos vanhoihin ohjeisiin koskien kieltä.
-Lähdeluettelossa työn ja julkaisun nimi kirjoitetaan alkuperäisessä
-muodossaan. Julkaisijan kotipaikka kirjoitetaan alkukielisessä
-muodossaan.
-
-Viittamista koskevassa suomalaisessa standardissa
-SFS 5342 \cite{sfs} vaaditaan julkaisuista ilmoitettavaksi myös ISBN- tai
-ISSN-numerot, mutta näissä opinnäyteohjeissa ei ISBN- ja 
-ISSN-numeroita vaadita. 
+Aluksi on perehdytt�v� tarkemmin aiheen k�sitteisiin: mit� tarkoitetaan reitill� ja sen suunnittelulla? Mit� esteit� ylip��t��n reitille voi tulla, ja mill� tavoin niihin on suhtauduttava? Millaiset (matemaattiset) menetelm�t robotin navigoinnin takana yleens� ovat?
 
 \clearpage
 
-\section{Tutkimusaineisto ja -menetelmät}
-%\section{Materials and methods}
+\section{Menetelmi�}
 
-Tässä osassa kuvataan käytetty tutkimusaineisto ja
-tutkimuksen metodologiset valinnat, sekä
-kerrotaan tutkimuksen toteutustapa ja käytetyt menetelmät. 
+\subsection{Potentiaalikentt�}
 
-\clearpage
+\subsection{Puumenetelm�t}
 
-\section{Tulokset}
-%\section{Results}
+\subsection{Neuroverkot}
 
-Tässä osassa esitetään tulokset ja vastataan tutkielman alussa
-esitettyihin tutkimuskysymyksiin. Tieteellisen kirjoitelman
-arvo mitataan tässä osassa esitettyjen tulosten perusteella. 
-
-%% Huomaa seuraavassa kappaleessa lainausmerkkien ulkopuolella piste, 
-%% koska piste ei lopeta lainattua tekstinpätkää.
-%% Jos lainattu tekstinpätkä loppuu välimerkkiin, tulee välimerkki
-%% lainausmerkkien sisälle: 
-%% "Et tu, Brute?" sanoi Caesar kuollessaan.
-Tutkimustuloksien merkitystä on aina syytä arvioida ja tarkastella
-kriittisesti.  Joskus tarkastelu voi olla tässä osassa, mutta se
-voidaan myös jättää viimeiseen osaan, jolloin viimeisen osan nimeksi
-tulee >>Tarkastelu>>. Tutkimustulosten merkitystä voi arvioida myös
->>Johtopäätökset>>-otsikon alla viimeisessä osassa. 
-
-Tässä osassa on syytä myös arvioida tutkimustulosten luotettavuutta.
-Jos tutkimustulosten merkitystä arvioidaan >>Tarkastelu>>-osassa,
-voi luotettavuuden arviointi olla myös siellä. 
+\subsection{Histogrammit}
 
 \clearpage
+
 
 \section{Yhteenveto}
-%\section{Summary} 
-
-Opinnäytteen tekijä vastaa siitä, että opinnäyte on tässä dokumentissa
-ja opinnäytteen tekemistä käsittelevillä luennoilla sekä
-harjoituksissa annettujen ohjeiden mukainen muotoseikoiltaan,
-rakenteeltaan ja ulkoasultaan.
-
-
 
 \clearpage
-%% Lähdeluettelo
 \addcontentsline{toc}{section}{Viitteet}
-%\addcontentsline{toc}{section}{References}
-\begin{thebibliography}{99}
-
-%% Alla pilkun jälkeen on pakotettu oikea väli \<välilyönti>-merkeillä.
-\bibitem{Kauranen} Kauranen,\ I., Mustakallio,\ M. ja Palmgren,\ V.
-  \textit{Tutkimusraportin kirjoittamisen opas opinnäytetyön
-    tekijöille.}  Espoo, Teknillinen korkeakoulu, 2006.
-
-\bibitem{Itkonen} Itkonen,\ M. \textit{Typografian käsikirja.} 3.\
-  painos.  Helsinki, RPS-yhtiöt, 2007.
-
-\bibitem{Koblitz} Koblitz,\ N. \textit{A Course in Number Theory and
-    Cryptography. Graduate Texts in Mathematics 114.}  2.\ painos. New
-  York, Springer, 1994.
-
-%% Kun on useampi nimikirjain, jokaisen nimikirjaimen väliin
-%% kuuluu välilyönti. Oikea välin määrä on saatu \<välilyönnillä>
-\bibitem{bcs} Bardeen,\ J., Cooper,\ L.\ N. ja Schrieffer,\ J.\ R.
-  Theory of Superconductivity. \textit{Physical Review,} 1957, vol.\
-  108, nro~5, s.\ 1175--1204.
-
-\bibitem{Deschamps} Deschamps,\ G.\ A. Electromagnetics and
-  Differential Forms. \textit{Proceedings of the IEEE,} 1981, vol.\
-  69, nro~6, s.\ 676--696.
-
-%% Alla esimerkki englanninkielisen tavuttamisen pakottamisesta.
-%% Oletusarvoisesti käytetään suomalaista tavutusta, mutta viitteissä
-%% esiintyy usein muunkielisiä lauseita, jotka tulevat siten tavutetuksi
-%% suomen kielen sääntöjen mukaan. Tämän voi korjata \foreignlanguage-
-%% komennolla, jonka ensimmäinen parametri on vieraan kielen nimi ja toinen 
-%% on vieraalla kielellä tavutettava teksti. 
-\bibitem{Sihvola} Sihvola,\ A.\ et al.
-  \foreignlanguage{english}{Interpretation of measurements of helix
-    and bihelix superchiral structures.}  Teoksessa: Jacob,\ A.\ F. ja
-  Reinert,\ J. (toim.) \textit{Bianisotropics '98 7th International
-    Conference on Complex Media.}  Braunschweig, 3.--6.6.1998.
-  Braunscweig, Technische Universität Braunschweig, 1998, s.\
-  317--320.
-
-%% Alla on suomalainen yhdistelmäsukunimi. Sen nimien välissä 
-%% käytetään yhdysmerkkiä l. tavuviivaa, kirjoitetaan -.
-\bibitem{Lindblom} Lindblom-Ylänne,\ S. ja Wager,\ M.  Tieteellisten
-  opinnäytetöiden ohjaaminen. Teoksessa: Lindblom-Ylänne,\ S. ja
-  Nevgi,\ A. (toim.) \textit{Yliopisto- ja korkeakouluopettajan
-    käsikirja.}  Helsinki, WSOY, 2004, s.\ 314--325.
- 
-\bibitem{Miinusmaa} Miinusmaa,\ H. Neliskulmaisen reiän poraamisesta
-  kolmikulmaisella poralla. Diplomityö, Teknillinen korkeakoulu,
-  konetekniikan osasto, Espoo, 1977.
-
-%% Tässä taas pakotettu englanninkielinen tavutus. 
-%% Pedanttinen kirjoittaja pakottaa tietysti jokaiseen englanninkieliseen
-%% lauseeseen englannin tavutuksen, mutta tässä esityksessä ei näin ole
-%% tehty selvyyden ja lähdekoodin luettavuuden takia. 
-\bibitem{Loh} Loh,\ N.\ C. High-Resolution Micromachined
-  Interferometric Accelerometer. Master's Thesis, Massachusetts
-  Institute of Technology, Cambridge,
-  \foreignlanguage{english}{Massachusetts,} 1992.
-
-\bibitem{Lonnqvist} Lönnqvist,\ A.
-  \foreignlanguage{english}{Applications of hologram-based compact
-    range: antenna radiation pattern, radar cross section, and
-    absorber reflectivity measurements.} Väitöskirja, Teknillinen
-  korkeakoulu, sähkö- ja tietoliikennetekniikan osasto, 2006.
-
-\bibitem{sfs} SFS 5342. Kirjallisuusviitteiden laatiminen. 2.\ painos.
-  Helsinki, Suomen standardisoimisliitto, 2004. 20~s.
-
-\bibitem{haastattelu} Palmgren,\ V. Suunnittelija. Teknillinen
-  korkeakoulu, kirjasto. Otaniementie 9, 02150 Espoo. Haastattelu
-  15.1.2007.
-
-\bibitem{Ribeiro} Ribeiro,\ C.\ B., Ollila,\ E. ja Koivunen,\ V.
-  \foreignlanguage{english}{Stochastic Maximum-Likelihood Method for
-    MIMO Propagation Parameter Estimation.} \textit{IEEE Transactions
-    on Signal Processing,} verkkolehti, vol.\ 55, nro~1, s.\ 46--55.
-  Viitattu 19.1.2007. Lehti ilmestyy myös painettuna. DOI:
-  10.1109/TSP.2006.882057.
-
-\bibitem{Stieber} Stieber,\ T. GnuPG Hacks. \textit{Linux Journal,}
-  verkkolehti, 2006, maaliskuu, nro~143. Viitattu 19.1.2007. Lehti
-  ilmestyy myös painettuna. Saatavissa:
-  \url{http://www.linuxjournal.com/article/8732.}
-
-\bibitem{kone} Pohjois-Koivisto,\ T. Voiko kone tulevaisuudessa arvata
-  tahtosi?  \textit{Apropos,} verkkolehti, helmikuu, nro~1, 2005.
-  Viitattu 19.1.2007.  Saatavissa:
-  \url{http://www.apropos.fi/1-2005/prima.php.}
-
-\bibitem{Adida} Adida,\ B.  Advances in Cryptographic Voting Systems.
-  Verkkodokumentti. Ph.D.\ Thesis, Massachusetts Institute of
-  Technology, Cambridge, \foreignlanguage{english}{Massachusetts,}
-  2006. Viitattu 19.1.2007.  Saatavissa:
-  \url{http://crypto.csail.mit.edu/~cis/theses/adida-phd.pdf.}
-
-\bibitem{viittaaminen} Kilpeläinen,\ P. WWW-lähteisiin viittaaminen
-  tutkielmatekstissä. Verkkodokumentti. Päivitetty 26.11.2001.
-  Viitattu 19.1.2007. Saatavissa:
-  \url{http://www.cs.uku.fi/~kilpelai/wwwlahteet.html.}
-
-\end{thebibliography}
-
-%% Liitteet 
-\appendix 
-
-\clearpage
-\addcontentsline{toc}{section}{Liite A}
-\section{Esimerkki liitteestä\label{LiiteA}}
-%% Liitteiden kaavat, taulukot ja kuvat numeroidaan omana kokonaisuutenaan
-%%
-%% Equations, tables and figures have their own numbering in Appendices
-\renewcommand{\theequation}{A\arabic{equation}}
-\setcounter{equation}{0}  
-\renewcommand{\thefigure}{A\arabic{figure}}
-\setcounter{figure}{0}
-\renewcommand{\thetable}{A\arabic{table}}
-\setcounter{table}{0}
-
-Liitteet eivät ole opinnäytteen kannalta välttämättömiä ja 
-opinnäytteen tekijän on 
-kirjoittamaan ryhtyessään hyvä ajatella pärjäävänsä ilman liitteitä.
-Kokemattomat kirjoittajat, jotka ovat huolissaan
-tekstiosan pituudesta, paisuttavat turhan 
-helposti liitteitä pitääkseen tekstiosan pituuden annetuissa rajoissa.
-Tällä tavalla ei synny hyvää opinnäytettä.   
-
-Liite on itsenäinen kokonaisuus, vaikka se täydentääkin tekstiosaa.
-Liite ei siten ole pelkkä listaus, kuva tai taulukko, vaan 
-liitteessä selitetään aina sisällön laatu ja tarkoitus. 
-
-Liitteeseen voi laittaa esimerkiksi listauksia. Alla on 
-listausesimerkki tämän liitteen luomisesta. 
-
-%% Verbatim-ympäristö ei muotoile tai tavuta tekstiä. Fontti on monospace.
-%% Verbatim-ympäristön sisällä annettuja komentoja ei LaTeX käsittele. 
-%% Vasta \end{verbatim}-komennon jälkeen jatketaan käsittelyä.
-\begin{verbatim}
-	\clearpage
-	\appendix
-	\addcontentsline{toc}{section}{Liite A}
-	\section*{Liite A}
-	...
-	\thispagestyle{empty}
-	...
-	tekstiä
-	...
-	\clearpage
-\end{verbatim}
-
-Kaavojen numerointi muodostaa liitteissä oman kokonaisuutensa:
-\begin{eqnarray}
-d \wedge A  &=& F, \label{liitekaava1}\\
-d \wedge F  &=& 0. \label{liitekaava2}
-\end{eqnarray}
-
-
-\clearpage
-\addcontentsline{toc}{section}{Liite B}
-\section{Toinen esimerkki liitteestä\label{LiiteB}}
-
-%% Liitteiden kaavat, taulukot ja kuvat numeroidaan omana kokonaisuutenaan
-%%
-%% Equations, tables and figures have their own numbering in Appendices
-\renewcommand{\theequation}{B\arabic{equation}}
-\setcounter{equation}{0}  
-\renewcommand{\thefigure}{B\arabic{figure}}
-\setcounter{figure}{0}
-\renewcommand{\thetable}{B\arabic{table}}
-\setcounter{table}{0}
-
-Liitteissä voi myös olla kuvia, jotka
-eivät sovi leipätekstin joukkoon:
-%% Ympäristön figure parametrit htb pakottavat
-%% kuvan tähän, eikä LaTeX yritä siirrellä niitä
-%% hyväksi katsomaansa paikkaan. 
-%% Ympäristöä center voi käyttää \centering-
-%% komennon sijaan
-%%
-%% Example of a figure, note the use of htb parameters which force
-%% the figure to be inserted here
-\begin{figure}[htb]
-\begin{center}
-\includegraphics[height=8cm]{kuva2}
-\end{center}
-\caption{Kuvateksti, jossa on liitteen numerointi \label{liitekuva}}
-\end{figure}
-%%
-Liitteiden taulukoiden numerointi on kuvien ja kaavojen kaltainen:
-\begin{table}[htb]
-\caption{Taulukon kuvateksti. \label{liitetaulukko}}
-\begin{center}
-\fbox{
-\begin{tabular}{lp{0.5\linewidth}}
-9.00--9.55  & Käytettävyystestauksen tiedotustilaisuus (osanottajat
-ovat saaneet sähköpostitse valmistautumistehtävät, joten tiedotustilaisuus
-voidaan pitää lyhyenä).\\
-9.55--10.00 & Testausalueelle siirtyminen
-\end{tabular}}
-\end{center}
-\end{table}
-Kaavojen numerointi muodostaa liitteissä oman kokonaisuutensa:
-\begin{eqnarray}
-T_{ik} &=& -p g_{ik} + w u_i u_k + \tau_{ik},  \label{liitekaava3} \\
-n_i    &=& n u_i + v_i.                        \label{liitekaava4}
-\end{eqnarray}
+\bibliography{kandi}
 
 \end{document}
 

@@ -28,13 +28,24 @@ Fast Mobile Robots in Cluttered Environments
 by
 J. Borenstein and Y. Koren
 
-[jotain vähän muuta] Evolutionary Artiﬁcial Potential Fields and Their Application in Real Time Robot Path
+[vfh:n pääteksti] THE VECTOR FIELD HISTOGRAM -
+FAST OBSTACLE AVOIDANCE FOR MOBILE ROBOTS
+by
+J. Borenstein, Member, IEEE and Y. Koren, Senior Member, IEEE
+
+[jotain vähän muuta potentiaalikentistä yleisesti] Evolutionary Artiﬁcial Potential Fields and Their Application in Real Time Robot Path
 Planning
 Prahlad Vadakkepat, Kay Chen Tan and Wang Ming-Liang
 
 [rapidly exploring random tree, aika eri juttua] Real-Time Randomized Path Planning for Robot Navigation∗
 James Bruce (jbruce@cs.cmu.edu)
 Manuela Veloso (mmv@cs.cmu.edu)
+
+[lähinnä konenäköä] Vision for Mobile Robot Navigation: A Survey
+Guilherme N. DeSouza and Avinash C. Kak
+
+[TODO: WUT] Visual Navigation for Mobile Robots: A Survey
+Francisco Bonin-Font · Alberto Ortiz · Gabriel Oliver
 
 -------------------------------------------------
 
@@ -44,6 +55,7 @@ Manuela Veloso (mmv@cs.cmu.edu)
 	- joku puuhässäkkä
 	- muuten vaan väistely
 	- histogrammi
+	- neuroverkko
 - lokaali/globaali esteenväistely?
 	- onko ennalta tietoa maailmasta
 	- voipi olla reitti annettu etukäteen ja jotain staattista tietoa seinistä
