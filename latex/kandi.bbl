@@ -6,4 +6,49 @@ F.~Bonin-Font, A.~Ortiz, and G.~Oliver.
 \newblock {\em Journal of Intelligent and Robotic Systems}, 53(3):263--296,
   2008.
 
+\bibitem{borenstein2002vfh}
+J.~Borenstein and Y.~Koren.
+\newblock {The vector field histogram-fast obstacle avoidance for mobile
+  robots}.
+\newblock {\em Robotics and Automation, IEEE Transactions on}, 7(3):278--288,
+  2002.
+
+\bibitem{bruce2003rrt}
+J.~Bruce and M.M. Veloso.
+\newblock {Real-time randomized path planning for robot navigation}.
+\newblock In {\em RoboCup 2002: Robot Soccer World Cup VI}, pages 288--295.
+  Springer, 2003.
+
+\bibitem{desouza2002vision}
+G.N. DeSouza and A.C. Kak.
+\newblock {Vision for mobile robot navigation: A survey}.
+\newblock {\em Pattern Analysis and Machine Intelligence, IEEE Transactions
+  on}, 24(2):237--267, 2002.
+
+\bibitem{koren1991potential}
+Y.~Koren and J.~Borenstein.
+\newblock {Potential field methods and their inherent limitations for mobile
+  robot navigation}.
+\newblock In {\em Proceedings of the IEEE international conference on robotics
+  and automation}, volume~2, pages 1398--1404. Citeseer, 1991.
+
+\bibitem{rimon1992apf}
+E.~Rimon and D.E. Koditschek.
+\newblock {Exact robot navigation using artificial potential functions}.
+\newblock {\em IEEE Transactions on robotics and automation}, 8(5):501--518,
+  1992.
+
+\bibitem{vadakkepat2002eapf}
+P.~Vadakkepat, K.C. Tan, and W.~Ming-Liang.
+\newblock {Evolutionary artificial potential fields and their application in
+  real time robot path planning}.
+\newblock In {\em Evolutionary Computation, 2000. Proceedings of the 2000
+  Congress on}, volume~1, pages 256--263. IEEE, 2002.
+
+\bibitem{warren2002apf}
+C.W. Warren.
+\newblock {Global path planning using artificial potential fields}.
+\newblock In {\em Robotics and Automation, 1989. Proceedings., 1989 IEEE
+  International Conference on}, pages 316--321. IEEE, 2002.
+
 \end{thebibliography}

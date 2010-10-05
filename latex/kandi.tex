@@ -207,35 +207,12 @@ linkcolor=blue,citecolor=black,pdfstartview=FitH]{hyperref}
 \begin{abstractpage}[finnish]
 Tutkitaan menetelmiä liikkuvien robottien reaaliaikaiseen esteenväistöön ja lokaaliin liikkeensuunnitteluun dynaamisessa ympristössä.
 
-Eritellään eri anturointitekniikoita, niihin soveltuvia esteentunnistusalgoritmeja ja ohjausmenetelmiä maaliin pääsemiseksi osumatta ympristön yllättäviin muutoksiin.
+Eritellään eri anturointitekniikoita, niihin soveltuvia esteentunnistusalgoritmeja ja ohjausmenetelmiä maaliin pääsemiseksi osumatta ympäristön yllättäviin muutoksiin.
 \end{abstractpage}
 
-%% Pakotetaan uusi sivu varmuuden vuoksi, jotta 
-%% mahdollinen suomenkielinen ja englanninkielinen tiivistelm
-%% eivt tule vahingossakaan samalle sivulle
-%%
-%% Force new page so that English abstract starts from a new page
 \newpage
-%
-%% English abstract, uncomment if you need one. 
-%% 
-%% Abstract keywords
-%\keywords{Resistor, Resistance,\\ Temperature}
-%% Abstract text
-%\begin{abstractpage}[english]
-% Your abstract in English. Try to keep the abstract short, approximately 
-% 100 words should be enough. Abstract explains your research topic, 
-% the methods you have used, and the results you obtained.  
-%\end{abstractpage}
-%% Note that 
-%% if you are writting your master's thesis in English place the English
-%% abstract first followed by the possible Finnish abstract
 
-%% Esipuhe 
-%%
-%% Preface
 \mysection{Esipuhe}
-%\mysection{Preface}
 Glxblt. Huu haa, foo bar.\\
 
 \vspace{5cm}
@@ -244,33 +221,17 @@ Otaniemi, x.y.2010
 \vspace{5mm}
 {\hfill Konsta Hölttä \hspace{1cm}}
 
-%% Pakotetaan varmuuden vuoksi esipuheen jlkeinen osa
-%% alkamaan uudelta sivulta
-%%
-%% Force new page after preface
 \newpage
 
 
 %% Sisllysluettelo
 %% addcontentsline tekee pdf-tiedostoon viitteen sisllysluetteloa varten
-%% 
-%% Table of contents. 
 \addcontentsline{toc}{section}{Sisällysluettelo}
-%\addcontentsline{toc}{section}{Contents}
-%% Tehdn sisllysluettelo
-%%
-%% Create it. 
 \tableofcontents
 
-
-%% Symbolit ja lyhenteet
-%%
-%% Symbols and abbreviations
 \mysection{Symbolit ja lyhenteet}
-%\mysection{Symbols and abbreviations}
 
 \subsection*{Lyhenteet}
-%\subsection*{Abbreviations}
 
 \begin{tabular}{ll}
 VFH	&	vector field histogram \\
@@ -296,74 +257,85 @@ RRT	&	rapidly-exploring random tree
 \setcounter{page}{1}
 
 
-%% Leipteksti alkaa
-%%
-%% Text body begins. Note that since the text body
-%% is mostly in Finnish the majority of comments are
-%% also in Finnish after this point. There is no point in explaining
-%% Finnish-language specific thesis conventions in English.
-\section{Johdanto}
-%\section{Introduction}
 
-%% Ensimminen sivu tyhjksi
-%% 
-%% Leave first page empty
+\section{Johdanto}
+
 \thispagestyle{empty}
 
-Liikkuva robotti, esteenväistö ja liikkeensuunnittelu ovat sellaisinaan hyvin laajoja käsitteitä. Tämän tekstin tarkoituksena on kartoittaa eri menetelmiä eri ympäristöihin, painottuen kuitenkin erityisesti ulkotiloissa maanpinnalla vaihtelevassa ympristössä kulkeviin robotteihin. Tässä (ja myöhemmin) robotilla tarkoitetaan itsenäisesti liikkuvaa ajoneuvoa, kuten AGV:tä, eikä kiinteästi asennettavia robotteja kuten manipulaattorikäsivarsia.
+Liikkuva robotti, robotin paikannus, esteenväistö sekä liikkeensuunnittelu ovat sellaisinaan hyvin laajoja käsitteitä. Tämän tekstin tarkoituksena on kartoittaa eri menetelmiä eri ympäristöihin, painottuen kuitenkin erityisesti ulkotiloissa maanpinnalla vaihtelevassa ympäristössä kulkeviin robotteihin. Tässä (ja myöhemmin) robotilla tarkoitetaan itsenäisesti liikkuvaa ajoneuvoa, kuten AGV:tä, eikä kiinteästi asennettavaa robottia kuten manipulaattorikäsivartta.
 
-Lokaaliin anturipohjaiseen esteenväistöön on luonnollisesti monia eri menetelmiä, joiden hyödyllisyys ja soveltuvuus riippuu robotin ympäristöstä ja anturien laadusta. On monia yleisiä menetelmiä (potentiaalikenttä, neuroverkot, jne, TODO: parit referenssit tähän) sek myös niistä osittain jalostettuja kehittyneempiä tapoja (VFH, RRT, jne) kartoittamalla heikkoudet ja soveltamalla tiettyyn ympäristöön; monia on testattu käytännössä ja jotkut ovat jääneet vain kaavoiksi.
+Lokaaliin anturipohjaiseen esteenväistöön on luonnollisesti monia eri menetelmiä, joiden hyödyllisyys ja soveltuvuus riippuu robotin ympäristöstä ja anturien laadusta. Universaalia kaikkialle sopivaa lokaalia esteenväistöä ei ole olemassa. On tosin monia yleisiä menetelmiä (potentiaalikenttä, neuroverkot, satunnaispuut, jne, TODO: parit referenssit tähän) ja tilannekohtaista heuristiikkaa. Myös aiemmista osittain jalostettuja kehittyneempiä tapoja (VFH jne) on saatu kartoittamalla heikkoudet ja soveltamalla tiettyyn ympäristöön; monia on testattu käytännössä ja jotkut ovat jääneet vain kaavoiksi.
 
-Globaalia liikkeensuunnittelua (kartta tiedossa etukteen jonka mukaan reitti suunnitellaan) sivutaan myös hieman. Teksti keskittyy kuitenkin yhtäkkisten, odottamattomien esteiden havaitsemiseen ja väistämiseen kun jonkinlainen reitti on tiedossa ennalta -- aiemmin tarkasti suunniteltu mutkineen ja risteyksineen, tai summittainen ohje luokkaa "50 metri pohjoiseen". Reitin ja/tai ympäristön muutoksia saatetaan myös päivittää robotille reaaliajassa.
+Globaalia liikkeensuunnittelua (kartta tiedossa etukäteen jonka mukaan reitti suunnitellaan) sivutaan myös hieman. Tässä työssä keskitytään kuitenkin yhtäkkisten, odottamattomien esteiden havaitsemiseen ja väistämiseen kun jonkinlainen reitti on tiedossa ennalta -- joko aiemmin tarkasti suunniteltu kartta mutkineen ja risteyksineen, tai summittainen ohje luokkaa "50 metriä pohjoiseen". Reitin ja/tai ympäristön muutoksia saatetaan myös päivittää robotille reaaliajassa. Aina ei kuitenkaan voida saada mitään ennakkotietoa ympäristöstä, jossa robotti kulkee; tällöin tieto pitää kartoittaa matkan varrella.
 
-Aina ei välttmttä voida saada mitään ennakkotietoa ympäristöstä, jossa robotti kulkee; tällin tieto pitää kartoittaa matkan varrella. Jatkossa keskitytään jonkinlaiseen kompromissiin täysin ennalta suunnitellun kartta/reitti-yhdistelmän ja tyhjältä päydltä lähtemisen väliltä.
+Esteitä on havainnoitava jatkuvasti ja niitä voi väistää vasta havaitsemisen jlkeen. Yleisiä havainnointimenetelmiä ovat ultraäänianturit, laserskannerit ja konenäkö. Hyvillä menetelmillä anturointi onnistuu jatkuvasti; toisilla robotti joutuu välillä pysähtymään mittauksia varten.
 
-Esteitä on havainnoitava jatkuvasti ja niit voi väistää vasta havaitsemisen jlkeen. Yleisiä havainnointimenetelmiä ovat ultraäänianturit, laserskannerit ja konenäkö. Hyvillä menetelmillä anturointi onnistuu jatkuvasti; toisilla robotti joutuu välillä pysähtymään mittauksia varten.
+Esteiden ohi selviämisen lisäksi robotin on pysyttävä reitillään ja sen on jotenkin saatava tietoa sijainnistaan ja suunnastaan. Tämäkin riippuu robotin antureista ja niiden sopivuudesta ympristöön. Yleisesti käytettyjä tapoja paikannukseen ovat mm. odometria, maamerkit, gps, radiomajakat ja näkyvien seinien/maanmuotojen vertaaminen karttaan. Kaikki tavat ovat tosin jossain määrin epätarkkoja, joten virhearviot on otettava huomioon ja mielellään käytettävä useampaa tapaa rinnakkain.
 
-Esteiden ohi selviämisen lisäksi robotin on pysyttävä reitillään ja sen on jotenkin saatava tietoa sijainnistaan ja suunnastaan. Tämäkin riippuu robotin antureista ja niiden sopivuudesta ympristöön. Yleisesti käytettyjä tapoja paikannukseen ovat mm. odometria, maamerkit, gps, radiomajakat ja näkyvien seinien/maanmuotojen vertaaminen karttaan. Kaikki tavat ovat tosin jossain määrin eptarkkoja, joten virhearviot on otettava huomioon ja mielellään käytettävä useampaa tapaa rinnakkain.
-
-TODO: kielioppi; filtteröi: tajunnanvirta -> tiede.
-
-\cite{bonin2008visual}
+TODO: kielioppi; filtteröi: tajunnanvirta -> tiedeteksti.
 
 
-%% Esimerkki luettelosta. Lyhyt ajatusviiva on kytss
-%% luettelossa, ja se on pituudeltaan
-%% en dash. Merkitn latex-koodissa --. 
-
-%\begin{itemize}
-%\item[--]Tutkimuksen taustaa ja tutkimusaiheen yleisluonteinen esittely
-%\item[--]Tutkimuksen tavoitteet
-%\item[--]Pkysymys ja osaongelmat
-%\item[--]Tutkimuksen rajaus ja keskeiset ksitteet.
-%\end{itemize}
-
-
-%% Opinnytteess jokainen osa alkaa uudelta sivulta, joten \clearpage
-%%
-%% In a thesis, every section starts a new page, hence \clearpage
 \clearpage
 
 \section{Taustatutkimus}
 
-Aluksi on perehdyttävä tarkemmin aiheen käsitteisiin: mitä tarkoitetaan reitillä ja sen suunnittelulla? Mitä esteitä ylipäätään reitille voi tulla, ja millä tavoin niihin on suhtauduttava? Millaiset (matemaattiset) menetelmät robotin navigoinnin takana yleensä ovat?
+Aluksi on perehdyttävä tarkemmin aiheen käsitteisiin: mitä tarkoitetaan reitillä ja sen suunnittelulla? Mitä esteitä ylipäätään reitillä voi olla, ja millä tavoin niihin on suhtauduttava? Millaiset (matemaattiset) menetelmät robotin navigoinnin takana yleensä ovat?
+
+Paljon tutkimusta on tehty \cite{bonin2008visual} ja sitä tätä.
 
 \clearpage
 
-\section{Menetelmiä}
+\section{Navigointi ja liikkeensuunnittelu yleisesti}
+
+\clearpage
+
+\section{Esteenväistömenetelmiä}
 
 \subsection{Potentiaalikenttä}
 
-\subsection{Puumenetelmät}
+Keinopotentiaalikentät (artificial potential functions, artificial potential fields) ovat vanha \cite{rimon1992apf} mutta usein (sellaisenaan tai toisen navigointitavan pohjana) käytetty väistömenetelmä. Mitään oikeita fysikaalisia voimia nämä kentät eivät tuota robotille, jolloin kenttiä sanotaan keinotekoisiksi.
 
-\subsection{Neuroverkot}
+Tekniikan idea on, että robotin määränpää aiheuttaa robottiin voiman kohdetta päin tai reitin suuntaisesti. Jokainen lähistöllä oleva este vaikuttaa robotin potentiaalikenttään joka kokonaisuudessaan saa robotin hylkimään esteitä -- mitä lähemmäs estettä siirrytään, sitä suuremman ``voiman'' potentiaali aiheuttaa suoraan esteestä poispäin.
+
+Potentiaalikenttiä käytetään myös robottimanipulaattoreilla, mutta ne soveltuvat liikkuvillekin roboteille. \cite{warren2002apf}
+
+
+\cite{vadakkepat2002eapf}
+
+
 
 \subsection{Histogrammit}
+
+Borestein ja Koren toteavat potentiaalikentät riittämättömiksi ja esittävät niihin pohjautuvan virtual force field -menetelmän \cite{koren1991potential} ja siitä edelleen kehittyneen vector field histogram -tekniikan \cite{borenstein2002vfh}. Virtuaalinen voimakenttä perustuu liukuvaan robotin mukana kulkevaan ruudukkoon, johon lasketaan varmuusarvoja esteistä. Vektorikenttähistogrammi jalostaa tätä eteenpäin rakentamalla ruudukosta suuntapohjaisen histogrammin.
+
+Tämä tapa soveltuu erityisesti häiriöiseen ja epävarmaan mittaukseen, ja sitä onkin testattu ultraäänisensoreilla joihin liittyy lähes ominaisesti tietynlaista häiriötä.
+
+
+\subsection{Puumenetelmät}
+
+(Execution extended) Rapidly-exploring random tree \cite{bruce2003rrt} käyttää hyväkseen jo olemassaolevaa dataa ajoympäristöstä.
+
+
+\subsection{Neuroverkot}
+\cite{glasius1995neural} \cite{yang2000neural}
+
+\subsection{Konenäkö}
+
+Konenäkö yleisesti soveltuu hyvin sisätiloissa seinien ja yksinkertaisten geometrioiden havainnointiin \cite[s. 245]{desouza2002vision}. Ulkotiloissa sisätilojen kaltaisia käytäviä ja huoneita ei ole, jolloin vastaavat menetelmät eivät välttämättä ole suoraan käytettävissä; tosin mikäli edessä on helposti samanlaista materiaalia, kuten puita tai suora autotie \cite[s. 255]{desouza2002vision}, toimii menetelmä hyvin.
+
+
+\clearpage
+
+\section{And now for something completely different}
+
+Foo
 
 \clearpage
 
 
 \section{Yhteenveto}
+
+Bar
 
 \clearpage
 \addcontentsline{toc}{section}{Viitteet}

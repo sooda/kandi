@@ -4,11 +4,14 @@
 \contentsline {section}{Sis\"allysluettelo}{iv}{section*.2}
 \contentsline {section}{Symbolit ja lyhenteet}{v}{section*.4}
 \contentsline {section}{\numberline {1}Johdanto}{1}{section.1}
-\contentsline {section}{\numberline {2}Pohjatutkimus}{2}{section.2}
-\contentsline {section}{\numberline {3}Menetelmi\"a}{3}{section.3}
-\contentsline {subsection}{\numberline {3.1}Potentiaalikentt\"a}{3}{subsection.3.1}
-\contentsline {subsection}{\numberline {3.2}Puumenetelm\"at}{3}{subsection.3.2}
-\contentsline {subsection}{\numberline {3.3}Neuroverkot}{3}{subsection.3.3}
-\contentsline {subsection}{\numberline {3.4}Histogrammit}{3}{subsection.3.4}
-\contentsline {section}{\numberline {4}Yhteenveto}{4}{section.4}
-\contentsline {section}{Viitteet}{5}{section.4}
+\contentsline {section}{\numberline {2}Taustatutkimus}{2}{section.2}
+\contentsline {section}{\numberline {3}Navigointi ja liikkeensuunnittelu yleisesti}{3}{section.3}
+\contentsline {section}{\numberline {4}Esteenv\"aist\"omenetelmi\"a}{4}{section.4}
+\contentsline {subsection}{\numberline {4.1}Potentiaalikentt\"a}{4}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}Histogrammit}{4}{subsection.4.2}
+\contentsline {subsection}{\numberline {4.3}Puumenetelm\"at}{4}{subsection.4.3}
+\contentsline {subsection}{\numberline {4.4}Neuroverkot}{4}{subsection.4.4}
+\contentsline {subsection}{\numberline {4.5}Konen\"ak\"o}{4}{subsection.4.5}
+\contentsline {section}{\numberline {5}And now for something completely different}{5}{section.5}
+\contentsline {section}{\numberline {6}Yhteenveto}{6}{section.6}
+\contentsline {section}{Viitteet}{7}{section.6}

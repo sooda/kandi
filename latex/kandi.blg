@@ -2,44 +2,44 @@ This is BibTeX, Version 0.99c (Web2C 2009)
 The top-level auxiliary file: kandi.aux
 The style file: plain.bst
 Database file #1: kandi.bib
-You've used 1 entry,
+You've used 8 entries,
             2118 wiz_defined-function locations,
-            504 strings with 4152 characters,
-and the built_in function-call counts, 384 in all, are:
-= -- 37
-> -- 18
-< -- 0
-+ -- 7
-- -- 6
-* -- 33
-:= -- 70
-add.period$ -- 3
-call.type$ -- 1
-change.case$ -- 6
+            549 strings with 5434 characters,
+and the built_in function-call counts, 3298 in all, are:
+= -- 356
+> -- 108
+< -- 6
++ -- 42
+- -- 34
+* -- 220
+:= -- 496
+add.period$ -- 28
+call.type$ -- 8
+change.case$ -- 41
 chr.to.int$ -- 0
-cite$ -- 1
-duplicate$ -- 11
-empty$ -- 28
-format.name$ -- 6
-if$ -- 74
+cite$ -- 8
+duplicate$ -- 138
+empty$ -- 276
+format.name$ -- 34
+if$ -- 734
 int.to.chr$ -- 0
-int.to.str$ -- 1
-missing$ -- 1
-newline$ -- 8
-num.names$ -- 2
-pop$ -- 4
+int.to.str$ -- 8
+missing$ -- 8
+newline$ -- 43
+num.names$ -- 16
+pop$ -- 43
 preamble$ -- 1
-purify$ -- 5
+purify$ -- 33
 quote$ -- 0
-skip$ -- 7
+skip$ -- 110
 stack$ -- 0
-substring$ -- 30
-swap$ -- 1
-text.length$ -- 0
+substring$ -- 276
+swap$ -- 52
+text.length$ -- 6
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 4
+type$ -- 32
 warning$ -- 0
-while$ -- 4
-width$ -- 2
-write$ -- 13
+while$ -- 36
+width$ -- 9
+write$ -- 96
