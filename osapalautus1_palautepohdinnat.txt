@@ -5,20 +5,40 @@
 	- "jo muinaisina aikoina roboteissa oli pyörät".
 	- on differential driveä. on huonoja renkaita. on odometriaongelmia.
 	- työssä ei käsitellä ongelmia
+	- itse pohjustus hmm-hmm:
+		- robotissa on pyörät. tai jalat. tai jotain.
+		- pyöriä ohjataan jollain lailla ja robottia ohjataan niillä sit jollain lailla.
+			- vois mainita differential driven/omnidirectional driven
+			- ja parilla lausella kääntymistä niillä yms, ei ihmeempää.
+		- sijaintia seurataan jotenkin.
+			- odometria pyöristä/dopplerista/???, rekursiivinen
+			- radiot/majakat, absoluuttinen
+			- kaiku, ympäristöhavainnointi ja karttaan adaptointi
+			- jne...
+			- näihin ei ihmeemmin keskitytä, oletetaan että on hoidossa.
 - paljonko eritellään esteiden havainnointia ennen niiden väistämistä?
-	- sama kuin edellä?
+	- sama kuin edellä, about sivu?
+		- ultraääni
+		- laserskannaus
+		- kuvantunnistus
+		- edelleen oletetaan, että jo tiedetään jossain olevan jotain
 - keskitytään ulkotiloihin... liikkuvien ihmisten väistelyä / metsää / siitä väliltä?
 	- ihan miten vaan, mutta mahdollisimman haastavia ympäristöjä mielellään
+		- suota tai metsää vaikka, tietkin kyllä käy mut mielellään hankalaa uutta jota ei tutkittu aiemmin
 	- etenkin sisätiloja on tutkittu jo 80-luvulta saakka, tylsää
 	- dynaaminen ympäristö!
-	- esteillä voi hyvin olla nopeus ja kulmanopeus
-	- tolppa on tulossa päin / menossa ohi, ennustetaan kohta josta se ei kulje ja mennään läpi.
+		- joku tulee tönimään
+		- esteillä voi hyvin olla nopeus ja kulmanopeus
+		- geneerinen tolppa on tulossa päin / menossa ohi, ennustetaan kohta josta se ei kulje ja mennään läpi.
 - globaali liikkeensuunnittelu -- paljonko keskitytään siihen, että robotilla on ennalta jotain tietoa ympäristöstä?
-	- voi olla tietoa. ei välttämättä ole. ei oteta kantaan
+	- voi olla tietoa. ei välttämättä ole. ei juurikaan oteta kantaa
 	- oletetaan että joku ohjaa! ylempää tulee globaalia tietoa. itse keskitytään lokaaliin tilanteeseen.
 	- edessä möykky. pitäis kiertää. nih.
 - pöljää vaan eritellä listassa eri menetelmiä + konklushön lopuks vaikka se lie selkein tapa, parempaa?
 	- alussa oli sisätilat...
 	- aihepiireittäin eikä menetelmäpiireittäin.
 	- menetelmät siinä aiheiden yhteydessä
+	- aihepiireittäin on laajempaa, geneerisempää ja vähemmän luettelomaista pohtia
+	- entäs kun yksi menetelmä voi sisältyä moneen aiheeseen
+	- no mietitään sit.
 - "punainen lanka"
