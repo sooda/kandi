@@ -1,0 +1,24 @@
+- mites se robotti ja esteenväistö nyt määritellään?
+	- lokaalisti! ei suunnittelua ollenkaan pitkälle vaan just nyt edessä olevan asian väistöä!
+- paljonko aihetta pitää pohjustaa robotin ohjauksesta ja navigoinnista yleisesti?
+	- vähäsen. ~sivu vaikka. 
+	- "jo muinaisina aikoina roboteissa oli pyörät".
+	- on differential driveä. on huonoja renkaita. on odometriaongelmia.
+	- työssä ei käsitellä ongelmia
+- paljonko eritellään esteiden havainnointia ennen niiden väistämistä?
+	- sama kuin edellä?
+- keskitytään ulkotiloihin... liikkuvien ihmisten väistelyä / metsää / siitä väliltä?
+	- ihan miten vaan, mutta mahdollisimman haastavia ympäristöjä mielellään
+	- etenkin sisätiloja on tutkittu jo 80-luvulta saakka, tylsää
+	- dynaaminen ympäristö!
+	- esteillä voi hyvin olla nopeus ja kulmanopeus
+	- tolppa on tulossa päin / menossa ohi, ennustetaan kohta josta se ei kulje ja mennään läpi.
+- globaali liikkeensuunnittelu -- paljonko keskitytään siihen, että robotilla on ennalta jotain tietoa ympäristöstä?
+	- voi olla tietoa. ei välttämättä ole. ei oteta kantaan
+	- oletetaan että joku ohjaa! ylempää tulee globaalia tietoa. itse keskitytään lokaaliin tilanteeseen.
+	- edessä möykky. pitäis kiertää. nih.
+- pöljää vaan eritellä listassa eri menetelmiä + konklushön lopuks vaikka se lie selkein tapa, parempaa?
+	- alussa oli sisätilat...
+	- aihepiireittäin eikä menetelmäpiireittäin.
+	- menetelmät siinä aiheiden yhteydessä
+- "punainen lanka"
