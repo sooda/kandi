@@ -8,13 +8,16 @@
 	- itse pohjustus hmm-hmm:
 		- robotissa on pyörät. tai jalat. tai jotain.
 		- pyöriä ohjataan jollain lailla ja robottia ohjataan niillä sit jollain lailla.
-			- vois mainita differential driven/omnidirectional driven
+			- vois mainita differential driven/synchro-driven/omnin? tai sit vaan todeta että on useampia tapoja
 			- ja parilla lausella kääntymistä niillä yms, ei ihmeempää.
 		- sijaintia seurataan jotenkin.
 			- odometria pyöristä/dopplerista/???, rekursiivinen
-			- radiot/majakat, absoluuttinen
-			- kaiku, ympäristöhavainnointi ja karttaan adaptointi
+			- inertiaalinavigaatio (?), kiihtyvyysantureista ja gyroista
+			- radiot/majakat/gps, absoluuttinen
+			- maamerkit
+			- ympäristöhavainnointi ja karttaan adaptointi
 			- jne...
+			- kalman.
 			- näihin ei ihmeemmin keskitytä, oletetaan että on hoidossa.
 - paljonko eritellään esteiden havainnointia ennen niiden väistämistä?
 	- sama kuin edellä, about sivu?
@@ -30,6 +33,11 @@
 		- joku tulee tönimään
 		- esteillä voi hyvin olla nopeus ja kulmanopeus
 		- geneerinen tolppa on tulossa päin / menossa ohi, ennustetaan kohta josta se ei kulje ja mennään läpi.
+	- haasteita:
+		- epätasaisuus -- estehavainnointi luulee maata tai sen möykkyjä esteiksi, kun robo on kallistunut
+		- siispä gyroja ja kiihtyvyysantureita
+		- yhtäkkiä, kuoppa?
+		- tosi geneerisiä ongelmia kuten kosteus, pöly yms, ei tosin liity tähän
 - globaali liikkeensuunnittelu -- paljonko keskitytään siihen, että robotilla on ennalta jotain tietoa ympäristöstä?
 	- voi olla tietoa. ei välttämättä ole. ei juurikaan oteta kantaa
 	- oletetaan että joku ohjaa! ylempää tulee globaalia tietoa. itse keskitytään lokaaliin tilanteeseen.
