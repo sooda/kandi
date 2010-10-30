@@ -272,20 +272,55 @@ Esteit‰ on havainnoitava jatkuvasti ja niit‰ voi v‰ist‰‰ vasta havaitsemisen jlk
 
 Esteiden ohi selvi‰misen lis‰ksi robotin on pysytt‰v‰ reitill‰‰n ja sen on jotenkin saatava tietoa sijainnistaan ja suunnastaan. T‰m‰kin riippuu robotin antureista ja niiden sopivuudesta ymp‰ristˆˆn. Yleisesti k‰ytettyj‰ tapoja paikannukseen ovat mm. odometria, maamerkit, gps, radiomajakat ja n‰kyvien seinien/maanmuotojen vertaaminen karttaan. Kaikki tavat ovat tosin jossain m‰‰rin ep‰tarkkoja, joten virhearviot on otettava huomioon ja mielell‰‰n k‰ytett‰v‰ useampaa tapaa rinnakkain.
 
-TODO: kielioppi; filtterˆi: tajunnanvirta -> tiedeteksti.
+TODO: kielioppi; filtterˆi: tajunnanvirta -> tiedeteksti. tapa, menetelm‰, .. synonyymej‰?
 
 
 \clearpage
 
-\section{Taustatutkimus}
+\section{Pohjatutkimus}
 
-Aluksi on perehdytt‰v‰ tarkemmin aiheen k‰sitteisiin: mit‰ tarkoitetaan reitill‰ ja sen suunnittelulla? Mit‰ esteit‰ ylip‰‰t‰‰n reitill‰ voi olla, ja mill‰ tavoin niihin on suhtauduttava? Millaiset (matemaattiset) menetelm‰t robotin navigoinnin takana yleens‰ ovat?
+Robotin navigoinnin pohjalla on hyvin paljon muitakin ongelmia, joihin t‰ss‰ tekstiss‰ ei oteta tarkemmin kantaa, vaan ne oletetaan ratkaistuiksi. Seuraavassa kuitenkin esitell‰‰n joitain perusasioita pyˆrill‰ kulkevan robotin liikkumisesta.
+
+Jo muinaisissa roboteissa oli pyˆr‰t, ja ne yksinkertaisen mutta toimivan tekniikkansa vuoksi ovat ylivoimaisesti useimpien nykyrobottien liikkumisen perustana (TODO: joku papru t‰h‰n). Haastavassa maastossa k‰ytet‰‰n jotain pyˆrist‰ jalostettua tapaa, kuten telaketjuja, piikikk‰it‰ renkaita tai pyˆrivi‰ jalan kaltaisia l‰pyskˆit‰ (TODO: mik‰s se t‰mmˆnen robo oli).
+
+Pyˆrill‰ liikkumiseenkin on hyvin monia tapoja, joissa on kaikissa omat hyv‰t ja huonot puolensa. Tekniikka valittakoon robotin muodon ja kohdeymp‰ristˆn mukaan. Usein k‰ytettyj‰ ovat differentiaaliajo (kaksi erikseen ohjattavaa vet‰v‰‰ pyˆr‰‰, ja mahdollisesti useampia tasoittamaan painoa; myˆs telaketjuajo on differentiaalinen), Ackermannin ohjaus (autoissa k‰ytetty), synkronoitu ajo (synchro drive, TODO suomennos; monta jatkuvasti samaan suuntaan osoittavaa ja yht‰ nopeasti pyˆriv‰‰ pyˆr‰‰), ja omnidirectional (TODO jonka vois j‰tt‰‰ mainitsemattaki).
+
+Nivelletyill‰ jaloilla k‰velevi‰ robotteja tutkitaan nyky‰‰n yh‰ enemm‰n. Humanoidirobotit soveltuisivat hyvin ihmisille tarkoitettuun ymp‰ristˆˆn, ja n‰ytt‰isiv‰t ihmisille luontevilta jolloin kanssak‰yminen olisi helppoa ja ne voisivat hoitaa ihmisten teht‰vi‰ yleisell‰ tasolla. Nivelletyt jalat sopivat myˆskin haastavaan, ep‰tasaiseen maastoon pyˆreit‰ renkaita paremmin vaikkei olisikaan ihmisten kaltaisista roboteista kyse. T‰t‰ on kokeiltu esimeriksi mets‰koneissa [TODO].
+
+SNIP->
+Aluksi on perehdytt‰v‰ tarkemmin aiheen k‰sitteisiin: mit‰ tarkoitetaan reitill‰ ja sen suunnittelulla? Mit‰ esteit‰ ylip‰‰t‰‰n reitill‰ voi olla, ja mill‰ tavoin eri tyyppisiin esteisiin on suhtauduttava? Millaiset (matemaattiset) menetelm‰t robotin navigoinnin takana yleens‰ ovat?
+<-SNIP MIHIN TOI?
 
 Paljon tutkimusta on tehty \cite{bonin2008visual} ja sit‰ t‰t‰.
 
 \clearpage
 
-\section{Navigointi ja liikkeensuunnittelu yleisesti}
+\section{Paikannus ja ymp‰ristˆn havainnointi}% \section{Navigointi ja liikkeensuunnittelu yleisesti}
+\subsection{Paikannus}
+Itse esteiden v‰ist‰misen aiheuttaman reitin laskeminen on puhtaan laskennallista, mutta pohjalla on kuitenkin oikea ulkomaailma ep‰tarkkuuksineen ja anturivirheineen. T‰ss‰ osiossa raapaistaan hieman eri havainnointikeinojen pintoja ja tutustutaan siihen, mit‰ tulee esteenv‰istˆalgoritmeissa ottaa huomioon.
+
+Olennainen ongelma liikkuville roboteille on itsens‰ paikannus. Oletetaan robotin tiet‰v‰n tarkasti jokin maalireitti tai -piste tietyss‰ koordinaatistossa; t‰llˆin on tiedett‰v‰ miss‰ itse robotti sijaitsee. T‰h‰n voidaan k‰ytt‰‰ tapauksesta riippuen esim. odometriaa, inertiasuunnistusta, majakoita tai maamerkkej‰. Sensorifuusiota Kalman-suotimella voidaan myˆs hyˆdynt‰‰, jolloin saadaan tarkempi tulos monen anturin yhdistetyst‰ mittauksesta.
+
+Odometria ja inertiasuunnistus ovat integroivia menetelmi‰, ja pienetkin virheet kasautuvat pidemm‰n p‰‰lle, joten n‰it‰ ei voi k‰ytt‰‰ yksin‰‰n. Odometria seuraa esim. pyˆrimisanturien avulla renkaiden liikkett‰ ja arvioi kuljettua matkaa; yleisi‰ virhel‰hteit‰ ovat renkaiden liukuminen, v‰‰rin mitattu ymp‰rysmitta ja keskin‰inen et‰isyys, sek‰ ymp‰ristˆn ep‰systemaattiset virheet, kuten tuntemattomien ulkoisten h‰iriˆtekijˆiden osuminen robottiin. Inertiasuunnistus integroi kiihtyvyysanturien mittauksia, ja on k‰ytˆss‰ l‰hinn‰ jos renkaista tms. ei saada mitattua mit‰‰n. Ep‰varmojen mittauksien integrointi luonnollisesti kerrytt‰‰ virhett‰ pidemm‰n p‰‰lle. (TODO: reflinkkei)
+
+Majakoiden k‰yttˆ yhdistettyn‰ edellisiin korjaa kertym‰virheet. GPS on standardoitu bla bla ja tarjoaa kohtuullisen tarkkuuden ulkotiloissa (TODO: ref); parempaa vaatiessa ajoymp‰ristˆˆn voidaan rakentaa itse paikannusj‰rjestelm‰, tai monen robotin ollessa kyseess‰ robotit voivat myˆs keskustella kesken‰‰n siten, ett‰ jokainen toimii kiinteiden majakoiden lis‰ksi yhten‰ majakkana (TODO: ref). Majakat k‰ytt‰v‰t paikannukseen kolmiomittausta, joka voi olla hyvinkin tarkka tai sitte ei aina. Odometrialla voidaan mitata hetkitt‰in paikallista liikett‰, jota korjataan globaalisti majakoilla ajoittain integrointivirheiden eliminoimiseksi. (TODO: ref)
+
+Maamerkit ovat yleinen k‰yt‰ntˆ mm. AGV-vaunujen navigoinnissa (TODO: ref). Varastotiloissa voidaan upottaa lattiaan magneettiplplpl sek‰ kiinnitt‰‰ sein‰‰n heijastimia, joiden et‰isyys selvitet‰‰n laserilla ja joista lasketaan trigonometrian avulla robotin sijainti majakoiden tyyliin. Lattiaan kiinnitett‰v‰t maamerkit auttavat, kun n‰kˆet‰isyys heijastimiin on huono, sek‰ antavat myˆs varsin tarkan p‰ivitystiedon sijainnista, kunhan osataan erottaa maamerkit toisistaan.
+
+Konen‰ˆll‰ voidaan verrata ymp‰ristˆn ulkon‰kˆ‰ ennalta m‰‰r‰ttyyn karttaan, ja havainnoida sijainti korkeamman abstraktiotason maamerkeist‰, kuten ihmiset tekev‰t. Tiettyjen s‰‰nnˆnmukaisuuksien yhdistely muuhun anturidataan varmistaa globaalin sijainnin kartalla (TODO: ref). Kun robotti on hetki sitten tiennyt olevansa p‰‰lafkan l‰histˆll‰, voidaan olettaa ett‰ kamerasta n‰kyv‰ talo on p‰‰lafka ja tarkentaa sijainti sen mukaisesti. Vastaavaa menettely‰ voidaan hyˆdynt‰‰ myˆs 2D-mittauksessa esim. ultra‰‰niantureilla (TODO: ref). Menetelm‰n ongelma on se sen keskeinen oletus, ett‰ ymp‰ristˆst‰ on ennalta olemassa jo jokin kartta, eik‰ tapa siis t‰ysin tuntemattomassa ymp‰ristˆss‰ toimi.
+
+\clearpage % hmm...?
+\subsection{Havainnointi}
+
+Esteet on etsitt‰v‰ robotin l‰histˆlt‰ jollain lailla. Suosittuja tapoja ovat ultra‰‰nianturit, laserskannerit ja kamerat. Bla blaa.
+
+Ultra‰‰ni on yksinkertaisuutensa ja edullisuutensa ansiosta usein k‰ytetty (TODO: ref). Sill‰ on tosin myˆs useita ongelmia. Ultra‰‰nianturit eiv‰t n‰e aivan l‰hell‰ olevia esteit‰ lainkaan, ovat hitaita ja havainnoivat kauempana olevat esteet ep‰tarkemmin, sill‰ niiden l‰hett‰m‰ kaiku levenee keilamaisesti. Monesti k‰ytet‰‰n myˆs useita antureita vierekk‰in, jolloin saadaan leve‰ n‰kˆkentt‰; t‰llˆin viereisten anturien mittaukset saattavat heijastua toisilleen ("crosstalk". TODO: ref)
+
+Laserskannereita on p‰‰asiassa kahta tyyppi‰: yksi- ja kaksiulotteisia. Yksiulotteiset pyˆriv‰t jatkuvasti ja skannaavat 360 asteen tutkakuvaa ymp‰ristˆst‰‰n; heijastuksista saadaan et‰isyyspisteit‰ kartalle. Kaksiulotteiset toimivat stereon‰kˆkameran lailla: edess‰ olevaa n‰kym‰‰ skannataan jatkuvasti tietyll‰ keilalla ja rasterilla kahdessa ulottuvuudessa, jolloin saadaan arvio edess‰ olevien esteiden et‰isyyksist‰. N‰m‰ ovat tyypillisesti eritt‰in kalliita. (TODO: ref).
+
+Heijastuksiin perustuvissa mittareissa on aina ongelmana vinojen pintojen havainnointi, kun kaiku ei heijastukaan takaisin robottia p‰in.
+
+Kun erityisen tarkkaa kuvaa tarvitaan nopeasti, voidaan k‰ytt‰‰ videokameroita, jos laskentatehoa riitt‰‰. Kahdella hyvin sijoitetulla kameralla onnistuu myˆs syvyysn‰kˆ. Konen‰kˆ on ylivoimaisesti kaikutekniikkaa parempi, kun tarvitaan tarkempaa tietoa pinnoista, kuten kuviointi tai asento. Myˆskin kapeiden esteiden havainnointiin se soveltuu paremmin, koska n‰m‰ j‰isiv‰t kaiuilta helposti ohi. Esimerkiksi automaattiset henkilˆautot k‰ytt‰v‰t konen‰kˆ‰ tien reunojen havainnointiin (TODO: ref) ja peltoja automaattisesti lannoittavat robotit pysyv‰t konen‰ˆll‰ taimien v‰liss‰ (TODO: peltorobokisaref). Kuvan k‰sittely reaaliajassa vaatii huomattavasti enemm‰n konetehoa kuin yksiulotteiset tutkamenetelm‰t, ja kamera osoittaa vain yhteen suuntaan eik‰ sill‰ saada t‰yden ympyr‰n mittausta.
 
 Paikannus daa \cite{borenstein1996whereami}
 
