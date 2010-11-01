@@ -352,13 +352,43 @@ Ulkona jo robotin mekaniikkaan on kiinnitettävä enemmän huomiota, esteenväistöst
 
 \subsection{Potentiaalikenttä}
 
-Keinopotentiaalikentät (artificial potential functions, artificial potential fields) ovat vanha \cite{rimon1992apf} mutta usein (sellaisenaan tai toisen navigointitavan pohjana) käytetty väistömenetelmä. Mitään oikeita fysikaalisia voimia nämä kentät eivät tuota robotille, jolloin kenttiä sanotaan keinotekoisiksi.
+Keinopotentiaalikentät (artificial potential functions, artificial potential fields) ovat vanha \cite{warren2002apf}  \cite{rimon1992apf} mutta usein (sellaisenaan tai toisen navigointitavan pohjana) käytetty väistömenetelmä. Mitään oikeita fysikaalisia voimia nämä kentät eivät tuota robotille, jolloin kenttiä sanotaan keinotekoisiksi.
 
-Potentiaalikentät syntyvät maalista ja esteistä; maali tuottaa puoleensavetävän ja esteet hylkivän potentiaalin. Molemmista saadaan robottiin kohdistuva ``voima'' joiden summan mukaan robottia kiihdytetään. Potentiaalikenttiä käytetään myös robottimanipulaattoreilla, mutta ne soveltuvat liikkuvillekin roboteille.
+Potentiaalikentät syntyvät maalista ja esteistä; maali tuottaa puoleensavetävän ja esteet hylkivän potentiaalin. Käytetty potentiaalifunktio on esimeriksi etäisyyden käänteisarvo tai sen neliö tai (TODO: keksi jotain ja ota reffei). Maalin ja esteiden aiheuttavien potentiaalien gradienttien summasta saadaan robottiin kohdistuva ``voima'' jonka mukaan sitä kiihdytetään. Potentiaalikenttiä käytetään myös robottimanipulaattoreilla, mutta niitä ei tässä käsitellä.
 
-Tässä menetelmässä on lukuisia ongelmia, jotka on otettava huomioon ja jalostettava menetelmää hieman eteenpäin (TODO cite ge+cui, new potential functions blabla). Lokaaleihin minimeihin voi jäädä loukkuun, lähekkäin olevien esteiden välistä ei pääse, kapeissa käytävissä syntyy helposti värähtelyä sekä maaliin voi olla mahdotonta päästä, jos sen toisella puolella on lähellä este.
+Menetelmä toimii hyvin yksinkertaisissa ympäristöissä, mutta siinä on silti lukuisia ongelmia, jotka on otettava huomioon ja jalostettava menetelmää hieman eteenpäin (TODO cite ge+cui, new potential functions blabla). Lokaaleihin minimeihin voi jäädä loukkuun, lähekkäin olevien esteiden välistä ei pääse, kapeissa käytävissä syntyy helposti värähtelyä sekä maaliin voi olla mahdotonta päästä, jos sen toisella puolella on lähellä este.
 
-\cite{warren2002apf} \cite{vadakkepat2002eapf}
+Potentiaalifunktiot $U_att$ (attraktiivinen) ja $U_rep$ (repulsiivinen) ovat esimerkiksi (TODO: cite new blabla)
+
+\begin{equation}
+U_att(q) = \xi(q_goal - q),
+\end{equation}
+
+\begin{equation}
+U_rep(q) = \begin{cases}
+ \eta(\frac{1}{q_obs - q} - \frac{1}{\rho_0})^2 & \text{jos } |q_obs-q| <= \rho_0 \\
+0 & \text{jos } |q_obs-q| > \rho_0
+\end{equation}
+
+missä $q$-vektori kuvaa robotin sijaintia ja asentoa ja $\xi$ ja $\eta$ ovat optimoitavia skaalauskertoimia. Voimat saadaan potentiaalikentän gradientista
+
+\begin{equation}
+F_att(q) = -\grad U_att(q) = \ksii(q_goal - q)
+\end{equation}
+ja kokonaisvoima on kaikkien yhdistelmä
+\begin{equation}
+F_tot(q) = F_att(q) + \sum F_rep(q).
+\end{equation}
+
+Potentiaalikentät toimivat parhaiten kun ympäristö on tiedossa, jolloin reittiä voidaan suunnitella kauemmas kerralla. Dynaamisessa ja tuntemattomassa ympäristössä näin ei ole, mutta koska voima lasketaan hetkellisesti ja potentiaalifunktiot ovat suhteellisen yksinkertaisia, soveltuu tämä tekniikka myös haluamaamme tilanteeseen. Etäisyys esteeseen saadaan esim. ultraäänianturilta, ja esteiden liikkuessa voima muuttuu kuten on tarvis.
+
+Eri painokertoimet on optimoitava (TODO: eti reffei) robotin dynamiikan ja esteiden mukaan; robotin liike on jatkuvaa ja sillä on jokin massasta aiheutuva hitaus sekä tietty maksiminopeus, joista täytyy optimoida kenttien voimakkuus siten, ettei esteitä kierretä turhaan hyvin kaukaa, mutta samalla siten, että niihin ei voi törmätä. Tässäkin on tehtävä myös jotain oletuksia esteiden liikkumisnopeudesta.
+
+Minimiongelmaan on esitetty useita ratkaisuja. Yksi mahdollinen on poistumisvoima, joka otetaan käyttöön jos huomataan robotin olevan lähellä minimiä. Tällöin kokonaisvoimaan lisätään esteiden hylkivää vaikutusta (TODO: mieti evolublablaa sivu 4 kaava 7 ja etsi muita).
+
+Painoparametrien optimoinniksi on esitetty hyvyysfunktion minimointia \cite{vadakkepat2002eapf} plaa plaa, mikä sopii kun tiedetään koko kartta, muttei aivan kelpaa muuttuvaan ympäristöön. On myös ehdotettu (TODO cite soccergame/bjakenlinkkijuttu) virtuaalista robotin takana samaa rataa kulkevaa estettä, joka aiheuttaa voiman eteenpäin ja estää nollapotentiaalikuoppiin jumiutumisen. Tässäkin on ongelmana ko. voiman suuruuden optimointi.
+
+Teoriassa kiva, käytännössä hankala optimoida robustiksi ja monipuoliseen ympäristöön soveltuvaksi.
 
 
 \subsection{Histogrammit}
