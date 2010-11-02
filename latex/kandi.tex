@@ -283,7 +283,7 @@ Robotin navigoinnin pohjalla on hyvin paljon muitakin ongelmia, joihin tässä tek
 
 Jo muinaisissa roboteissa oli pyörät, ja ne yksinkertaisen mutta toimivan tekniikkansa vuoksi ovat ylivoimaisesti useimpien nykyrobottien liikkumisen perustana (TODO: joku papru tähän). Haastavassa maastossa käytetään jotain pyöristä jalostettua tapaa, kuten telaketjuja, piikikkäitä renkaita tai pyöriviä jalan kaltaisia läpysköitä (TODO: mikäs se tämmönen robo oli).
 
-Pyörillä liikkumiseenkin on hyvin monia tapoja, joissa on kaikissa omat hyvät ja huonot puolensa. Tekniikka valittakoon robotin muodon ja kohdeympäristön mukaan. Usein käytettyjä ovat differentiaaliajo (kaksi erikseen ohjattavaa vetävää pyörää, ja mahdollisesti useampia tasoittamaan painoa; myös telaketjuajo on differentiaalinen), Ackermannin ohjaus (autoissa käytetty), synkronoitu ajo (synchro drive, TODO suomennos; monta jatkuvasti samaan suuntaan osoittavaa ja yhtä nopeasti pyörivää pyörää), ja omnidirectional (TODO jonka vois jättää mainitsemattaki).
+Pyörillä liikkumiseenkin on hyvin monia tapoja, joissa on kaikissa omat hyvät ja huonot puolensa. Tekniikka valittakoon robotin muodon ja kohdeympäristön mukaan. Usein käytettyjä ovat differentiaaliajo (kaksi erikseen ohjattavaa vetävää pyörää, ja mahdollisesti useampia tasoittamaan painoa; myös telaketjuajo on differentiaalinen), Ackermannin ohjaus (autoissa käytetty), synkronoitu ajo (synchro drive, TODO suomennos; monta jatkuvasti samaan suuntaan osoittavaa ja yhtä nopeasti pyörivää pyörää), ja omnidirectional (TODO jonka vois jättää mainitsemattaki). Robotin mekaniikka on otettava huomioon mm. suunnan muutoksissa; esim. auto ei voi kääntyä paikallaan.
 
 Nivelletyillä jaloilla käveleviä robotteja tutkitaan nykyään yhä enemmän. Humanoidirobotit soveltuisivat hyvin ihmisille tarkoitettuun ympäristöön, ja näyttäisivät ihmisille luontevilta jolloin kanssakäyminen olisi helppoa ja ne voisivat hoitaa ihmisten tehtäviä yleisellä tasolla. Nivelletyt jalat sopivat myöskin haastavaan, epätasaiseen maastoon pyöreitä renkaita paremmin vaikkei olisikaan ihmisten kaltaisista roboteista kyse. Tätä on kokeiltu esimeriksi metsäkoneissa [TODO].
 
@@ -350,6 +350,8 @@ Ulkona jo robotin mekaniikkaan on kiinnitettävä enemmän huomiota, esteenväistöst
 \clearpage
 \section{Tasaisen maaston esteenväistö}
 
+Tasaisessa maastossa maailma voidaan helposti olettaa kaksiulotteiseksi, jolloin esteet on aina kierrettävä ja mittauksia on helppo tehdä tutka-antureilla, kun vinoja maastoja ei ole. Seuraavassa pohditaan esteenväistöä ``kaksiulotteisessa'' maailmassa, johon kannattaa approksimoida kaikki tilanteet, mikäli mahdollista, sillä se yksinkertaistaa tilannetta huomattavasti.
+
 \subsection{Potentiaalikenttä}
 
 Keinopotentiaalikentät (artificial potential functions, artificial potential fields) ovat vanha \cite{warren2002apf}  \cite{rimon1992apf} mutta usein (sellaisenaan tai toisen navigointitavan pohjana) käytetty väistömenetelmä. Mitään oikeita fysikaalisia voimia nämä kentät eivät tuota robotille, jolloin kenttiä sanotaan keinotekoisiksi.
@@ -393,14 +395,14 @@ Teoriassa kiva, käytännössä hankala optimoida robustiksi ja monipuoliseen ympäri
 
 \subsection{Histogrammit}
 
-Borestein ja Koren toteavat potentiaalikentät riittämättömiksi ja esittävät niihin pohjautuvan virtual force field -menetelmän \cite{koren1991potential} ja siitä edelleen kehittyneen vector field histogram -tekniikan \cite{borenstein2002vfh}. Virtuaalinen voimakenttä perustuu liukuvaan robotin mukana kulkevaan ruudukkoon, johon lasketaan varmuusarvoja esteistä. Vektorikenttähistogrammi jalostaa tätä eteenpäin rakentamalla ruudukosta suuntapohjaisen histogrammin.
+Borestein ja Koren toteavat potentiaalikentät riittämättömiksi ja esittävät niihin pohjautuvan virtuaalisen voimakentän (virtual force field) \cite{koren1991potential} ja siitä edelleen kehittyneen vektorikenttähistogrammin (vector field histogram) \cite{borenstein2002vfh}. Virtuaalinen voimakenttä perustuu karttamaiseen varmuusarvoruudukkoon, jonka ruutuihin summataan arvoja sitä mukaa kun niitä saadaan robotin 24 ultraäänianturilta. Tästä ruudukosta otetaan tietyn kokoinen ($w_s*w_s$) aktiivinen alue, jota päivitetään mittauksia saadessa ja josta lasketaan robotin suuntaa ja nopeutta ohjaava voima samankaltaisesti kun potentiaalikentissä: lähellä olevat esteet tuottavat voimakkaita hylkiviä voimia.
 
-Tämä tapa soveltuu erityisesti häiriöiseen ja epävarmaan mittaukseen, ja sitä onkin testattu ultraäänisensoreilla joihin liittyy lähes ominaisesti tietynlaista häiriötä. Ongelmallisia ovat kapeat käytävät, joissa robotti saattaa alkaa oskilloimaan seinästä toiseen.
+Vektorikenttähistogrammi jalostaa tätä eteenpäin rakentamalla ruudukosta suuntapohjaisen histogrammin. Borestein ja Koren toteavat että suoraan kaksiulotteisesta kartasta voiman tulkitseminen menettää liikaa informaatiota, ja ottavat käyttöön toisen laskentavaiheen, histogrammiruudukon \cite{borenstein2002vfh}. Histogrammi kattaa täyden ympyrän robotin ympärillä, ja siihen summataan asteittain varmuusarvoruudukon arvot, jolloin siihen syntyy huippuja ja kuoppia. Kuopat ilmaisevat alueita, joita on turvallista lähestyä; korkeat huiput kuvaavat paikkoja, joissa on todennäköisesti jokin lähellä oleva tai suuri este, jota on väistettävä.
 
+Tämä tapa soveltuu erityisesti häiriöiseen ja epävarmaan mittaukseen, ja sitä onkin testattu ultraäänisensoreilla joihin liittyy lähes ominaisesti tietynlaista häiriötä. Voima lasketaan varmuusruudukon arvojen neliöistä, jolloin varmempia mittauksia painotetaan huomattavasti enemmän, ja pienet, häiriömäiset mittaukset jäävät robustisti huomiotta.
 
-\subsection{Puumenetelmät}
+VKH:ta (TODO: miten lyhenteitä käytetään? käytetäänkö? suomeksi vai englanniksi?) on testattu CARMEL-robotilla, jossa on 24 ultraäänianturia; tekniikka onkin oleellisesti suunniteltu tutkatyyppisille etäisyysantureille, joilta saadaan pistemäisiä mittauksia. Tässä yhteydessä on ulkotiloissa otettava huomioon vino maasto, sillä muutoin oletetaan tutkan olevan saman suuntainen maatason kanssa ja vinot kuopat jotka saavat robotin kallistumaan saavat mittaukset hyödyttömiksi.
 
-(Execution extended) Rapidly-exploring random tree \cite{bruce2003rrt} käyttää hyväkseen jo olemassaolevaa dataa ajoympäristöstä ja iteroi robotin varsin hyvin maaliin.
 
 
 \subsection{Neuroverkot}
@@ -410,6 +412,10 @@ Neuroverkot soveltuvat sekä liikkuville roboteille että manipulaattoreille. \cit
 Manipulaattoreille ja tunnetulle kartalle löytyy tutkimusta. \cite{yang2004neural} Kuten myös liikkuvillekin roboteille ennalta halutulle reitille. \cite{noguchi1997path}
 
 \cite{glasius1995neural}
+
+\subsection{Puumenetelmät}
+
+(Execution extended) Rapidly-exploring random tree \cite{bruce2003rrt} käyttää hyväkseen jo olemassaolevaa dataa ajoympäristöstä ja iteroi robotin varsin hyvin maaliin.
 
 
 \subsection{Konenäkö}
