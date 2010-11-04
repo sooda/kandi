@@ -83,7 +83,7 @@ linkcolor=blue,citecolor=black,pdfstartview=FitH]{hyperref}
 %%
 %% Use this if you write hard core mathematics, these are usually needed
 \usepackage{amsfonts,amssymb,amsbsy}  
-
+\usepackage{amsmath}
 %% Vaakasuunnan mitat, L KOSKE!
 \setlength{\hoffset}{-1in}
 \setlength{\oddsidemargin}{35mm}
@@ -368,14 +368,15 @@ U_att(q) = \xi(q_goal - q),
 
 \begin{equation}
 U_rep(q) = \begin{cases}
- \eta(\frac{1}{q_obs - q} - \frac{1}{\rho_0})^2 & \text{jos } |q_obs-q| <= \rho_0 \\
-0 & \text{jos } |q_obs-q| > \rho_0
+ \eta(\frac{1}{q_obs - q} - \frac{1}{\rho_0})^2 & \text{jos } |(q_obs-q)| \ge \rho_0 \\
+0 & \text{jos } |q_obs-q| \ge \rho_0
+\end{cases}
 \end{equation}
 
 missä $q$-vektori kuvaa robotin sijaintia ja asentoa ja $\xi$ ja $\eta$ ovat optimoitavia skaalauskertoimia. Voimat saadaan potentiaalikentän gradientista
 
 \begin{equation}
-F_att(q) = -\grad U_att(q) = \ksii(q_goal - q)
+%F_att(q) = -\grad U_att(q) = \xi(q_goal - q) % TODO
 \end{equation}
 ja kokonaisvoima on kaikkien yhdistelmä
 \begin{equation}
@@ -395,15 +396,17 @@ Teoriassa kiva, käytännössä hankala optimoida robustiksi ja monipuoliseen ympäri
 
 \subsection{Histogrammit}
 
-Borestein ja Koren toteavat potentiaalikentät riittämättömiksi ja esittävät niihin pohjautuvan virtuaalisen voimakentän (virtual force field) \cite{koren1991potential} ja siitä edelleen kehittyneen vektorikenttähistogrammin (vector field histogram) \cite{borenstein2002vfh}. Virtuaalinen voimakenttä perustuu karttamaiseen varmuusarvoruudukkoon, jonka ruutuihin summataan arvoja sitä mukaa kun niitä saadaan robotin 24 ultraäänianturilta. Tästä ruudukosta otetaan tietyn kokoinen ($w_s*w_s$) aktiivinen alue, jota päivitetään mittauksia saadessa ja josta lasketaan robotin suuntaa ja nopeutta ohjaava voima samankaltaisesti kun potentiaalikentissä: lähellä olevat esteet tuottavat voimakkaita hylkiviä voimia.
+Borenstein ja Koren toteavat potentiaalikentät riittämättömiksi ja esittävät niihin pohjautuvan virtuaalisen voimakentän (virtual force field) \cite{koren1991potential} ja siitä edelleen kehittyneen vektorikenttähistogrammin (vector field histogram) \cite{borenstein2002vfh}. Virtuaalinen voimakenttä perustuu karttamaiseen varmuusarvoruudukkoon, jonka ruutuihin summataan arvoja sitä mukaa kun niitä saadaan robotin 24 ultraäänianturilta. Tästä ruudukosta otetaan tietyn kokoinen ($w_s*w_s$) aktiivinen alue, jota päivitetään mittauksia saadessa ja josta lasketaan robotin suuntaa ja nopeutta ohjaava voima samankaltaisesti kun potentiaalikentissä: lähellä olevat esteet tuottavat voimakkaita hylkiviä voimia.
 
-Vektorikenttähistogrammi jalostaa tätä eteenpäin rakentamalla ruudukosta suuntapohjaisen histogrammin. Borestein ja Koren toteavat että suoraan kaksiulotteisesta kartasta voiman tulkitseminen menettää liikaa informaatiota, ja ottavat käyttöön toisen laskentavaiheen, histogrammiruudukon \cite{borenstein2002vfh}. Histogrammi kattaa täyden ympyrän robotin ympärillä, ja siihen summataan asteittain varmuusarvoruudukon arvot, jolloin siihen syntyy huippuja ja kuoppia. Kuopat ilmaisevat alueita, joita on turvallista lähestyä; korkeat huiput kuvaavat paikkoja, joissa on todennäköisesti jokin lähellä oleva tai suuri este, jota on väistettävä.
+Vektorikenttähistogrammi jalostaa tätä eteenpäin rakentamalla ruudukosta suuntapohjaisen histogrammin. Borenstein ja Koren toteavat että suoraan kaksiulotteisesta kartasta voiman tulkitseminen menettää liikaa informaatiota, ja ottavat käyttöön toisen laskentavaiheen, histogrammiruudukon \cite{borenstein2002vfh}. Histogrammi kattaa täyden ympyrän robotin ympärillä, ja siihen summataan asteittain varmuusarvoruudukon arvot, jolloin siihen syntyy huippuja ja kuoppia. Kuopat ilmaisevat alueita, joita on turvallista lähestyä; korkeat huiput kuvaavat paikkoja, joissa on todennäköisesti jokin lähellä oleva tai suuri este, jota on väistettävä. Ropleema: iso ruudukko tuo isoja vaihteluita diskreetin luonteensa takia, tarttee alipäästösuotimen joka viritetään kokeellisesti (pohdi: subpixel rendering).
 
 Tämä tapa soveltuu erityisesti häiriöiseen ja epävarmaan mittaukseen, ja sitä onkin testattu ultraäänisensoreilla joihin liittyy lähes ominaisesti tietynlaista häiriötä. Voima lasketaan varmuusruudukon arvojen neliöistä, jolloin varmempia mittauksia painotetaan huomattavasti enemmän, ja pienet, häiriömäiset mittaukset jäävät robustisti huomiotta.
 
-VKH:ta (TODO: miten lyhenteitä käytetään? käytetäänkö? suomeksi vai englanniksi?) on testattu CARMEL-robotilla, jossa on 24 ultraäänianturia; tekniikka onkin oleellisesti suunniteltu tutkatyyppisille etäisyysantureille, joilta saadaan pistemäisiä mittauksia. Tässä yhteydessä on ulkotiloissa otettava huomioon vino maasto, sillä muutoin oletetaan tutkan olevan saman suuntainen maatason kanssa ja vinot kuopat jotka saavat robotin kallistumaan saavat mittaukset hyödyttömiksi.
+VKH:ta (TODO: miten lyhenteitä käytetään? käytetäänkö? suomeksi vai englanniksi?) on testattu CARMEL-robotilla, jossa on 24 ultraäänianturia; tekniikka onkin selvästi suunniteltu tutkatyyppisille etäisyysantureille, joilta saadaan pistemäisiä mittauksia. Tässä yhteydessä on ulkotiloissa otettava huomioon vino maasto, sillä muutoin oletetaan tutkan olevan saman suuntainen maatason kanssa ja vinot kuopat jotka saavat robotin kallistumaan saavat mittaukset hyödyttömiksi.
 
+VFH ei kuitenkaan ota huomioon robotin dynamiikkaa millään lailla, ja olettaa siis että robotti on pistemäinen ja voi vaihtaa kulkusuuntaansa välittömästi. Borenstein ja Ulrich esittävät VFH+-algoritmin, joka korjaa tämän ongelman \cite{ulrich2002vfh+}. He tutkivat ihmisvoimin työnnettävää, differentiaaliajoa käyttävää robottia ohjaamaan sokkoa ihmistä. Tämä eroaa dynamiikaltaan oleellisesti aiemmin käytetystä, joka suuntaan kääntyvästä robotista \cite{borestein2002vfh}.
 
+VFH+ tuo seuraavat parannukset: Robotti oletetaan pistemäiseksi ja esteitä vastaavasti kasvatetaan robotin koon ja muodon tuomien rajoitteiden mukaan, jolloin alipäästösuodin TODO. Histogrammikartasta tehdään ensin binäärinen kartta kahden kynnysarvon avulla. Tämän jälkeen karttaa laajennetaan edelleen peittämään ne suunnat, joihin robotti ei ehdi kääntymään dynamiikkansa takia. Lisäksi ohjaussuunnan valinnassa käytetään apuna hyvyysfunktiota, jolla voidaan painottaa erilaisia ominaisuuksia vapaista suunnista.
 
 \subsection{Neuroverkot}
 
@@ -412,6 +415,8 @@ Neuroverkot soveltuvat sekä liikkuville roboteille että manipulaattoreille. \cit
 Manipulaattoreille ja tunnetulle kartalle löytyy tutkimusta. \cite{yang2004neural} Kuten myös liikkuvillekin roboteille ennalta halutulle reitille. \cite{noguchi1997path}
 
 \cite{glasius1995neural}
+
+\subsection{Geneettiset algoritmit}
 
 \subsection{Puumenetelmät}
 
@@ -422,12 +427,17 @@ Manipulaattoreille ja tunnetulle kartalle löytyy tutkimusta. \cite{yang2004neura
 
 Konenäkö yleisesti soveltuu hyvin sisätiloissa seinien ja yksinkertaisten geometrioiden havainnointiin \cite[s. 245]{desouza2002vision}. Ulkotiloissa sisätilojen kaltaisia käytäviä ja huoneita ei ole, jolloin vastaavat menetelmät eivät välttämättä ole suoraan käytettävissä; tosin mikäli edessä on helposti samanlaista materiaalia, kuten puita tai suora autotie \cite[s. 255]{desouza2002vision}, toimii menetelmä hyvin.
 
-Syvyysnäkö stereokameralla on myös varteenotettava vaihtoehto tavanomaisille antureille. \cite{murray2002stereo} Kameralla otetussa kuvassa ei ole esimerkiksi ultraäänisensoreille tyypillistä häiriötä tai epätarkkuutta, mutta se on laskennallisesti raskaampi. Hyvällä resoluutiolla ja pienellä kohinalla tosin saavutetaan näkö suhteellisen pitkälle, mutta kapeammalla keilalla kuin jos robottia ympäröisi 360 asteen tutkavyö.
+Syvyysnäkö stereokameralla on myös varteenotettava vaihtoehto tavanomaisille antureille \cite{murray2002stereo}. Ongelmia ovat kohdistus, kaukonäön kohina ja liikkeen sekä tärinän aiheuttaman sumeuden eroavaisuudet kameroiden kuvissa. Yhdelläkin kameralla on saatu tyydyttäviä tuloksia \cite{michels2005high}. Kameran voi myös yhdistää ultraäänianturointiin, jolloin ultraääneltä saadaan nopeampi vasteaika liikkuville esteille, ja tarkempi reitin suunnittelu voidaan hoitaa kameran pohjalta, kuten tekivät Ohya et al \cite{ohya2002vision}. Tässä kameran esteet kartoitettiin tosin ennalta määritettyyn karttaan reunantunnistuksella pystyviivoina, eikä tämä menetelmä sovellu ulkotiloihin tuntemattomaan ympäristöön.
+
+Kameralla otetussa kuvassa ei ole esimerkiksi ultraäänisensoreille tyypillistä häiriötä tai epätarkkuutta, mutta se on laskennallisesti raskaampi. Hyvällä resoluutiolla ja pienellä kohinalla tosin saavutetaan näkö suhteellisen pitkälle, mutta kapeammalla keilalla kuin jos robottia ympäröisi 360 asteen tutkavyö. Tämä ei kuitenkaan yleensä ole ongelma, sillä vieressä tai takana olevia esteitä ei tarvitse huomioida eteenpäin ajettaessa.
 
 
 \section{And now for something completely different}
 
 Foo
+HOX HOX: TODO: yhdistele aiheet jotenkin. vfh tai potfieldit tai muutkaa ei erityisemmin kiinnitä huomiota liikkuviin objekteihin ja ennusta niiden paikkaa, tai edes tunnista objekteja kokonaisina möntteinä. tee fiksumpaa kuvan- ja esineentunnistusta, ja jotain järkevää heuristiikkaa siinä samalla. yhdistä eri menetelmiä. TUTKI: oikeesti sitä dynaamista ympäristöä, miten sitä anturoidaan ja miten ymmärretään liikkuvat muodot; miten niiden liike ennustetaan.
+
+Edellä esiteltiin useita erilaisia menetelmiä lokaaliin esteenväistöön. Näistä tosin kaikki keskittyvät vain siihen, että edessä on jokin tällä hetkellä tietyssä kohdassa oleva este reitin päällä, jolloin se on kierrettävä; tällaista tunnistusalgoritmia iteroitiin jatkuvasti. Reittiä voisi suunnitella hieman korkeammalla tasolla, jossa sensoridatasta tulkitaan todennäköiset paikallaan olevat tai liikkuvat hahmot, ja ennustetaan reitti näiden pohjalta hieman kauemmas ja tarkemmin: esimerkiksi liikkuvat, säännölliset esineet voisi tunnistaa, olettaa niiden kulkevan suoraa reittiä vielä hetken verran, yhdistää robotin omaan nopeuteen sekä tästä tiedosta päätellä, kannattaako este vaikkapa kiertää takaapäin odottaen, että se menee ohi.
 
 \clearpage
 
