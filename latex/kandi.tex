@@ -1,47 +1,5 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%                                                                %%
-%% Esimerkki opinnytteen tekemisest LaTeX:lla 20100316          %%
-%% Alkuperinen versio Luis Costa,  muutokset Perttu Puska        %%
-%%                                                                %%
-%% Thn esimerkkiin kuuluu tiedostot                             %%
-%%               opinnaytepohja.tex (versio 1.3)                  %%
-%%               aaltothesis.sty (versio 1.3)                     %%
-%%               kuva1.eps                                        %%
-%%               kuva2.eps                                        %%
-%%                                                                %%
-%%                                                                %%
-%% Kntminen                                                    %%
-%% latex:                                                         %%
-%%             $ latex opinnaytepohja                             %%
-%%             $ latex opinnaytepohja                             %%
-%%                                                                %%
-%%   Tuloksena on tiedosto opinnayte.dvi, joka                    %%
-%%   muutetaan ps-muotoon seuraavasti                             %%
-%%                                                                %%
-%%             $ dvips opinnaytepohja -o                          %%
-%%                                                                %%
-%% Selittvt kommentit on tss esimerkiss varustettu           %%
-%% %%-merkeill ja muutokset, joita kyttj voi tehd,           %%
-%% on varustettu %-merkeill                                      %%
-%%                                                                %%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%% Kyt nit, jos kirjoitat suomeksi
-%%
-%% Use these you write in Finnish
 \documentclass[finnish,12pt]{article}
-%% Kyt nit, jos kirjoitat englanniksi
-%%
-%% Uncomment these if you write in English
-%\documentclass[english,12pt]{article}
-
-%% Tm paketti on pakollinen
-%%
-%% This package is required
 \usepackage{aaltothesis}
-
 \usepackage{natbib}
 \bibliographystyle{plain} % finplain
 
@@ -140,9 +98,6 @@ linkcolor=blue,citecolor=black,pdfstartview=FitH]{hyperref}
 %\univdegree{MSc}
 %\univdegree{Lic}
 
-%% Oma nimi
-%%
-%% Should be self explanatory...
 \author{Konsta Hˆltt‰}
 
 %% Opinnytteen otsikko tulee vain thn. l tavuta otsikkoa ja
@@ -157,7 +112,7 @@ linkcolor=blue,citecolor=black,pdfstartview=FitH]{hyperref}
 %% break the lines yourself with \\ control character. 
 %% Do not hyphenate titles.
 % TODO
-\thesistitle{}{Esteenv‰istˆ- ja liikkeensuunnittelumenetelm‰t liikkuville roboteille
+\thesistitle{}{Liikkuvien robottien paikallinen esteenv‰istˆ ja liikkeensuunnittelu dynaamisessa ymp‰ristˆss‰
 }
 
 \place{Espoo}
@@ -190,24 +145,17 @@ linkcolor=blue,citecolor=black,pdfstartview=FitH]{hyperref}
 %% Aalto logo: syntax: \uselogo{red|blue|yellow}{?|!|''} 
 %% Logo language is set to be the same as the document language.
 \uselogo{red}{''}{tkk}
-
-%% Tehdn kansilehti
-%%
-%% Create the coverpage
 \makecoverpage
 
 
 %% Suomenkielinen tiivistelm
-%% 
-%% Finnish abstract
-%%
-%% Tiivistelmn avainsanat
-\keywords{taika, musta magia, ydinfysiikka, rajatieto}
-%% Tiivistelmn tekstiosa
-\begin{abstractpage}[finnish]
-Tutkitaan menetelmi‰ liikkuvien robottien reaaliaikaiseen esteenv‰istˆˆn ja lokaaliin liikkeensuunnitteluun dynaamisessa ymp‰ristˆss‰.
 
-Eritell‰‰n eri anturointitekniikoita, niihin soveltuvia esteentunnistusalgoritmeja ja robotin ohjaustapoja ja -malleja maaliin p‰‰semiseksi osumatta ymp‰ristˆn yll‰tt‰viin muutoksiin.
+\keywords{liikkuva robotti, lokaali liikkeensuunnittelu, esteenv‰istˆ}
+
+\begin{abstractpage}[finnish]
+Kartoitetaan menetelmi‰ liikkuvien robottien reaaliaikaiseen esteenv‰istˆˆn ja lokaaliin liikkeensuunnitteluun dynaamisessa ymp‰ristˆss‰.
+
+Eritell‰‰n eri anturointitekniikoita, niihin soveltuvia esteentunnistusalgoritmeja ja robotin ohjaustapoja ja -malleja maaliin mahdollisimman optimaalisella tavalla p‰‰semiseksi osumatta ymp‰ristˆss‰ muuttuviin esteisiin.
 \end{abstractpage}
 
 \newpage
@@ -242,15 +190,6 @@ RRT	&	rapidly-exploring random tree
 
 
 %% Sivulaskurin viilausta opinnytteen vaatimusten mukaan:
-%% Aloitetaan sivunumerointi arabialaisilla numeroilla (ja jtetn
-%% leiptekstin ensimminen sivu tyhjksi, 
-%% ks. alla \thispagestyle{empty}).
-%% Pakotetaan lisksi ensimminen varsinainen tekstisivu alkamaan 
-%% uudelta sivulta clearpage-komennolla. 
-%% clearpage on melkein samanlainen kuin newpage, mutta 
-%% flushaa mys LaTeX:n floatit 
-%% 
-%% Corrects the page numbering, there is no need to change these
 \cleardoublepage
 \storeinipagenumber
 \pagenumbering{arabic}
@@ -264,7 +203,7 @@ RRT	&	rapidly-exploring random tree
 
 (Liikkuva robotti, robotin paikannus, esteenv‰istˆ sek‰ liikkeensuunnittelu ovat sellaisinaan hyvin laajoja k‰sitteit‰.) T‰m‰n tekstin tarkoituksena on kartoittaa eri menetelmi‰ eri kohteisiin, painottuen kuitenkin erityisesti ulkotiloissa maanpinnalla vaihtelevassa ja dynaamisessa ymp‰ristˆss‰ kulkeviin robotteihin. T‰ss‰ (ja myˆhemmin) robotilla tarkoitetaan itsen‰isesti liikkuvaa ajoneuvoa, kuten AGV:t‰ tai automaattisesti ajavaa henkilˆautoa, eik‰ kiinte‰sti asennettavaa robottia kuten manipulaattorik‰sivartta.
 
-Lokaaliin anturipohjaiseen esteenv‰istˆˆn on luonnollisesti monia eri menetelmi‰, joiden hyˆdyllisyys ja soveltuvuus riippuu robotin ymp‰ristˆst‰ ja anturien laadusta. Universaalia kaikkialle sopivaa lokaalia esteenv‰istˆ‰ ja/tai liikkeensuunnittelua ei ole olemassa. On tosin monia yleisi‰ menetelmi‰ (pit‰skˆ erotella vai antaa olla toistaiseksi?) ja tilannekohtaista heuristiikkaa. Myˆs perinteisist‰ menetelmist‰ osittain jalostettuja, kehittyneempi‰ tapoja (VFH jne) on saatu kartoittamalla heikkoudet ja soveltamalla tiettyyn ymp‰ristˆˆn; monia on testattu k‰yt‰nnˆss‰, toisia simuloimalla ja jotkut ovat j‰‰neet vain teoreettisiksi pohdinnoiksi ja kaavoiksi.
+Lokaaliin anturipohjaiseen esteenv‰istˆˆn on luonnollisesti monia eri menetelmi‰, joiden hyˆdyllisyys ja soveltuvuus riippuu robotin ymp‰ristˆst‰ ja anturien laadusta. Universaalia kaikkialle sopivaa lokaalia esteenv‰istˆ‰ ja/tai liikkeensuunnittelua ei ole olemassa. On tosin monia yleisi‰ menetelmi‰ ja tilannekohtaista heuristiikkaa. Myˆs perinteisist‰ menetelmist‰ osittain jalostettuja, kehittyneempi‰ tapoja on saatu kartoittamalla heikkoudet ja soveltamalla tiettyyn ymp‰ristˆˆn; monia on testattu k‰yt‰nnˆss‰, toisia simuloimalla ja jotkut ovat j‰‰neet vain teoreettisiksi pohdinnoiksi ja kaavoiksi.
 
 Globaalia liikkeensuunnittelua (kartta tiedossa etuk‰teen jonka mukaan reitti suunnitellaan) ja sen yhdist‰mist‰ lokaaliin esteiden kiert‰miseen sivutaan myˆs hieman. T‰ss‰ tyˆss‰ keskityt‰‰n kuitenkin yht‰kkisten, odottamattomien esteiden havaitsemiseen ja v‰ist‰miseen kun jonkinlainen reitti on tiedossa ennalta -- joko aiemmin tarkasti suunniteltu kartta mutkineen ja risteyksineen, tai summittainen ohje muotoa ``50 metri‰ pohjoiseen''. Reitin ja/tai ymp‰ristˆn muutoksia saatetaan myˆs p‰ivitt‰‰ robotille reaaliajassa. Aina ei kuitenkaan voida saada mit‰‰n ennakkotietoa ymp‰ristˆst‰, jossa robotti kulkee; t‰llˆin tieto pit‰‰ kartoittaa matkan varrella. Globaalin reitin suunnittelu oletetaan hoidetuksi; ei oteta kantaa, tuleeko reitti jostain ylemp‰‰ vai lasketaanko sit‰kin reaaliajassa itse robotilla.
 
@@ -277,15 +216,11 @@ Esteiden ohi selvi‰misen lis‰ksi robotin on pysytt‰v‰ reitill‰‰n ja sen on joten
 
 Robotin navigoinnin pohjalla on hyvin paljon muitakin ongelmia, joita t‰ss‰ tekstiss‰ saatetaan sivuta sen verran kuin on tarpeen, muttei niihin oteta tarkemmin kantaa, vaan ne oletetaan ratkaistuiksi. Seuraavassa esitell‰‰n joitain perusasioita pyˆrill‰ kulkevan robotin liikkumisesta.
 
-Jo muinaisissa roboteissa oli pyˆr‰t, ja ne yksinkertaisen mutta toimivan tekniikkansa vuoksi ovat ylivoimaisesti useimpien nykyrobottien liikkumisen perustana (TODO: joku papru t‰h‰n). Haastavassa maastossa k‰ytet‰‰n jotain pyˆrist‰ jalostettua tapaa, kuten telaketjuja tai renkaita, joihin on kiinnitetty piikkej‰ tms. (TODO: nasan botteja).
+Jo muinaisissa roboteissa oli pyˆr‰t, ja ne yksinkertaisen mutta toimivan tekniikkansa vuoksi ovat ylivoimaisesti useimpien nykyrobottien liikkumisen perustana (TODO: ref). Haastavassa maastossa k‰ytet‰‰n jotain pyˆrist‰ jalostettua tapaa, kuten telaketjuja tai renkaita, joihin on kiinnitetty piikkej‰ tms. (TODO: nasan botteja).
 
-Rakenteen puolesta (renkaiden lukum‰‰r‰ ja k‰‰ntyminen) pyˆrill‰ liikkumiseenkin on hyvin monia tapoja, joissa on kaikissa omat hyv‰t ja huonot puolensa. Tekniikka valittakoon robotin muodon ja kohdeymp‰ristˆn mukaan. Usein k‰ytettyj‰ ovat differentiaaliajo (kaksi erikseen ohjattavaa vet‰v‰‰ pyˆr‰‰, ja mahdollisesti useampia tasoittamaan painoa; myˆs telaketjuajo on differentiaalinen), Ackermannin ohjaus (autoissa k‰ytetty), synkroniajo (synchro drive, TODO suomennos; kaikki pyˆr‰t osoittavat samaan suuntaan ja pyˆriv‰t yht‰ nopeasti), ja omnidirectional (TODO jonka vois j‰tt‰‰ mainitsemattaki; erikoinen rengasrakenne jossa pinta voi pyˆri‰ kohtisuoraan rengasta vasten). Robotin mekaniikka on otettava huomioon mm. suunnan muutoksissa; esim. tavallinen auto ajaa ympyr‰n kaarella ja kiihtyy vain eteen- ja taaksep‰in.
+Rakenteen puolesta (renkaiden lukum‰‰r‰ ja k‰‰ntyminen) pyˆrill‰ liikkumiseenkin on hyvin monia tapoja, joissa on kaikissa omat hyv‰t ja huonot puolensa. Tekniikka valittakoon robotin muodon ja kohdeymp‰ristˆn mukaan. Usein k‰ytettyj‰ ovat differentiaaliajo (kaksi erikseen ohjattavaa vet‰v‰‰ pyˆr‰‰, ja mahdollisesti useampia tasoittamaan painoa; myˆs telaketjuajo on differentiaalinen), Ackermannin ohjaus (autoissa k‰ytetty), synkroniajo (synchro drive, kaikki pyˆr‰t osoittavat samaan suuntaan ja pyˆriv‰t yht‰ nopeasti), ja omnidirectional (TODO jonka vois j‰tt‰‰ mainitsemattaki; erikoinen tuplarengasrakenne jossa pinta voi pyˆri‰ kohtisuoraan rengasta vasten). Robotin mekaniikka on otettava huomioon mm. suunnan muutoksissa; esim. tavallinen auto ajaa ympyr‰n kaarella ja kiihtyy vain eteen- ja taaksep‰in.
 
-Nivelletyill‰ jaloilla k‰velevi‰ robotteja tutkitaan nyky‰‰n yh‰ enemm‰n. Humanoidirobotit soveltuisivat hyvin ihmisille tarkoitettuun ymp‰ristˆˆn, ja n‰ytt‰isiv‰t ihmisille luontevilta jolloin kanssak‰yminen olisi helppoa ja ne voisivat hoitaa ihmisten teht‰vi‰ yleisell‰ tasolla. Nivelletyt jalat sopivat myˆskin haastavaan, ep‰tasaiseen maastoon pyˆreit‰ renkaita paremmin vaikkei olisikaan ihmisten kaltaisista roboteista kyse. T‰t‰ on kokeiltu esimeriksi mets‰koneissa (TODO: plustech timberjack). Monimutkaisen rakenteensa vuoksi ne eiv‰t ole viel‰ juurikaan yleistyneet.
-
-SNIP->
-Aluksi on perehdytt‰v‰ tarkemmin aiheen k‰sitteisiin: mit‰ tarkoitetaan reitill‰ ja sen suunnittelulla? Mit‰ esteit‰ ylip‰‰t‰‰n reitill‰ voi olla, ja mill‰ tavoin eri tyyppisiin esteisiin on suhtauduttava? Millaiset (matemaattiset) menetelm‰t robotin navigoinnin takana yleens‰ ovat?
-<-SNIP MIHIN TOI?
+Nivelletyill‰ jaloilla k‰velevi‰ robotteja tutkitaan nyky‰‰n yh‰ enemm‰n. Humanoidirobotit soveltuisivat hyvin ihmisille tarkoitettuun ymp‰ristˆˆn, ja n‰ytt‰isiv‰t ihmisille luontevilta jolloin kanssak‰yminen olisi helppoa ja ne voisivat hoitaa ihmisten teht‰vi‰ yleisell‰ tasolla. Nivelletyt jalat sopivat myˆskin haastavaan, ep‰tasaiseen maastoon pyˆreit‰ renkaita paremmin vaikkei olisikaan ihmisten kaltaisista roboteista kyse. T‰t‰ on kokeiltu esimeriksi mets‰koneissa (TODO: reffaa plustech timberjack). Monimutkaisen rakenteensa vuoksi ne eiv‰t ole viel‰ juurikaan yleistyneet.
 
 Paljon tutkimusta on tehty \cite{bonin2008visual} ja sit‰ t‰t‰.
 
@@ -296,13 +231,13 @@ Itse esteiden v‰ist‰misen aiheuttaman reitin lokaali suunnittelu on puhtaan lask
 
 \subsection{Paikannus}
 
-Olennainen ongelma liikkuville roboteille on itsens‰ paikannus. Oletetaan robotin tiet‰v‰n tarkasti jokin maalireitti tai -piste tietyss‰ koordinaatistossa; t‰llˆin on tiedett‰v‰ miss‰ itse robotti sijaitsee. T‰h‰n voidaan k‰ytt‰‰ tapauksesta riippuen esim. odometriaa \cite{borenstein1001umbmark}, inertiasuunnistusta, majakoita tai maamerkkej‰ (TODO: REFREFREF hox). Sensorifuusiota Kalman-suotimella voidaan myˆs hyˆdynt‰‰, jolloin saadaan tarkempi tulos monen anturin yhdistetyst‰ mittauksesta.
+Olennainen ongelma liikkuville roboteille on itsens‰ paikannus. Oletetaan robotin tiet‰v‰n tarkasti jokin maalireitti tai -piste tietyss‰ koordinaatistossa; t‰llˆin on tiedett‰v‰ miss‰ itse robotti sijaitsee. T‰h‰n voidaan k‰ytt‰‰ tapauksesta riippuen esim. odometriaa \cite{borenstein1001umbmark}, inertiasuunnistusta, majakoita tai maamerkkej‰ (TODO: ref). Sensorifuusiota Kalman-suotimella voidaan myˆs hyˆdynt‰‰, jolloin saadaan tarkempi tulos monen anturin yhdistetyst‰ mittauksesta.
 
 Odometria ja inertiasuunnistus ovat integroivia menetelmi‰, ja pienetkin virheet kasautuvat pidemm‰n p‰‰lle, joten n‰it‰ ei voi k‰ytt‰‰ yksin‰‰n. Odometria seuraa esim. pyˆrimisanturien avulla renkaiden liikkett‰ ja arvioi kuljettua matkaa; yleisi‰ virhel‰hteit‰ ovat renkaiden liukuminen, niiden v‰‰rin mitattu ymp‰rysmitta ja keskin‰inen et‰isyys, sek‰ ymp‰ristˆn ep‰systemaattiset virheet, kuten tuntemattomien ulkoisten h‰iriˆtekijˆiden osuminen robottiin. Inertiasuunnistus integroi kiihtyvyysanturien mittauksia, ja on k‰ytˆss‰ l‰hinn‰ jos renkaista tms. ei saada mitattua mit‰‰n -- ei kovin yleinen maanpinnalla kulkeville roboteille. Ep‰varmojen mittauksien integrointi luonnollisesti kerrytt‰‰ virhett‰ pidemm‰n p‰‰lle, ja paikkaa kannattaa seurata ja p‰ivitt‰‰ esim. GPS:ll‰ jos mahdollista. (TODO: reflinkkei)
 
 Absoluuttisten majakoiden k‰yttˆ yhdistettyn‰ edellisiin korjaa kertym‰virheet. GPS on standardoitu paikannusmenetelm‰, joka toimii k‰yt‰nnˆss‰ miss‰ tahansa maapallolla ulkotiloissa, kun n‰kyvyys satelliitteihin on riitt‰v‰. (TODO: ref); Parempaa vaatiessa ajoymp‰ristˆˆn voidaan rakentaa itse vastaava paikannusj‰rjestelm‰, ja monen robotin ollessa kyseess‰ robotit voivat myˆs keskustella kesken‰‰n siten, ett‰ jokainen toimii kiinteiden majakoiden lis‰ksi yhten‰ majakkana (TODO: ref). Majakat k‰ytt‰v‰t paikannukseen kolmiomittausta, joka voi olla paikallisena hyvinkin tarkka. Odometrialla voidaan mitata hetkitt‰in paikallista liikett‰, jota korjataan globaalisti majakoilla ajoittain integrointivirheiden eliminoimiseksi. Hetkellinen nopeus ja suuntakulma saadaan odometrialta varsin tarkasti. (TODO: ref)
 
-Maamerkit ovat yleinen k‰yt‰ntˆ mm. AGV-vaunujen navigoinnissa (TODO: ref). Varastotiloissa voidaan upottaa lattiaan magneetteja tai induktionauhaa sek‰ kiinnitt‰‰ sein‰‰n heijastimia, joiden et‰isyys selvitet‰‰n laserilla ja joista lasketaan trigonometrian avulla robotin sijainti majakoiden tyyliin (TODO: roclajuttuja tms). Lattiaan kiinnitett‰v‰t maamerkit auttavat, kun n‰kˆet‰isyys heijastimiin on huono, sek‰ antavat myˆs varsin tarkan tiedon sijainnista, kunhan osataan erottaa maamerkit toisistaan.
+Maamerkit ovat yleinen k‰yt‰ntˆ mm. AGV-vaunujen navigoinnissa (TODO: ref). Varastotiloissa voidaan upottaa lattiaan magneetteja tai induktionauhaa sek‰ kiinnitt‰‰ sein‰‰n heijastimia, joiden et‰isyys selvitet‰‰n laserilla ja joista lasketaan trigonometrian avulla robotin sijainti majakoiden tyyliin (TODO: rocla tms). Lattiaan kiinnitett‰v‰t maamerkit auttavat, kun n‰kˆet‰isyys heijastimiin on huono, sek‰ antavat myˆs varsin tarkan tiedon sijainnista, kunhan osataan erottaa maamerkit toisistaan.
 
 Konen‰ˆll‰ voidaan verrata ymp‰ristˆn ulkon‰kˆ‰ ennalta m‰‰r‰ttyyn karttaan, ja havainnoida sijainti korkeamman abstraktiotason maamerkeist‰, kuten ihmiset tekev‰t. Tiettyjen s‰‰nnˆnmukaisuuksien yhdistely muuhun anturidataan varmistaa globaalin sijainnin kartalla (TODO: ref). Kun robotti on hetki sitten tiennyt olevansa p‰‰lafkan l‰histˆll‰, voidaan olettaa ett‰ kamerasta n‰kyv‰ talo on p‰‰lafka ja tarkentaa sijainti yhdist‰m‰ll‰ kartta ja merkint‰lasku (dead reckoning) sen mukaisesti. Vastaavaa menettely‰ voidaan hyˆdynt‰‰ myˆs 2D-mittauksessa esim. ultra‰‰niantureilla (TODO: ref). Menetelm‰n ongelma on se sen keskeinen oletus, ett‰ ymp‰ristˆst‰ on ennalta olemassa jo jokin kartta, eik‰ tapa siis t‰ysin tuntemattomassa ymp‰ristˆss‰ toimi.
 
@@ -325,9 +260,12 @@ T‰st‰ eteenp‰in oletetaan, ett‰ esteet ja l‰hiymp‰ristˆ on havaittu jollain mene
 
 \clearpage
 \section{E.S.Teit}
+
 Sis‰tiloissa toiminta eroaa ulkotiloista merkitt‰v‰sti siin‰, ett‰ tilasta voidaan tehd‰ muutamia yksinkertaistavia oletuksia. Robotti on oletettavasti aina samassa kulmassa maanpintaan n‰hden (tasainen lattia), esteet ovat mit‰ todenn‰kˆisimmin korkeahkoja ja kohtisuorassa maanpintaan n‰hden (sein‰t, hyllyt, ihmiset) ja rakennuksen pohjakuvasta saataneen hyv‰ kartta, joka voidaan approksimoida kaksiulotteiseksi. Renkailla liikkuminen on helppoa ja yht‰kkisiin kuoppiin tai kynnyksiin ei tarvinne kiinnitt‰‰ huomiota. N‰kym‰‰ voi tutkaskannata kohtuullisen luotettavasti jo ultra‰‰nell‰. Esteet tuskin liikkuvat ihmist‰ nopeammin. Mitk‰‰n n‰ist‰ olettamuksista eiv‰t p‰de ulkona tutkimattomassa ymp‰ristˆss‰.
 
 Ulkona jo robotin mekaniikkaan on kiinnitett‰v‰ enemm‰n huomiota, esteenv‰istˆst‰ ja -havainnoinnista puhumattakaan. Ulkotilat voidaan erotella edelleen kahtia kaupunkimaastoon ja muuhun tuntemattomaan mets‰‰n. Kaupunkimaaston haasteita ovat (TODO: googlaa) vinot ja k‰yr‰t pinnat joissa robotti lipsuu ja joissa kiinte‰t anturit voivat ottaa h‰iriˆmittauksia maanpinnasta m‰ke‰ alas ajettaessa; ylˆs ajettaessa reunan yli ei n‰hd‰ ennen kuin maasto on taas tasaista. (TODO: ref). Liikkuvat esteet voivat olla autoja tai polkupyˆri‰, joita pit‰isi v‰ist‰‰ hyvin nopeasti ja jotka t‰ytyisi havainnoida jo kaukaa, jotta v‰istˆliikkeen ehtisi tehd‰. T‰m‰ on erityisen kriittist‰ varsinkin robotisoiduissa henkilˆautoissa. (TODO: ref)
+
+TODO: j‰sentele, laita jonnekin fiksuun paikkaan, laajenna.
 
 
 \clearpage
@@ -341,29 +279,29 @@ Keinopotentiaalikent‰t (artificial potential functions, artificial potential fie
 
 Potentiaalikent‰t syntyv‰t maalista ja esteist‰; maali tuottaa puoleensavet‰v‰n ja esteet hylkiv‰n potentiaalin. K‰ytetty potentiaalifunktio on esimeriksi et‰isyyden k‰‰nteisarvo tai sen neliˆ tai (TODO: keksi jotain ja ota reffei). Maalin ja esteiden aiheuttavien potentiaalien gradienttien summasta saadaan robottiin kohdistuva ``voima'' jonka mukaan sit‰ kiihdytet‰‰n. Potentiaalikentti‰ k‰ytet‰‰n myˆs robottimanipulaattoreilla, mutta niit‰ ei t‰ss‰ k‰sitell‰.
 
-Menetelm‰ toimii hyvin yksinkertaisissa ymp‰ristˆiss‰, mutta siin‰ on silti lukuisia ongelmia, jotka on otettava huomioon ja jalostettava menetelm‰‰ hieman eteenp‰in (TODO cite ge+cui, new potential functions blabla). Lokaaleihin minimeihin voi j‰‰d‰ loukkuun, l‰hekk‰in olevien esteiden v‰list‰ ei p‰‰se, kapeissa k‰yt‰viss‰ syntyy helposti v‰r‰htely‰ sek‰ maaliin voi olla mahdotonta p‰‰st‰, jos sen toisella puolella on l‰hell‰ este.
+Menetelm‰ toimii hyvin yksinkertaisissa ymp‰ristˆiss‰, mutta siin‰ on silti lukuisia ongelmia, jotka on otettava huomioon ja jalostettava menetelm‰‰ hieman eteenp‰in \cite{ge2002new}. Lokaaleihin minimeihin voi j‰‰d‰ loukkuun, l‰hekk‰in olevien esteiden v‰list‰ ei p‰‰se, kapeissa k‰yt‰viss‰ syntyy helposti v‰r‰htely‰ sek‰ maaliin voi olla mahdotonta p‰‰st‰, jos sen toisella puolella on l‰hell‰ este.
 
-Potentiaalifunktiot $U_att$ (attraktiivinen) ja $U_rep$ (repulsiivinen) ovat esimerkiksi (TODO: cite new blabla)
+Potentiaalifunktiot $U_a$ (attraktiivinen) ja $U_r$ (repulsiivinen) ovat esimerkiksi \cite{ge2002new}
 
 \begin{equation}
-U_att(q) = \xi(q_goal - q),
+U_a(q) = \xi(q_g - q),
 \end{equation}
 
 \begin{equation}
-U_rep(q) = \begin{cases}
- \eta(\frac{1}{q_obs - q} - \frac{1}{\rho_0})^2 & \text{jos } |(q_obs-q)| \ge \rho_0 \\
-0 & \text{jos } |q_obs-q| \ge \rho_0
+U_r(q) = \begin{cases}
+ \eta(\frac{1}{q_o - q} - \frac{1}{\rho_0})^2 & \text{jos } |(q_o-q)| \ge \rho_0 \\
+0 & \text{jos } |q_o-q| \ge \rho_0
 \end{cases}
 \end{equation}
 
-miss‰ $q$-vektori kuvaa robotin sijaintia ja asentoa ja $\xi$ ja $\eta$ ovat optimoitavia skaalauskertoimia. Voimat saadaan potentiaalikent‰n gradientista
+miss‰ $q$-vektori kuvaa robotin sijaintia, alaindeksi g maalia (goal) ja o estett‰ (obstacle). ja asentoa ja $\xi$ ja $\eta$ ovat optimoitavia skaalauskertoimia. Voimat saadaan potentiaalikent‰n gradientista
 
 \begin{equation}
-%F_att(q) = -\grad U_att(q) = \xi(q_goal - q) % TODO
+F_a(q) = -\nabla U_a(q) = \xi(q_g - q)
 \end{equation}
 ja kokonaisvoima on kaikkien yhdistelm‰
 \begin{equation}
-F_tot(q) = F_att(q) + \sum F_rep(q).
+F_{tot}(q) = F_a(q) + \sum F_r(q).
 \end{equation}
 
 Potentiaalikent‰t toimivat parhaiten kun ymp‰ristˆ on tiedossa, jolloin reitti‰ voidaan suunnitella kauemmas kerralla. Dynaamisessa ja tuntemattomassa ymp‰ristˆss‰ n‰in ei ole, mutta koska voima lasketaan hetkellisesti ja potentiaalifunktiot ovat suhteellisen yksinkertaisia, soveltuu t‰m‰ tekniikka myˆs haluamaamme tilanteeseen. Et‰isyys esteeseen saadaan esim. ultra‰‰nianturilta, ja esteiden liikkuessa voima muuttuu kuten on tarvis.
@@ -372,20 +310,20 @@ Eri painokertoimet on optimoitava (TODO: eti reffei) robotin dynamiikan ja estei
 
 Minimiongelmaan on esitetty useita ratkaisuja. Yksi mahdollinen on poistumisvoima, joka otetaan k‰yttˆˆn jos huomataan robotin olevan l‰hell‰ minimi‰. T‰llˆin kokonaisvoimaan lis‰t‰‰n esteiden hylkiv‰‰ vaikutusta (TODO: mieti evolublablaa sivu 4 kaava 7 ja etsi muita).
 
-Painoparametrien optimoinniksi on esitetty hyvyysfunktion minimointia \cite{vadakkepat2002eapf} plaa plaa, mik‰ sopii kun tiedet‰‰n koko kartta, muttei aivan kelpaa muuttuvaan ymp‰ristˆˆn. On myˆs ehdotettu (TODO cite soccergame/bjakenlinkkijuttu) virtuaalista robotin takana samaa rataa kulkevaa estett‰, joka aiheuttaa voiman eteenp‰in ja est‰‰ nollapotentiaalikuoppiin jumiutumisen. T‰ss‰kin on ongelmana ko. voiman suuruuden optimointi.
+Painoparametrien optimoinniksi on esitetty hyvyysfunktion minimointia \cite{vadakkepat2002eapf} plaa plaa, mik‰ sopii kun tiedet‰‰n koko kartta, muttei aivan kelpaa muuttuvaan ymp‰ristˆˆn. On myˆs ehdotettu virtuaalista robotin takana samaa rataa kulkevaa estett‰, joka aiheuttaa voiman eteenp‰in ja est‰‰ nollapotentiaalikuoppiin jumiutumisen \cite{thurau2004learning}. T‰ss‰kin on ongelmana ko. voiman suuruuden optimointi.
 
 Teoriassa kiva, k‰yt‰nnˆss‰ hankala optimoida robustiksi ja monipuoliseen ymp‰ristˆˆn soveltuvaksi.
 
 
 \subsection{Histogrammit}
 
-Borenstein ja Koren toteavat potentiaalikent‰t riitt‰m‰ttˆmiksi ja esitt‰v‰t niihin pohjautuvan virtuaalisen voimakent‰n (virtual force field) \cite{koren1991potential} ja siit‰ edelleen kehittyneen vektorikentt‰histogrammin (vector field histogram) \cite{borenstein2002vfh}. Virtuaalinen voimakentt‰ perustuu karttamaiseen varmuusarvoruudukkoon, jonka ruutuihin summataan arvoja sit‰ mukaa kun niit‰ saadaan robotin 24 ultra‰‰nianturilta. T‰st‰ ruudukosta otetaan tietyn kokoinen ($w_s*w_s$) aktiivinen alue, jota p‰ivitet‰‰n mittauksia saadessa ja josta lasketaan robotin suuntaa ja nopeutta ohjaava voima samankaltaisesti kun potentiaalikentiss‰: l‰hell‰ olevat esteet tuottavat voimakkaita hylkivi‰ voimia.
+Borenstein ja Koren toteavat potentiaalikent‰t riitt‰m‰ttˆmiksi ja esitt‰v‰t niihin pohjautuvan virtuaalisen voimakent‰n (virtual force field) \cite{koren1991potential} ja siit‰ edelleen kehittyneen vektorikentt‰histogrammin (vector field histogram, VFH) \cite{borenstein2002vfh}. Virtuaalinen voimakentt‰ perustuu karttamaiseen varmuusarvoruudukkoon, jonka ruutuihin summataan arvoja sit‰ mukaa kun niit‰ saadaan robotin 24 ultra‰‰nianturilta. T‰st‰ ruudukosta otetaan tietyn kokoinen ($w_s*w_s$) aktiivinen alue, jota p‰ivitet‰‰n mittauksia saadessa ja josta lasketaan robotin suuntaa ja nopeutta ohjaava voima samankaltaisesti kun potentiaalikentiss‰: l‰hell‰ olevat esteet tuottavat voimakkaita hylkivi‰ voimia.
 
 Vektorikentt‰histogrammi jalostaa t‰t‰ eteenp‰in rakentamalla ruudukosta suuntapohjaisen histogrammin. Borenstein ja Koren toteavat ett‰ suoraan kaksiulotteisesta kartasta voiman tulkitseminen menett‰‰ liikaa informaatiota, ja ottavat k‰yttˆˆn toisen laskentavaiheen, histogrammiruudukon \cite{borenstein2002vfh}. Histogrammi kattaa t‰yden ympyr‰n robotin ymp‰rill‰, ja siihen summataan asteittain varmuusarvoruudukon arvot, jolloin siihen syntyy huippuja ja kuoppia. Kuopat ilmaisevat alueita, joita on turvallista l‰hesty‰; korkeat huiput kuvaavat paikkoja, joissa on todenn‰kˆisesti jokin l‰hell‰ oleva tai suuri este, jota on v‰istett‰v‰. Ropleema: iso ruudukko tuo isoja vaihteluita diskreetin luonteensa takia, tarttee alip‰‰stˆsuotimen joka viritet‰‰n kokeellisesti (pohdi: subpixel rendering).
 
 T‰m‰ tapa soveltuu erityisesti h‰iriˆiseen ja ep‰varmaan mittaukseen, ja sit‰ onkin testattu ultra‰‰nisensoreilla joihin liittyy l‰hes ominaisesti tietynlaista h‰iriˆt‰. Voima lasketaan varmuusruudukon arvojen neliˆist‰, jolloin varmempia mittauksia painotetaan huomattavasti enemm‰n, ja pienet, h‰iriˆm‰iset mittaukset j‰‰v‰t robustisti huomiotta.
 
-VKH:ta (TODO: miten lyhenteit‰ k‰ytet‰‰n? k‰ytet‰‰nkˆ? suomeksi vai englanniksi?) on testattu CARMEL-robotilla, jossa on 24 ultra‰‰nianturia; tekniikka onkin selv‰sti suunniteltu tutkatyyppisille et‰isyysantureille, joilta saadaan pistem‰isi‰ mittauksia. T‰ss‰ yhteydess‰ on ulkotiloissa otettava huomioon vino maasto, sill‰ muutoin oletetaan tutkan olevan saman suuntainen maatason kanssa ja vinot kuopat jotka saavat robotin kallistumaan saavat mittaukset hyˆdyttˆmiksi.
+VFH:ta on testattu CARMEL-robotilla, jossa on 24 ultra‰‰nianturia \cite{borenstein2002vfh}; tekniikka onkin selv‰sti suunniteltu tutkatyyppisille et‰isyysantureille, joilta saadaan pistem‰isi‰ mittauksia. T‰ss‰ yhteydess‰ on ulkotiloissa otettava huomioon vino maasto, sill‰ muutoin oletetaan tutkan olevan saman suuntainen maatason kanssa ja vinot kuopat jotka saavat robotin kallistumaan saavat mittaukset hyˆdyttˆmiksi.
 
 VFH ei kuitenkaan ota huomioon robotin dynamiikkaa mill‰‰n lailla, ja olettaa siis ett‰ robotti on pistem‰inen ja voi vaihtaa kulkusuuntaansa v‰littˆm‰sti. Borenstein ja Ulrich esitt‰v‰t VFH+-algoritmin, joka korjaa t‰m‰n ongelman \cite{ulrich2002vfh+}. He tutkivat ihmisvoimin tyˆnnett‰v‰‰, differentiaaliajoa k‰ytt‰v‰‰ robottia ohjaamaan sokkoa ihmist‰. T‰m‰ eroaa dynamiikaltaan oleellisesti aiemmin k‰ytetyst‰, joka suuntaan k‰‰ntyv‰st‰ robotista \cite{borestein2002vfh}.
 
@@ -401,6 +339,8 @@ Manipulaattoreille ja tunnetulle kartalle lˆytyy tutkimusta. \cite{yang2004neura
 
 \subsection{Geneettiset algoritmit}
 
+Toimii kaikkeen. Ovat tosin hitaita. Globaaliks vaan.
+
 \subsection{Puumenetelm‰t}
 
 (Execution extended) Rapidly-exploring random tree \cite{bruce2003rrt} k‰ytt‰‰ hyv‰kseen jo olemassaolevaa dataa ajoymp‰ristˆst‰ ja iteroi robotin varsin hyvin maaliin.
@@ -414,21 +354,19 @@ Syvyysn‰kˆ stereokameralla on myˆs varteenotettava vaihtoehto tavanomaisille ant
 
 Kameran voi myˆs yhdist‰‰ ultra‰‰nianturointiin, jolloin ultra‰‰nelt‰ saadaan nopeampi vasteaika liikkuville esteille, ja tarkempi reitin suunnittelu voidaan hoitaa kameran pohjalta, kuten tekiv‰t Ohya et al \cite{ohya2002vision}. T‰ss‰ kameran esteet kartoitettiin tosin ennalta m‰‰ritettyyn karttaan reunantunnistuksella pystyviivoina, eik‰ t‰m‰ menetelm‰ sovellu ulkotiloihin tuntemattomaan ymp‰ristˆˆn.
 
-Kameralla otetussa kuvassa ei ole esimerkiksi ultra‰‰nisensoreille tyypillist‰ h‰iriˆt‰ tai ep‰tarkkuutta, mutta se on laskennallisesti raskaampi. Hyv‰ll‰ resoluutiolla ja pienell‰ kohinalla tosin saavutetaan n‰kˆ suhteellisen pitk‰lle, mutta kapeammalla keilalla kuin jos robottia ymp‰rˆisi 360 asteen tutkavyˆ. T‰m‰ ei kuitenkaan yleens‰ ole ongelma, sill‰ vieress‰ tai takana olevia esteit‰ ei tarvitse huomioida eteenp‰in ajettaessa.
+Kameralla otetussa kuvassa ei ole esimerkiksi ultra‰‰nisensoreille tyypillist‰ h‰iriˆt‰ tai ep‰tarkkuutta, mutta se on laskennallisesti raskaampi. Hyv‰ll‰ resoluutiolla ja pienell‰ kohinalla tosin saavutetaan n‰kˆ suhteellisen pitk‰lle, mutta kapeammalla keilalla kuin jos robottia ymp‰rˆisi 360 asteen tutkavyˆ. T‰m‰ ei kuitenkaan yleens‰ ole ongelma, sill‰ vieress‰ tai takana olevia esteit‰ ei tarvitse huomioida eteenp‰in ajettaessa. Synkroniajoa k‰ytt‰v‰ robotti voi muuttaa suuntaansa v‰littˆm‰sti, jolloin tutkavyˆll‰ s‰‰styt‰‰n anturien k‰‰nt‰miselt‰. 
 
 
 \section{And now for something completely different}
 
-Kokonaiseen autoon kivasti laitettu kaikkea \cite{stentz1995complete}. D* = dynamic A*, globaali reitinhaku.
-D* avaruusrobo, "sumeaa logiikkaa", lokaali+globaali-keskittyminen \cite{singh2002recent}.
-Foo
-HOX HOX: TODO: yhdistele aiheet jotenkin. vfh tai potfieldit tai muutkaa ei erityisemmin kiinnit‰ huomiota liikkuviin objekteihin ja ennusta niiden paikkaa, tai edes tunnista objekteja kokonaisina mˆnttein‰. tee fiksumpaa kuvan- ja esineentunnistusta, ja jotain j‰rkev‰‰ heuristiikkaa siin‰ samalla. yhdist‰ eri menetelmi‰. TUTKI: oikeesti sit‰ dynaamista ymp‰ristˆ‰, miten sit‰ anturoidaan ja miten ymm‰rret‰‰n liikkuvat muodot; miten niiden liike ennustetaan.
-
 Edell‰ esiteltiin useita erilaisia menetelmi‰ lokaaliin esteenv‰istˆˆn. N‰ist‰ tosin kaikki keskittyv‰t vain siihen, ett‰ edess‰ on jokin t‰ll‰ hetkell‰ tietyss‰ kohdassa oleva este reitin p‰‰ll‰, jolloin se on kierrett‰v‰; t‰llaista tunnistusalgoritmia iteroitiin jatkuvasti. Reitti‰ voisi suunnitella hieman korkeammalla tasolla, jossa sensoridatasta tulkitaan todenn‰kˆiset paikallaan olevat tai liikkuvat hahmot, ja ennustetaan reitti n‰iden pohjalta hieman kauemmas ja tarkemmin: esimerkiksi liikkuvat, s‰‰nnˆlliset esineet voisi tunnistaa, olettaa niiden kulkevan suoraa reitti‰ viel‰ hetken verran, yhdist‰‰ robotin omaan nopeuteen sek‰ t‰st‰ tiedosta p‰‰tell‰, kannattaako este vaikkapa kiert‰‰ takaap‰in odottaen, ett‰ se menee ohi.
 
+Kokonaiseen autoon kivasti laitettu kaikkea \cite{stentz1995complete}. D* = dynamic A*, globaali reitinhaku.
+D* avaruusrobo, "sumeaa logiikkaa", lokaali+globaali-keskittyminen \cite{singh2002recent}.
+
+TODO: yhdistele aiheet jotenkin. vfh tai potfieldit tai muutkaan eiv‰t erityisemmin kiinnit‰ huomiota liikkuviin objekteihin ja ennusta niiden paikkaa, tai edes tunnista objekteja kokonaisina mˆnttein‰. tee fiksumpaa kuvan- ja esineentunnistusta, ja jotain j‰rkev‰‰ heuristiikkaa siin‰ samalla. yhdist‰ eri menetelmi‰. TUTKI: oikeesti sit‰ dynaamista ymp‰ristˆ‰, miten sit‰ anturoidaan ja miten ymm‰rret‰‰n liikkuvat muodot; miten niiden liike ennustetaan.
+
 \clearpage
-
-
 \section{Yhteenveto}
 
 Bar
@@ -438,5 +376,3 @@ Bar
 \bibliography{kandi}
 
 \end{document}
-
-
