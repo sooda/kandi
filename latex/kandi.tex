@@ -112,8 +112,7 @@ linkcolor=blue,citecolor=black,pdfstartview=FitH]{hyperref}
 %% break the lines yourself with \\ control character. 
 %% Do not hyphenate titles.
 % TODO
-\thesistitle{}{Liikkuvien robottien paikallinen esteenväistö ja liikkeensuunnittelu dynaamisessa ympäristössä
-}
+\thesistitle{}{Liikkuvien robottien paikallinen esteenväistö ja liikkeensuunnittelu dynaamisessa ympäristössä}
 
 \place{Espoo}
 %% Kandidaatintyn pivmr on sen esityspivmr! 
@@ -216,9 +215,9 @@ Esteiden ohi selviämisen lisäksi robotin on pysyttävä reitillään ja sen on joten
 
 Robotin navigoinnin pohjalla on hyvin paljon muitakin ongelmia, joita tässä tekstissä saatetaan sivuta sen verran kuin on tarpeen, muttei niihin oteta tarkemmin kantaa, vaan ne oletetaan ratkaistuiksi. Seuraavassa esitellään joitain perusasioita pyörillä kulkevan robotin liikkumisesta.
 
-Jo muinaisissa roboteissa oli pyörät, ja ne yksinkertaisen mutta toimivan tekniikkansa vuoksi ovat ylivoimaisesti useimpien nykyrobottien liikkumisen perustana (TODO: ref). Haastavassa maastossa käytetään jotain pyöristä jalostettua tapaa, kuten telaketjuja tai renkaita, joihin on kiinnitetty piikkejä tms. (TODO: nasan botteja).
+Jo muinaisissa roboteissa oli pyörät, ja ne yksinkertaisen mutta toimivan tekniikkansa vuoksi ovat ylivoimaisesti useimpien nykyrobottien liikkumisen perustana \ref{siegwart2004introduction}. Haastavassa maastossa käytetään jotain pyöristä jalostettua tapaa, kuten telaketjuja tai renkaita, joihin on kiinnitetty piikkejä tms. (TODO: nasan botteja).
 
-Rakenteen puolesta (renkaiden lukumäärä ja kääntyminen) pyörillä liikkumiseenkin on hyvin monia tapoja, joissa on kaikissa omat hyvät ja huonot puolensa. Tekniikka valittakoon robotin muodon ja kohdeympäristön mukaan. Usein käytettyjä ovat differentiaaliajo (kaksi erikseen ohjattavaa vetävää pyörää, ja mahdollisesti useampia tasoittamaan painoa; myös telaketjuajo on differentiaalinen), Ackermannin ohjaus (autoissa käytetty), synkroniajo (synchro drive, kaikki pyörät osoittavat samaan suuntaan ja pyörivät yhtä nopeasti), ja omnidirectional (TODO jonka vois jättää mainitsemattaki; erikoinen tuplarengasrakenne jossa pinta voi pyöriä kohtisuoraan rengasta vasten). Robotin mekaniikka on otettava huomioon mm. suunnan muutoksissa; esim. tavallinen auto ajaa ympyrän kaarella ja kiihtyy vain eteen- ja taaksepäin.
+Rakenteen puolesta (renkaiden lukumäärä ja kääntyminen) pyörillä liikkumiseenkin on hyvin monia tapoja, joissa on kaikissa omat hyvät ja huonot puolensa. Tekniikka valittakoon robotin muodon ja kohdeympäristön mukaan. Usein käytettyjä ovat differentiaaliajo (kaksi erikseen ohjattavaa vetävää pyörää, ja mahdollisesti useampia tasoittamaan painoa; myös telaketjuajo on differentiaalinen), Ackermannin ohjaus (autoissa käytetty), synkroniajo (synchro drive, kaikki pyörät osoittavat samaan suuntaan ja pyörivät yhtä nopeasti), ja jokasuuntainen ajo (omnidirectional drive; erikoinen tuplarengasrakenne (omni wheel, mecanum wheel) jossa pinta voi pyöriä kohtisuoraan rengasta vasten \cite{damoto2006holonomicomni} \cite{diegel2002improvedmecanum}). Robotin mekaniikka on otettava huomioon mm. suunnan muutoksissa; esim. tavallinen auto ajaa ympyrän kaarella ja kiihtyy vain eteen- ja taaksepäin.
 
 Nivelletyillä jaloilla käveleviä robotteja tutkitaan nykyään yhä enemmän. Humanoidirobotit soveltuisivat hyvin ihmisille tarkoitettuun ympäristöön, ja näyttäisivät ihmisille luontevilta jolloin kanssakäyminen olisi helppoa ja ne voisivat hoitaa ihmisten tehtäviä yleisellä tasolla. Nivelletyt jalat sopivat myöskin haastavaan, epätasaiseen maastoon pyöreitä renkaita paremmin vaikkei olisikaan ihmisten kaltaisista roboteista kyse. Tätä on kokeiltu esimeriksi metsäkoneissa (TODO: reffaa plustech timberjack). Monimutkaisen rakenteensa vuoksi ne eivät ole vielä juurikaan yleistyneet.
 
@@ -277,7 +276,7 @@ Tasaisessa maastossa maailma voidaan helposti olettaa kaksiulotteiseksi, jolloin
 
 Keinopotentiaalikentät (artificial potential functions, artificial potential fields) ovat vanha \cite{warren2002apf}  \cite{rimon1992apf} mutta usein (sellaisenaan tai toisen navigointitavan pohjana) käytetty väistömenetelmä. Mitään oikeita fysikaalisia voimia nämä kentät eivät tuota robotille, jolloin kenttiä sanotaan keinotekoisiksi.
 
-Potentiaalikentät syntyvät maalista ja esteistä; maali tuottaa puoleensavetävän ja esteet hylkivän potentiaalin. Käytetty potentiaalifunktio on esimeriksi etäisyyden käänteisarvo tai sen neliö tai (TODO: keksi jotain ja ota reffei). Maalin ja esteiden aiheuttavien potentiaalien gradienttien summasta saadaan robottiin kohdistuva ``voima'' jonka mukaan sitä kiihdytetään. Potentiaalikenttiä käytetään myös robottimanipulaattoreilla, mutta niitä ei tässä käsitellä.
+Potentiaalikentät syntyvät maalista ja esteistä; maali tuottaa puoleensavetävän ja esteet hylkivän potentiaalin. Käytetty potentiaalifunktio on esimeriksi etäisyyden käänteisarvo tai sen neliö \cite{ge2002new}. Maalin ja esteiden aiheuttavien potentiaalien gradienttien summasta saadaan robottiin kohdistuva ``voima'' jonka mukaan sitä kiihdytetään. Potentiaalikenttiä käytetään myös robottimanipulaattoreilla, mutta niitä ei tässä käsitellä.
 
 Menetelmä toimii hyvin yksinkertaisissa ympäristöissä, mutta siinä on silti lukuisia ongelmia, jotka on otettava huomioon ja jalostettava menetelmää hieman eteenpäin \cite{ge2002new}. Lokaaleihin minimeihin voi jäädä loukkuun, lähekkäin olevien esteiden välistä ei pääse, kapeissa käytävissä syntyy helposti värähtelyä sekä maaliin voi olla mahdotonta päästä, jos sen toisella puolella on lähellä este.
 
@@ -306,7 +305,7 @@ F_{tot}(q) = F_a(q) + \sum F_r(q).
 
 Potentiaalikentät toimivat parhaiten kun ympäristö on tiedossa, jolloin reittiä voidaan suunnitella kauemmas kerralla. Dynaamisessa ja tuntemattomassa ympäristössä näin ei ole, mutta koska voima lasketaan hetkellisesti ja potentiaalifunktiot ovat suhteellisen yksinkertaisia, soveltuu tämä tekniikka myös haluamaamme tilanteeseen. Etäisyys esteeseen saadaan esim. ultraäänianturilta, ja esteiden liikkuessa voima muuttuu kuten on tarvis.
 
-Eri painokertoimet on optimoitava (TODO: eti reffei) robotin dynamiikan ja esteiden mukaan; robotin liike on jatkuvaa ja sillä on jokin massasta aiheutuva hitaus sekä tietty maksiminopeus, joista täytyy optimoida kenttien voimakkuus siten, ettei esteitä kierretä turhaan hyvin kaukaa, mutta samalla siten, että niihin ei voi törmätä. Tässäkin on tehtävä myös jotain oletuksia esteiden liikkumisnopeudesta.
+Eri painokertoimet on optimoitava robotin dynamiikan ja esteiden mukaan \cite{ge2002new}; robotin liike on jatkuvaa ja sillä on jokin massasta aiheutuva hitaus sekä tietty maksiminopeus, joista täytyy optimoida kenttien voimakkuus siten, ettei esteitä kierretä turhaan hyvin kaukaa, mutta samalla siten, että niihin ei voi törmätä. Tässäkin on tehtävä myös jotain oletuksia esteiden liikkumisnopeudesta.
 
 Minimiongelmaan on esitetty useita ratkaisuja. Yksi mahdollinen on poistumisvoima, joka otetaan käyttöön jos huomataan robotin olevan lähellä minimiä. Tällöin kokonaisvoimaan lisätään esteiden hylkivää vaikutusta (TODO: mieti evolublablaa sivu 4 kaava 7 ja etsi muita).
 
@@ -364,7 +363,7 @@ Edellä esiteltiin useita erilaisia menetelmiä lokaaliin esteenväistöön. Näistä t
 Kokonaiseen autoon kivasti laitettu kaikkea \cite{stentz1995complete}. D* = dynamic A*, globaali reitinhaku.
 D* avaruusrobo, "sumeaa logiikkaa", lokaali+globaali-keskittyminen \cite{singh2002recent}.
 
-TODO: yhdistele aiheet jotenkin. vfh tai potfieldit tai muutkaan eivät erityisemmin kiinnitä huomiota liikkuviin objekteihin ja ennusta niiden paikkaa, tai edes tunnista objekteja kokonaisina möntteinä. tee fiksumpaa kuvan- ja esineentunnistusta, ja jotain järkevää heuristiikkaa siinä samalla. yhdistä eri menetelmiä. TUTKI: oikeesti sitä dynaamista ympäristöä, miten sitä anturoidaan ja miten ymmärretään liikkuvat muodot; miten niiden liike ennustetaan.
+Pohdintaa: Vfh tai potfieldit tai muutkaan eivät erityisemmin kiinnitä huomiota liikkuviin objekteihin ja ennusta niiden paikkaa, tai edes tunnista objekteja kokonaisina möntteinä. tee fiksumpaa kuvan- ja esineentunnistusta, ja jotain järkevää heuristiikkaa siinä samalla. yhdistä eri menetelmiä. tutki oikeesti sitä dynaamista ympäristöä, miten sitä anturoidaan ja miten ymmärretään liikkuvat muodot; miten niiden liike ennustetaan.
 
 \clearpage
 \section{Yhteenveto}
