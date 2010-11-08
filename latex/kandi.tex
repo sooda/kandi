@@ -181,10 +181,12 @@ Otaniemi, x.y.2010
 \subsection*{Lyhenteet}
 
 \begin{tabular}{ll}
-VFH	&	vector field histogram \\
-DWA	&	dynamic window approach \\
-AGV	&	automated guided vehicle \\
-RRT	&	rapidly-exploring random tree
+VFH &	vector field histogram \\
+DWA &	dynamic window approach \\
+AGV &	automated guided vehicle \\
+RRT &	rapidly-exploring random tree \\
+SLAM &	simultaneous localization and map building \\
+SIFT &	scale-invariant feature transform
 \end{tabular}
 
 
@@ -217,11 +219,10 @@ Robotin navigoinnin pohjalla on hyvin paljon muitakin ongelmia, joita tässä teks
 
 Jo muinaisissa roboteissa oli pyörät, ja ne yksinkertaisen mutta toimivan tekniikkansa vuoksi ovat ylivoimaisesti useimpien nykyrobottien liikkumisen perustana \ref{siegwart2004introduction}. Haastavassa maastossa käytetään jotain pyöristä jalostettua tapaa, kuten telaketjuja tai renkaita, joihin on kiinnitetty piikkejä tms. (TODO: nasan botteja).
 
-Rakenteen puolesta (renkaiden lukumäärä ja kääntyminen) pyörillä liikkumiseenkin on hyvin monia tapoja, joissa on kaikissa omat hyvät ja huonot puolensa. Tekniikka valittakoon robotin muodon ja kohdeympäristön mukaan. Usein käytettyjä ovat differentiaaliajo (kaksi erikseen ohjattavaa vetävää pyörää, ja mahdollisesti useampia tasoittamaan painoa; myös telaketjuajo on differentiaalinen), Ackermannin ohjaus (autoissa käytetty), synkroniajo (synchro drive, kaikki pyörät osoittavat samaan suuntaan ja pyörivät yhtä nopeasti), ja jokasuuntainen ajo (omnidirectional drive; erikoinen tuplarengasrakenne (omni wheel, mecanum wheel) jossa pinta voi pyöriä kohtisuoraan rengasta vasten \cite{damoto2006holonomicomni} \cite{diegel2002improvedmecanum}). Robotin mekaniikka on otettava huomioon mm. suunnan muutoksissa; esim. tavallinen auto ajaa ympyrän kaarella ja kiihtyy vain eteen- ja taaksepäin.
+Rakenteen puolesta (renkaiden lukumäärä ja kääntyminen) pyörillä liikkumiseenkin on hyvin monia tapoja, joissa on kaikissa omat hyvät ja huonot puolensa. Tekniikka valittakoon robotin muodon ja kohdeympäristön mukaan. Usein käytettyjä ovat differentiaaliajo (kaksi erikseen ohjattavaa vetävää pyörää, ja mahdollisesti useampia tasoittamaan painoa; myös telaketjuajo on differentiaalinen), Ackermannin ohjaus (autoissa käytetty), synkroniajo (synchro drive, kaikki pyörät osoittavat samaan suuntaan ja pyörivät yhtä nopeasti -- robotin rungon orientaatio pysyy samana), ja jokasuuntainen ajo (omnidirectional drive; erikoinen tuplarengasrakenne (omni wheel, mecanum wheel) jossa pinta voi pyöriä kohtisuoraan rengasta vasten \cite{damoto2006holonomicomni} \cite{diegel2002improvedmecanum}). Robotin mekaniikka on otettava huomioon mm. suunnan muutoksissa; esim. tavallinen auto ajaa ympyrän kaarella ja kiihtyy vain eteen- ja taaksepäin, ja synkroniajo ei oikein sovellu kuin tolppamaiselle robotille, sillä se ei salli rungon kääntymistä.
 
-Nivelletyillä jaloilla käveleviä robotteja tutkitaan nykyään yhä enemmän. Humanoidirobotit soveltuisivat hyvin ihmisille tarkoitettuun ympäristöön, ja näyttäisivät ihmisille luontevilta jolloin kanssakäyminen olisi helppoa ja ne voisivat hoitaa ihmisten tehtäviä yleisellä tasolla. Nivelletyt jalat sopivat myöskin haastavaan, epätasaiseen maastoon pyöreitä renkaita paremmin vaikkei olisikaan ihmisten kaltaisista roboteista kyse. Tätä on kokeiltu esimeriksi metsäkoneissa (TODO: reffaa plustech timberjack). Monimutkaisen rakenteensa vuoksi ne eivät ole vielä juurikaan yleistyneet.
+Nivelletyillä jaloilla käveleviä robotteja tutkitaan nykyään yhä enemmän. Humanoidirobotit soveltuisivat hyvin ihmisille tarkoitettuun ympäristöön, ja näyttäisivät ihmisille luontevilta jolloin kanssakäyminen olisi helppoa ja ne voisivat hoitaa ihmisten tehtäviä yleisellä tasolla. Nivelletyt jalat sopivat myöskin haastavaan, epätasaiseen maastoon pyöreitä renkaita paremmin vaikkei olisikaan ihmisten kaltaisista roboteista kyse. Tätä on kokeiltu esimeriksi metsäkoneissa (Plustech Timberjack \cite{billingsley2008robotics}). Monimutkaisen rakenteensa vuoksi ne eivät ole vielä juurikaan yleistyneet.
 
-Paljon tutkimusta on tehty \cite{bonin2008visual} ja sitä tätä.
 
 \clearpage
 \section{Paikannus ja ympäristön havainnointi}% \section{Navigointi ja liikkeensuunnittelu yleisesti}
@@ -230,17 +231,20 @@ Itse esteiden väistämisen aiheuttaman reitin lokaali suunnittelu on puhtaan lask
 
 \subsection{Paikannus}
 
-Olennainen ongelma liikkuville roboteille on itsensä paikannus. Oletetaan robotin tietävän tarkasti jokin maalireitti tai -piste tietyssä koordinaatistossa; tällöin on tiedettävä missä itse robotti sijaitsee. Tähän voidaan käyttää tapauksesta riippuen esim. odometriaa \cite{borenstein1001umbmark}, inertiasuunnistusta, majakoita tai maamerkkejä (TODO: ref). Sensorifuusiota Kalman-suotimella voidaan myös hyödyntää, jolloin saadaan tarkempi tulos monen anturin yhdistetystä mittauksesta.
+Olennainen ongelma liikkuville roboteille on itsensä paikannus \cite{borenstein1996whereami}. Oletetaan robotin tietävän tarkasti jokin maalireitti tai -piste tietyssä koordinaatistossa; tällöin on tiedettävä missä itse robotti sijaitsee. Tähän voidaan käyttää tapauksesta riippuen esim. odometriaa, inertiasuunnistusta, majakoita tai maamerkkejä (kamerakuvalla tai maanpinnasta "kosketuksella" havaittavia). Sensorifuusiota Kalman-suotimella voidaan myös hyödyntää, jolloin saadaan tarkempi tulos monen anturin yhdistetystä mittauksesta.
 
-Odometria ja inertiasuunnistus ovat integroivia menetelmiä, ja pienetkin virheet kasautuvat pidemmän päälle, joten näitä ei voi käyttää yksinään. Odometria seuraa esim. pyörimisanturien avulla renkaiden liikkettä ja arvioi kuljettua matkaa; yleisiä virhelähteitä ovat renkaiden liukuminen, niiden väärin mitattu ympärysmitta ja keskinäinen etäisyys, sekä ympäristön epäsystemaattiset virheet, kuten tuntemattomien ulkoisten häiriötekijöiden osuminen robottiin. Inertiasuunnistus integroi kiihtyvyysanturien mittauksia, ja on käytössä lähinnä jos renkaista tms. ei saada mitattua mitään -- ei kovin yleinen maanpinnalla kulkeville roboteille. Epävarmojen mittauksien integrointi luonnollisesti kerryttää virhettä pidemmän päälle, ja paikkaa kannattaa seurata ja päivittää esim. GPS:llä jos mahdollista. (TODO: reflinkkei)
+Odometria ja inertiasuunnistus ovat integroivia menetelmiä, ja täten pienetkin virheet kasautuvat pidemmän päälle, joten niitä ei voi käyttää yksinään. Odometria seuraa esim. pyörimisanturien avulla renkaiden liikkettä ja arvioi kuljettua matkaa; yleisiä virhelähteitä ovat renkaiden liukuminen, niiden väärin mitattu ympärysmitta ja keskinäinen etäisyys, sekä ympäristön epäsystemaattiset virheet, kuten tuntemattomien ulkoisten häiriötekijöiden osuminen robottiin. Inertiasuunnistus integroi kiihtyvyysanturien mittauksia, ja on käytössä lähinnä jos renkaista tms. ei saada mitattua mitään -- ei kovin yleinen maanpinnalla kulkeville roboteille. Epävarmojen mittauksien integrointi luonnollisesti kerryttää virhettä pidemmän päälle, ja paikkaa kannattaa seurata ja korjata esim. GPS:llä jos mahdollista.
 
-Absoluuttisten majakoiden käyttö yhdistettynä edellisiin korjaa kertymävirheet. GPS on standardoitu paikannusmenetelmä, joka toimii käytännössä missä tahansa maapallolla ulkotiloissa, kun näkyvyys satelliitteihin on riittävä. (TODO: ref); Parempaa vaatiessa ajoympäristöön voidaan rakentaa itse vastaava paikannusjärjestelmä, ja monen robotin ollessa kyseessä robotit voivat myös keskustella keskenään siten, että jokainen toimii kiinteiden majakoiden lisäksi yhtenä majakkana (TODO: ref). Majakat käyttävät paikannukseen kolmiomittausta, joka voi olla paikallisena hyvinkin tarkka. Odometrialla voidaan mitata hetkittäin paikallista liikettä, jota korjataan globaalisti majakoilla ajoittain integrointivirheiden eliminoimiseksi. Hetkellinen nopeus ja suuntakulma saadaan odometrialta varsin tarkasti. (TODO: ref)
+Absoluuttisten paikantamisen käyttö yhdistettynä edellisiin korjaa kertymävirheet. GPS on standardoitu paikannusmenetelmä, joka toimii käytännössä missä tahansa maapallolla ulkotiloissa, kun näkyvyys satelliitteihin on riittävä. (TODO: ref); Parempaa vaatiessa ajoympäristöön voidaan rakentaa itse vastaava majakkajärjestelmä, ja monen robotin ollessa kyseessä robotit voivat myös keskustella keskenään siten, että jokainen toimii kiinteiden majakoiden lisäksi yhtenä majakkana (TODO: ref).
 
-Maamerkit ovat yleinen käytäntö mm. AGV-vaunujen navigoinnissa (TODO: ref). Varastotiloissa voidaan upottaa lattiaan magneetteja tai induktionauhaa sekä kiinnittää seinään heijastimia, joiden etäisyys selvitetään laserilla ja joista lasketaan trigonometrian avulla robotin sijainti majakoiden tyyliin (TODO: rocla tms). Lattiaan kiinnitettävät maamerkit auttavat, kun näköetäisyys heijastimiin on huono, sekä antavat myös varsin tarkan tiedon sijainnista, kunhan osataan erottaa maamerkit toisistaan.
+Majakat käyttävät paikannukseen useimmiten kolmiomittausta, joka voi olla paikallisena hyvinkin tarkka. Odometrialla voidaan mitata hetkittäin paikallista liikettä, jota korjataan globaalisti majakoilla ajoittain integrointivirheiden eliminoimiseksi. Hetkellinen nopeus ja suuntakulma saadaan odometrialta varsin tarkasti. (TODO: ref) Tällaista kolmiomittausta on yleisesti kahta lajia: radiosignaaleilla toimivia, kuten GPS, ja maamerkeistä tulkattavia vertaamalla ennalta tunnettuun karttaan \cite{leonard199geombeac}.
 
-Konenäöllä voidaan verrata ympäristön ulkonäköä ennalta määrättyyn karttaan, ja havainnoida sijainti korkeamman abstraktiotason maamerkeistä, kuten ihmiset tekevät. Tiettyjen säännönmukaisuuksien yhdistely muuhun anturidataan varmistaa globaalin sijainnin kartalla (TODO: ref). Kun robotti on hetki sitten tiennyt olevansa päälafkan lähistöllä, voidaan olettaa että kamerasta näkyvä talo on päälafka ja tarkentaa sijainti yhdistämällä kartta ja merkintälasku (dead reckoning) sen mukaisesti. Vastaavaa menettelyä voidaan hyödyntää myös 2D-mittauksessa esim. ultraääniantureilla (TODO: ref). Menetelmän ongelma on se sen keskeinen oletus, että ympäristöstä on ennalta olemassa jo jokin kartta, eikä tapa siis täysin tuntemattomassa ympäristössä toimi.
+Maamerkit ovat yleinen käytäntö mm. AGV-vaunujen navigoinnissa. Varastotiloissa voidaan upottaa lattiaan magneetteja tai induktionauhaa sekä kiinnittää seinään heijastimia, joiden etäisyys selvitetään laserilla ja joista lasketaan trigonometrian avulla robotin sijainti majakoiden tyyliin (TODO: ref). Lattiaan kiinnitettävät maamerkit auttavat, kun näköetäisyys heijastimiin on huono, sekä antavat myös varsin tarkan hetkellistiedon sijainnista, kunhan osataan erottaa maamerkit toisistaan.
 
-Paikannus daa \cite{borenstein1996whereami}
+Maamerkkejä voidaan käyttää myös konenäön yhteydessä, kun ympäristöä kuvataan (video)kameralla. Tällöin havainnoidaan ympäristöstä tunnisteita vastaavasti kuten ultraäänitutkakuvan vertaaminen tunnettuun karttaan tapahtuu \cite{betke2002mobilelandmarks}. Tämä on tarkempaa ja samalla huomattavasti laskennallisesti haastavampaa kuin tutka-antureiden tilanteessa.
+
+Maamerkkien suurin ongelma on se keskeinen oletus, että ympäristöstä on ennalta olemassa jo jokin kartta, eikä tapa siis täysin tuntemattomassa ympäristössä toimi. Karttaa voidaan toisaalta rakentaa samalla kun liikutaan tuntemattomassa ympäristössä, jolloin samassa paikassa paikannus on jälkeenpäin tarkempaa, kun karttatieto on kerätty aiemmin (SLAM) \cite{se2002mobilelocalization}.
+ 
 
 \subsection{Havainnointi}
 
@@ -259,6 +263,7 @@ Tästä eteenpäin oletetaan, että esteet ja lähiympäristö on havaittu jollain mene
 
 \clearpage
 \section{E.S.Teit}
+Joo-o \cite{bonin2008visual}.
 
 Sisätiloissa toiminta eroaa ulkotiloista merkittävästi siinä, että tilasta voidaan tehdä muutamia yksinkertaistavia oletuksia. Robotti on oletettavasti aina samassa kulmassa maanpintaan nähden (tasainen lattia), esteet ovat mitä todennäköisimmin korkeahkoja ja kohtisuorassa maanpintaan nähden (seinät, hyllyt, ihmiset) ja rakennuksen pohjakuvasta saataneen hyvä kartta, joka voidaan approksimoida kaksiulotteiseksi. Renkailla liikkuminen on helppoa ja yhtäkkisiin kuoppiin tai kynnyksiin ei tarvinne kiinnittää huomiota. Näkymää voi tutkaskannata kohtuullisen luotettavasti jo ultraäänellä. Esteet tuskin liikkuvat ihmistä nopeammin. Mitkään näistä olettamuksista eivät päde ulkona tutkimattomassa ympäristössä.
 
@@ -269,6 +274,8 @@ TODO: jäsentele, laita jonnekin fiksuun paikkaan, laajenna.
 
 \clearpage
 \section{Tasaisen maaston esteenväistö}
+
+Osion otsikko vaatii hiomista.
 
 Tasaisessa maastossa maailma voidaan helposti olettaa kaksiulotteiseksi, jolloin esteet on aina kierrettävä ja mittauksia on helppo tehdä tutka-antureilla, kun vinoja maastoja ei ole. Seuraavassa pohditaan esteenväistöä ``kaksiulotteisessa'' maailmassa, johon kannattaa approksimoida kaikki tilanteet, mikäli mahdollista, sillä se yksinkertaistaa tilannetta huomattavasti. Monesti ulkotilatkin voidaan vinoudestaan huolimatta käsitellä kaksiulotteisena, ellei robotti lennä ilmassa tai ui vedessä. Jos edessä on hyvin matalakin este, se kannattanee kiertää elleivät renkaat jousta erityisen paljon.
 
