@@ -146,15 +146,12 @@ linkcolor=blue,citecolor=black,pdfstartview=FitH]{hyperref}
 \uselogo{red}{''}{tkk}
 \makecoverpage
 
-
-%% Suomenkielinen tiivistelm
-
-\keywords{liikkuva robotti, lokaali liikkeensuunnittelu, esteenväistö}
+\keywords{liikkuva robotti, paikannus, lokaali liikkeensuunnittelu, esteenväistö}
 
 \begin{abstractpage}[finnish]
-Kartoitetaan menetelmiä liikkuvien robottien reaaliaikaiseen esteenväistöön ja lokaaliin liikkeensuunnitteluun dynaamisessa ympäristössä.
+Liikkuviin robotteihin ja niihin liittyvään esteenväistöön liittyy lukuisia asioita havainnoinnista reitinlaskuun. Tässä työssä kartoitetaan reaaliaikaisia menetelmiä liikkuvien robottien lähellä olevien esteiden väistämiseen ja tästä aiheutuvaan lyhyen kantaman liikkeensuunnitteluun. Pääpaino on ympäristöllä, josta ei juurikaan tiedetä mitään etukäteen ja jossa on todennäköistä joutua väistämään liikkuviakin esteitä.
 
-Eritellään eri anturointitekniikoita, niihin soveltuvia esteentunnistusalgoritmeja ja robotin ohjaustapoja ja -malleja maaliin mahdollisimman optimaalisella tavalla pääsemiseksi osumatta ympäristössä muuttuviin esteisiin.
+Sivutaan myös käsitteitä, joista esteenväistössä on oleellista tietää perusteet: eritellään joitakin eri anturointitekniikoita robotin ympäristön ``näkemiseen'' ja robotin itsensä paikan sekä reitin seuraamiseen. Tutkitaan niihin soveltuvia esteentunnistusalgoritmeja ja robotin ohjaustapoja ja -malleja maaliin mahdollisimman optimaalisella tavalla pääsemiseksi osumatta reitillä oleviin stationaarisiin ja liikkuviin esteisiin.
 \end{abstractpage}
 
 \newpage
@@ -202,7 +199,7 @@ SIFT &	scale-invariant feature transform
 
 \thispagestyle{empty}
 
-(Liikkuva robotti, robotin paikannus, esteenväistö sekä liikkeensuunnittelu ovat sellaisinaan hyvin laajoja käsitteitä.) Tämän tekstin tarkoituksena on kartoittaa eri menetelmiä eri kohteisiin, painottuen kuitenkin erityisesti ulkotiloissa maanpinnalla vaihtelevassa ja dynaamisessa ympäristössä kulkeviin robotteihin. Tässä (ja myöhemmin) robotilla tarkoitetaan itsenäisesti liikkuvaa ajoneuvoa, kuten AGV:tä tai automaattisesti ajavaa henkilöautoa, eikä kiinteästi asennettavaa robottia kuten manipulaattorikäsivartta.
+Tämän tekstin tarkoituksena on kartoittaa eri menetelmiä eri kohteisiin, painottuen kuitenkin erityisesti ulkotiloissa maanpinnalla vaihtelevassa ja dynaamisessa ympäristössä kulkeviin robotteihin. Tässä (ja myöhemmin) robotilla tarkoitetaan itsenäisesti liikkuvaa ajoneuvoa, kuten AGV:tä tai automaattisesti ajavaa henkilöautoa, eikä kiinteästi asennettavaa robottia kuten manipulaattorikäsivartta.
 
 Lokaaliin anturipohjaiseen esteenväistöön on luonnollisesti monia eri menetelmiä, joiden hyödyllisyys ja soveltuvuus riippuu robotin ympäristöstä ja anturien laadusta. Universaalia kaikkialle sopivaa lokaalia esteenväistöä ja/tai liikkeensuunnittelua ei ole olemassa. On tosin monia yleisiä menetelmiä ja tilannekohtaista heuristiikkaa. Myös perinteisistä menetelmistä osittain jalostettuja, kehittyneempiä tapoja on saatu kartoittamalla heikkoudet ja soveltamalla tiettyyn ympäristöön; monia on testattu käytännössä, toisia simuloimalla ja jotkut ovat jääneet vain teoreettisiksi pohdinnoiksi ja kaavoiksi.
 
@@ -217,7 +214,7 @@ Esteiden ohi selviämisen lisäksi robotin on pysyttävä reitillään ja sen on joten
 
 Robotin navigoinnin pohjalla on hyvin paljon muitakin ongelmia, joita tässä tekstissä saatetaan sivuta sen verran kuin on tarpeen, muttei niihin oteta tarkemmin kantaa, vaan ne oletetaan ratkaistuiksi. Seuraavassa esitellään joitain perusasioita pyörillä kulkevan robotin liikkumisesta.
 
-Jo muinaisissa roboteissa oli pyörät, ja ne yksinkertaisen mutta toimivan tekniikkansa vuoksi ovat ylivoimaisesti useimpien nykyrobottien liikkumisen perustana \ref{siegwart2004introduction}. Haastavassa maastossa käytetään jotain pyöristä jalostettua tapaa, kuten telaketjuja tai renkaita, joihin on kiinnitetty piikkejä tms. (TODO: nasan botteja).
+Jo muinaisissa roboteissa oli pyörät, ja ne yksinkertaisen mutta toimivan tekniikkansa vuoksi ovat ylivoimaisesti useimpien nykyrobottien liikkumisen perustana \cite{siegwart2004introduction}. Haastavassa maastossa käytetään jotain pyöristä jalostettua tapaa, kuten telaketjuja tai renkaita, joihin on kiinnitetty piikkejä tms. (TODO: nasan botteja).
 
 Rakenteen puolesta (renkaiden lukumäärä ja kääntyminen) pyörillä liikkumiseenkin on hyvin monia tapoja, joissa on kaikissa omat hyvät ja huonot puolensa. Tekniikka valittakoon robotin muodon ja kohdeympäristön mukaan. Usein käytettyjä ovat differentiaaliajo (kaksi erikseen ohjattavaa vetävää pyörää, ja mahdollisesti useampia tasoittamaan painoa; myös telaketjuajo on differentiaalinen), Ackermannin ohjaus (autoissa käytetty), synkroniajo (synchro drive, kaikki pyörät osoittavat samaan suuntaan ja pyörivät yhtä nopeasti -- robotin rungon orientaatio pysyy samana), ja jokasuuntainen ajo (omnidirectional drive; erikoinen tuplarengasrakenne (omni wheel, mecanum wheel) jossa pinta voi pyöriä kohtisuoraan rengasta vasten \cite{damoto2006holonomicomni} \cite{diegel2002improvedmecanum}). Robotin mekaniikka on otettava huomioon mm. suunnan muutoksissa; esim. tavallinen auto ajaa ympyrän kaarella ja kiihtyy vain eteen- ja taaksepäin, ja synkroniajo ei oikein sovellu kuin tolppamaiselle robotille, sillä se ei salli rungon kääntymistä.
 
@@ -235,11 +232,11 @@ Olennainen ongelma liikkuville roboteille on itsensä paikannus \cite{borenstein1
 
 Odometria ja inertiasuunnistus ovat integroivia menetelmiä, ja täten pienetkin virheet kasautuvat pidemmän päälle, joten niitä ei voi käyttää yksinään. Odometria seuraa esim. pyörimisanturien avulla renkaiden liikkettä ja arvioi kuljettua matkaa; yleisiä virhelähteitä ovat renkaiden liukuminen, niiden väärin mitattu ympärysmitta ja keskinäinen etäisyys, sekä ympäristön epäsystemaattiset virheet, kuten tuntemattomien ulkoisten häiriötekijöiden osuminen robottiin. Inertiasuunnistus integroi kiihtyvyysanturien mittauksia, ja on käytössä lähinnä jos renkaista tms. ei saada mitattua mitään -- ei kovin yleinen maanpinnalla kulkeville roboteille. Epävarmojen mittauksien integrointi luonnollisesti kerryttää virhettä pidemmän päälle, ja paikkaa kannattaa seurata ja korjata esim. GPS:llä jos mahdollista.
 
-Absoluuttisten paikantamisen käyttö yhdistettynä edellisiin korjaa kertymävirheet. GPS on standardoitu paikannusmenetelmä, joka toimii käytännössä missä tahansa maapallolla ulkotiloissa, kun näkyvyys satelliitteihin on riittävä. (TODO: ref); Parempaa vaatiessa ajoympäristöön voidaan rakentaa itse vastaava majakkajärjestelmä, ja monen robotin ollessa kyseessä robotit voivat myös keskustella keskenään siten, että jokainen toimii kiinteiden majakoiden lisäksi yhtenä majakkana (TODO: ref).
+Absoluuttisten paikantamisen käyttö yhdistettynä edellisiin korjaa kertymävirheet. GPS on standardoitu paikannusmenetelmä, joka toimii käytännössä missä tahansa maapallolla ulkotiloissa, kun näkyvyys satelliitteihin on riittävä \cite{borenstein1997postech}. Parempaa vaatiessa ajoympäristöön voitaisiin rakentaa itse vastaava majakkajärjestelmä, ja monen robotin ollessa kyseessä robotit voivat myös keskustella keskenään siten, että jokainen toimii kiinteiden majakoiden lisäksi yhtenä majakkana \cite{dorigo2005swarm}.
 
 Majakat käyttävät paikannukseen useimmiten kolmiomittausta, joka voi olla paikallisena hyvinkin tarkka. Odometrialla voidaan mitata hetkittäin paikallista liikettä, jota korjataan globaalisti majakoilla ajoittain integrointivirheiden eliminoimiseksi. Hetkellinen nopeus ja suuntakulma saadaan odometrialta varsin tarkasti. (TODO: ref) Tällaista kolmiomittausta on yleisesti kahta lajia: radiosignaaleilla toimivia, kuten GPS, ja maamerkeistä tulkattavia vertaamalla ennalta tunnettuun karttaan \cite{leonard199geombeac}.
 
-Maamerkit ovat yleinen käytäntö mm. AGV-vaunujen navigoinnissa. Varastotiloissa voidaan upottaa lattiaan magneetteja tai induktionauhaa sekä kiinnittää seinään heijastimia, joiden etäisyys selvitetään laserilla ja joista lasketaan trigonometrian avulla robotin sijainti majakoiden tyyliin (TODO: ref). Lattiaan kiinnitettävät maamerkit auttavat, kun näköetäisyys heijastimiin on huono, sekä antavat myös varsin tarkan hetkellistiedon sijainnista, kunhan osataan erottaa maamerkit toisistaan.
+Maamerkit ovat yleinen käytäntö mm. AGV-vaunujen navigoinnissa. Varastotiloissa voidaan upottaa lattiaan magneetteja tai induktionauhaa sekä kiinnittää seinään heijastimia, joiden etäisyys selvitetään laserilla ja joista lasketaan trigonometrian avulla robotin sijainti majakoiden tyyliin. Lattiaan kiinnitettävät maamerkit auttavat, kun näköetäisyys heijastimiin on huono, sekä antavat myös varsin tarkan hetkellistiedon sijainnista, kunhan osataan erottaa maamerkit toisistaan.
 
 Maamerkkejä voidaan käyttää myös konenäön yhteydessä, kun ympäristöä kuvataan (video)kameralla. Tällöin havainnoidaan ympäristöstä tunnisteita vastaavasti kuten ultraäänitutkakuvan vertaaminen tunnettuun karttaan tapahtuu \cite{betke2002mobilelandmarks}. Tämä on tarkempaa ja samalla huomattavasti laskennallisesti haastavampaa kuin tutka-antureiden tilanteessa.
 
@@ -250,26 +247,15 @@ Maamerkkien suurin ongelma on se keskeinen oletus, että ympäristöstä on ennalta 
 
 Esteet on etsittävä robotin lähistöltä jollain lailla. Suosittuja tapoja ovat ultraäänianturit, laserskannerit ja kamerat. Seuraavassa esitellään niiden perusasioita, jotka on muistettava esteenväistöä suunnitellessa.
 
-Ultraääni on yksinkertaisuutensa ja edullisuutensa ansiosta usein käytetty \cite{borenstein1988obstacleus}. Ultraääniskanneri lähettää äänipulssin ja laskee aikaa takaisin tulevaan kaikuun. Kun äänen nopeus tunnetaan, voidaan laskea kaiun heijastaneen esteen etäisyys. Yksinkertaisuus tuo tosin myös monia ongelmia: anturit ovat hitaita ja havainnoivat kauempana olevat esteet epätarkemmin, sillä niiden lähettämä kaiku levenee keilamaisesti. Ääniaaltoon suhteessa vinottain olevat esteet voivat jäädä havaitsematta, koska ääniaalto ei heijastu takaisin. Monesti käytetään myös useita antureita vierekkäin, jolloin saadaan leveä näkökenttä; tällöin viereisten anturien mittaukset saattavat heijastua toisilleen ("crosstalk". TODO: ref).
+Ultraääni on yksinkertaisuutensa ja edullisuutensa ansiosta usein käytetty \cite{borenstein1988obstacleus}. Ultraääniskanneri lähettää äänipulssin ja laskee aikaa takaisin tulevaan kaikuun. Kun äänen nopeus tunnetaan, voidaan laskea kaiun heijastaneen esteen etäisyys. Yksinkertaisuus tuo tosin myös monia ongelmia: anturit ovat hitaita ja havainnoivat kauempana olevat esteet epätarkemmin, sillä niiden lähettämä kaiku levenee keilamaisesti. Ääniaaltoon suhteessa vinottain olevat esteet voivat jäädä havaitsematta, koska ääniaalto ei heijastu takaisin. Monesti käytetään myös useita antureita vierekkäin, jolloin saadaan leveä näkökenttä; tällöin viereisten anturien mittaukset saattavat heijastua toisilleen ("crosstalk") \cite{borenstein2002vfh}.
 
-Laserskannereita on pääasiassa kahta tyyppiä: yksi- ja kaksiulotteisia. Yksiulotteiset pyörivät jatkuvasti ja skannaavat 360 asteen tutkakuvaa ympäristöstään; heijastuksista saadaan etäisyyspisteitä kartalle. Kaksiulotteiset toimivat stereonäkökameran lailla: edessä olevaa näkymää skannataan jatkuvasti tietyllä keilalla ja rasterilla kahdessa ulottuvuudessa, jolloin saadaan arvio edessä olevien esteiden etäisyyksistä. Nämä ovat tyypillisesti erittäin kalliita. (TODO: ref).
+Laserskannereita on pääasiassa kahta tyyppiä: yksi- ja kaksiulotteisia. Yksiulotteiset pyörivät jatkuvasti ja skannaavat 360 asteen tutkakuvaa ympäristöstään; heijastuksista saadaan etäisyyspisteitä kartalle. Kaksiulotteiset skannerit toimivat stereonäkökameran lailla: edessä olevaa näkymää skannataan jatkuvasti tietyllä keilalla ja rasterilla kahdessa ulottuvuudessa, jolloin saadaan arvio edessä olevien esteiden etäisyyksistä. Nämä ovat tyypillisesti erittäin kalliita.
 
-Heijastuksiin perustuvissa mittareissa on aina ongelmana vinojen pintojen havainnointi, kun kaiku ei heijastukaan takaisin robottia päin.
+Heijastuksiin perustuvissa mittareissa on aina ongelmana vinojen pintojen havainnointi, kun kaiku ei heijastukaan takaisin robottia päin. Varsinkin ultraääni on tässä kovin huono. \cite{borenstein1988obstacleus}
 
-Kun erityisen tarkkaa kuvaa tarvitaan nopeasti, voidaan käyttää videokameroita jos laskentatehoa riittää. Kahdella hyvin sijoitetulla kameralla onnistuu myös syvyysnäkö. Konenäkö on ylivoimaisesti kaikutekniikkaa parempi, kun tarvitaan tarkempaa tietoa pinnoista, kuten kuviointi tai asento. Myöskin kapeiden esteiden havainnointiin se soveltuu paremmin, koska nämä jäisivät kaiuilta helposti ohi. Esimerkiksi automaattiset henkilöautot käyttävät konenäköä tien reunojen havainnointiin (TODO: ref) ja peltoja automaattisesti lannoittavat robotit pysyvät konenäöllä taimien välissä (TODO: peltorobokisaref). Kuvan käsittely reaaliajassa vaatii huomattavasti enemmän konetehoa kuin yksiulotteiset tutkamenetelmät, ja kamera osoittaa vain yhteen suuntaan eikä sillä saada täyden ympyrän mittausta.
+Kun erityisen tarkkaa kuvaa tarvitaan nopeasti, voidaan käyttää videokameroita jos laskentatehoa riittää. Kahdella hyvin sijoitetulla kameralla onnistuu myös syvyysnäkö. Konenäkö on ylivoimaisesti kaikutekniikkaa parempi, kun tarvitaan tarkempaa tietoa edessä olevista pinnoista, kuten kuviointia tai asentoa. Myöskin kapeiden esteiden havainnointiin se soveltuu paremmin, koska nämä jäisivät kaiuilta helposti ohi. Esimerkiksi automaattiset henkilöautot käyttävät konenäköä tien reunojen havainnointiin (TODO: ref) ja peltoja automaattisesti lannoittavat robotit pysyvät konenäöllä taimien välissä (TODO: peltorobokisaref). Kuvan käsittely reaaliajassa vaatii huomattavasti enemmän konetehoa kuin yksiulotteiset tutkamenetelmät, ja kamera osoittaa vain yhteen suuntaan eikä sillä saada täyden ympyrän mittausta. Suuntaus tosin on harvoin ongelma auton kaltaisissa roboteissa, joissa on selkeä keula.
 
 Tästä eteenpäin oletetaan, että esteet ja lähiympäristö on havaittu jollain menetelmällä, ja tietyllä varmuudella tiedetään ympäristön muoto ja mahdollisesti reitillä oleva este -- menetelmään sen enempää ottamatta kantaa. Keskitytään itse esteiden ohittamiseen.
-
-
-\clearpage
-\section{E.S.Teit}
-Joo-o \cite{bonin2008visual}.
-
-Sisätiloissa toiminta eroaa ulkotiloista merkittävästi siinä, että tilasta voidaan tehdä muutamia yksinkertaistavia oletuksia. Robotti on oletettavasti aina samassa kulmassa maanpintaan nähden (tasainen lattia), esteet ovat mitä todennäköisimmin korkeahkoja ja kohtisuorassa maanpintaan nähden (seinät, hyllyt, ihmiset) ja rakennuksen pohjakuvasta saataneen hyvä kartta, joka voidaan approksimoida kaksiulotteiseksi. Renkailla liikkuminen on helppoa ja yhtäkkisiin kuoppiin tai kynnyksiin ei tarvinne kiinnittää huomiota. Näkymää voi tutkaskannata kohtuullisen luotettavasti jo ultraäänellä. Esteet tuskin liikkuvat ihmistä nopeammin. Mitkään näistä olettamuksista eivät päde ulkona tutkimattomassa ympäristössä.
-
-Ulkona jo robotin mekaniikkaan on kiinnitettävä enemmän huomiota, esteenväistöstä ja -havainnoinnista puhumattakaan. Ulkotilat voidaan erotella edelleen kahtia kaupunkimaastoon ja muuhun tuntemattomaan metsään. Kaupunkimaaston haasteita ovat (TODO: googlaa) vinot ja käyrät pinnat joissa robotti lipsuu ja joissa kiinteät anturit voivat ottaa häiriömittauksia maanpinnasta mäkeä alas ajettaessa; ylös ajettaessa reunan yli ei nähdä ennen kuin maasto on taas tasaista. (TODO: ref). Liikkuvat esteet voivat olla autoja tai polkupyöriä, joita pitäisi väistää hyvin nopeasti ja jotka täytyisi havainnoida jo kaukaa, jotta väistöliikkeen ehtisi tehdä. Tämä on erityisen kriittistä varsinkin robotisoiduissa henkilöautoissa. (TODO: ref)
-
-TODO: jäsentele, laita jonnekin fiksuun paikkaan, laajenna.
 
 
 \clearpage
@@ -277,7 +263,16 @@ TODO: jäsentele, laita jonnekin fiksuun paikkaan, laajenna.
 
 Osion otsikko vaatii hiomista.
 
-Tasaisessa maastossa maailma voidaan helposti olettaa kaksiulotteiseksi, jolloin esteet on aina kierrettävä ja mittauksia on helppo tehdä tutka-antureilla, kun vinoja maastoja ei ole. Seuraavassa pohditaan esteenväistöä ``kaksiulotteisessa'' maailmassa, johon kannattaa approksimoida kaikki tilanteet, mikäli mahdollista, sillä se yksinkertaistaa tilannetta huomattavasti. Monesti ulkotilatkin voidaan vinoudestaan huolimatta käsitellä kaksiulotteisena, ellei robotti lennä ilmassa tai ui vedessä. Jos edessä on hyvin matalakin este, se kannattanee kiertää elleivät renkaat jousta erityisen paljon.
+\subsection{Välijohdanto}
+
+Sisätiloissa toiminta eroaa ulkotiloista merkittävästi siinä, että tilasta voidaan tehdä muutamia yksinkertaistavia oletuksia. Robotti on oletettavasti aina samassa kulmassa maanpintaan nähden (tasainen lattia), esteet ovat mitä todennäköisimmin korkeahkoja robottiin nähden ja kohtisuorassa maanpintaan nähden (seinät, hyllyt, ihmiset) ja rakennuksen pohjakuvasta saataneen hyvä kartta, joka voidaan approksimoida kaksiulotteiseksi. Renkailla liikkuminen on helppoa ja yhtäkkisiin kuoppiin tai kynnyksiin ei tarvinne kiinnittää huomiota. Näkymää voi tutkaskannata kohtuullisen luotettavasti jo ultraäänellä. Esteet tuskin liikkuvat ihmistä nopeammin. Mitkään näistä olettamuksista eivät päde ulkona tutkimattomassa ympäristössä.
+
+Ulkona jo robotin mekaniikkaan on kiinnitettävä enemmän huomiota, esteenväistöstä ja -havainnoinnista puhumattakaan. Ulkotilat voidaan erotella edelleen kahtia kaupunkimaastoon ja muuhun tuntemattomaan metsään. Kaupunkimaaston haasteita ovat erityisesti vinot ja käyrät pinnat joissa robotti lipsuu ja joissa kiinteät anturit voivat ottaa häiriömittauksia maanpinnasta mäkeä alas ajettaessa; ylös ajettaessa reunan yli ei nähdä ennen kuin maasto on taas tasaista. Liikkuvat esteet voivat olla autoja tai polkupyöriä, joita pitäisi väistää hyvin nopeasti ja jotka täytyisi havainnoida jo kaukaa, jotta väistöliikkeen ehtisi tehdä. Tämä on erityisen kriittistä varsinkin robotisoiduissa henkilöautoissa.
+
+Tasaisessa maastossa maailma voidaan helposti olettaa kaksiulotteiseksi, jolloin esteet on aina kierrettävä ja mittauksia on helppo tehdä tutka-antureilla, kun vinoja maastoja ei ole. Seuraavassa pohditaan esteenväistöä ``kaksiulotteisessa'' maailmassa, johon kannattaa approksimoida kaikki tilanteet, mikäli mahdollista, sillä se yksinkertaistaa tilannetta huomattavasti. Monesti ulkotilatkin voidaan vinoudestaan huolimatta käsitellä kaksiulotteisena, ellei robotti lennä tai ui. Jos edessä on hyvin matalakin este, se kannattanee kiertää elleivät renkaat jousta erityisen paljon.
+
+Joo-o \cite{bonin2008visual}.
+
 
 \subsection{Potentiaalikenttä}
 
@@ -312,11 +307,9 @@ F_{tot}(q) = F_a(q) + \sum F_r(q).
 
 Potentiaalikentät toimivat parhaiten kun ympäristö on tiedossa, jolloin reittiä voidaan suunnitella kauemmas kerralla. Dynaamisessa ja tuntemattomassa ympäristössä näin ei ole, mutta koska voima lasketaan hetkellisesti ja potentiaalifunktiot ovat suhteellisen yksinkertaisia, soveltuu tämä tekniikka myös haluamaamme tilanteeseen. Etäisyys esteeseen saadaan esim. ultraäänianturilta, ja esteiden liikkuessa voima muuttuu kuten on tarvis.
 
-Eri painokertoimet on optimoitava robotin dynamiikan ja esteiden mukaan \cite{ge2002new}; robotin liike on jatkuvaa ja sillä on jokin massasta aiheutuva hitaus sekä tietty maksiminopeus, joista täytyy optimoida kenttien voimakkuus siten, ettei esteitä kierretä turhaan hyvin kaukaa, mutta samalla siten, että niihin ei voi törmätä. Tässäkin on tehtävä myös jotain oletuksia esteiden liikkumisnopeudesta.
+Eri painokertoimet on optimoitava robotin dynamiikan ja esteiden mukaan \cite{ge2002new}; robotin liike on jatkuvaa ja sillä on jokin massasta aiheutuva hitaus sekä tietty maksiminopeus, joista täytyy optimoida kenttien voimakkuus siten, ettei esteitä kierretä turhaan hyvin kaukaa, mutta samalla siten, että niihin ei voi törmätä. Tässäkin on tehtävä myös jotain oletuksia esteiden liikkumisnopeudesta. Painoparametrien optimoinniksi on esitetty hyvyysfunktion minimointia \cite{vadakkepat2002eapf}, mikä sopii ennalta laskettavaksi muttei kelpaa muuttuvaan ennalta tuntemattomaan ympäristöön.
 
-Minimiongelmaan on esitetty useita ratkaisuja. Yksi mahdollinen on poistumisvoima, joka otetaan käyttöön jos huomataan robotin olevan lähellä minimiä. Tällöin kokonaisvoimaan lisätään esteiden hylkivää vaikutusta (TODO: mieti evolublablaa sivu 4 kaava 7 ja etsi muita).
-
-Painoparametrien optimoinniksi on esitetty hyvyysfunktion minimointia \cite{vadakkepat2002eapf} plaa plaa, mikä sopii kun tiedetään koko kartta, muttei aivan kelpaa muuttuvaan ympäristöön. On myös ehdotettu virtuaalista robotin takana samaa rataa kulkevaa estettä, joka aiheuttaa voiman eteenpäin ja estää nollapotentiaalikuoppiin jumiutumisen \cite{thurau2004learning}. Tässäkin on ongelmana ko. voiman suuruuden optimointi.
+Minimiongelmaan on esitetty useita ratkaisuja. Yksi mahdollinen on poistumisvoima, joka otetaan käyttöön jos huomataan robotin olevan lähellä minimiä. Tällöin kokonaisvoimaan lisätään esteiden hylkivää vaikutusta \cite{vadakkepat2002eapf}. On myös ehdotettu virtuaalista robotin takana samaa rataa kulkevaa estettä, joka aiheuttaa voiman eteenpäin ja estää nollapotentiaalikuoppiin jumiutumisen \cite{thurau2004learning}. Tässäkin on ongelmana ko. voiman suuruuden optimointi.
 
 Teoriassa kiva, käytännössä hankala optimoida robustiksi ja monipuoliseen ympäristöön soveltuvaksi.
 
@@ -325,31 +318,13 @@ Teoriassa kiva, käytännössä hankala optimoida robustiksi ja monipuoliseen ympäri
 
 Borenstein ja Koren toteavat potentiaalikentät riittämättömiksi ja esittävät niihin pohjautuvan virtuaalisen voimakentän (virtual force field) \cite{koren1991potential} ja siitä edelleen kehittyneen vektorikenttähistogrammin (vector field histogram, VFH) \cite{borenstein2002vfh}. Virtuaalinen voimakenttä perustuu karttamaiseen varmuusarvoruudukkoon, jonka ruutuihin summataan arvoja sitä mukaa kun niitä saadaan robotin 24 ultraäänianturilta. Tästä ruudukosta otetaan tietyn kokoinen ($w_s*w_s$) aktiivinen alue, jota päivitetään mittauksia saadessa ja josta lasketaan robotin suuntaa ja nopeutta ohjaava voima samankaltaisesti kun potentiaalikentissä: lähellä olevat esteet tuottavat voimakkaita hylkiviä voimia.
 
-Vektorikenttähistogrammi jalostaa tätä eteenpäin rakentamalla ruudukosta suuntapohjaisen histogrammin. Borenstein ja Koren toteavat että suoraan kaksiulotteisesta kartasta voiman tulkitseminen menettää liikaa informaatiota, ja ottavat käyttöön toisen laskentavaiheen, histogrammiruudukon \cite{borenstein2002vfh}. Histogrammi kattaa täyden ympyrän robotin ympärillä, ja siihen summataan asteittain varmuusarvoruudukon arvot, jolloin siihen syntyy huippuja ja kuoppia. Kuopat ilmaisevat alueita, joita on turvallista lähestyä; korkeat huiput kuvaavat paikkoja, joissa on todennäköisesti jokin lähellä oleva tai suuri este, jota on väistettävä. Ropleema: iso ruudukko tuo isoja vaihteluita diskreetin luonteensa takia, tarttee alipäästösuotimen joka viritetään kokeellisesti (pohdi: subpixel rendering).
+Vektorikenttähistogrammi jalostaa tätä eteenpäin rakentamalla ruudukosta suuntapohjaisen histogrammin. Borenstein ja Koren toteavat että suoraan kaksiulotteisesta kartasta voiman tulkitseminen menettää liikaa informaatiota, ja ottavat käyttöön toisen laskentavaiheen, histogrammiruudukon \cite{borenstein2002vfh}. Histogrammi kattaa täyden ympyrän robotin ympärillä, ja siihen summataan asteittain varmuusarvoruudukon arvot, jolloin siihen syntyy huippuja ja kuoppia. Kuopat ilmaisevat alueita, joita on turvallista lähestyä; korkeat huiput kuvaavat paikkoja, joissa on todennäköisesti jokin lähellä oleva tai suuri este, jota on väistettävä. Iso ruudukko tuo isoja vaihteluita diskreetin luonteensa takia, jolloin tarvitaan alipäästösuodin joka tulee virittää kokeellisesti, ettei ohjaukseen tulisi suuria yhtäkkisiä vaihteluita. Tätä voitaisiin korjata ottamalla huomioon robotin sijainti ruutunsa sisällä sen sijaan, että ainoastaan laskettaisiin vain näiden suurten (esim. 10*10 cm) ruutujen etäisyyksiä.
 
-Tämä tapa soveltuu erityisesti häiriöiseen ja epävarmaan mittaukseen, ja sitä onkin testattu ultraäänisensoreilla joihin liittyy lähes ominaisesti tietynlaista häiriötä. Voima lasketaan varmuusruudukon arvojen neliöistä, jolloin varmempia mittauksia painotetaan huomattavasti enemmän, ja pienet, häiriömäiset mittaukset jäävät robustisti huomiotta.
+Tämä tapa soveltuu erityisesti häiriöiseen ja epävarmaan mittaukseen, ja sitä onkin testattu ultraäänisensoreilla joihin liittyy lähes ominaisesti tietynlaista häiriötä. Voima lasketaan varmuusruudukon arvojen neliöistä, jolloin varmempia mittauksia painotetaan huomattavasti enemmän, ja pienet, häiriömäiset mittaukset jäävät robustisti huomiotta. Borenstein ja Koren testasivat VFH:ta CARMEL-robotilla, jossa on 24 ultraäänianturia; tekniikka onkin selvästi suunniteltu tutkatyyppisille etäisyysantureille, joilta saadaan pistemäisiä mittauksia. Tässä yhteydessä on ulkotiloissa otettava huomioon vino maasto, sillä muutoin oletetaan tutkan olevan saman suuntainen maatason kanssa ja vinot kuopat jotka saavat robotin kallistumaan saavat mittaukset hyödyttömiksi.
 
-VFH:ta on testattu CARMEL-robotilla, jossa on 24 ultraäänianturia \cite{borenstein2002vfh}; tekniikka onkin selvästi suunniteltu tutkatyyppisille etäisyysantureille, joilta saadaan pistemäisiä mittauksia. Tässä yhteydessä on ulkotiloissa otettava huomioon vino maasto, sillä muutoin oletetaan tutkan olevan saman suuntainen maatason kanssa ja vinot kuopat jotka saavat robotin kallistumaan saavat mittaukset hyödyttömiksi.
+VFH ei kuitenkaan ota huomioon robotin dynamiikkaa millään lailla, ja olettaa siis että robotti on pistemäinen ja voi vaihtaa kulkusuuntaansa välittömästi. Borenstein ja Ulrich esittävät VFH+-algoritmin, joka korjaa tämän ongelman \cite{ulrich2002vfh+}. He tutkivat ihmisvoimin työnnettävää, differentiaaliajoa käyttävää robottia ohjaamaan sokkoa ihmistä. Tämä eroaa dynamiikaltaan oleellisesti aiemmin käytetystä, joka suuntaan kääntyvästä CARMEL:sta.
 
-VFH ei kuitenkaan ota huomioon robotin dynamiikkaa millään lailla, ja olettaa siis että robotti on pistemäinen ja voi vaihtaa kulkusuuntaansa välittömästi. Borenstein ja Ulrich esittävät VFH+-algoritmin, joka korjaa tämän ongelman \cite{ulrich2002vfh+}. He tutkivat ihmisvoimin työnnettävää, differentiaaliajoa käyttävää robottia ohjaamaan sokkoa ihmistä. Tämä eroaa dynamiikaltaan oleellisesti aiemmin käytetystä, joka suuntaan kääntyvästä robotista \cite{borestein2002vfh}.
-
-VFH+ tuo seuraavat parannukset: Robotti oletetaan pistemäiseksi ja esteitä vastaavasti kasvatetaan robotin koon ja muodon tuomien rajoitteiden mukaan, jolloin alipäästösuodin TODO. Histogrammikartasta tehdään ensin binäärinen kartta kahden kynnysarvon avulla. Tämän jälkeen karttaa laajennetaan edelleen peittämään ne suunnat, joihin robotti ei ehdi kääntymään dynamiikkansa takia. Lisäksi ohjaussuunnan valinnassa käytetään apuna hyvyysfunktiota, jolla voidaan painottaa erilaisia ominaisuuksia vapaista suunnista.
-
-\subsection{Neuroverkot}
-
-Neuroverkot soveltuvat sekä liikkuville roboteille että manipulaattoreille. \cite{yang2000neural} Ongelmana muun muassa hitaus verrattuna muihin; enemmän globaali kuin nopea lokaali menetelmä.
-
-Manipulaattoreille ja tunnetulle kartalle löytyy tutkimusta. \cite{yang2004neural} Kuten myös liikkuvillekin roboteille ennalta halutulle reitille. \cite{noguchi1997path}
-
-\cite{glasius1995neural}
-
-\subsection{Geneettiset algoritmit}
-
-Toimii kaikkeen. Ovat tosin hitaita. Globaaliks vaan.
-
-\subsection{Puumenetelmät}
-
-(Execution extended) Rapidly-exploring random tree \cite{bruce2003rrt} käyttää hyväkseen jo olemassaolevaa dataa ajoympäristöstä ja iteroi robotin varsin hyvin maaliin.
+VFH+ tuo seuraavat parannukset: Robotti oletetaan pistemäiseksi ja esteitä vastaavasti kasvatetaan robotin koon ja muodon tuomien rajoitteiden mukaan, jolloin alipäästösuodinta ei tarvita. Histogrammikartasta tehdään ensin binäärinen kartta kahden kynnysarvon avulla. Tämän jälkeen karttaa laajennetaan edelleen peittämään ne suunnat, joihin robotti ei ehdi kääntymään dynamiikkansa takia. Lisäksi ohjaussuunnan valinnassa käytetään apuna hyvyysfunktiota, jolla voidaan painottaa erilaisia ominaisuuksia vapaista suunnista.
 
 
 \subsection{Konenäkö}
@@ -362,20 +337,33 @@ Kameran voi myös yhdistää ultraäänianturointiin, jolloin ultraääneltä saadaan no
 
 Kameralla otetussa kuvassa ei ole esimerkiksi ultraäänisensoreille tyypillistä häiriötä tai epätarkkuutta, mutta se on laskennallisesti raskaampi. Hyvällä resoluutiolla ja pienellä kohinalla tosin saavutetaan näkö suhteellisen pitkälle, mutta kapeammalla keilalla kuin jos robottia ympäröisi 360 asteen tutkavyö. Tämä ei kuitenkaan yleensä ole ongelma, sillä vieressä tai takana olevia esteitä ei tarvitse huomioida eteenpäin ajettaessa. Synkroniajoa käyttävä robotti voi muuttaa suuntaansa välittömästi, jolloin tutkavyöllä säästytään anturien kääntämiseltä. 
 
+\subsection{Neuroverkot}
 
+Neuroverkot soveltuvat sekä liikkuville roboteille että manipulaattoreille. \cite{yang2000neural} Ongelmana muun muassa hitaus verrattuna muihin; enemmänkin globaali kuin nopea lokaali menetelmä. Algoritmin voi opettaa ennalta kartasta hassusti. Entäs kun ei ympäristöä tunneta?
+
+Manipulaattoreille ja tunnetulle kartalle löytyy tutkimusta \cite{yang2004neural}. Kuten myös liikkuvillekin roboteille ennalta halutulle reitille. \cite{noguchi1997path} \cite{glasius1995neural}
+
+\subsection{Geneettiset algoritmit}
+
+Toimii kaikkeen. Ovat tosin hitaita. Globaaliks vaan. Saattaa toisaalta adaptoitua lokaaliin tilanteeseen jonkin toisen menetelmän ohella parantamaan tilannetta.
+
+\subsection{Puumenetelmät}
+
+(Execution extended) Rapidly-exploring random tree \cite{bruce2003rrt} käyttää hyväkseen jo olemassaolevaa dataa ajoympäristöstä ja iteroi robotin varsin hyvin maaliin. Ei taida toimia lokaalisti.
+
+\clearpage
 \section{And now for something completely different}
 
 Edellä esiteltiin useita erilaisia menetelmiä lokaaliin esteenväistöön. Näistä tosin kaikki keskittyvät vain siihen, että edessä on jokin tällä hetkellä tietyssä kohdassa oleva este reitin päällä, jolloin se on kierrettävä; tällaista tunnistusalgoritmia iteroitiin jatkuvasti. Reittiä voisi suunnitella hieman korkeammalla tasolla, jossa sensoridatasta tulkitaan todennäköiset paikallaan olevat tai liikkuvat hahmot, ja ennustetaan reitti näiden pohjalta hieman kauemmas ja tarkemmin: esimerkiksi liikkuvat, säännölliset esineet voisi tunnistaa, olettaa niiden kulkevan suoraa reittiä vielä hetken verran, yhdistää robotin omaan nopeuteen sekä tästä tiedosta päätellä, kannattaako este vaikkapa kiertää takaapäin odottaen, että se menee ohi.
 
-Kokonaiseen autoon kivasti laitettu kaikkea \cite{stentz1995complete}. D* = dynamic A*, globaali reitinhaku.
-D* avaruusrobo, "sumeaa logiikkaa", lokaali+globaali-keskittyminen \cite{singh2002recent}.
+Stentz ja Hebert esittävät kokonaiseen autoon asennetun, laserskannerilla väistelevän ja gps:llä sekä odometrialla paikkaa seuraavan järjestelmän \cite{stentz1995complete}. D*-algoritmi on dynaaminen A*, ja sopii globaaliin reitinhakuun siinä samalla.
 
-Pohdintaa: Vfh tai potfieldit tai muutkaan eivät erityisemmin kiinnitä huomiota liikkuviin objekteihin ja ennusta niiden paikkaa, tai edes tunnista objekteja kokonaisina möntteinä. tee fiksumpaa kuvan- ja esineentunnistusta, ja jotain järkevää heuristiikkaa siinä samalla. yhdistä eri menetelmiä. tutki oikeesti sitä dynaamista ympäristöä, miten sitä anturoidaan ja miten ymmärretään liikkuvat muodot; miten niiden liike ennustetaan.
+D* avaruusrobo, "sumeaa logiikkaa", lokaali+globaali-keskittyminen \cite{singh2002recent}.
 
 \clearpage
 \section{Yhteenveto}
 
-Bar
+bar
 
 \clearpage
 \addcontentsline{toc}{section}{Viitteet}
