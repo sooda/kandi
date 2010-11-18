@@ -9,6 +9,9 @@ ps: kandi.tex
 	
 pdf: kandi.tex
 	pdflatex kandi
+	bibtex kandi
+	pdflatex kandi
+	pdflatex kandi
 
 clean:
 	rm -f *.aux *.bbl *.blg *.log *.toc
