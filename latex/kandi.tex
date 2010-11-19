@@ -204,7 +204,7 @@ Esteitä on havainnoitava jatkuvasti ja niitä voi luonnollisesti väistää vasta ha
 Esteiden ohi selviämisen lisäksi robotin on pysyttävä reitillään ja sen on jotenkin saatava tietoa sijainnistaan ja suunnastaan. Tämäkin riippuu robotin antureista ja niiden sopivuudesta ympäristöön. Yleisesti käytettyjä tapoja paikannukseen ovat mm. odometria, maamerkit, gps, erityiset radiomajakat ja näkyvien seinien/maanmuotojen vertaaminen karttaan. Kaikki tavat ovat tosin jossain määrin epätarkkoja, joten virhearviot on otettava huomioon ja mielellään käytettävä useampaa tapaa rinnakkain. Kalman-suodin on varsin suosittu reitin ja sijainnin tarkastelun yhteydessä.
 
 \begin{figure}[h!tb]
-\centering \includegraphics[height=5cm]{tilannehahmotelma}
+\centering \includegraphics[width=0.8\textwidth]{tilannehahmotelma}
 \caption{Yksinkertaistettu hahmotelma tavanomaisesta väistötilanteesta: robotti on ympyrä alhaalla, ja maaliin eli yllä olevaan ympyrään pitäisi päästä. Loput kuviot ovat esteitä. Nuolet kuvaavat liikkuvien objektien nopeuksia. \label{tilannehahmotelma}}
 \end{figure}
 
@@ -229,7 +229,7 @@ Itse esteiden väistämisen aiheuttaman reitin lokaali suunnittelu on puhtaan lask
 
 % \subsection{Paikannus}
 
-Olennainen ongelma liikkuville roboteille on itsensä paikannus \cite{borenstein1996whereami}. Kun robotin oletetaan tietävän kohdepiste tarkasti, on myös tiedettävä missä itse robotti sijaitsee. Tähän voidaan käyttää tapauksesta riippuen esim. odometriaa \cite{borenstein1001umbmark}, inertiasuunnistusta \cite{barshan1995inertial}, radiomajakoita \cite{borenstein1997postech} tai maamerkkejä (kamerakuvalla tai maanpinnasta "kosketuksella" havaittavia) \cite{betke2002mobilelandmarks}. Maamerkkejä kannattaa suhteuttaa myös ennalta tunnettuun karttaan, mikäli sellainen on saatavilla \cite{leonard199geombeac}. Sensorifuusiota Kalman-suotimella voidaan myös hyödyntää, jolloin saadaan tarkempi tulos monen anturin yhdistetystä mittauksesta. Usein myös karttatietoa kerätään samalla kun antureilta saadaan dataa (SLAM)  \cite{se2002mobilelocalization}.
+Olennainen ongelma liikkuville roboteille on itsensä paikannus \cite{borenstein1996whereami}. Kun robotin oletetaan tietävän kohdepiste tarkasti, on myös tiedettävä missä itse robotti sijaitsee. Tähän voidaan käyttää tapauksesta riippuen esim. odometriaa \cite{borenstein1001umbmark}, inertiasuunnistusta \cite{barshan1995inertial}, radiomajakoita \cite{borenstein1997postech} tai maamerkkejä (kamerakuvalla tai maanpinnasta "kosketuksella" havaittavia) \cite{betke2002mobilelandmarks}. Maamerkkejä kannattaa suhteuttaa myös ennalta tunnettuun karttaan, mikäli sellainen on saatavilla \cite{leonard199geombeac}. Sensorifuusiota Kalman-suotimella voidaan myös hyödyntää, jolloin saadaan tarkempi tulos monen anturin yhdistetystä mittauksesta. Usein myös karttatietoa kerätään samalla kun antureilta saadaan dataa (\emph{simultaneous localization and mapping, SLAM})  \cite{se2002mobilelocalization}.
 
 % clip...
 
@@ -332,25 +332,31 @@ TODO: tilanteesta kiva kuva tähän -- robotti, kaaria ja esteitä.
 
 \subsection{Varmuusruudukko}
 
-Varmuusruudukko tai varausruudukko (occupancy grid, certainty grid)
+Varmuusruudukko tai varausruudukko (certainty grid, occupancy grid) \cite{elfes2002occugrid} toimii monien muiden menetelmien pohjana. Sen ideana on nimensä mukaisesti ruudukko robotin globaalista työavaruudesta, johon päivitetään anturien tietoa siitä, millä varmuudella ruudussa on este. Kun maailma jaetaan sopivan kokoisiin ruutuihin, voi sen jatkokäsittely yksinkertaistua algoritmista riippuen hyvinkin paljon. Kompromisseja tarkkuuden ja tehokkuuden välillä voidaan tehdä ruudun koossa: suurilla ruuduilla maailma approksimoituu vain muutamaksi ruuduksi, ja useammilla pienemmillä ruuduilla saadaan tarkkuutta laskentatehon kustannuksella. Ruudukko voidaan myös yhdistää globaaliin karttaan ympäristöstä, jolloin sen avulla voidaan estimoida paikkaa \cite{schiele1994comparison}.
 
+\begin{figure}[h!tb]
+\centering \includegraphics[width=0.5\textwidth]{certaintygrid}
+\caption{Esimerkki varmuusruudukosta \cite{borenstein2002vfh}. \label{fig:certaintygrid}}
+\end{figure}
 
-\subsection{Velocity obstacle approach}
-
-
+Kuvassa \ref{fig:certaintygrid} on Borensteinin ja Korenin testitilanne varmuusarvoruudukkona koko havainnoista (ilman ruudukon ruutuviivoja). Suuremmat pisteet kuvaavat suurempaa varmuusarvoa eli sellaista, josta on saatu enemmän mittauksia. active window -laatikko kuvaa ``ikkunaa'' johon tällä hetkellä kiinnitetään huomiota: robotin ei tarvitse ottaa huomioon koko varmuusarvoruudukon maailmaa vaan ainoastaan pieni alue robotin ympäriltä -- täten laskennan haastavuus ei kasva sitä mukaa kun saadaan lisää havaintoja ympäristöstä.
 
 \subsection{Histogrammit}
 
-Borenstein ja Koren toteavat potentiaalikentät riittämättömiksi ja esittävät niihin ja varausruudukkoon (occupancy grid) \cite{elfes2002occugrid} pohjautuvan virtuaalisen voimakentän (virtual force field) \cite{koren1991potential} ja siitä edelleen kehittyneen vektorikenttähistogrammin (vector field histogram, VFH) \cite{borenstein2002vfh}. Virtuaalinen voimakenttä perustuu karttamaiseen varmuusarvoruudukkoon, jonka ruutuihin summataan arvoja sitä mukaa kun niitä saadaan robotin ultraääniantureilta (Borensteinin ja Korenin testaamassa robotissa 24 kpl). Tästä ruudukosta otetaan tietyn kokoinen neliö robotin sijainnin kohdalta, jota päivitetään mittauksia saadessa ja josta lasketaan robotin suuntaa ja nopeutta ohjaava voima samankaltaisesti kun potentiaalikentissä: lähellä olevat esteet tuottavat voimakkaita hylkiviä voimia. Esteiksi lasketaan ruudukot, joissa on mittauksia; mittausten määrä kuvaa esteen kokoa ja kompensoi täten myös epävarmuuksia ja häiriömittauksia.
+Borenstein ja Koren toteavat potentiaalikentät riittämättömiksi ja esittävät niihin ja varausruudukkoon (occupancy grid)  pohjautuvan virtuaalisen voimakentän (virtual force field) \cite{koren1991potential} ja siitä edelleen kehittyneen vektorikenttähistogrammin (vector field histogram, VFH) \cite{borenstein2002vfh} \cite{borenstein2002realtime}. Virtuaalinen voimakenttä perustuu karttamaiseen varmuusarvoruudukkoon, jonka ruutuihin summataan arvoja sitä mukaa kun niitä saadaan robotin ultraääniantureilta (Borensteinin ja Korenin testaamassa robotissa 24 kpl). Tästä ruudukosta otetaan tietyn kokoinen neliö robotin sijainnin kohdalta, jota päivitetään mittauksia saadessa ja josta lasketaan robotin suuntaa ja nopeutta ohjaava voima samankaltaisesti kun potentiaalikentissä: lähellä olevat esteet tuottavat voimakkaita hylkiviä voimia. Esteiksi lasketaan ruudukot, joissa on mittauksia; mittausten määrä kuvaa esteen kokoa ja kompensoi täten myös epävarmuuksia ja häiriömittauksia.
 
 \begin{figure}[h!t!]
-\centering \includegraphics[width=0.5\textwidth]{histogram}
-\caption{Borensteinin ja Korenin kuva histogrammeista. Ylempänä itse histogrammi, alempana sama tulkittuna varmuusarvoruudukon päälle. Ruudukossa suuremmat neliöt merkitsevät suurempia varmuuksia. \label{fig:histogram}}
+\centering \includegraphics[width=0.7\textwidth]{histogram}
+\caption{Borensteinin ja Korenin kuva histogrammeista. Ylempänä itse histogrammi, alempana sama tulkittuna varmuusarvoruudukon päälle. \label{fig:histogram}}
 \end{figure}
 
-Vektorikenttähistogrammi jalostaa tätä eteenpäin rakentamalla ruudukosta suuntapohjaisen histogrammin. Borenstein ja Koren toteavat että suoraan kaksiulotteisesta kartasta voiman tulkitseminen menettää liikaa informaatiota, ja ottavat käyttöön toisen laskentavaiheen, histogrammiruudukon \cite{borenstein2002vfh}. Histogrammi kattaa täyden ympyrän robotin ympärillä, ja siihen summataan asteittain varmuusarvoruudukon arvot niistä ruuduista, jotka vastaaville sektoreille osuvat, jolloin siihen syntyy huippuja ja kuoppia. Kuopat ilmaisevat alueita, joita on turvallista lähestyä; korkeat huiput kuvaavat paikkoja, joissa on todennäköisesti jokin lähellä oleva tai suuri este, jota on väistettävä. Iso ruudukko tuo isoja vaihteluita diskreetin luonteensa takia, jolloin tarvitaan alipäästösuodin joka tulee virittää kokeellisesti, ettei ohjaukseen tulisi suuria yhtäkkisiä vaihteluita. Tätä voitaisiin hieman korjata ottamalla huomioon robotin sijainti ruutunsa sisällä sen sijaan, että ainoastaan laskettaisiin vain näiden suurten (esim. 10*10 cm) ruutujen etäisyyksiä.
+Vektorikenttähistogrammi jalostaa tätä eteenpäin rakentamalla ruudukosta suuntapohjaisen histogrammin. Borenstein ja Koren toteavat että suoraan kaksiulotteisesta kartasta voiman tulkitseminen menettää liikaa informaatiota, ja ottavat käyttöön toisen laskentavaiheen, histogrammiruudukon \cite{borenstein2002vfh}. Histogrammi kattaa täyden ympyrän robotin ympärillä, ja siihen summataan asteittain varmuusarvoruudukon arvot niistä ruuduista, jotka vastaaville sektoreille osuvat, jolloin siihen syntyy huippuja ja kuoppia. Kuopat ilmaisevat alueita, joita on turvallista lähestyä; korkeat huiput kuvaavat paikkoja, joissa on todennäköisesti jokin lähellä oleva tai suuri este, jota on väistettävä. Potentiaalikenttien pahimmat ongelmat, lokaali minimi ja värähtely kapeissa käytävissä, vähenevät tai häviävät kokonaan kun tämä menetelmä ottaa päinvastaisen lähtökohdan ja etsii liikettä rajoittavien esteiden sijaan alueita, jonne saa liikkua eikä häiriinny pahasti reunoilla olevista esteistä.
 
-Tämä tapa soveltuu erityisesti häiriöiseen ja epävarmaan mittaukseen, ja sitä onkin testattu ultraäänisensoreilla joihin liittyy lähes ominaisesti epävarmuutta, vahinkokaikuja ja vierekkäisten sensorien ristivaikutusta \cite{borenstein2002vfh}. Voima lasketaan varmuusruudukon arvojen neliöistä, jolloin varmempia mittauksia painotetaan huomattavasti enemmän, ja pienet, häiriömäiset mittaukset jäävät robustisti huomiotta. Borenstein ja Koren testasivat VFH:ta CARMEL-robotilla, jossa on 24 ultraäänianturia; tekniikka onkin selvästi suunniteltu tutkatyyppisille etäisyysantureille, joilta saadaan pistemäisiä mittauksia. Tässä yhteydessä on ulkotiloissa otettava huomioon vino maasto, sillä muutoin oletetaan tutkan olevan saman suuntainen maatason kanssa ja vinot kuopat jotka saavat robotin kallistumaan saavat mittaukset hyödyttömiksi. Kuoppia voitaisiin kompensoida kiihtyvyysanturilla.
+Kuvassa \ref{fig:histogram} havainnollistetaan vektorikenttähistogrammin toiminta. Histogrammiin muodostuu suuria arvoja niihin kohtiin, mitä vastaavissa suunnissa on suurella todennäköisyydellä esteitä. Reitti valitaan suuntaan, jossa lienee suurin tyhjä aukko histogrammissa.
+
+Iso ruudukko tuo isoja vaihteluita diskreetin luonteensa takia, jolloin tarvitaan alipäästösuodin joka tulee virittää kokeellisesti, ettei ohjaukseen tulisi suuria yhtäkkisiä vaihteluita. Tätä voitaisiin hieman korjata ottamalla huomioon robotin sijainti ruutunsa sisällä sen sijaan, että ainoastaan laskettaisiin vain näiden suurten (esim. 10*10 cm) ruutujen etäisyyksiä. Voitaisiin myös kompensoida ohjauksen vaihtelua lisäämällä algoritmiin heuristiikkaa esim. suoraan ajamisesta: jos turvallisen lähestymisen kuopan suunta ei suuremmin eroa nykysuunnasta, ei suuntaa kannata merkittävästi vaihtaa.
+
+Tämä tapa soveltuu erityisesti häiriöiseen ja epävarmaan mittaukseen, ja sitä onkin testattu ultraäänisensoreilla joihin liittyy lähes ominaisesti epävarmuutta, vahinkokaikuja ja vierekkäisten sensorien ristivaikutusta \cite{borenstein2002vfh}. Sektorin epäsuotuisuus lasketaan varmuusruudukon arvojen neliöistä, jolloin varmempia mittauksia painotetaan huomattavasti enemmän, ja pienet, häiriömäiset mittaukset jäävät robustisti huomiotta. Borenstein ja Koren testasivat VFH:ta CARMEL-robotilla, jossa on 24 ultraäänianturia; tekniikka onkin selvästi suunniteltu tutkatyyppisille etäisyysantureille, joilta saadaan pistemäisiä mittauksia. Tässä yhteydessä on ulkotiloissa otettava huomioon vino maasto, sillä muutoin oletetaan tutkan olevan saman suuntainen maatason kanssa ja vinot kuopat jotka saavat robotin kallistumaan saavat mittaukset hyödyttömiksi. Kuoppia voitaisiin kompensoida kiihtyvyysanturilla.
 
 VFH ei kuitenkaan ota huomioon robotin kinematiikkaa millään lailla, ja olettaa siis että robotti on pistemäinen ja voi vaihtaa kulkusuuntaansa välittömästi. Borenstein ja Ulrich esittävät VFH+-algoritmin, joka korjaa tämän ongelman \cite{ulrich2002vfh+}. He tutkivat ihmisvoimin työnnettävää, differentiaaliajoa (kaksi erillistä vetävää pyörää) käyttävää robottia ohjaamaan sokkoa ihmistä. Tämä eroaa kinematiikaltaan oleellisesti aiemmin käytetystä, joka suuntaan kääntyvästä CARMEL:sta.
 
@@ -361,9 +367,14 @@ VFH+:sta vielä edelleen kehitetty VFH* käyttää A*-hakualgoritmia etsimään oikean
 Algoritmin luonteeseen kuuluvan staattisen, jatkuvasti päivitettävän maailmankartan takia VFH ja sen johdannaiset soveltuvat sellaisenaan huonosti liikkuvien esteiden väistämiseen; eri hetkillä liikkuva esine havaitaan eri kohdissa, jolloin esine piirtää karttaan ``seinän'' reittinsä kohdalle. Varmemmilla sensoreilla voitaisiin laaja kartta unohtaa ja käyttää vain hetkittäisiä mittauksia histogrammin rakentamiseen. Näin liikkuvien esteiden vanhat sijainnit eivät vaikuttaisi.
 
 
-\subsection{Törmäyskartio}
+\subsection{Törmäyskeila}
 
-\cite{chakravarthy2002cone}
+Chakravarthyn ja Ghosen trigonometrinen törmäyskeilamenetelmä kuvaa hyvin abstraktilla tasolla, miten kaksi liikkuvaa pistettä, ympyrää tai lopulta mielivaltaisen muotoista kappaletta törmäävät \cite{chakravarthy2002cone}. Pisteen ja toisen kappaleen välinen ``huono'' kulkualue muodostaa kolmion, jonka yhdessä kulmassa on piste ja toiset kulmat ovat kappaleen ulkoreunoilla siten, että koko kappale mahtuu näin muodostuvaan sektoriin. Menetelmä kertoo, missä kulmissa piste voi kulkea törmäämisen estämiseksi. Jos robotin suuntaa ajatellaan kärjestä lähtevänä nopeusvektorina, se ei saa olla sektorin sisällä. Väistösuunnan valinta on siis yksinkertaisesti nopeuden valinta sellaiseen suuntaan, joka ei osu keilan (tai keilojen, kun esteitä on useita) sisälle.
+
+Sellaisenaan menetelmä vaatii, että robotin ympäristön esteet tunnetaan kokonaisina kappaleina pistemäisten mittausten sijaan, ellei pistemäisiä mittauksia approksimoida jonkin kokoisiksi ympyröiksi, ja on muidenkin aspektien suhteen turhan hienostunut ottaen huomioon robottien rajalliset ja häiriölliset anturoinnit. 
+
+Samaa tapaa voidaan jatkaa useiden liikkuvien kappaleiden seurantaan Fiorinin ja Shillerin esittämällä \emph{suhteellisen nopeuden mallilla} \cite{fiorini2002motion}. Tämäkin malli tosin olettaa, että kappaleiden paikat ja muodot tunnetaan jokseenkin tarkasti, puhumattakaan niiden nopeuksista. Paikalliseen esteenväistöön tämäkään ei käytännössä kelpaa, sillä nämä vaatimukset ovat ylivertaisia useimmille käytännön anturoinneille ja sille faktalle, että ympäristöstä ja siellä liikkuvista asioista ei tiedetä ennalta mitään. Ympäristön skannauksesta on kovin haastavaa erottaa luotettavasti liikkuvat kappaleet riittävällä nopeudella ja varmuudella.
+
 
 
 \subsection{Konenäkö} % EI NÄIN
@@ -382,20 +393,8 @@ Kameralla otetussa kuvassa ei ole esimerkiksi ultraäänisensoreille tyypillistä h
 Joo-o \cite{bonin2008visual}.
 
 
-\subsection{Neuroverkot}
-
-Neuroverkot soveltuvat sekä liikkuville roboteille että manipulaattoreille. \cite{yang2000neural} Ongelmana muun muassa hitaus verrattuna muihin; enemmänkin globaali kuin nopea lokaali menetelmä. Algoritmin voi opettaa ennalta kartasta hassusti. Entäs kun ei ympäristöä tunneta?
-
-Manipulaattoreille ja tunnetulle kartalle löytyy tutkimusta \cite{yang2004neural}. Kuten myös liikkuvillekin roboteille ennalta halutulle reitille. \cite{noguchi1997path} \cite{glasius1995neural}
-
-
-\subsection{Geneettiset algoritmit}
-
-Toimii kaikkeen. Ovat tosin hitaita. Globaaliks vaan. Saattaa toisaalta adaptoitua lokaaliin tilanteeseen jonkin toisen menetelmän ohella parantamaan tilannetta.
-
-
 \clearpage
-\section{And now for something completely different}
+\section{Muita menetelmiä}
 
 Edellä esiteltiin useita erilaisia menetelmiä lokaaliin esteenväistöön. Näistä tosin kaikki keskittyvät vain siihen, että edessä on jokin tällä hetkellä tietyssä kohdassa oleva este reitin päällä, jolloin se on kierrettävä; tällaista tunnistusalgoritmia iteroitiin jatkuvasti. Reittiä voisi suunnitella hieman korkeammalla tasolla, jossa sensoridatasta tulkitaan todennäköiset paikallaan olevat tai liikkuvat hahmot, ja ennustetaan reitti näiden pohjalta hieman kauemmas ja tarkemmin: esimerkiksi liikkuvat, säännölliset esineet voisi tunnistaa, olettaa niiden kulkevan suoraa reittiä vielä hetken verran, yhdistää robotin omaan nopeuteen sekä tästä tiedosta päätellä, kannattaako este vaikkapa kiertää takaapäin odottaen, että se menee ohi.
 
@@ -408,6 +407,23 @@ Kelly esittää tutkimuksessaan jeeppiin kytketyn RANGER-navigaattorin (Real time 
 Antureina tässä jeepissä on laseretäisyysanturi ja stereokamera. Näiden tuottamista informaatiosta etsitään adaptiivisesti jyrkkiä reunoja, joiden ympäristöä tarkastellaan. Kelly väittää menetelmän toimivan jopa 30 km/h vauhdissa.
 
 Aiempia vastaavalla tavalla toimii myös Singhin ym. kuvaama navigointi, joka yhdistää lokaalin ja globaalin liikkeensuunnittelun \cite{singh2002recent}. Globaalisti käytetään D*:ä kuten aiemmin. Lokaali suunnittelija Morphin perustuu RANGER-algoritmiin. Morphin ottaa lisäksi huomioon ympäristön epävarmuuden; kartan pisteillä on varmuusarvoja, jotka vanhenevat robotin liikkuessa suhteessa matkan pituuteen; samalla uusille mittauksille alustetaan varmempi arvo.
+
+
+\subsection{Velocity obstacle}
+Liikkuville esteille usein esitetty menetelmä \emph{velocity obstacle approach} [CITE CITE CITE] on vastaavanlainen kuin törmäyskartiomenetelmä, mutta tuo uusia nönnönnöö. Tässäkin tarvittaisiin tietoa esteiden muodosta ja nopeudesta tarkemmin kuin mitä sitä pystyy luotettavasti ja käytännöllisesti keräämään.
+
+
+\subsection{Neuroverkot}
+
+Neuroverkot soveltuvat sekä liikkuville roboteille että manipulaattoreille. \cite{yang2000neural} Ongelmana muun muassa hitaus verrattuna muihin; enemmänkin globaali kuin nopea lokaali menetelmä. Algoritmin voi opettaa ennalta kartasta hassusti. Entäs kun ei ympäristöä tunneta?
+
+Manipulaattoreille ja tunnetulle kartalle löytyy tutkimusta \cite{yang2004neural}. Kuten myös liikkuvillekin roboteille ennalta halutulle reitille. \cite{noguchi1997path} \cite{glasius1995neural}
+
+
+\subsection{Geneettiset algoritmit}
+
+Toimii kaikkeen. Ovat tosin hitaita. Globaaliks vaan. Saattaa toisaalta adaptoitua lokaaliin tilanteeseen jonkin toisen menetelmän ohella parantamaan tilannetta.
+
 
 
 \subsection{Globaalista reitittämisestä}

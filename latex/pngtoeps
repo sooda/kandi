@@ -1,0 +1,4 @@
+#!/bin/bash
+pnm=`basename $1 .png`.pnm
+convert $1 $pnm
+pnmtops -nocenter -equalpixels -dpi 72 $pnm -noturn -rle > `basename $1 .png`.eps
