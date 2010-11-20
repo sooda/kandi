@@ -392,9 +392,9 @@ Aiempia vastaavalla tavalla toimii myös Singhin ym. kuvaama navigointi, joka yhd
 
 \subsection{Neuroverkot}
 
-Neuroverkot soveltuvat sekä liikkuville roboteille että manipulaattoreille. \cite{yang2000neural} Ongelmana muun muassa hitaus verrattuna muihin; enemmänkin globaali kuin nopea lokaali menetelmä. Algoritmin voi opettaa ennalta kartasta hassusti. Entäs kun ei ympäristöä tunneta?
+Neuroverkot matkivat ihmisten aivoja ja koostuvat tietystä määrästä sisään- ja ulostuloneuroneja sekä välissä olevasta kerroksesta, joka voi sisältää mielivaltaisen määrän neuroneja päättelyn tekemiseen. Tapa on erityisen matemaattinen ja toimii matalalla tasolla: neuroni saa syötteeksi lukuja, ja mikäli niistä laskettu painotettu summa ylittää raja-arvon, neuroni antaa ulostuloksi esimerkiksi luvun 1, muutoin luvun 0.
 
-Manipulaattoreille ja tunnetulle kartalle löytyy tutkimusta \cite{yang2004neural}. Kuten myös liikkuvillekin roboteille ennalta halutulle reitille. \cite{noguchi1997path} \cite{glasius1995neural}
+Neuroverkkoja on sovellettu sekä liikkuville roboteille että manipulaattoreille \cite{glasius1995neural}. Tapa ei ole erityisen nopea ja vaatii verkon ennalta opettamisen, jotta tietty syöte tuottaisi oikeanlaisen vasteen. Toisaalta on saatu myös hyväksyttäviä tuloksia dynaamisessa ympäristössä \cite{yang2000neural}.
 
 
 \subsection{Geneettiset algoritmit}
@@ -404,6 +404,9 @@ Geneettinen algoritmi (GA) toimii intuitiivisesti ja luonnonmukaisesti arpomalla
 Tässä yhteydessä populaatio on lista solmupisteistä kartalla, joiden kautta reitti kulkee haluttuun kohteeseen ja hyvyysfunktio tuottaa hyviä arvoja lyhyistä ja mutkattomista reiteistä, ja erityisen suuria, varmasti hylättäviä ratkaisuja toteuttamiskelvottomista reiteistä jotka kulkevat esteiden lävitse \cite{nearchou1998pathgene}. Solmupisteet voidaan valita kartalta mistä tahansa pisteistä, tai valintaa voidaan yksinkertaistaa muodostamalla kartasta ruudukko (joka sopii yhteen hyvin mm. varmuusruudukkoon) jonka jokainen ruutu on mahdollinen solmukohta \cite{hu2004knowgene} \cite{sugihara2002genetic}.
 
 Geneettiset algoritmit tuottavat aina kelvollisia polkuja, ja hyvyysfunktion valinnalla sekä algoritmin sisäisen toiminnan optimoinnilla, eli sillä kuinka solmupistereitti kuvataan populaationa, voidaan algoritmista saada tarkka ja nopea. Suurella kartalla GA:n iterointi voi silti kestää liian pitkään jotta sitä voisi käyttää reaaliajassa. Toinen ongelma on vaatimus kartasta: algoritmi on muihin verrattuna raskas erittäin paikalliseen reitinsuunnitteluun, ja globaaliin suunnitteluun se taas vaatii karttaa pidemmälle kuin mitä antureilla voidaan saada, eikä siis sovellu paikalliseen esteenväistöön.
+
+\subsection{Haastava ympäristö}
+
 
 \clearpage
 \section{Yhteenveto ja pohdintaa}
