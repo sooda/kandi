@@ -94,24 +94,14 @@ linkcolor=blue,citecolor=black,pdfstartview=FitH]{hyperref}
 
 \author{Konsta Hölttä}
 
-%% Opinnytteen otsikko tulee vain thn. l tavuta otsikkoa ja
-%% vlt liian pitk otsikkoteksti. Jos latex ryhmittelee otsikon
-%% huonosti, voit joutua pakottamaan rivinvaihdon \\ kontrollimerkill.
+%% älä tavuta otsikkoa ja
 %% Muista ett otsikkoja ei tavuteta! 
-%% Jos otsikossa on ja-sana, se ei j rivin viimeiseksi sanaksi 
+%% Jos otsikossa on ja-sana, se ei jää rivin viimeiseksi sanaksi 
 %% vaan aloittaa uuden rivin.
-%% 
-%% Your thesis title. If the title is very long and the latex 
-%% does unsatisfactory job of breaking the lines, you will have to
-%% break the lines yourself with \\ control character. 
-%% Do not hyphenate titles.
-% TODO
 \thesistitle{}{Liikkuvien robottien paikallinen esteenväistö ja liikkeensuunnittelu}
 
 \place{Espoo}
 %% Kandidaatintyn pivmr on sen esityspivmr! 
-%% 
-%% For B.Sc. thesis use the date when you present your thesis. 
 \date{x.y.2010}
 
 %% Kandidaattiseminaarin vastuuopettaja tai diplomityn valvoja.
@@ -119,39 +109,32 @@ linkcolor=blue,citecolor=black,pdfstartview=FitH]{hyperref}
 %% ennen vlilynti ja seuraavaa merkkijonoa. 
 %% Nin tehdn, koska kyseess ei ole lauseen loppu, jonka jlkeen tulee 
 %% hieman pidempi vli vaan halutaan tavallinen vli.
-%%
-%% B.Sc. or M.Sc. thesis supervisor 
-%% Note the "\" after the comma. This forces the following space to be 
-%% a normal interword space, not the space that starts a new sentence. 
 \supervisor{D.Sc.\ Ilkka Seilonen}{TkT Ilkka Seilonen}
 
 %% Kandidaatintyn ohjaaja(t) tai diplomityn ohjaaja(t)
-%% 
-%% B.Sc. or M.Sc. thesis instructor(s)
-%\instructor{Prof. Pirjo Professori}{Prof. Pirjo Professori}
 \instructor{D.Sc.\ (Tech.) Jari Saarinen}{TkT Jari Saarinen}
 %\instructor{M.Sc.\ (Tech.) Polli Pohjaaja}{DI Polli Pohjaaja}
 
 %% Aaltologo: syntaksi: \uselogo{red|blue|yellow}{?|!|''}
-%% Logon kieli on sama kuin dokumentin kieli
-%%
-%% Aalto logo: syntax: \uselogo{red|blue|yellow}{?|!|''} 
-%% Logo language is set to be the same as the document language.
 \uselogo{red}{''}{tkk}
 \makecoverpage
 
 \keywords{liikkuva robotti, paikannus, lokaali liikkeensuunnittelu, esteenväistö, dynaaminen ympäristö}
 
 \begin{abstractpage}[finnish]
-Liikkuviin robotteihin ja niihin liittyvään esteenväistöön liittyy lukuisia asioita esteiden havainnoinnista sopivan reitin ennustukseen. Tässä työssä kartoitetaan reaaliaikaisia menetelmiä liikkuvien robottien lähellä olevien esteiden väistämiseen ja tästä aiheutuvaan lyhyen kantaman liikkeensuunnitteluun. Pääpaino on ympäristöllä, josta ei juurikaan tiedetä mitään etukäteen ja jossa on todennäköistä joutua väistämään liikkuviakin esteitä. Pohditaan esteentunnistusalgoritmien ja robotin ohjaustapojen soveltuvuutta eri ympäristöihin siten, että päästään maaliin mahdollisimman optimaalisella tavalla osumatta reitillä oleviin stationaarisiin ja liikkuviin esteisiin.
+Liikkuviin robotteihin ja niihin liittyvään esteenväistöön liittyy laaja-alaisuutensa takia suuri joukko asioita esteiden havainnoinnista sopivan reitin ennustukseen. Tässä työssä kartoitetaan reaaliaikaisia menetelmiä liikkuvien robottien lähellä olevien esteiden kiertämiseen ja tästä aiheutuvaan lyhyen kantaman liikkeensuunnitteluun.
 
-Samalla sivutaan myös aiheeseen liittyviä peruskäsitteitä ja yleisiä ongelmia, joita esteenväistössä on otettava huomioon: eritellään menetelmien mukana erilaisien ympäristön havainnointitekniikoiden robustisuutta robotin esteiden ja maaston ``näkemiseen'' ja robotin itsensä paikan sekä reitin seuraamiseen.
+Pääpaino on ympäristöllä, josta ei juurikaan tiedetä mitään etukäteen; on myös todennäköistä joutua väistämään liikkuviakin esteitä. Pohditaan esteentunnistustapojen ja robotin ohjaustapojen soveltuvuutta eri ympäristöihin siten, että päästään maaliin mahdollisimman optimaalisella tavalla osumatta reitillä oleviin maaston haastavuuksiin ja stationaarisiin ja liikkuviin esteisiin.
+
+Samalla sivutaan myös aiheeseen liittyviä peruskäsitteitä ja yleisiä ongelmia, joita esteenväistössä on otettava huomioon: eritellään menetelmien mukana erilaisten ympäristön havainnointitekniikoiden robustisuutta robotin esteiden ja maaston ``näkemiseen'' ja robotin itsensä paikan sekä reitin seuraamiseen. Luodaan katsaus myös aiheen kokonaiskuvaan pohtien käyttökelpoisuutta eri näkökulmista.
 \end{abstractpage}
 
 \newpage
 
 \mysection{Esipuhe}
 Tarvinneekohan tähän mitään...
+
+Joka kappaleeseen lisättäneen vielä tarkennuksia johonkin suuntaan kunhan ajatukset selvenee.
 
 \vspace{5cm}
 Otaniemi, x.y.2010
@@ -193,33 +176,34 @@ Otaniemi, x.y.2010
 
 \thispagestyle{empty}
 
-Tämän tekstin tarkoituksena on kartoittaa yleisellä tasolla eri esteenväistömenetelmiä erityisesti ulkotiloissa maanpinnalla vaihtelevassa ja dynaamisessa ympäristössä kulkeviin robotteihin. Tässä yhteydessä dynaamisella ympäristöllä tarkoitetaan sellaista, jossa esteet ovat vaihtelevia ja voivat liikkua, ja robotilla jotakin itsenäisesti liikkuvaa ajoneuvoa, kuten vihivaunua tai automaattisesti ajavaa henkilöautoa. Kiinteästi asennettavia robotteja kuten manipulaattorikäsivarsia ei käsitellä.
+Tämän tekstin tarkoituksena on kartoittaa yleisellä tasolla eri esteenväistömenetelmiä ulkotiloissa maanpinnalla liikkuville roboteille. Kiinnitetään erityisesti huomiota vaihtelevassa ja dynaamisessa ympäristössä kulkeviin robotteihin. Tässä yhteydessä dynaamisella ympäristöllä tarkoitetaan sellaista, jossa esteet ovat vaihtelevia ja voivat liikkua, ja robotilla jotakin itsenäisesti liikkuvaa ajoneuvoa, kuten vihivaunua tai automaattisesti ajavaa henkilöautoa. Kiinteästi asennettavia robotteja kuten manipulaattorikäsivarsia ei käsitellä.
 
-Esteenväistö ja liikkeensuunnittelu ovat klassisia ongelmia ja olleet olemassa niin kauan kun liikkuvia robotteja on ollut -- onhan tärkeää, että robotti navigoi itsenäisesti ja että se pääsee perille nopeasti vahingoittamatta itseään tai ympäristöään. Robotilla on tietty konfiguraatioavaruus (\emph{configuration space}), eli joukko mahdollisista sijaintien, asentojen ja nopeuksien yhdistelmästä, jossa sen on pysyttävä. Lokaaliin anturipohjaiseen esteenväistöön on luonnollisesti monia eri menetelmiä, joiden hyödyllisyys ja soveltuvuus riippuu robotin ympäristöstä ja anturien laadusta. Universaalia kaikkialle sopivaa lokaalia esteenväistöä ja/tai liikkeensuunnittelua ei ole olemassa. On tosin useita yleisiä sovellettavia menetelmiä ja tilannekohtaista heuristiikkaa. Myös monista tavoista yhdistelemällä voidaan saada jalostettuja, kehittyneempiä tapoja kartoittamalla toistensa heikkoudet ja soveltamalla tiettyyn ympäristöön. Monia tutkimuksia on testattu käytännössä, toisia simuloimalla ja jotkut ovat jääneet vain teoreettisiksi pohdinnoiksi ja kaavoiksi.
+Esteenväistö ja liikkeensuunnittelu ovat klassisia ongelmia ja olleet olemassa niin kauan kun liikkuvia robotteja on ollut -- onhan tärkeää, että robotti navigoi itsenäisesti ja että se pääsee perille nopeasti vahingoittamatta itseään tai ympäristöään. Robotilla on tietty konfiguraatioavaruus (configuration space), eli joukko mahdollisista sijaintien, asentojen ja nopeuksien yhdistelmästä, jossa sen on pysyttävä. Lokaaliin anturipohjaiseen esteenväistöön on luonnollisesti monia eri menetelmiä, joiden hyödyllisyys ja soveltuvuus riippuu robotin ympäristöstä ja anturien laadusta. Universaalia kaikkialle sopivaa lokaalia esteenväistöä ja/tai liikkeensuunnittelua ei ole olemassa. On tosin useita yleisiä sovellettavia menetelmiä ja tilannekohtaista heuristiikkaa. Myös monista tavoista yhdistelemällä voidaan saada jalostettuja, kehittyneempiä tapoja kartoittamalla kaikkien heikkoudet ja soveltamalla tiettyyn ympäristöön. Monia tutkimuksia on testattu käytännössä, toisia simuloimalla ja jotkut ovat jääneet vain teoreettisiksi pohdinnoiksi ja kaavoiksi.
 
-Globaalia liikkeensuunnittelua (eli kartta tiedossa etukäteen jonka mukaan reitti suunnitellaan) ja sen yhdistämistä lokaaliin esteiden kiertämiseen sivutaan myös hieman. Tässä työssä keskitytään kuitenkin yhtäkkisten, odottamattomien esteiden havaitsemiseen ja väistämiseen kun jonkinlainen maalipiste on tiedossa ennalta. Reitin ja/tai ympäristön muutoksia saatetaan myös päivittää robotille reaaliajassa ylemmältä taholta. Aina ei kuitenkaan voida saada mitään ennakkotietoa ympäristöstä, jossa robotti kulkee; tällöin tieto pitää kartoittaa matkan varrella. Globaalin reitin suunnittelu oletetaan hoidetuksi; ei oteta kantaa, tuleeko reitti jostain ylempää vai lasketaanko sitäkin reaaliajassa itse robotilla.
+Globaalia liikkeensuunnittelua (eli kartta tiedossa etukäteen jonka mukaan reitti suunnitellaan) ja varsinkin sen yhdistämistä lokaaliin esteiden kiertämiseen sivutaan myös hieman. Tässä työssä keskitytään kuitenkin yhtäkkisten, odottamattomien esteiden havaitsemiseen ja väistämiseen kun jonkinlainen maalipiste on tiedossa ennalta. Reitin ja/tai ympäristön muutoksia saatetaan myös päivittää robotille reaaliajassa ylemmältä taholta. Aina ei kuitenkaan voida saada mitään ennakkotietoa ympäristöstä, jossa robotti kulkee; tällöin tieto pitää kartoittaa matkan varrella. Globaalin reitin suunnittelu oletetaan hoidetuksi; ei oteta kantaa, tuleeko reitti jostain ylempää vai lasketaanko sitäkin reaaliajassa itse robotilla.
 
-Esteitä on havainnoitava jatkuvasti ja niitä voi luonnollisesti väistää vasta havaitsemisen jälkeen. Jotkin väistöalgoritmit liittyvät selvästi tiettyihin antureihin, ja anturien hyvät ja huonot puolet on muutenkin otettava huomioon mm. havaitsemisetäisyyden, kohinan ja epävarmuuksien takia. Yleisiä havainnointimenetelmiä ovat ultraääni- ja infrapuna-anturit, laserskannerit ja videokamerat. Hyvillä menetelmillä anturointi onnistuu jatkuvasti; toisilla robotti joutuu välillä pysähtymään mittauksia varten. Pyritään siihen, että robotti voi ajaa jatkuvasti pysähtymättä.
+Esteitä on havainnoitava jatkuvasti ja niitä voi luonnollisesti väistää vasta havaitsemisen jälkeen. Jotkin väistöalgoritmit liittyvät selvästi tiettyihin antureihin ja reaaliaikaisuuteen, ja anturien hyvät ja huonot puolet on muutenkin otettava huomioon mm. havaitsemisetäisyyden, kohinan ja epävarmuuksien takia. Yleisiä havainnointimenetelmiä ovat ultraääni- ja infrapuna-anturit, laserskannerit ja videokamerat. Hyvillä menetelmillä anturointi onnistuu jatkuvasti; toisilla robotti joutuu välillä pysähtymään mittauksia varten. Pyritään siihen, että robotti voi ajaa jatkuvasti pysähtymättä.
 
-Esteiden ohi selviämisen lisäksi robotin on pysyttävä reitillään ja sen on jotenkin saatava tietoa sijainnistaan ja suunnastaan. Tämäkin riippuu robotin sijaintiantureista ja niiden sopivuudesta ympäristöön. Yleisesti käytettyjä tapoja paikannukseen ovat mm. odometria, maamerkit, gps, erityiset radiomajakat ja näkyvien seinien/maanmuotojen vertaaminen karttaan. Kaikki tavat ovat tosin jossain määrin epätarkkoja, joten virhearviot on otettava huomioon ja mielellään käytettävä useampaa tapaa rinnakkain. Kalman-suodin onkin varsin suosittu apu reitin ja sijainnin tarkastelun yhteydessä.
+Esteiden ohi selviämisen lisäksi robotin on pysyttävä reitillään ja sen on jotenkin saatava tietoa sijainnistaan ja suunnastaan, mikäli tavoitteena on päästä maaliin eikä harhailla sokeasti. Tämänkin toteutus riippuu robotin sijaintiantureista ja niiden sopivuudesta ympäristöön. Yleisesti käytettyjä tapoja paikannukseen ovat mm. odometria, maamerkit, gps, erityiset radiomajakat ja näkyvien seinien/maanmuotojen vertaaminen karttaan. Kaikki tavat ovat tosin jossain määrin epätarkkoja, joten virhearviot on otettava huomioon ja mielellään käytettävä useampaa tapaa rinnakkain. Kalman-suodin onkin varsin suosittu apu reitin ja sijainnin tarkastelun yhteydessä.
 
 
 \clearpage
 
 \section{Ympäristö ja havainnointi}
 
-Robotin paikallisen navigoinnin pohjalla on hyvin paljon muitakin ongelmia, joita tässä tekstissä saatetaan sivuta sen verran kuin on tarpeen, muttei niihin oteta tarkemmin kantaa. Seuraavassa esitellään joitain perusasioita pyörillä kulkevan robotin liikkumisesta. 
+Robotin paikallisen navigoinnin pohjalla on hyvin paljon muitakin ongelmia, joita tässä tekstissä sivutaan sen verran kuin on tarpeen, muttei niihin oteta tarkemmin kantaa. Seuraavassa esitellään joitain perusasioita pyörillä kulkevan robotin liikkumisesta. 
 
 Pyörät ovat yksinkertaisen mutta toimivan tekniikkansa vuoksi ylivoimaisesti useimpien nykyrobottien liikkumisen perustana \cite{siegwart2004introduction}. Haastavassa maastossa käytetään jotain pyöristä jalostettua tapaa, kuten telaketjuja tai renkaita, joihin on kiinnitetty piikkejä tms. \cite{abad2009axelwheel} \cite{saranli2001rhex}. Rakenteen puolesta (mm. renkaiden lukumäärä ja kääntymistapa) pyörillä liikkumiseenkin on hyvin monia tapoja, joissa on kaikissa omat hyvät ja huonot puolensa. Tekniikka valittakoon robotin muodon ja kohdeympäristön mukaan; jotkut anturoinnit ja väistöalgoritmit soveltuvat vain tietynlaisille kinematiikoille. Erityisesti joka suuntaan ohjautuvan (omnidirectional) robotin käsittely eroaa merkittävästi perinteisen auton kaltaisesta kulkuvälineestä.
 
-Nivelletyillä jaloilla käveleviä robotteja tutkitaan nykyään yhä enemmän. Humanoidirobotit soveltuisivat hyvin ihmisille tarkoitettuun ympäristöön, ja näyttäisivät ihmisille luontevilta jolloin kanssakäyminen olisi helppoa ja ne voisivat hoitaa ihmisten tehtäviä yleisellä tasolla. Nivelletyt jalat sopivat myöskin haastavaan, epätasaiseen maastoon pyöreitä renkaita paremmin vaikkei olisikaan ihmisten kaltaisista roboteista kyse. Tätä on kokeiltu esimeriksi metsäkoneissa \cite{billingsley2008robotics}. Monimutkaisen rakenteensa vuoksi ne eivät ole vielä juurikaan yleistyneet.
+Nivelletyillä jaloilla käveleviä robotteja tutkitaan nykyään yhä enemmän. Humanoidirobotit soveltuisivat hyvin ihmisille tarkoitettuun ympäristöön, ja näyttäisivät ihmisille luontevilta jolloin kanssakäyminen olisi helppoa ja ne voisivat hoitaa ihmisten tehtäviä yleisellä tasolla. Nivelletyt jalat saattavat sopia haastavaan, epätasaiseen maastoon pyöreitä renkaita paremmin. Tätä on kokeiltu esimeriksi metsäkoneissa \cite{billingsley2008robotics}. Monimutkaisen rakenteensa vuoksi niveljalat eivät ole vielä juurikaan yleistyneet -- pyörillä saavutetaan aivan riittävä ketteryys.
 
+Itse esteiden väistämisen aiheuttaman reitin lokaali suunnittelu on puhtaan laskennallista, mutta pohjalla on kuitenkin oikea ulkomaailma epätarkkuuksineen ja anturivirheineen. Jotkin menetelmät perustuvat hyvinkin vahvasti tietynlaiseen anturointitapaan, kuten siihen, että ultraääneltä saadaan suhteellisen epävarmoja mittauksia \cite{borenstein1988obstacleus}. Virheet ja epävarmuudet on pidettävä aina mielessä.
 
-Itse esteiden väistämisen aiheuttaman reitin lokaali suunnittelu on puhtaan laskennallista, mutta pohjalla on kuitenkin oikea ulkomaailma epätarkkuuksineen ja anturivirheineen. Jotkin menetelmät perustuvat hyvinkin vahvasti tietynlaiseen anturointitapaan, kuten siihen, että ultraääneltä saadaan suhteellisen epävarmoja mittauksia. Virheet ja epävarmuudet on pidettävä aina mielessä.
+Olennainen ongelma liikkuville roboteille on itsensä paikannus \cite{borenstein1996whereami}. Kun robotin oletetaan tietävän kohdepiste tarkasti, pitää myös tietää missä itse robotti sijaitsee. Tähän voidaan käyttää tapauksesta riippuen esim. odometriaa \cite{borenstein1001umbmark}, inertiasuunnistusta \cite{barshan1995inertial}, radiomajakoita \cite{borenstein1997postech} tai maamerkkejä (kamerakuvalla tai maanpinnasta ``kosketuksella'' havaittavia) \cite{betke2002mobilelandmarks} \cite{desouza2002vision}. Maamerkkejä kannattaa suhteuttaa myös ennalta tunnettuun karttaan, mikäli sellainen on saatavilla \cite{leonard199geombeac}. Sensorifuusiota Kalman-suotimella voidaan myös hyödyntää, jolloin saadaan tarkempi tulos monen anturin yhdistetystä mittauksesta \cite{jetto2002kalman}. Usein uutta karttatietoa kerätään samalla kun antureilta saadaan dataa (simultaneous localization and mapping, SLAM) \cite{se2002mobilelocalization} \cite{wang2003online}.
 
-Olennainen ongelma liikkuville roboteille on itsensä paikannus \cite{borenstein1996whereami}. Kun robotin oletetaan tietävän kohdepiste tarkasti, on myös tiedettävä missä itse robotti sijaitsee. Tähän voidaan käyttää tapauksesta riippuen esim. odometriaa \cite{borenstein1001umbmark}, inertiasuunnistusta \cite{barshan1995inertial}, radiomajakoita \cite{borenstein1997postech} tai maamerkkejä (kamerakuvalla tai maanpinnasta ``kosketuksella'' havaittavia) \cite{betke2002mobilelandmarks} \cite{desouza2002vision}. Maamerkkejä kannattaa suhteuttaa myös ennalta tunnettuun karttaan, mikäli sellainen on saatavilla \cite{leonard199geombeac}. Sensorifuusiota Kalman-suotimella voidaan myös hyödyntää, jolloin saadaan tarkempi tulos monen anturin yhdistetystä mittauksesta \cite{jetto2002kalman}. Usein myös karttatietoa kerätään samalla kun antureilta saadaan dataa (\emph{simultaneous localization and mapping, SLAM})  \cite{se2002mobilelocalization}.
+Esteet on havainnoitava robotin lähistöltä jollain lailla. Infrapuna- ja ultraäänisensorit ovat yksinkertaisuutensa ja edullisuutensa ansiosta hyvin yleisesti käytettyjä, mutta myös häiriöalttiita ja epävarmoja \cite{benet2002usinginfrared} \cite{borenstein1988obstacleus}. Ne toimivat tutkamaisesti lähettämällä signaalin ja seuraamalla kaikua esteestä, johon siten arvioidaan etäisyys kuluneen ajan perusteella. Näitä antureita on tyypillisesti useita robotin ympärillä osoittamassa eri suuntiin. 
 
-Esteet on havainnoitava robotin lähistöltä jollain lailla. Infrapuna ja ultraääni ovat yksinkertaisuutensa ja edullisuutensa ansiosta hyvin yleisesti käytettyjä, mutta myös häiriöalttiita ja epävarmoja \cite{benet2002usinginfrared} \cite{borenstein1988obstacleus}. Ne toimivat tutkamaisesti lähettämällä signaalin ja seuraamalla kaikua esteestä, johon siten arvioivat etäisyyden. Näitä antureita on tyypillisesti useita robotin ympärillä. Yksiulotteinen laserskanneri on myös tutkamainen ja useimmiten pyörii automaattisesti. Kaksiulotteinen laserskanneri kuvaa eteenpäin jatkuvasti ja saa viivarasterimuotoisen syvyyskuvan. Vielä tarkempaa kuvaa saadaan videokameroilla, joiden kanssa tarvitaan laskentatehoakin huomattavasti edellä mainittuja enemmän. Konenäkö on ylivoimaisesti kaikutekniikkaa parempi, kun tarvitaan tarkempaa tietoa edessä olevista pinnoista, kuten kuviointia tai asentoa. Kahdella oikein sijoitellulla kameralla saadaan syvyysnäkökin.
+Laserskannerit ja kamerat ovat tarkkoja ja näkevät kauas: niitä käytetään monesti ulkotiloissa. Kaksiulotteinen laserskanneri on myös tutkamainen ja useimmiten pyörii automaattisesti jatkuvasti; kolmiulotteinen kuvaa eteenpäin jatkuvasti ja tuottaa pisterasterimuotoisen syvyyskuvan \cite{guivant2000localization} \cite{surmann2003autonomous}. Vielä tarkempaa kuvaa saadaan videokameroilla, joiden kanssa tarvitaan laskentatehoakin huomattavasti edellä mainittuja enemmän. Konenäkö on ylivoimainen, kun tarvitaan tarkempaa tietoa edessä olevista pinnoista, kuten kuviointia tai asentoa. Kahdella oikein sijoitellulla kameralla saadaan aikaan syvyysnäkö \cite{murray2002stereo}.
 
 Tästä eteenpäin oletetaan, että esteet ja lähiympäristö sekä robotin sijainti on havaittu jollain menetelmällä, ja tietyllä varmuudella tiedetään ympäristön muoto ja mahdollisesti reitillä olevat esteet -- havainnointimenetelmään sen enempää ottamatta kantaa mitä siitä välttämättä tarvitsee huomioida. Liikkumismenetelmäkin oletetaan hoidetuksi sekä reitti annetuksi ylemmältä taholta. Keskitytään itse esteiden ohittamiseen.
 
@@ -349,7 +333,16 @@ TODO: selvennä ylläolevaa.
 \clearpage
 \section{Laajempia tapoja}
 
-Edellä esiteltiin useita erilaisia menetelmiä lokaaliin esteenväistöön. Näistä tosin kaikki keskittyvät vain siihen, että edessä on jokin tällä hetkellä tietyssä kohdassa oleva este reitin päällä, jolloin se on kierrettävä; tällaista tunnistusalgoritmia iteroitiin jatkuvasti. Reittiä voisi suunnitella hieman korkeammalla tasolla, jossa sensoridatasta tulkitaan todennäköiset paikallaan olevat tai liikkuvat hahmot, ja ennustetaan reitti näiden pohjalta hieman kauemmas ja tarkemmin: esimerkiksi liikkuvat, säännölliset esineet voisi tunnistaa, olettaa niiden kulkevan suoraa reittiä vielä hetken verran, yhdistää robotin omaan nopeuteen sekä tästä tiedosta päätellä, kannattaako este vaikkapa kiertää takaapäin odottaen, että se menee ohi.
+Edellä esiteltiin useita erilaisia menetelmiä lokaaliin esteenväistöön. Näistä tosin kaikki keskittyvät vain siihen, että edessä tai ympärillä on jokin tällä hetkellä tietyssä kohdassa oleva este reitin päällä, jolloin se on kierrettävä; tällaista tunnistusalgoritmia iteroitiin jatkuvasti. Algoritmit eivät ota maaston haastavuuteen tai pinnanmuotoihin mitään kantaa. Hyvin vinoon mutta pinnaltaan toisaalta tasaiseen mäkeen ei kannata lähteä kulkemaan, sillä robotti saattaa keikahtaa ympäri. Lisäksi reittiä voisi dynaamisessa ympäristössä suunnitella hieman korkeammalla tasolla, jossa sensoridatasta tulkitaan todennäköiset paikallaan olevat tai liikkuvat hahmot, ja ennustetaan reitti näiden pohjalta hieman kauemmas ja tarkemmin: esimerkiksi liikkuvat, säännölliset esineet voisi tunnistaa, olettaa niiden kulkevan suoraa reittiä vielä hetken verran, yhdistää robotin omaan nopeuteen sekä tästä tiedosta päätellä, kannattaako este vaikkapa kiertää takaapäin odottaen, että se menee ohi.
+
+
+\subsection{Haastava ympäristö}
+
+Sisätilat ja kaupunkimaastot ovat rakennettua ympäristöä, josta voi olettaa lukuisia yksinkertaistuksia. Rakentamaton maasto eli metsät, suot, muut kasvillisuudet ja kivikkoiset alueet ovat vaikeita, sillä maa ei ole tasainen eivätkä esteet ole korkeita tai kohtisuoria suhteessa maahan. Esteiksi on luokiteltava myös vaarallisen vinot mäet sekä kuopats. Kuoppia kutsutaan toisinaan negatiivisiksi esteiksi (negative obstacle). Tavallaan aiempana esitettyjä väistömenetelmiä voidaan soveltaa varsin suoraan myös tällaiseen maastoon -- esteiden havainnointi ja tulkinta tosin eroaa oleellisesti rakennetusta ympäristöstä. Vino maasto tai syvät kuopat voidaan havainnoida konenäöllä ja merkitä edelleen varausruudukkoon väistettävinä kohteina. Maastosta voitaisiin kerätä lisäinformaatiota kuten pinnan epätasaisuutta, joka voidaan merkitä karttaan alueiden ominaisuutena joka syötettäisiin reitinhaun hyvyysfunktiolle painokertoimena.
+
+Schäferin ym. nelipyöräinen robotti on varustettu stereonäöllä sekä kolmiulotteisella laserskannerilla, ja tuottaa ohjauksen käyttäytymispohjaisesti \cite{schafer2005stereo}. Korkeisiin mäkiin ja hyvällä tiellä pysymiseen sekä esteiden väistöön varaudutaan erikseen; eri heuristiset käyttäytymismallit näille tuottavat vihjeitä etu- ja takarenkaiden kääntökulmalle ja nopeudelle. Mallit toimivat sumean logiikan kaltaisesti: jos oikealla näkyy este, pyritään kääntymään vasemmalle. Esteet (sekä hankalat maastot että konkreettisesti läpipääsemättömät kappaleet) havaitaan pääasiassa syvyysnäön epäjatkuvuuskohtien avulla maaston geometriasta.
+
+Toisessa tutkimuksessa Schäfer ym. tutkivat nimenomaan kasvillisuuspainotteista maastoa, jossa harvojen kasviesteiden tunnistaminen on haastavampaa. \cite{schafer20083d}. Tässä stereonäön ja laserskannauksen avuksi on liitetty kosketusanturi robotin eteen. Kun edessä huomataan harvaa ja mahdollisesti joustavaa kasvillisuutta, edetään silti eteenpäin mutta hidastetaan huomattavasti, jolloin kosketusanturi ehtii ilmoittaa turvallisesti mahdollisesta törmäyksestä kiinteään kappaleeseen kasvillisuuden sisällä.
 
 
 \subsection{Liikkuvat esteet}
@@ -396,6 +389,8 @@ Neuroverkot matkivat ihmisten aivoja ja koostuvat tietystä määrästä sisään- ja u
 
 Neuroverkkoja on sovellettu sekä liikkuville roboteille että manipulaattoreille \cite{glasius1995neural}. Tapa ei ole erityisen nopea ja vaatii verkon ennalta opettamisen, jotta tietty syöte tuottaisi oikeanlaisen vasteen. Toisaalta on saatu myös hyväksyttäviä tuloksia dynaamisessa ympäristössä \cite{yang2000neural}.
 
+Myös täysin toisenlaista lähtökohtaa on ehdotettu robotin reitillä pysymiseen; Pomerleaun neuroverkolla toimiva konenäköjärjestelmä seuraa autotietä syöttämällä kuvan yläreunan pisteet verkolle, joka antaa vasteena hyvyysarvon eri suuntiin kääntymiselle \cite{pomerleau1989alvinn}. Tämä tapa ei väistä itse esteitä mitenkään.
+
 
 \subsection{Geneettiset algoritmit}
 
@@ -405,19 +400,17 @@ Tässä yhteydessä populaatio on lista solmupisteistä kartalla, joiden kautta reit
 
 Geneettiset algoritmit tuottavat aina kelvollisia polkuja, ja hyvyysfunktion valinnalla sekä algoritmin sisäisen toiminnan optimoinnilla, eli sillä kuinka solmupistereitti kuvataan populaationa, voidaan algoritmista saada tarkka ja nopea. Suurella kartalla GA:n iterointi voi silti kestää liian pitkään jotta sitä voisi käyttää reaaliajassa. Toinen ongelma on vaatimus kartasta: algoritmi on muihin verrattuna raskas erittäin paikalliseen reitinsuunnitteluun, ja globaaliin suunnitteluun se taas vaatii karttaa pidemmälle kuin mitä antureilla voidaan saada, eikä siis sovellu paikalliseen esteenväistöön.
 
-\subsection{Haastava ympäristö}
-
 
 \clearpage
 \section{Yhteenveto ja pohdintaa}
 
 Lähes kaikki robottien lähialueen liikkeensuunnittelualgoritmit pohjautuvat jossain määrin samoihin, monesti tutkittuihin vanhoihin aiheisiin. Esteenväistöalgoritmin valinnassa tulee kiinnittää huomiota erityisesti robotin kinematiikkaan ja ympäristöön jossa se tulee liikkumaan. Sisätiloissa ultraäänianturit ja VFH riittää hyvin, kunhan VFH:n kartta kattaa vain lähialueen eikä koko ``maailmaa'' mikäli tilassa on useita liikkuvia ihmisiä. Toisaalta VFH:hon voitaisiin myös yhdistää kartan varmuusarvojen vähentymistä ajan kuluessa ja esteiden nopeuksien suhteen, ehkäpä seinätiedot säilyttäen. Liikkuvat esteet voidaan tunnistaa etsimällä perättäisistä mittauksista vastaavat pisteet ja tutkimalla niiden liikkumisnopeuksia.
 
-Liikkuvat kappaleet tuskin koskaan ovat vain yhden mittauspisteen kokoisia, jolloin lähekkäisiä pisteitä voidaan yhdistää vertaamalla niiden keskinäisiä nopeuksia: suunnilleen saman nopeuksiset pisteet luultavasti kuuluvat samaan kappaleeseen. Tästä voidaan sitten estimoida keskikohta massakeskipisteen avulla.
+Liikkuvat kappaleet tuskin koskaan ovat vain yhden mittauspisteen kokoisia, jolloin lähekkäisiä pisteitä voidaan yhdistää vertaamalla niiden keskinäisiä nopeuksia: suunnilleen saman nopeuksiset pisteet luultavasti kuuluvat samaan kappaleeseen. Tästä voidaan sitten estimoida keskikohta massakeskipisteen avulla. Täten väistämisen suhteen tutkittavia esteitä on vähemmän.
 
 Liikkuviin esteisiin tulee kiinnittää huomiota pääasiassa kahdella eri tavalla: ensinnäkin liikkumaan kykenevän esteen ei voi olettaa olevan samassa kohdassa, mikäli kohtaan palataan myöhemmin -- jos jonkinlaista karttaa rakennetaan, on sensoreilta saataville karttapisteille hahmoteltava varmuusluvut jotka ikääntyvät pikkuhiljaa, jolloin epävarmat esteet unohdetaan eikä niiden pohjalta voi pitkän ajan päästä suunnitella reittiä. Toisekseen, jos robotilla on erityinen kiire tai jos haetaan esim. mukavasti ihmisten lähellä toimivaa käyttäytymistä, on hyvä tunnistaa liikkuvat objektit jo havainnointivaiheessa ja esim. risteystilanteessa odottaa hetki, että nopeampi sivulta päin tuleva este menisi ohi.
 
-Ulkotiloissa järkevä anturointi on kaksiulotteinen laserskannaus yhdistettynä yhteen tai useampaan kameraan. Ulkona liikkuvat robotit ovat helposti auton mallisia ja ajavat mahdollisesti kovaa vauhtia ympyrän kaaren mallisilla radoilla, eivätkä potentiaalikenttiin perustuvat tavat välttämättä ole tarpeeksi nopeita: varsinkin kaupunkiolosuhteissa esteitä havainnoidaan yleensä vain edestä ja niitä väistetään vasemmalle tai oikealle sekä mahdollisesti jarruttamalla. Tällöin lokaali esteenväistö muodostuu edessä olevien hahmojen havaitsemisesta ja robotin (usein auton) ohjaamisesta vasempaan tai oikeaan esteen ohitse nopeusestemenetelmällä ja renkaiden rajat huomioiden kaarinopeusmetodilla.
+Ulkotiloissa järkevä anturointi on kolmiulotteinen laserskannaus yhdistettynä yhteen tai useampaan kameraan. Ulkona liikkuvat robotit ovat helposti auton mallisia ja ajavat mahdollisesti kovaa vauhtia ympyrän kaaren mallisilla radoilla, eivätkä potentiaalikenttiin perustuvat tavat välttämättä ole tarpeeksi nopeita: varsinkin kaupunkiolosuhteissa esteitä havainnoidaan yleensä vain edestä ja niitä väistetään vasemmalle tai oikealle sekä mahdollisesti jarruttamalla. Tällöin lokaali esteenväistö muodostuu edessä olevien hahmojen havaitsemisesta ja robotin (usein auton) ohjaamisesta vasempaan tai oikeaan esteen ohitse nopeusestemenetelmällä ja renkaiden rajat huomioiden kaarinopeusmetodilla.
 
 Jos tiedetään ennalta millaiseen ympäristöön robotti viedään, voidaan tehdä yksinkertaistavia heuristiikkoja anturidatalle sekä esteille. Henkilöautoa automatisoidessa voidaan hyvin suurella todennäköisyydellä olettaa, että se ajaa autoteillä ja siten etsiä maanpinnasta kaistaviivoja (jolloin ohjaus ei tosin toimi lumella) sekä kiinnittää huomiota ennalta mm. risteystilanteisiin ja kaistanvaihtoihin. Kävelytiellä kulkeva robotti taas voisi yrittää etsiä talon seinää vierestä, joka auttaisi kulkemaan suoraan.
 
