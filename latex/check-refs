@@ -1,0 +1,5 @@
+#!/bin/sh
+grep '^@' kandi.bib|sed 's/.*{//'|sed s/,//|sort > .tmp-bib-items
+grep -o 'cite{[^}]\+' kandi.tex|sed s/cite{//|sort -u > .tmp-tex-items
+vimdiff .tmp-bib-items .tmp-tex-items
+rm -f .tmp-bib-items .tmp-tex-items
