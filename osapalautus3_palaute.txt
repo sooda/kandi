@@ -1,0 +1,109 @@
+- tiivistelmää voisi varmaan tiivistää entisestään
+- tiivistää vois kyllä muutenkin
+- johdantoon pari esimerkkiä mihin automaagisia robotteja ylipäätään käytetään
+- vähemmän menetelmien kuvailua ja enemmän omaa pohdintaa/tulkintaa
+- törmäyskeila vs. nopeuseste, häh
+- yhteenveto puoliksi, pohdintaa ennen tiivistettyä yhteenvetoa? prkl mitä jaarittelua
+
+- johdanto
+	- yleinen / tässä työssä... "Tässä työssä" johdannon loppuun tarkennukseksi (ei "tämän tekstin tarkoituksena on")
+	- vaihtelevassa ja dynaamisessa? sama asia
+	- "onhan tärkeää" pfff
+	- c-space: jossa pysyttävä -> jotka mahdollisia. myös: c-space muuttuu dynaamisessa ympäristössä
+	- ei ole universaalia, on yleisiä bla bla.. reffejä.
+	- maali -> kohdepiste tms...
+	- ennakkotieto pitää kartoittaa? ei tietoa kartoiteta
+	- kalman-suodin [ref]
+	- mikä on automaaginen robotti? missä niitä käytetään?
+
+- ympäristö ja havainnointi
+	- otsikoks lokaalin esteenväistön ongelma
+	- jäsennä -> looginen ja koherentti järjestys
+	- tarkenna paikoittain
+	- kuvateksti paremmaks
+
+- yleisiä menetelmiä
+	- sisätiloissa toiminta.. mikä toiminta?
+	- ulkotilat: työmaa, pelto, avolouhos, kaivos..
+	- reffei
+	*** potfield
+	- selitä lokaali minimi
+	- q:ssa ei asentoa
+	- tarkenna gradienttia
+	- mikä i-indeksi?
+	- kokonaisvoima F_kok...
+	- minimipolku?
+	- voima muuttuu kuten on tarvis... orly, eh
+	- voima voidaan laskea hetkellisesti... mikä voima?
+	- sense-act-höpöhöpöä: erittäin lokaali pla plaa
+	- etäisyysmittarien epävarmuudet irrelevanttia tänne; tarkennetaan occugridiin
+	- villi luonto, tarzan vai?
+	- hyvyysfunktiosta esimerkki
+	- miten huomataan minimin lähellä oleminen?
+	- ongelmat optimoitava pois? tarkenna
+	*** ohjauskulma
+	- selitä differentiaaliajo vaikka refillä
+	- miksi halutaan estää lipsuminen? ref
+	- tarkenna ohjauskulman rajoituksen ja nopeuden yhteyttä
+	*** varmuusruudukko
+	- irrallaan, liimaa jotenki
+	- sisällä kerrytettävät voimat... miten kerrytetään?
+	- parempi kuva?
+	- todennäköisyysarvot!
+	*** histogrammit
+	- parempi kuva!
+	- vff ja ultraäänianturit -- muokkaa varmuusruudukkoon
+	- tokan kappaleen kaks ekaa virkettä aivan sama asia
+	- siihen syntyy huippuja... mihin?
+	- paremmuusperusteluun reffei
+	- korkeatasoisen tulkintansa... tä? soveltuu uä:lle, joo joo, varmuusruudukon ominaisuus
+	- sektorin epäsuotuisuus etc, tarkenna
+	- testattu robolla jossa 24 uä:tä -- kerrottu jo
+	- maaston epätasaisuus ja kiihtyvyysanturihöpöhöpö toisaalle, ja tähän vain viittaus sinne
+	- vinoukset?!
+	- mainitse onkelma: robotti oletetaan ympyräksi.
+	- hyvyysfunktioesimerkki
+	- staattinen jatkuvasti päivitettävä..? huono sanavalinta + todnäkfeature niin ei seinää
+	*** törmäyskeila
+	- selvennä tai jätä pois.
+	- kuva
+	- approksimaatiota blä blä, avaa vähän
+	*** muuta
+	- nönnöö tutki yleistä heuristiikkaa blafh
+	- agv:t käytti pitkään hätäpysäytyskytkimiä, primitiivistä
+	- jos tuol on este, käännytään toisaalle -- iha liian simppeliä sense-actia
+
+- laajempia tapoja
+	- kehno otsikko
+	- eka mössö: konditionaalit pois, selvennä, ...
+	*** haastava ympäristö
+	- referenssejä
+	*** liikkuvat esteet
+	- kierrätä reffejä perusteluina väitteille
+	- kuvan symbolit: lambda hä?
+	- minkowskin summa selitettävä
+	- millainen nopeuskartta? millä tavalla valitaan?
+	- referenssejä...
+	- liikkuvien asioiden havainnoinnista eri osa, väistämisestä toinen (tämä VO)
+	*** yhdistelystä
+	- no yhdistä näitä jonnekin.
+	*** lokaali ja globaali reititys
+	- parempi otsikko: käytännön sovelluksia
+	- keskitytään lokaaliin, jos tulee globaali niin vaan sivutaan ja sysätään ongelma pois
+	- mikä välittäjäosa
+	- liikaa yksityiskohtaista dataa, taikakertoimia 0.9 ja 0.1? haastavuusarvot? miten adaptiivisesti?
+	*** neuroverkot
+	- taikatemppu: primitiivinen anturointi jonka "refleksejä" tutkitaan, syötetään verkolle, verkko oppii ennakoimaan mitä refleksejä ei saa tuottaa
+	*** ga
+	- jos ei tosi hyvää esimerkkiä lokaalista, niin pois
+	*** yhteenveto
+	- erottele pohdinnat kivasti erikseen ja vedä yhteen sit
+
+
+
+- yleistä
+	- konditionaalit pois (voisi -> voi)
+	- teksti tylsemmäksi
+	- lausejärjestystä: foota sivutaan myös -> työssä sivutaan myös foota.
+	- reffejä saa toistaa vaikka olisikin ihan äsken mainittu, jotta tarkentais
+	- jos väitetään jotain, reffataan
