@@ -1,9 +1,10 @@
-- tiivistelmää voisi varmaan tiivistää entisestään
-- tiivistää vois kyllä muutenkin
-- johdantoon pari esimerkkiä mihin automaagisia robotteja ylipäätään käytetään
-- vähemmän menetelmien kuvailua ja enemmän omaa pohdintaa/tulkintaa
-- törmäyskeila vs. nopeuseste, häh
-- yhteenveto puoliksi, pohdintaa ennen tiivistettyä yhteenvetoa? prkl mitä jaarittelua
+- omat kyssärit
+	- tiivistelmää voisi varmaan tiivistää entisestään
+	- tiivistää vois kyllä muutenkin
+	- johdantoon pari esimerkkiä mihin automaagisia robotteja ylipäätään käytetään
+	- vähemmän menetelmien kuvailua ja enemmän omaa pohdintaa/tulkintaa
+	- törmäyskeila vs. nopeuseste, häh
+	- yhteenveto puoliksi, pohdintaa ennen tiivistettyä yhteenvetoa? prkl mitä jaarittelua
 
 - johdanto
 	- yleinen / tässä työssä... "Tässä työssä" johdannon loppuun tarkennukseksi (ei "tämän tekstin tarkoituksena on")
