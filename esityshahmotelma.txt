@@ -1,0 +1,84 @@
+-: rakennepuu.
+#: puhetta.
+
+- yleistä löpinää
+	- mikä on robotti
+		# aloitetaan pikakatsauksella siitä että mikä on robotti. [minuutti tai pari, nopsaa kuvat vaan läpi]
+		- joku ikivanha kuva käytävärobosta
+			# tällaisia ne oli aluksi. hitaita mönttejä. kuva kasikytluvulta
+		- agvkuva (rocla awt?)
+			# roclan automaattitrukki, käyttää maamerkkejä navigointiin ja väistää esteitä (eli käytännössä ihmisiä) tutkalla 
+		- kuva hmmwv:stä
+			# maasturiin rakennettu testialusta ulkona ajamiseen
+		- metsäroverista tai jostain niistä konenäköhassukkeista vaikeassa maastossa
+		- ja i, robot -auto
+			# tulevaisuus? henkilöauto automaattiohjauksella elokuvasta i, robot
+		- roomba
+			# voi tääkin yleistyä tulevaisuudessa :)
+	- miksi pitäis liikkua autonomisesti? no robotit nyt toimii itsestään
+		# no mitä ideaa on robotista jota pitää kauko-ohjata käsin.
+		# liikkuu itsestään, eli kannattaisi olla törmäämättä minnekään
+- mitä on liikkeensuunnittelu
+	- globaali
+		# kartta tiedossa ennalta eikä sinänsä väistetä esteitä vaan suunnitellaan koko reitti.
+	# lokaali liikkeensuunnittelu on jo esteenväistöä
+- mitä on esteenväistö
+	- yksinkertaistettuna: robottia ohjaavassa tietokoneessa (kaikissa on sellainen nykyään) pyörii havaitse-suunnittele-toimi-silmukka
+		# havaitaan esteet, mietitään minne pitäisi mennä ja pyöritetään renkaita siihen suuntaan.
+	- anturointi: vaikka laserskannaus tai konenäkö
+		# laserskannereissa vispataan laserpistettä peileillä ja mitataan heijastuksen havaitsemiseen kuluva aika laserpulssin lähettämisestä.
+		# videokameroita käytetään ulkotiloissa, koska niillä saa yksityiskohtaista dataa. monella kameralla syvyysnäkö; toisinaan yhdistetään 3d-lasereihin.
+	- anturoinnin pohjalta saadaan rakennettua lokaali kartta
+		- kuva tähä varmuusruudukosta.
+		# käytännössä minkään menetelmän mittauksia ei käytetä aivan suoraan mihinkään, vaan ne abstraktoidaan välissä johonkin karttaan tai kuvaan lähiympäristöstä. esteenväistö toimii kivemmin kun on enemmän dataa kuin yhdeltä anturointikierrokselta kun sitä tapahtuu aika usein
+	- parsitaan kartasta esteet ja tehdään väistösuunnitelma
+		# me ollaan tässä. pisteitä on tuolla. ei haluta törmätä, mennään vähän kauemmas. tavoite on tuolla, ajetaan sitä päin.
+	- ohjataan robottia suunnitelman mukaisesti, kunnes alkaa uusi kierros
+		# toiminnalla on diskreetti luonne. mittauksia ei ole koko ajan voimassa, vaan niitä saadaan tietyin väliajoin. reittisuunnittelijaa ajetaan n kertaa sekunnissa.
+- väistöstrategioita
+	- heuristiikkaa: näkyy vasemmalla -> käänny oikealle.
+	- tosi aivotonta: tuntosarvinappi -> pysähy
+		# tämä ja aiempi voivat toimia halpisleluille muttei sovellu mihinkään oikeaan. liian vähän informaatiota.
+		# toisaalta tuntosarvi on hyvä hätäpysäytin kun kaikki muu menee pieleen.
+	- potfield
+		- yleisesti käytetty.
+		- oletetaan että on jossain kartassa tavoitepiste ja esteitä.
+		- tavoite vetää robottia puoleensa; robotti hylkii esteitä.
+			# ajattele vuoristoja tai ehkä magneetteja.
+		- potentiaalikarttakuva
+			# no tässä meillä on vuoristo. voima tulee siitä, että vieritään alaspäin painovoiman kaltaisesti. voi sen hylkimisen näinkin ajatella.
+		- vektorikuva
+			# tässä siis ne voimat.
+		- ongelmia
+			- lokaali minimi
+				# kuoppa jossa voimat kumoavat toisensa
+			- värähtely
+				# ei mennä tonne, mennään tänne. oho tännekään ei sais mennä, mennään pois. robotilla o hitautta, inertiaa. [pyöritä kynää käyrässä paperissa]
+				# pid? joka suuntainen eh? per akseli?
+			- ei pääse läpi esteiden vaikka oikeasti pääsisi
+				# esteitä hyljitään ja kahdessa niitä hylkii molempia poispäin jotka kumoaa toisensa ja sit ne ohjaa peruuttamaan
+	- vfh
+		- nopea katsaus kuvan avulla: varmuusruudukkoon päälle histogrammi
+			- lasketaan ruudukosta sektoreita robottikeskeisestä ympyrästä
+			- sektorille jäävät pisteet lasketaan yhteen
+			- tehdään niistä histogrammi
+			- etsitään histogrammista suurin laakso ja suunnataan sinne
+	- muuta huomioitavaa
+		- massan hitaus ja robotin kinematiikka
+			# rajoitettu kiihtyvyys ei vaihda suuntaa välittömästi, ja autotyylinen ohjaus kääntyy ympyrän kaarella.
+		- mitä jos kaikki menee pieleen
+			# hätäseiskytkimiä tuntosarviksi
+			# ei hyväksyttävää kovaa kulkevassa autossa joka ei ehdi reagoida
+		- heuristiikkaa erikoistapauksiin
+			# erikoistapauksia intuitiolla tai nopeita reaktioita "selkärangasta"
+			- hätäjarrutus
+			# kaikki anturidatat muuttuvat yhtäkkiä -> joku hyppäs eteen, hylätään muut suunnittelut ja lyödään hetkeksi jarrut pohjaan
+			- kaistanvaihto
+			# vaikka autopilotille edessä ja vieressä olevien autojen tunnistus, jarruttelua että viereiselle kaistalle mahtuu jne
+- tosimaailmasta
+	- väistömetodit teoreettisia ja abstrakteja
+	- tärinää, hankalaa maastoa, vaikeit yksityiskohtia kartassa
+	- liikkuvia esteitä: risteystilanteita, ehkä video siihen hienoon youtubesimulaatioon. reciprocal vo
+	- vo:sta ei sitä teoriakuvaa vaan joku tosielämäkuva risteyksestä tms
+- loppukevennys
+	- ???
