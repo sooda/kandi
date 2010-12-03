@@ -1,0 +1,216 @@
+\documentclass[finnish]{beamer}
+\usepackage[latin1]{inputenc}
+%\usepackage{fontspec}
+\usetheme{Frankfurt}
+
+\title{Liikkuvien robottien paikallinen esteenväistö ja liikkeensuunnittelu}
+\author{Konsta Hölttä}
+\date{9.12.2010}
+
+\newcommand{\kuva}[2]{\begin{figure}[h]
+\includegraphics[width=#1\textwidth]{#2}
+\end{figure}}
+
+\begin{document}
+
+\maketitle
+
+
+% ---
+\begin{frame}
+\frametitle{Robotti}
+
+\begin{itemize}
+
+\item Automaattisesti toimiva kone
+\item Tässä yhteydessä: itsestään ajava työväline tai ajoneuvo
+\item Kun robotti liikkuu itsestään, sen on myös väistettävä esteitä automaattisesti
+\item Robotti pysyy ohjauskäskyillä konfiguraatioavaruudessaan
+\end{itemize}
+
+\end{frame}
+
+
+% ---
+\begin{frame}
+\frametitle{Tutkimusrobotti}
+\kuva{0.6}{rhino}
+Real World Interface B21 -tutkimusrobotti.
+
+{ \small Chakravarthy, A. and Ghose, D. Obstacle avoidance in a dynamic environment: A collision cone approach }
+
+\end{frame}
+
+% ---
+\begin{frame}
+\frametitle{Vihivaunu}
+% \kuva{0.6}{agv}
+Roclan AGV (automated guiged vehicle). Lokalisointi maamerkeillä ja esteiden (ihmisten) väistö tutkalla.
+\end{frame}
+
+
+% ---
+\begin{frame}
+\frametitle{HMMWV}
+"High Mobility Multipurpose Wheeled Vehicle", Humvee, varustettuna laserskannerilla, videokameroilla ja gps:llä.
+
+Tutun näköinen? Siviiliversio on Hummer.
+\end{frame}
+% ---
+\begin{frame}
+\frametitle{Audi RSQ}
+\kuva{0.6}{rsq}
+
+Konseptiauto scifielokuvasta I, Robot. Ohjaajana autopilotti, johon tosin päähenkilö ei luottanut.
+
+{ \small http://en.wikipedia.org/wiki/File:Audi\_study.JPG }
+\end{frame}
+% ---
+\begin{frame}
+\frametitle{Roomba}
+\kuva{0.7}{roomba}
+Pölynimuri. Väistää esteet vasta niihin törmättyään.
+{\small http://en.wikipedia.org/wiki/File:Roomba3g.jpg}
+\end{frame}
+
+% ---
+\begin{frame}
+\frametitle{Liikkeensuunnittelu}
+\begin{itemize}
+\item Robotin ohjaaminen liittyy aina ennalta suunniteltuun reittiin
+\item Globaali: kartta tiedossa ennalta; ei sinänsä väistetä mitään vaan lasketaan optimaalinen reitti
+\item Lokaali: reitillä havaittiin este johon törmääminen pitää nopeasti estää
+\end{itemize}
+\end{frame}
+% ---
+\begin{frame}
+\frametitle{Esteenväistö}
+\begin{itemize}
+\item Yksinkertaistettuna: robottia ohjaavassa tietokoneessa pyörii havaitse-suunnittele-toimi-silmukka
+\item Anturointi: vaikka laserskannaus tai konenäkö
+\item Anturoinnin pohjalta saadaan rakennettua (lokaali) kartta
+% kuva varmuusruudukosta? vai tähän palataan myöhemmin?
+\item Parsitaan kartasta esteet ja tehdään väistösuunnitelma
+\item Ohjataan robottia suunnitelman mukaisesti, kunnes alkaa uusi kierros
+\end{itemize}
+\end{frame}
+
+% TODO: tähä varmuusruudukko?
+
+% ---
+\begin{frame}
+\frametitle{Väistöstrategioita}
+\begin{itemize}
+\item Potentiaalikenttä
+\item Vektorikenttähistogrammi
+\item Heuristiikkaa
+\item Triviaali hätäseis-toiminto kytkimillä
+\end{itemize}
+\end{frame}
+
+
+% ---
+\begin{frame}
+\frametitle{Potentiaalikenttä}
+\begin{itemize}
+\item Magneetteina ajateltuna: tavoite vetää puoleensa, esteet hylkivät
+\item Maaston korkeutena: tavoite on matalin kuoppa, esteet pieniä vuoria
+\item Potentiaalifunktioiden aiheuttamat voimat lasketaan niiden gradienteista
+\item Voimat summataan yhteen ja kokonaisvoimalla kiihdytetään robottia oikeaan suuntaan
+\end{itemize}
+\end{frame}
+% ---
+\begin{frame}
+\frametitle{Potentiaalikartta}
+\kuva{0.8}{potentiaalia}
+Potentiaalifunktioiden summasta korkeuskartta.
+
+Tavoite keskellä ja neljä estettä ympärillä.
+\end{frame}
+% ---
+\begin{frame}
+\frametitle{Voimavektorit}
+\kuva{0.7}{potvektorit}
+Kohteen ja yhden esteen aiheuttamat voimat: $F_r$ repulsiivinen, $F_a$ attraktiivinen ja $F_{kok}$ kokonaisvoima.
+
+Robottia kiihdytetään vektorin $F_{kok}$ suuntaan.
+\end{frame}
+% ---
+\begin{frame}
+\frametitle{Ongelmia}
+\begin{itemize}
+\item Lokaali minimi: jumiudutaan paikalliseen kuoppaan jonka keskellä voimat kumoutuvat
+\item Värähtely lähekkäisistä seinistä: ohjaussignaalia pitäisi kompensoida
+\item Kapeat välit: robotti juuri ja juuri mahtuisi, mutta molemmat reunat työntävät poispäin
+\end{itemize}
+\end{frame}
+
+% ---
+\begin{frame}
+\frametitle{VFH}
+\begin{itemize}
+\item Vektorikenttähistogrammi, vector field histogram
+\item Anturien tieto kerätään taulukkoon
+\item Jaetaan robotin lähialue sektoreihin
+\item Summataan esteinformaatio sektoreittain
+\item Käydään sektorit läpi ja kuvataan ne histogrammiin
+\item Tulkitaan histogrammista matalin laakso lähinnä nykyistä suuntaa
+\end{itemize}
+\end{frame}
+
+% ---
+\begin{frame}
+\frametitle{Kinematiikan rajoitteita}
+\begin{itemize}
+\item Robotti ei ole pistemäinen eikä välttämättä edes approksimoitavissa sellaiseksi
+\item Massalla on hitautta eikä robotti käänny välittömästi
+\item Pyörät eivät aina voi aikaansaada kiihtyvyyttä mihin suuntaan tahansa
+\item Ratti ohjaa autoa aina ympyrän kaarella
+\end{itemize}
+\end{frame}
+
+% ---
+\begin{frame}
+\frametitle{Tilannekohtainen heuristiikka}
+\begin{itemize}
+\item Erikoistapauksia intuitiolla tai nopeita reaktioita "selkärangasta"
+\item Tuntosarvityyliset hätäkytkimet: este jäi muilta havaitsematta
+\item Hätäjarrutus yhtäkkisistä muutoksista
+\item Kaistanvaihto ajotiellä
+\item Erityiset risteystilanteet tai muu väistäminen
+\end{itemize}
+\end{frame}
+
+% ---
+\begin{frame}
+\frametitle{Tosimaailman ominaisuuksia}
+\begin{itemize}
+\item Väistömetodit teoreettisia ja abstrakteja
+\item Tärinää, hankalaa maastoa, vaikeita yksityiskohtia kartassa
+\end{itemize}
+	- 
+\end{frame}
+% ---
+\begin{frame}
+\frametitle{}
+\end{frame}
+% ---
+\begin{frame}
+\frametitle{}
+\end{frame}
+% ---
+\begin{frame}
+\frametitle{}
+\end{frame}
+% ---
+\begin{frame}
+\frametitle{}
+\end{frame}
+
+\begin{itemize}
+\item
+\item
+\end{itemize}
+
+
+\end{document}
