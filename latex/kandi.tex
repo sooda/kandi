@@ -1,6 +1,6 @@
 \documentclass[finnish,12pt]{article}
 \usepackage{aaltothesis}
-\usepackage{natbib}
+\usepackage[sort&compress]{natbib}
 \bibliographystyle{unsrt} % plain} % finplain
 
 % \usepackage[utf8]{inputenc}
@@ -102,7 +102,7 @@ linkcolor=blue,citecolor=black,pdfstartview=FitH]{hyperref}
 
 \place{Espoo}
 %% Kandidaatintyn pivmr on sen esityspivmr! 
-\date{x.y.2010}
+\date{9.12.2010}
 
 %% Kandidaattiseminaarin vastuuopettaja tai diplomityn valvoja.
 %% Huomaa titteliss "\" -merkki pisteen jlkeen, 
@@ -127,7 +127,7 @@ Liikkuviin robotteihin ja niihin liittyvään esteenväistöön kuuluu laaja-alaisuut
 
 Työn pääpaino on yhtäkkiä ilmaantuvissa esteissä ja ympäristössä, josta ei juurikaan tiedetä mitään etukäteen. Ensin luodaan katsaus siihen, mitä liikkuvat robotit ovat ja mitä ne tarvitsevat rakenteeltaan ja antureiltaan väistääkseen esteitä. Käydään läpi muutamia yleisiä lokaaleja esteenväistöstrategioita ja niiden soveltuvuutta eri ympäristöihin siten, että päästään määränpäähän mahdollisimman optimaalisella tavalla osumatta reitillä oleviin maaston haastavuuksiin ja stationaarisiin ja liikkuviin esteisiin.
 
-Lopuksi luodaan myös väljempi katsaus aiheen kokonaiskuvaan. Pohditaan esitettyjen menetelmien käyttökelpoisuutta ja robustisuutta eri näkökulmista ja esitetään haastavasta maastosta johtuvia käytännön ongelmia; on myös todennäköistä joutua väistämään liikkuviakin esteitä. [TODO].
+Lopuksi luodaan myös väljempi katsaus aiheen kokonaiskuvaan. Pohditaan esitettyjen menetelmien käyttökelpoisuutta ja robustisuutta eri näkökulmista ja esitetään haastavasta maastosta johtuvia käytännön ongelmia; on myös todennäköistä joutua väistämään liikkuviakin esteitä. Esitellään myös muutama useita menetelmiä yhdistävä sovellus.
 
 %Pääpaino on ympäristöllä, josta ei juurikaan tiedetä mitään etukäteen; on myös todennäköistä joutua väistämään liikkuviakin esteitä. Pohditaan esteentunnistustapojen ja robotin ohjaustapojen soveltuvuutta eri ympäristöihin siten, että päästään määränpäähän mahdollisimman optimaalisella tavalla osumatta reitillä oleviin maaston haastavuuksiin ja stationaarisiin ja liikkuviin esteisiin.
 
@@ -136,16 +136,16 @@ Lopuksi luodaan myös väljempi katsaus aiheen kokonaiskuvaan. Pohditaan esitettyj
 
 \newpage
 
-\mysection{Esipuhe}
-Tähän ei mitään tarvinne...
+%\mysection{Esipuhe}
+%Tähän ei mitään tarvinne...
 
-Joka kappaleeseen lisättäneen vielä tarkennuksia johonkin suuntaan kunhan ajatukset selvenee. Etenkin loppupuoliskoon.
+%Joka kappaleeseen lisättäneen vielä tarkennuksia johonkin suuntaan kunhan ajatukset selvenee. Etenkin loppupuoliskoon.
 
-\vspace{5cm}
-Otaniemi, x.y.2010
+%\vspace{5cm}
+%Otaniemi, 9.12.2010
 
-\vspace{5mm}
-{\hfill Konsta Hölttä \hspace{1cm}}
+%\vspace{5mm}
+%{\hfill Konsta Hölttä \hspace{1cm}}
 
 \newpage
 
@@ -185,15 +185,13 @@ Referenssejä!
 
 Esteenväistö ja liikkeensuunnittelu ovat klassisia ongelmia joihin on oleellisesti kiinnitettävä huomiota aina itsenäisesti liikkuvaa robottia suunnitellessa. Robotin on osattava navigoida itsenäisesti ja sen on päästävä perille nopeasti vahingoittamatta itseään tai ympäristöään. Robotilla on tietty konfiguraatioavaruus (configuration space), eli joukko mahdollisista sijaintien, asentojen ja nopeuksien yhdistelmistä eli periaatteessa kaikesta vapaasta tilasta; esteet ovat konfiguraatioavaruuden ulkopuolella. Lokaaliin anturipohjaiseen esteenväistöön on luonnollisesti monia eri menetelmiä, joiden hyödyllisyys ja soveltuvuus riippuu robotin ympäristöstä ja anturien laadusta \cite{hwang1992gross, desouza2002vision, bonin2008visual}.
 
-Ympäristöä havainnoidaan jatkuvasti robotin antureilla, ja kun esteitä aistitaan, pyritään laskemaan väistämissuunnitelma mahdollisimman nopeasti. Jotkin väistötavat liittyvät tiettyihin antureihin ja reaaliaikaisuuteen, ja anturien hyvät ja huonot puolet on muutenkin otettava huomioon mm. havaitsemisetäisyyden, kohinan ja epävarmuuksien takia [REF]. Yleisiä havainnointimenetelmiä ovat ultraääni- ja infrapuna-anturit, laserskannerit ja videokamerat. Hyvillä menetelmillä anturointi onnistuu jatkuvasti; toisilla robotti joutuu välillä pysähtymään mittauksia varten. Pyritään siihen, että robotti voi ajaa jatkuvasti pysähtymättä.
+Ympäristöä havainnoidaan jatkuvasti robotin antureilla, ja kun esteitä aistitaan, pyritään laskemaan väistämissuunnitelma mahdollisimman nopeasti. Jotkin väistötavat liittyvät tiettyihin antureihin ja reaaliaikaisuuteen, ja anturien hyvät ja huonot puolet on muutenkin otettava huomioon mm. havaitsemisetäisyyden, kohinan ja epävarmuuksien takia [REF]. Havainnointimenetelmiä ovat mm. ultraääni- ja infrapuna-anturit, laserskannerit ja videokamerat. Hyvillä menetelmillä anturointi onnistuu jatkuvasti; toisilla robotti joutuu välillä pysähtymään mittauksia varten. Pyritään siihen, että robotti voi ajaa jatkuvasti pysähtymättä.
 
-Esteiden ohi selviämisen lisäksi robotin on pysyttävä reitillään ja sen on jotenkin saatava tietoa sijainnistaan ja suunnastaan, mikäli tavoitteena on päästä tavoitepisteeseen eikä harhailla sokeasti. Tämänkin toteutus riippuu robotin sijaintiantureista ja niiden sopivuudesta ympäristöön. Yleisimmin käytettyjä tapoja paikannukseen ovat odometria, maamerkit, gps, radiomajakat ja näkyvien maanmuotojen vertaaminen karttaan \cite{borenstein1997postech}. Kaikki tavat ovat jossain määrin epätarkkoja, joten virhearviot on otettava huomioon ja mielellään käytettävä montaa tapaa rinnakkain. Kalman-suodin onkin suosittu apu reitin ja sijainnin tarkastelun yhteydessä \cite{jetto2002kalman}.
+Esteiden ohi selviämisen lisäksi robotin on pysyttävä reitillään ja sen on jotenkin saatava tietoa sijainnistaan ja suunnastaan, mikäli tavoitteena on päästä tavoitepisteeseen eikä harhailla sokeasti. Tämänkin toteutus riippuu robotin sijaintiantureista ja niiden sopivuudesta ympäristöön. Yleisesti soveltuvia tapoja paikannukseen ovat odometria, maamerkit, gps ja radiomajakat. Näkyviä maanmuotoja voidaan myös verrata karttaan robotin paikoittamiseksi \cite{borenstein1997postech}. Kaikki tavat ovat jossain määrin epätarkkoja, joten virhearviot on otettava huomioon ja mielellään käytettävä montaa tapaa rinnakkain. Kalman-suodin onkin suosittu apu reitin ja sijainnin tarkastelun yhteydessä \cite{jetto2002kalman}.
 
 Tässä työssä kartoitetaan yleisellä tasolla eri esteenväistömenetelmiä ulkotiloissa maanpinnalla liikkuville roboteille. Kiinnitetään erityisesti huomiota vaihtelevassa ja dynaamisessa ympäristössä kulkeviin robotteihin. Tässä yhteydessä dynaamisella ympäristöllä tarkoitetaan sellaista, jossa esteet ovat vaihtelevia ja voivat liikkua, ja robotilla jotakin itsenäisesti liikkuvaa ajoneuvoa, kuten vihivaunua tai automaattisesti ajavaa henkilöautoa. Kiinteästi asennettavia robotteja kuten manipulaattorikäsivarsia ei käsitellä.
 
-Työssä sivutaan myös globaalia liikkeensuunnittelua, eli tilannetta jossa kartta josta reitti suunnitellaan on tiedossa etukäteen. Painopiste on kuitenkin yhtäkkisten, odottamattomien esteiden havaitsemisessa ja väistämisessä kun jonkinlainen tavoitepiste on tiedossa ennalta. Reitin ja ympäristön muutoksia voidaan myös päivittää robotille reaaliajassa ylemmältä taholta. Aina ei kuitenkaan voida saada ennakkotietoa alueista, joissa robotti kulkee; tällöin alueet on kartoitettava matkan varrella. Globaalin reitin suunnittelu oletetaan hoidetuksi; ei oteta kantaa, tuleeko reitti jostain ylempää vai lasketaanko sitäkin reaaliajassa robotilla.
-
-Universaalia aivan kaikkialle sopivaa lokaalia esteenväistöä ja/tai liikkeensuunnittelua ei ole, koska mahdollinen työalue voi olla mitä vain tehdastiloista kaupunkimaastoon. On tosin useita yleisiä sovellettavia menetelmiä ja tilannekohtaisia heuristiikkoja. Myös monista tavoista yhdistelemällä voidaan saada kehittyneempiä tapoja kartoittamalla kaikkien heikkoudet ja soveltamalla tiettyyn ympäristöön. Monia tutkimuksia on testattu käytännössä, toisia simuloimalla ja jotkut ovat jääneet vain teoreettisiksi pohdinnoiksi ja kaavoiksi. 
+Työssä sivutaan myös globaalia liikkeensuunnittelua, eli tilannetta jossa reitinsuunnittelukartta on tiedossa etukäteen. Painopiste on kuitenkin yhtäkkisten, odottamattomien esteiden havaitsemisessa ja väistämisessä kun jonkinlainen tavoitepiste on tiedossa ennalta. Reitin ja ympäristön muutoksia voidaan myös päivittää robotille reaaliajassa ylemmältä taholta. Aina ei kuitenkaan voida saada ennakkotietoa alueista, joissa robotti kulkee; tällöin alueet on kartoitettava matkan varrella. Globaalin reitin suunnittelu oletetaan hoidetuksi; ei oteta kantaa, tuleeko reitti jostain ylempää vai lasketaanko sitäkin reaaliajassa robotilla.
 
 \clearpage
 
@@ -205,40 +203,39 @@ Robotin paikallisen navigoinnin pohjalla on hyvin paljon muitakin väistöalgoritm
 
 Tässä työssä robotti on jokin autonomisesti liikkuva väline jolla on tietty määränpää. Ympäristö jossa robotti ajaa määrää pitkälti robotin mekaanisen rakenteen: esimerkiksi pyöreäalustainen joka suuntaan kääntyvä ajoneuvo, henkilöauto, perävaunu tai metsäkone. Ympäristö ja rakenne puolestaan määräävät, miten robottiin voi kiinnittää anturit havainnoimaan ympäristöä. Nämä kaikki yhdessä tuovat rajoitteet, joiden perusteella lokaali liikkeensuunnittelu ratkaistaan.
 
-Pyörät ovat yksinkertaisen mutta toimivan tekniikkansa vuoksi ylivoimaisesti useimpien nykyrobottien liikkumisen perustana \cite{siegwart2004introduction}. Haastavassa maastossa käytetään jotain pyöristä jalostettua tapaa, kuten telaketjuja tai renkaita, joihin on kiinnitetty piikkejä tms. \cite{abad2009axelwheel} \cite{saranli2001rhex}. Rakenteen puolesta (mm. renkaiden lukumäärä ja kääntymistapa) pyörillä liikkumiseenkin on hyvin monia tapoja, joissa on kaikissa omat hyvät ja huonot puolensa. Tapoja rajoittaa enimmäkseen robotin muoto ja kohdeympäristö; jotkut anturoinnit ja väistöalgoritmit soveltuvat vain tietynlaisille kinematiikoille eli robotin rakenteelle. Erityisesti joka suuntaan ohjautuvan robotin (omnidirectional robot) käsittely eroaa merkittävästi perinteisen auton kaltaisesta kulkuvälineestä [REF].
+Pyörät ovat yksinkertaisen mutta toimivan tekniikkansa vuoksi ylivoimaisesti useimpien nykyrobottien liikkumisen perustana \cite{siegwart2004introduction}. Haastavassa maastossa käytetään jotain pyöristä jalostettua tapaa, kuten telaketjuja tai renkaita, joihin on kiinnitetty piikkejä tms. \cite{abad2009axelwheel, saranli2001rhex}. Rakenteen puolesta (mm. renkaiden lukumäärä ja kääntymistapa) pyörillä liikkumiseenkin on hyvin monia tapoja, joissa on kaikissa omat hyvät ja huonot puolensa. Tapoja rajoittaa enimmäkseen robotin muoto ja kohdeympäristö; jotkut anturoinnit ja väistöalgoritmit soveltuvat vain tietynlaisille kinematiikoille eli robotin rakenteelle. Erityisesti joka suuntaan ohjautuvan robotin (omnidirectional robot) käsittely eroaa merkittävästi perinteisen auton kaltaisesta kulkuvälineestä, jonka kiihtyvyyssuunnat rajoittuvat eturenkaiden mukaan.
 
-Nivelletyillä jaloilla käveleviä robotteja tutkitaan nykyään yhä enemmän. Humanoidirobotit soveltuvat ihmisille tarkoitettuun ympäristöön, ja näyttäisivät ihmisille luontevilta jolloin kanssakäyminen olisi helppoa ja ne voisivat hoitaa ihmisten tehtäviä [ASIMOV]. Nivelletyt jalat saattavat sopia haastavaan, epätasaiseen maastoon pyöreitä renkaita paremmin. Tätä on kokeiltu esimeriksi metsäkoneissa \cite{billingsley2008robotics}.
+Nivelletyillä jaloilla käveleviä robotteja tutkitaan nykyään yhä enemmän. Humanoidirobotit soveltuvat ihmisille tarkoitettuun ympäristöön, ja näyttäisivät ihmisille luontevilta jolloin kanssakäyminen olisi helppoa. Nivelletyt jalat saattavat sopia haastavaan, epätasaiseen maastoon pyöreitä renkaita paremmin. Tätä on kokeiltu esimeriksi metsäkoneissa \cite{billingsley2008robotics}.
 
 Itse esteiden väistämisen aiheuttaman reitin lokaali suunnittelu on puhtaan laskennallista, mutta pohjalla on kuitenkin oikea ulkomaailma epätarkkuuksineen ja anturivirheineen. Jotkin menetelmät perustuvat hyvinkin vahvasti tietynlaiseen anturointitapaan, kuten siihen, että ultraääneltä saadaan suhteellisen epävarmoja mittauksia \cite{borenstein1988obstacleus}. Virheet ja epävarmuudet on pidettävä aina mielessä.
 
 
 \subsection{Paikannus ja anturointi}
 
-Olennainen ongelma liikkuville roboteille on itsensä paikannus \cite{borenstein1996whereami}. Kun robotin oletetaan tietävän kohdepiste tarkasti, pitää myös tietää missä itse robotti sijaitsee. Tähän voidaan käyttää tapauksesta riippuen esim. odometriaa \cite{borenstein1001umbmark}, inertiasuunnistusta \cite{barshan1995inertial}, radiomajakoita \cite{borenstein1997postech} tai maamerkkejä (kamerakuvalla tai maanpinnasta ``kosketuksella'' havaittavia) \cite{betke2002mobilelandmarks} \cite{desouza2002vision}. Maamerkkejä kannattaa suhteuttaa myös ennalta tunnettuun karttaan, mikäli sellainen on saatavilla \cite{leonard199geombeac}. Sensorifuusiota Kalman-suotimella voidaan myös hyödyntää, jolloin saadaan tarkempi tulos monen anturin yhdistetystä mittauksesta \cite{jetto2002kalman}. Usein uutta karttatietoa kerätään samalla kun antureilta saadaan dataa (simultaneous localization and mapping, SLAM) \cite{se2002mobilelocalization} \cite{wang2003online}.
+Olennainen ongelma liikkuville roboteille on itsensä paikannus \cite{borenstein1996whereami}. Kun robotin oletetaan tietävän kohdepiste tarkasti, pitää myös tietää missä itse robotti sijaitsee. Tähän voidaan käyttää tapauksesta riippuen esim. odometriaa \cite{borenstein1001umbmark}, inertiasuunnistusta \cite{barshan1995inertial}, radiomajakoita \cite{borenstein1997postech} tai maamerkkejä (kamerakuvalla tai maanpinnasta ``kosketuksella'' havaittavia) \cite{betke2002mobilelandmarks, desouza2002vision}. Maamerkkejä kannattaa suhteuttaa myös ennalta tunnettuun karttaan, mikäli sellainen on saatavilla \cite{leonard199geombeac}. Sensorifuusiota Kalman-suotimella voidaan myös hyödyntää, jolloin saadaan tarkempi tulos monen anturin yhdistetystä mittauksesta \cite{jetto2002kalman}. Usein uutta karttatietoa kerätään samalla kun antureilta saadaan dataa (simultaneous localization and mapping, SLAM) \cite{se2002mobilelocalization, wang2003online}.
 
-Esteet on havainnoitava robotin lähistöltä jollain lailla. Infrapunaheijastuksiin ja ultraäänikaikuun perustuvat sensorit ovat yksinkertaisuutensa ja edullisuutensa ansiosta hyvin yleisesti käytettyjä, mutta myös häiriöalttiita ja epävarmoja \cite{benet2002usinginfrared} \cite{borenstein1988obstacleus}. Ne toimivat tutkamaisesti lähettämällä signaalin ja seuraamalla kaikua esteestä, johon siten arvioidaan etäisyys kaiun matkaan kuluneen ajan perusteella. Näitä antureita on tyypillisesti useita robotin ympärillä osoittamassa eri suuntiin.
+Esteet on havainnoitava robotin lähistöltä jollain lailla. Infrapunaheijastuksiin ja ultraäänikaikuun perustuvat sensorit ovat yksinkertaisuutensa ja edullisuutensa ansiosta hyvin yleisesti käytettyjä, mutta myös häiriöalttiita ja epävarmoja \cite{benet2002usinginfrared, borenstein1988obstacleus}. Ne toimivat tutkamaisesti lähettämällä signaalin ja seuraamalla kaikua esteestä, johon siten arvioidaan etäisyys kaiun matkaan kuluneen ajan perusteella. Näitä antureita on tyypillisesti useita robotin ympärillä osoittamassa eri suuntiin.
 
-Laserskannerit ja kamerat ovat tarkkoja ja näkevät kauas: niitä käytetään monesti ulkotiloissa \cite{bonin2008visual}. Kaksiulotteinen laserskanneri on myös tutkamainen ja useimmiten pyörii paikallaan automaattisesti tutkaten joka suuntaa; kolmiulotteinen laserskanneri kuvaa eteenpäin kahdella akselilla ja tuottaa syvyyskuvan [TODO: selvennä] \cite{guivant2000localization} \cite{surmann2003autonomous}. Vielä tarkempaa kuvaa saadaan videokameroilla, joiden kanssa tarvitaan laskentatehoakin huomattavasti edellä mainittuja enemmän. Konenäkö on ylivoimainen, kun tarvitaan tarkempaa tietoa edessä olevista pinnoista, kuten kuviointia tai asentoa. Kahdella oikein sijoitellulla kameralla saadaan aikaan syvyysnäkö \cite{murray2002stereo}.
+Laserskannerit ja kamerat ovat tarkkoja ja näkevät kauas: niitä käytetään monesti ulkotiloissa \cite{bonin2008visual}. Kaksiulotteinen laserskanneri on myös tutkamainen ja kuvaa automaattisesti joka suuntaa 360 asteen keilalla; kolmiulotteinen laserskanneri kuvaa eteenpäin kahdella akselilla ja tuottaa kameran kaltaisen kuvan syvyyksistä \cite{guivant2000localization, surmann2003autonomous}. Vielä tarkempaa kuvaa saadaan videokameroilla, joiden kanssa tarvitaan laskentatehoakin huomattavasti edellä mainittuja enemmän. Konenäkö on ylivoimainen, kun tarvitaan tarkempaa tietoa edessä olevista pinnoista, kuten kuviointia tai asentoa. Kahdella oikein sijoitellulla kameralla saadaan aikaan syvyysnäkö \cite{murray2002stereo}.
 
 
 \subsection{Lokaali esteenväistö}
 
-Tästä eteenpäin oletetaan, että esteet ja lähiympäristö sekä robotin sijainti on havaittu jollain menetelmällä, ja tietyllä varmuudella tiedetään ympäristön muoto ja mahdollisesti reitillä olevat esteet -- havainnointimenetelmään sen enempää ottamatta kantaa mitä siitä välttämättä tarvitsee huomioida. Liikkumismenetelmäkin oletetaan hoidetuksi sekä reitti annetuksi ylemmältä taholta. Seuraavassa käsitellään itse esteiden ohittamista.
+Esteenväistön ensimmäinen askel on esteiden sijainnin etsiminen. Tästä eteenpäin oletetaan, että esteet ja muu lähiympäristön informaatio sekä robotin sijainti suhteessa referenssikoordinaatistoon on havaittu jollain menetelmällä, ja tietyllä varmuudella tiedetään ympäristön muoto ja mahdollisesti reitillä olevat esteet -- havainnointimenetelmään sen enempää ottamatta kantaa mitä siitä välttämättä tarvitsee huomioida. Liikkumismenetelmäkin oletetaan hoidetuksi sekä reitti annetuksi ylemmältä taholta. Seuraavassa käsitellään itse esteiden ohittamista.
 
 Kuvassa \ref{fig:tilannehahmotelma} on yksinkertaistettu esimerkki tyypillisestä paikallisen esteenväistön ongelmasta. Robottia kuvaa alhaalla oleva ympyrä, määränpäätä ylhäällä oleva ympyrä ja loput kuviot ovat esteitä. Robotti havainnoi edessä päin olevien esteiden reunat näkökentässään: rastit kuvaavat tutkaamalla havaittuja estepisteitä. Nuolet kuvaavat liikkuvien objektien nopeusvektoreita. Kuvan abstraktoitu tilanne voi vastata toimiston käytäviä tai kaupungin liikennettä.
 
-Kuvan tilanteessa robotin on suotuisinta jatkaa matkaa keskellä olevan neliön ohitse, sillä se ei ehdi jarruttaa ja kiertää oikealta. Seuraavaksi täytyy hidastaa, jotta vasemmalta tuleva este pääsee ohitse (mikäli se jatkaa matkaa robotin ohi, eikä käännä suuntaansa nykyisestä). Lopulta kuljetaan nelikulmaisten esteiden välistä päätepistettä päin ja saatetaan joutua väistämään ylempänä olevaa liikkuvaa kappaletta.
+Kuvan tilanteessa robotin on suotuisinta jatkaa matkaa keskellä olevan neliön ohitse, sillä se ei ehdi jarruttaa ja kiertää oikealta. Seuraavaksi täytyy hidastaa, jotta vasemmalta tuleva este pääsee ohitse (mikäli se jatkaa matkaa robotin ohi, eikä käännä suuntaansa nykyisestä). Lopulta kuljetaan nelikulmaisten esteiden välistä päätepistettä päin ja saatetaan joutua väistämään ylempänä olevaa liikkuvaa kappaletta. Tässä työssä pyritään saamaan vastaavanlainen ohjauslogiikka aikaiseksi.
 
 \begin{figure}[h]
 \centering \includegraphics[width=0.5\textwidth]{tilannehahmotelma}
 \caption{Tavanomainen esteenväistötilanne. \label{fig:tilannehahmotelma}}
 \end{figure}
 
-TODO: koordinaatistot yms?
 
+% \clearpage
 
-\clearpage
-\section{Yleisiä esteenväistömenetelmiä}
+\section{Yleisiä esteenväistötapoja}
 
 \subsection{Alkuolettamuksia}
 
@@ -246,13 +243,13 @@ Sisätila eroaa ulkotilasta esteenväistön kannalta merkittävästi siinä, että tila
 
 Ulkona robotin mekaniikkaan, esteenväistöön ja ja -havainnointiin on kiinnitettävä enemmän huomiota. Ulkotilat voidaan erotella edelleen mm. kaupunkimaastoon, työmaahan, peltoon, avolouhoksiin ja kaivoksiin, metsänkaltaiseen maastoajoon jne. Kaupunkimaasto on kompromissi sisätilojen ja erityisen haastavan ympäristön välillä, ja sen teknisiä haasteita ovat erityisesti vinot ja käyrät pinnat joissa robotti lipsuu ja joissa kiinteät anturit voivat ottaa häiriömittauksia maanpinnasta mäkeä alas ajettaessa; ylös ajettaessa reunan yli ei nähdä ennen kuin maasto on taas tasaista. Liikkuvat esteet voivat olla autoja tai polkupyöriä, joita pitäisi väistää hyvin nopeasti ja jotka täytyisi havainnoida jo kaukaa, jotta väistöliikkeen ehtisi tehdä. Tämä on erityisen kriittistä varsinkin robotisoiduissa henkilöautoissa \cite{sun2006road}. Täysin raaka vaikeasti kartoitettava epätasainen maasto taas on edelleen hankalimman pään erikoistapaus, kun maastosta ei voida tehdä muita olettamuksia kuin että se on hyvin haastava.
 
-Tasaisessa maastossa ``kaksiulotteisessa'' maailmassa esteet on aina kierrettävä sivulta ja mittauksia on helppo tehdä tutka-antureilla, kun vinoja maastoja ei ole. Seuraavassa käsitellään esteenväistöä tällaisessa maailmassa, sillä se yksinkertaistaa tilannetta huomattavasti. Kaikki tilanteet kannattaa approksimoida kaksiulotteisiksi mikäli vain mahdollista. Monesti ulkotilatkin voidaan vinoudestaan huolimatta käsitellä kaksiulotteisena, ellei robotti lennä tai sukella. Jos edessä on hyvin matalakin este, se kannattanee kiertää elleivät renkaat jousta erityisen paljon.
+Tasaisessa maastossa ``kaksiulotteisessa'' maailmassa esteet on aina kierrettävä sivulta ja mittauksia on helppo tehdä tutka-antureilla, kun vinoja maastoja ei ole. Seuraavassa käsitellään esteenväistöä tällaisessa maailmassa, sillä se yksinkertaistaa tilannetta huomattavasti -- kaikki tilanteet kannattaa approksimoida kaksiulotteisiksi mikäli vain mahdollista. Monesti ulkotilatkin voidaan vinoudestaan huolimatta käsitellä kaksiulotteisena, ellei robotti lennä tai sukella. Jos edessä on hyvin matalakin este, se kannattanee kiertää elleivät renkaat jousta erityisen paljon.
 
-2d-matematihelppo-\cite[s. 309, 342]{kelly1995intelligent}
+% 2d-matematihelppo-\cite[s. 309, 342]{kelly1995intelligent}
 
 \subsection{Potentiaalikenttä}
 
-Potentiaalikentät (artificial potential function, artificial potential field, APF) ovat vanha mutta hyvin usein (sellaisenaan tai toisen navigointitavan lähtökohtana) käytetty väistömenetelmä \cite{rimon1992apf} \cite{warren2002apf}. Oikeita fysikaalisia voimia nämä kentät eivät tuota robotille, jolloin kenttiä sanotaan toisinaan keinotekoisiksi tai virtuaalisiksi.
+Potentiaalikenttä (artificial potential function, artificial potential field, APF) on vanha mutta hyvin usein (sellaisenaan tai toisen navigointitavan lähtökohtana) käytetty väistömenetelmä \cite{rimon1992apf,warren2002apf}. Oikeita fysikaalisia voimia nämä kentät eivät tuota robotille, jolloin kenttiä sanotaan toisinaan keinotekoisiksi tai virtuaalisiksi.
 
 Potentiaalikentät syntyvät kohteesta ja esteistä; kohde tuottaa puoleensavetävän ja esteet hylkivän potentiaalin. Käytetty potentiaalifunktio on suhteellisen yksinkertainen, esimeriksi robotin ja esteen välisen etäisyyden käänteisarvo tai tämän neliö \cite{ge2002new}. Määränpään ja esteiden aiheuttavien potentiaalien gradienttien summasta saadaan robottiin kohdistuva ``voima'' jonka mukaan sitä kiihdytetään. Potentiaalikenttiä käytetään myös robottimanipulaattoreilla, mutta niitä ei tässä käsitellä. Intuitiitivesti potentiaalikenttiä voi verrata vuoristoisen maaston korkeuskarttaan, jossa pyritään ``vierimään'' mahdollisimman alas pohjalle, määränpäähän.
 
@@ -272,7 +269,7 @@ F(q) = -\nabla_q U(q),
 \end{equation}
 oli potentiaalifunktio mikä tahansa (kuten kaava \ref{eq:uapot} tai \ref{eq:urpot}, tai jokin muu), sillä halutaan päästä ``korkeuskarttaa'' pitkin alaspäin. Kokonaisvoima $F_{kok}$ on kohteen ja kaikkien esteiden aiheuttamien voimien summa, kun esteitä on $N$ kpl. $F_a$ on laskettu kaavalla \ref{eq:potnabla} esim. kaavasta \ref{eq:uapot}, ja $F_{ri}$ on järjestysluvultaan $i$:nnen esteen repulsiivinen voima (myös kaavalla \ref{eq:potnabla}):
 \begin{equation} \label{eq:potsumma}
-F_{kok}(q) = F_a(q) + \sum_i=1^N F_{ri}(q).
+F_{kok}(q) = F_a(q) + \sum_{i=1}^N F_{ri}(q).
 \end{equation}
 
 \begin{figure}[h!tb]
@@ -280,7 +277,7 @@ F_{kok}(q) = F_a(q) + \sum_i=1^N F_{ri}(q).
 \caption{Yksinkertaistettu esimerkkikuva potentiaalikartasta. \label{fig:potentiaalia}}
 \end{figure}
 
-Kuvassa \ref{fig:potentiaalia} on esimerkki potentiaalifunktion arvoista erittäin yksinkertaisessa ympäristössä. Kohde on origossa ja siellä on siis matalin potentiaali. Neljä huippua ovat pistemäisiä esteitä joista kolmen ryppäänä olevan takana on yksi lokaali minimi, johon voi jäädä loukkuun ilman muita menetelmiä. Käytetyt potentiaalifunktiot ovat \ref{eq:uapot} ja \ref{eq:urpot} arvoilla $\xi = 1, \eta = 10, \rho_0 = 3$. Todellisudessa esteitä lienee joka puolella ja monen pistemäisen estemittauksen yhdistelmä tuottaa viivamaisia kuvioita seinien yms. kohdille.
+Kuvassa \ref{fig:potentiaalia} on esimerkki potentiaalifunktion arvoista erittäin yksinkertaisessa ympäristössä. Kohde on origossa ja siellä on siis matalin potentiaali. Neljä huippua ovat pistemäisiä esteitä joista kolmen ryppäänä olevan takana on yksi lokaali minimi, johon voi jäädä loukkuun ilman muita menetelmiä. Käytetyt potentiaalifunktiot ovat kaavat \ref{eq:uapot} ja \ref{eq:urpot} arvoilla $\xi = 1, \eta = 10, \rho_0 = 3$. Todellisudessa esteitä lienee joka puolella ja monen pistemäisen estemittauksen yhdistelmä tuottaa viivamaisia kuvioita seinien yms. kohdille.
 
 \begin{figure}[h!tb]
 \centering \includegraphics[width=0.6\textwidth]{potvektorit}
@@ -289,27 +286,24 @@ Kuvassa \ref{fig:potentiaalia} on esimerkki potentiaalifunktion arvoista erittäi
 
 Kuvassa \ref{fig:potvektorit} visualisoidaan, kuinka voimat toteutuvat kohteen ja yhden estepisteen funktiona kaavalla \ref{eq:potsumma}. Voimavektorit $F_a$ ja $F_r$ lasketaan potentiaalifunktioista ja summataan yhteen, jolloin syntyy kokonaisvoima $F_{kok}$. Kokonaisvoima tuottaa hetkellisen kiihtyvyyden robotille kunnes seuraavat voimavektorit on laskettu seuraavalla laskukierroksella.
 
-Koska voima voidaan laskea hetkellisesti joka pisteessä ja potentiaalifunktioiden laskeminen on yksinkertaista, tämä menetelmä soveltuu dynaamiseen ja reaaliaikaiseen tilanteeseen. Etäisyys esteeseen saadaan esim. ultraäänianturilta, ja esteiden liikkuessa repulsiivinen kokonaisvoima muuttuu siten, että robotti ohjaa esteistä poispäin jatkuvasti. Menetelmä ei ota kantaa esteiden liikkumiseen vaan yksinkertaisesti määrää robottia hylkimään esteitä silloin kun ne ovat havaintosäteellä. [Sense-act]
+Koska voima voidaan laskea hetkellisesti joka pisteessä ja potentiaalifunktioiden laskeminen on yksinkertaista, tämä menetelmä soveltuu dynaamiseen ja reaaliaikaiseen tilanteeseen. Etäisyys esteeseen saadaan esim. ultraäänianturilta, ja esteiden liikkuessa repulsiivinen kokonaisvoima muuttuu siten, että robotti ohjaa esteistä poispäin jatkuvasti. Menetelmä ei ota kantaa esteiden liikkumiseen vaan yksinkertaisesti määrää robottia hylkimään esteitä silloin kun ne ovat havaintosäteellä.
 
 (Etäisyysmittareiden epävarmuudet eivät merkittävästi tätä tekniikkaa haittaa, sillä mittauksia saadaan jatkuvasti ja kun jokaiselle etäisyyspisteelle lasketaan voima, häviävät satunnaiset häiriömittaukset suhteessa mitättöminä pois. Esteinä voidaan käyttää pisteitä, jotka on havaittu parin viime skannausiteraation sisällä. Abstraktin luonteensa ansiosta menetelmä on sovellettavissa myös villin luonnon haastaviin tilanteisiin.)
 
-Eri painokertoimet $\xi$, $\eta$ ja $\rho_0$ on optimoitava robotin kinematiikan ja esteiden mukaan \cite{ge2002new}; robotin liike on jatkuvaa eikä se voi välttämättä kääntyä välittömästi mihin suuntaan tahansa. Sillä on myös massasta aiheutuva hitaus sekä jokin maksiminopeus, joista täytyy optimoida kenttien voimakkuus siten, ettei esteitä kierretä turhaan hyvin kaukaa, mutta samalla siten, ettei niihin voi törmätä. Tässäkin on tehtävä myös oletuksia esteiden liikkumisnopeudesta ja robotin reaktioajasta, jos se on relevanttia -- potentiaalikentät eivät ehdi apuun nokkakolareihin jos hylkimisvoima ei ole tarpeeksi suuri. Painoparametrien optimoinniksi on esitetty etukäteen suunniteltavan hyvyysfunktion minimointia \cite{vadakkepat2002eapf}, mikä sopii ennalta laskettavaksi muttei kelpaa muuttuvaan ennalta tuntemattomaan ympäristöön tekemättä alkuoletuksia [ESIMERKKI].
+Eri painokertoimet $\xi$, $\eta$ ja $\rho_0$ on optimoitava robotin kinematiikan ja esteiden mukaan \cite{ge2002new}; robotin liike on jatkuvaa eikä se voi välttämättä kääntyä välittömästi mihin suuntaan tahansa. Sillä on myös massasta aiheutuva hitaus sekä jokin maksiminopeus, joista täytyy optimoida kenttien voimakkuus siten, ettei esteitä kierretä turhaan hyvin kaukaa, mutta samalla siten, ettei niihin voi törmätä. Tässäkin on tehtävä myös oletuksia esteiden liikkumisnopeudesta ja robotin reaktioajasta, jos se on relevanttia -- potentiaalikentät eivät ehdi apuun nokkakolareihin jos hylkimisvoima ei ole tarpeeksi suuri. Painoparametrien optimoinniksi on esitetty etukäteen suunniteltavan hyvyysfunktion minimointia \cite{vadakkepat2002eapf}, mikä sopii ennalta laskettavaksi muttei kelpaa muuttuvaan ennalta tuntemattomaan ympäristöön tekemättä alkuoletuksia. Jos ympäristöä voidaan simuloida, voidaan hyvyysfunktiot kehittää esim. laskemaan reitin pituutta tai reitin läheisyyttä esteisiin \cite{vadakkepat2002eapf}.
 
-Menetelmä toimii hyvin yksinkertaisissa ja avarissa ympäristöissä, mutta siinä on silti tiettyjä ongelmia, jotka on otettava huomioon ja joiden mukaan on jalostettava menetelmää hieman eteenpäin tilanteen mukaan \cite{ge2002new}. Lokaaleihin minimeihin voi jäädä loukkuun, lähekkäin olevien esteiden välistä ei pääse, kapeissa käytävissä syntyy helposti värähtelyä sekä määränpäähän voi olla mahdotonta päästä, jos sen toisella puolella on lähellä este. [REFACTOR]
+% Menetelmä toimii hyvin yksinkertaisissa ja avarissa ympäristöissä, mutta siinä on silti tiettyjä ongelmia, jotka on otettava huomioon ja joiden mukaan on jalostettava menetelmää hieman eteenpäin tilanteen mukaan \cite{ge2002new}. Lokaaleihin minimeihin voi jäädä loukkuun, lähekkäin olevien esteiden välistä ei pääse, kapeissa käytävissä syntyy helposti värähtelyä sekä määränpäähän voi olla mahdotonta päästä, jos sen toisella puolella on lähellä este. [REFACTOR]
 
-Lokaalin minimin ongelmaan on esitetty useita samaan menetelmään integroitavia ratkaisuja. Lokaali minimi on paikallinen pieni potentiaalikuoppa, jonne jouduttuaan robotti ei pääse sieltä pois omin avuin tällä menetelmällä, koska siellä kaikki robottiin kohdistuvat voimat kumoavat toisensa ja se pysyy paikallaan. Yksi mahdollinen ratkaisu on poistumisvoima, joka otetaan käyttöön jos huomataan robotin olevan lähellä minimiä, esimerkiksi ennakkoon potentiaalikartasta tulkitsemalla. Tällöin kokonaisvoimaan lisätään esteiden hylkivää vaikutusta sopivaan suuntaan \cite{vadakkepat2002eapf}.
+Lokaalin minimin ongelmaan on esitetty useita samaan menetelmään integroitavia ratkaisuja. Lokaali minimi on paikallinen pieni potentiaalikuoppa, jonne jouduttuaan robotti ei pääse sieltä pois omin avuin tällä menetelmällä, koska siellä kaikki robottiin kohdistuvat voimat kumoavat toisensa ja se pysyy paikallaan. Yksi mahdollinen ratkaisu on poistumisvoima, joka otetaan käyttöön jos huomataan robotin olevan lähellä minimiä, esimerkiksi ennakkoon potentiaalikartasta tulkitsemalla \cite{vadakkepat2002eapf}. Tällöin kokonaisvoimaan lisätään esteiden hylkivää vaikutusta sopivaan suuntaan.
 
 On myös ehdotettu robotin takana samaa rataa kulkevaa virtuaalista estettä, joka aiheuttaa voiman eteenpäin ja estää nollapotentiaalikuoppiin jumiutumisen \cite{thurau2004learning}. Tässäkin on ongelmana ko. voiman suuruuden optimointi: liian pieni voima on hyödytön ja liian suuri työntää robottia turhaan väärään suuntaan ja aiheuttaa hitautta ja voi estää kohteeseen pääsemisen luullen sitä lokaaliksi minimiksi.
 
-Koska potentiaalikentät ovat niin universaali ohjaustapa, niihin voidaan yhdistää muita menetelmiä rinnalle; kun huomataan, että minimikuoppa on lähistöllä, globaali reitinsuunnittelija voi aiemmin anturoidun ympäristön mukaan ohjata robottia toisen suuntaan virtuaalisella lisävoimalla tai jopa ohjata samaa polkua taaksepäin ja yrittää toista suuntaa esteiden ohi.
+Koska potentiaalikentät ovat hyvin universaali ja abstrakti ohjaustapa, niihin voidaan yhdistää muita menetelmiä rinnalle; kun huomataan, että minimikuoppa on lähistöllä, globaali reitinsuunnittelija voi aiemmin anturoidun ympäristön mukaan ohjata robottia toisen suuntaan virtuaalisella lisävoimalla tai jopa ohjata samaa polkua taaksepäin ja yrittää toista suuntaa esteiden ohi.
 
-Potentiaalikenttä ovat teoriassa yksinkertainen, universaali menetelmä, ja sitä käytetään monen muun menetelmän pohjana [ref,ref,ref]. Sellaisenaan siihen liittyy kuitenkin käytännön ongelmia, joihin on kehitettävä tilannepohjaisesti ratkaisu esim. globaalin suunnittelijan kautta [ref].
-
-[-- irrallisia lauseita, yhdistele]
 
 \subsection{Ohjauskulman huomiointi}
 
-Muun muassa ohjauskulmakentäksi (steer angle field) \cite{feiten2002robust} ja kaarinopeusmetodiksi (curvature-velocity method) \cite{simmons2002curvature} kutsuttu menetelmä ottaa huomioon robotin kinematiikasta sen, että kaarella kulkevaan robottiin -- esim. differentiaaliajoa tai Ackermannin ohjausta (henkilöauton kinematiikkaa) käyttävään -- ei välttämättä kannata kohdistaa kiihtyvyyttä kohtisuoraan kaarta vastaan jos haluaisi sen mahdollisimman äkkiä poispäin vieressä olevasta esteestä, koska robotti voi vain hetkellisesti kääntyä enemmän vasemmalle tai oikealle. Kyseessä ei sinänsä ole suoranaisesti esteenväistömenetelmä, vaan tapa kartoittaa reitit joita robotti ylipäätään voi kulkea.
+Muun muassa ohjauskulmakentäksi (steer angle field) \cite{feiten2002robust} ja kaarinopeusmetodiksi (curvature-velocity method) \cite{simmons2002curvature} kutsuttu menetelmä ottaa huomioon robotin kinematiikasta sen, että kaarella kulkevaan robottiin -- esim. differentiaaliajoa tai Ackermannin ohjausta (eli henkilöauton kinematiikkaa: kaksi kääntyvää pyörää neljästä) käyttävään -- ei välttämättä kannata kohdistaa kiihtyvyyttä kohtisuoraan kaarta vastaan jos haluaisi sen mahdollisimman äkkiä poispäin vieressä olevasta esteestä, koska robotti voi vain hetkellisesti kääntyä enemmän vasemmalle tai oikealle. Kyseessä ei sinänsä ole suoranaisesti esteenväistömenetelmä, vaan tapa kartoittaa reitit joita robotti ylipäätään voi kulkea.
 
 Vastaava lähestymistapa on Foxin yms. \cite{fox2002dynwin} esittämässä dynaamisessa ikkunassa (dynamic window approach), joka painottuu robotin mahdollisten kiihtyvyyksien mukaan valittaviin suuntiin ja kaariin, jotka eivät törmää valitulla nopeudella mihinkään esteeseen. Kaarista valitaan erikseen soveltuvin polku, jota pitkin kuljetaan seuraavaksi. (Tähän tullee lisää tekstiä...)
 % TODO
@@ -317,52 +311,84 @@ Vastaava lähestymistapa on Foxin yms. \cite{fox2002dynwin} esittämässä dynaamise
 Kuvassa \ref{fig:ajolinjoi} esitetään eri kaaria, joita differentiaaliajoinen eli kahdella erikseen ohjattavalla renkaalla käänneltävä robotti pystyy kulkemaan, kun sillä on tietty vauhti josta ei ehditä jarruttaa tai kääntyä aivan toiseen suuntaan. Kaaria on periaatteessa ääretön määrä, joista kuvaan on yksinkertaistettu muutama. Tasaista vauhtia kulkemalla ko. robotti ajaa aina suoraan tai ympyrän kaarta pitkin. Suurempi nopeus myös rajoittaa kääntökulmaa, mikäli halutaan estää renkaiden lipsuminen [REF]: hitaammin ajamalla voi kääntyä tiukempia mutkia. Kuvan robotti ei esimerkiksi pysty lähtemään välittömästi suoraan vasemmalle.
 
 \begin{figure}[h!tb]
-\centering \includegraphics[width=0.3\textwidth]{ajolinjoi}
+\centering \includegraphics[width=0.4\textwidth]{ajolinjoi}
 \caption{Robotin ajolinjoja. Oikealle ei voi kääntyä lainkaan, koska esteeseen törmääminen olisi väistämätöntä. \label{fig:ajolinjoi}}
 \end{figure}
-
-TODO: kuvaan nopeusviiva ja koordinaatistoi?
 
 
 \subsection{Varmuusruudukko}
 
-Varmuusruudukko tai varausruudukko (certainty grid, occupancy grid) on yksi tapa esittää ympäristön esteet \cite{elfes2002occugrid} ja toimii monien muiden menetelmien pohjana. Sen ideana on nimensä mukaisesti rakentaa ruudukko robotin globaalista työavaruudesta, johon päivitetään anturien tietoa siitä, millä varmuudella ruudussa on este. Kun robotin havaitsema maailma jaetaan sopivan kokoisiin ruutuihin, voi sen jatkokäsittely yksinkertaistua algoritmista riippuen hyvinkin paljon. Kompromisseja tarkkuuden ja tehokkuuden välillä tehdään ruudun koossa: suurilla ruuduilla maailma approksimoituu vain muutamaksi ruuduksi joiden läpikäynti on nopeaa, ja useammilla pienemmillä ruuduilla saadaan tarkkuutta laskentatehon kustannuksella. Ruudukko voidaan myös yhdistää globaaliin karttaan ympäristöstä, jolloin sen avulla voidaan estimoida paikkaa \cite{schiele1994comparison}.
+Varmuusruudukko tai varausruudukko (certainty grid, occupancy grid) on yksi tapa esittää ympäristön esteet \cite{elfes2002occugrid} ja toimii monien muiden menetelmien pohjana. Sen ideana on nimensä mukaisesti rakentaa ruudukko robotin globaalista työavaruudesta, johon päivitetään anturien tietoa siitä, millä varmuudella ruudussa on este. Kun etäisyysanturi sanoo esteen olevan tietyllä etäisyydellä, voidaan tietyllä todennäköisyydellä sanoa, että siinä kohdassa on este, ja lisäksi robotin ja esteen välissä on tyhjää tilaa. Tällaista tietoa päivitetään robotin maailmankarttaan antureilta jatkuvasti.
+
+Kun robotin havaitsema maailma diskretoidaan sopivan kokoisiin ruutuihin, voi sen jatkokäsittely yksinkertaistua algoritmista riippuen hyvinkin paljon \cite{elfes2002occugrid}. Kompromisseja tarkkuuden ja tehokkuuden välillä tehdään ruudun koossa: suurilla ruuduilla maailma approksimoituu vain muutamiksi ruuduiksi joiden läpikäynti on nopeaa, ja useammilla pienemmillä ruuduilla saadaan tarkkuutta laskentatehon kustannuksella. Ruudukko voidaan myös yhdistää globaaliin karttaan ympäristöstä, jolloin sen avulla voidaan estimoida paikkaa \cite{schiele1994comparison}.
 
 \begin{figure}[h!tb]
-\centering \includegraphics[width=0.5\textwidth]{certaintygrid}
-\caption{Esimerkki varmuusruudukosta \cite{borenstein2002vfh}. \label{fig:certaintygrid}}
+\centering \includegraphics[width=0.5\textwidth]{grid}
+\caption{Esimerkki varmuusruudukosta aktiivisella ikkunalla.. \label{fig:certaintygrid}} % \cite{borenstein2002vfh}
 \end{figure}
 
-Kuvassa \ref{fig:certaintygrid} on Borensteinin ja Korenin testitilanne varmuusarvoruudukkona koko havainnoista (ilman ruudukon ruutuviivoja). Suuremmat pisteet kuvaavat suurempaa varmuusarvoa eli sellaista, josta on saatu enemmän mittauksia. active window -laatikko kuvaa ``ikkunaa'' johon tällä hetkellä kiinnitetään huomiota: robotin ei tarvitse ottaa huomioon koko varmuusarvoruudukon maailmaa vaan ainoastaan pieni alue robotin ympäriltä jonka sisältä laskettavat voimat ovat merkittäviä suunnan suhteen -- täten laskennan haastavuus ei kasva sitä mukaa kun saadaan lisää havaintoja ympäristöstä.
+Kuvassa \ref{fig:certaintygrid} on kuviteltu esimerkkitilanne robotin ympäristön kuvaamisesta varmuusruudukossa. Vasempaan alanurkkaan on merkitty globaali koordinaatisto; ruudukko on aina samassa, etukäteen sovitussa asennossa esimerkiksi siten, että x-akseli osoittaa sinne minne robotti suuntasi alkuhetkellä. Tummemmat arvot ruuduissa kuvastavat varmempaa estettä eli sellaista, jossa ruutuun on osunut paljon mittauksia. Aktiivinen ikkuna -laatikko kuvaa ``ikkunaa'' koko ruudukkoalueesta johon tällä hetkellä kiinnitetään huomiota: robotin ei tarvitse ottaa huomioon koko varmuusarvoruudukon maailmaa vaan ainoastaan pieni alue robotin ympäriltä jonka sisältä laskettavat voimat ovat merkittäviä suunnan suhteen -- täten laskennan haastavuus ei kasva sitä mukaa kun saadaan lisää havaintoja ympäristöstä. Ikkuna on joka hetkellä robottikeskeinen (robottia kuvaa ympyrä ikkunan keskellä). \cite{elfes2002occugrid}
+
+Menetelmä soveltuu erityisesti häiriöiseen ja epävarmaan mittaukseen esim. ultraääniantureille joihin liittyy lähes ominaisesti epävarmuutta, vahinkokaikuja ja vierekkäisten sensorien ristivaikutusta \cite{borenstein2002vfh}. Kun karttaa päivitetään jatkuvasti robotin edetessä, samoista esteistä saadaan useita pistemäisiä mittauksia samoihin ruutuihin ja varmempien ruutujen todennäköisyys kasvaa. % TODO: lisää. vanhentumista, todnäkkei.
 
 
 \subsection{Histogrammit}
 
-Selvennä!
+Borenstein ja Koren \cite{koren1991potential} toteavat potentiaalikentät riittämättömiksi ja esittävät niihin ja varmuusruudukkoon pohjautuvan virtuaalisen voimakentän (virtual force field, VFF) ja siitä edelleen kehittyneen vektorikenttähistogrammin (vector field histogram, VFH) \cite{borenstein2002vfh, borenstein2002realtime}.
 
-Borenstein ja Koren \cite{koren1991potential} toteavat potentiaalikentät riittämättömiksi ja esittävät niihin ja varmuusruudukkoon pohjautuvan virtuaalisen voimakentän (virtual force field, VFF) ja siitä edelleen kehittyneen vektorikenttähistogrammin (vector field histogram, VFH) \cite{borenstein2002vfh, borenstein2002realtime}. Virtuaalinen voimakenttä perustuu Borensteinin ja Korenin työssä varmuusruudukkoon, jonka ruutuihin summataan arvoja robotin 24 ultraäänianturilta. Tästä ruudukosta otetaan tietyn kokoinen neliö robotin sijainnin kohdalta (kuten kuvassa \ref{fig:certaintygrid}), jota päivitetään mittauksia saadessa ja josta lasketaan robotin suuntaa ja nopeutta ohjaava voima samankaltaisesti kun potentiaalikentissä: lähellä olevat esteet tuottavat voimakkaita hylkiviä voimia. Esteiksi lasketaan ruudukot, joissa on mittauksia; mittausten määrä kuvaa esteen kokoa ja kompensoi täten myös epävarmuuksia ja häiriömittauksia.
+Virtuaalinen voimakenttä perustuu Borensteinin ja Korenin työssä varmuusruudukkoon, jonka ruutuihin summataan arvoja robotin 24 ultraäänianturilta. Tästä ruudukosta otetaan tietyn kokoinen neliö robotin sijainnin kohdalta (kuten ikkuna kuvassa \ref{fig:certaintygrid}), jota päivitetään mittauksia saadessa ja josta lasketaan robotin suuntaa ja nopeutta ohjaava voima samankaltaisesti kun potentiaalikentissä: lähellä olevat esteet tuottavat voimakkaita hylkiviä voimia. Esteiksi lasketaan ruudut, joissa on mittauksia; mittausten määrä kuvaa esteen kokoa ja kompensoi täten myös epävarmuuksia ja häiriömittauksia. Hylkivät voimavektorit lasketaan seuraavasti \cite{koren1991potential}:
+
+\begin{equation}
+F_{i,j} = F_{r} C_{i,j} (\frac{W}{|c_{i,j} - r|})^n (c_{i,j} - r),
+\end{equation}
+missä $i$ ja $j$ ovat ruudun koordinaatit, $F_{i,j}$ ruudun muodostama voima, $F_r$ repulsiivisuusvakio, $C_{i,j}$ ruudun varmuusarvo, $W$ robotin leveys, $c_{i,j}$ ruudun paikkavektori ja $r$ robotin paikkavektori. $n$ on jokin kokonaisluku. Kohdepiste vetää robottia puoleensa seuraavasti voimalla $F_k$ kaavalla
+\begin{equation}
+F_{k} = F_{a} (k - r),
+\end{equation}
+missä $F_a$ on attraktiivisuusvakio, $k$ kohteen paikkavektori ja $r$ robotin paikkavektori. Robotin ohjauskulmaa säädetään seuraavasti:
+\begin{equation}
+\Omega = k (\delta - \theta),
+\end{equation}
+missä $\Omega$ on ohjaukselle syötettävä kääntönopeus, $k$ suhteuttamisvakio, $\delta$ kulma johon robottia ohjataan (saadaan voimavektorien summasta) ja $\theta$ nykyinen robotin ajokulma. Borenstein ja Koren toteavat tästä eteenpäin mm. ohjauksen epästabiilisuuden esteiden läheisyydessä \cite{koren1991potential}.
 
 \begin{figure}[h!t!]
-\centering \includegraphics[width=0.7\textwidth]{histogram}
-\caption{Borensteinin ja Korenin kuva histogrammeista. Ylempänä itse histogrammi eli estevarmuus kulman funktiona, alempana sama tulkittuna varmuusarvoruudukon päälle. \label{fig:histogram}}
+\centering \includegraphics[width=0.6\textwidth]{histopallo}
+\caption{Karkea kaavakuva vektorikenttähistogrammin toiminnasta: ylempänä kartta ja esteet, alempana kartasta laskettu histogrammi. Kulma kasvaa ympyrässä vastapäivään ja histogrammissa oikealle. \label{fig:histogram}} % Borensteinin ja Korenin kuva histogrammeista. Ylempänä itse histogrammi eli estevarmuus kulman funktiona, alempana sama tulkittuna varmuusarvoruudukon päälle
 \end{figure}
 
-Borenstein ja Koren \cite{borenstein2002vfh} toteavat että suoraan kaksiulotteisesta kartasta voiman tulkitseminen menettää liikaa informaatiota, ja ottavat käyttöön toisen laskentavaiheen, histogrammitaulukon. Histogrammi kattaa täyden ympyrän robotin ympärillä, ja sen joka sektorille summataan asteittain varmuusarvoruudukon arvot niistä ruuduista, jotka kullekin sektoreille osuvat. Histogrammiin syntyy huippuja ja laaksoja. Täysi ympyrä jaetaan esimerkiksi viiden asteen sektoreihin, joista jokaiseen summataan varmuusruudukon ruuduista ne, jotka osuvat kullekin sektorille. Laaksot ilmaisevat alueita, joita on turvallista lähestyä; korkeat huiput kuvaavat paikkoja, joissa on todennäköisesti jokin lähellä oleva tai suuri este, jota on väistettävä.
+Borenstein ja Koren \cite{borenstein2002vfh} toteavat että suoraan kaksiulotteisesta kartasta voiman tulkitseminen menettää liikaa informaatiota, ja ottavat käyttöön toisen laskentavaiheen, histogrammitaulukon. Histogrammi kattaa täyden ympyrän robotin ympärillä, ja sen joka sektorille lasketaan asteittain varmuusarvoruudukon arvot niistä ruuduista, jotka kullekin sektoreille osuvat. Histogrammiin syntyy huippuja ja laaksoja. Laaksot ilmaisevat alueita, joita on turvallista lähestyä; korkeat huiput kuvaavat paikkoja, joissa on todennäköisesti jokin lähellä oleva tai suuri este, jota on väistettävä.
+
+Varmuusruudukon arvoista lasketaan painotetut arvot riippuen siitä, kuinka suuri arvo ruudussa on ja kuinka kaukana se on robotista \cite{borenstein2002vfh}:
+\begin{equation}
+m_{i,j} = (c_{i,j})^2 (a - b*d_{i,j}).
+\end{equation}
+Kaavassa $i$ ja $j$ ovat ruudun koordinaatit, $m_{i,j}$ on uusi painotettu arvo, $c_{i,j}$ ruudun varmuusarvo, $a$ ja $b$ positiivisia skaalausvakioita ja $d_{i,j}$ etäisyys ruutuun robotin keskipisteestä. $a$ ja $b$ valitaan siten, että $m$:n arvoksi tulee 0 varmuusruudukon ikkunan kauimmaisessa ruudussa \cite{borenstein2002vfh}. Sektorin painoarvo $s_k$ lasketaan summana painotetuista ruutujen arvoista:
+\begin{equation}
+s_k = \sum_{i,j} m_{i,j},
+\end{equation}
+kun $i,j$ käyvät läpi ruudut, jotka osuvat sektorille $k$.
+
+Histogrammiin jaettavan sektorin epäsuotuisuus lasketaan varmuusruudukon arvojen neliöistä, jolloin varmempia mittauksia painotetaan huomattavasti enemmän, ja pienet, häiriömäiset mittaukset jäävät lähes huomiotta. Verrannollisuus $-d$:hen aiheuttaa kauempana olevien esteiden painottamisen vähemmän kuin lähellä olevien.
+
+Iso ruudukko tuo isoja vaihteluita diskreetin luonteensa takia, jolloin tarvitaan kokeellisesti viritettävä alipäästösuodin ettei ohjaukseen tulisi suuria yhtäkkisiä vaihteluita; lopulliset painoarvot $s'_k$ sektoreille lasketaan painotettuna keskiarvona kohdan $k$ ympäriltä \cite{borenstein2002vfh}. 
 
 % (Potentiaalikenttien pahimmat ongelmat -- lokaali minimi ja värähtely kapeissa käytävissä -- vähenevät tai häviävät kokonaan kun tämä menetelmä ottaa päinvastaisen lähtökohdan ja etsii liikettä rajoittavien esteiden sijaan alueita, jonne saa liikkua eikä häiriinny pahasti reunoilla olevista esteistä.)
 
-Kuvassa \ref{fig:histogram} havainnollistetaan vektorikenttähistogrammin toiminta. Histogrammiin muodostuu suuria arvoja niihin kohtiin, mitä vastaavissa suunnissa on suurella todennäköisyydellä esteitä. Reitti valitaan suuntaan, jossa on suurin tyhjä aukko histogrammissa eli jossa lienee varmimmin kuljettava reitti. Koska histogrammimenetelmä hakee esteiden sijaan parhaan suunnan johon voi ajaa, se ei saa robottia jumiin \cite{borenstein2002vfh}. [TODO: Selitä miksi.]
+Kuvassa \ref{fig:histogram} havainnollistetaan karkeasti vektorikenttähistogrammin toiminta -- oikeassa tilanteessa segmenttejä olisi huomattavasti enemmän; kuvan ympyrä on jaettu 15 asteen segmentteihin hahmottamissyistä. Robotti sijaitsee pistemäisenä ympyrän keskellä, ja ympyrän eri segmenttien sisältämät estemäärät lasketaan yhteen. Histogrammiin muodostuu suuria arvoja niihin kohtiin, mitä vastaavissa suunnissa on suuria tai lähellä olevia esteitä. Reitti valitaan suuntaan, jossa on suurin tyhjä aukko histogrammissa eli jossa lienee varmimmin kuljettava reitti. Koska histogrammimenetelmä hakee esteiden sijaan parhaan suunnan johon voi ajaa, sillä ei ole lokaalin minimin ongelmaa \cite{borenstein2002vfh}.
 
-Iso ruudukko tuo isoja vaihteluita diskreetin luonteensa takia, jolloin tarvitaan kokeellisesti viritettävä alipäästösuodin ettei ohjaukseen tulisi suuria yhtäkkisiä vaihteluita \cite{borenstein2002vfh}. Tätä voitaisiin hieman korjata ottamalla huomioon robotin sijainti ruutunsa sisällä sen sijaan, että ainoastaan laskettaisiin vain näiden suurten (esim. 10*10 cm) ruutujen etäisyyksiä. Voitaisiin myös kompensoida ohjauksen vaihtelua lisäämällä algoritmiin heuristiikkaa esim. suoraan ajamisesta: jos turvallisen lähestymisen laakson suunta ei suuremmin eroa nykysuunnasta, ei suuntaa kannata merkittävästi vaihtaa. [TODO: pohdintoihin, siisti konditionaaleja]
 
-Menetelmä soveltuu mittausten korkeatasoisen tulkintansa ansiosta erityisesti häiriöiseen ja epävarmaan mittaukseen, ja sitä onkin testattu ultraäänisensoreilla joihin liittyy lähes ominaisesti epävarmuutta, vahinkokaikuja ja vierekkäisten sensorien ristivaikutusta \cite{borenstein2002vfh}. Histogrammiin jaettavan sektorin epäsuotuisuus lasketaan varmuusruudukon arvojen neliöistä, jolloin varmempia mittauksia painotetaan huomattavasti enemmän, ja pienet, häiriömäiset mittaukset jäävät lähes huomiotta. Borenstein ja Koren testasivat VFH:ta robotillaan, jossa on 24 ultraäänianturia jaettu täydelle ympyrälle joka suuntaan; tekniikka onkin selvästi suunniteltu tutkatyyppisille etäisyysantureille, joilta saadaan pistemäisiä mittauksia. Tässä yhteydessä on ulkotiloissa otettava huomioon maaston epätasaisuus, sillä muutoin oletetaan tutkan olevan saman suuntainen maatason kanssa ja vino maasto joka saa robotin kallistumaan tekee mittaukset hyödyttömiksi. [TODO: varmuusruudukkoon]
+% Tätä voitaisiin hieman korjata ottamalla huomioon robotin sijainti ruutunsa sisällä sen sijaan, että ainoastaan laskettaisiin vain näiden suurten (esim. 10*10 cm) ruutujen etäisyyksiä. Voitaisiin myös kompensoida ohjauksen vaihtelua lisäämällä algoritmiin heuristiikkaa esim. suoraan ajamisesta: jos turvallisen lähestymisen laakson suunta ei suuremmin eroa nykysuunnasta, ei suuntaa kannata merkittävästi vaihtaa. [TODO: pohdintoihin, siisti konditionaaleja]
+\subsubsection{Parannuksia}
+VFH ei ota huomioon robotin kinematiikkaa millään lailla, vaan olettaa että robotti on pistemäinen ja voi vaihtaa kulkusuuntaansa välittömästi. Borenstein ja Ulrich esittävät VFH+-algoritmin, joka korjaa tämän ongelman \cite{ulrich2002vfh+}. He tutkivat ihmisvoimin työnnettävää, differentiaaliajoa (kaksi erillistä vetävää pyörää) käyttävää robottia ohjaamaan sokkoa ihmistä. Tämä eroaa kinematiikaltaan oleellisesti aiemmin käytetystä, joka suuntaan ajavasta robotista.
 
-VFH ei kuitenkaan ota huomioon robotin kinematiikkaa millään lailla, vaan olettaa että robotti on pistemäinen ja voi vaihtaa kulkusuuntaansa välittömästi. Borenstein ja Ulrich esittävät VFH+-algoritmin, joka korjaa tämän ongelman \cite{ulrich2002vfh+}. He tutkivat ihmisvoimin työnnettävää, differentiaaliajoa (kaksi erillistä vetävää pyörää) käyttävää robottia ohjaamaan sokkoa ihmistä. Tämä eroaa kinematiikaltaan oleellisesti aiemmin käytetystä, joka suuntaan ajavasta robotista.
+VFH+ tuo seuraavat parannukset: Robotti oletetaan pistemäiseksi ja esteitä vastaavasti kasvatetaan robotin koon ja muodon tuomien rajoitteiden mukaan, jolloin alipäästösuodinta ei tarvita \cite{ulrich2002vfh+}. Histogrammikartasta tehdään ensin binäärinen kartta kahden kynnysarvon avulla. Tämän jälkeen karttaa laajennetaan edelleen poistamaan ne suunnat, joihin robotti ei ehdi kääntymään kinematiikkansa takia. Nämä lasketaan tässä tilanteessa kääntösäteen avulla. Lisäksi ohjaussuunnan valinnassa käytetään apuna hyvyysfunktiota, jolla voidaan painottaa erilaisia ominaisuuksia vapaista suunnista. Eri suuntia ovat eri kapeat käytävät, sekä leveistä käytävistä on valittava ajetaanko keskeltä vai reunoista, jos reuna olisi lähempänä kohdetta PLPLFKOFSDF TODO selkeämpi teksti. Borenstein ja Ulrich esittävät hyvyysfunktioksi seuraavaa:
+\begin{equation}
+g(c) = \mu_1 \delta(c, k_t) + \mu_2 \delta(c, \theta_i / \alpha) + \mu_3 \delta(c, k_{n, i-1})
+\end{equation}
 
-VFH+ tuo seuraavat parannukset: Robotti oletetaan pistemäiseksi ja esteitä vastaavasti kasvatetaan robotin koon ja muodon tuomien rajoitteiden mukaan, jolloin alipäästösuodinta ei tarvita. Histogrammikartasta tehdään ensin binäärinen kartta kahden kynnysarvon avulla. Tämän jälkeen karttaa laajennetaan edelleen peittämään ne suunnat, joihin robotti ei ehdi kääntymään kinematiikkansa takia. Nämä lasketaan tässä tilanteessa kääntösäteen avulla. Lisäksi ohjaussuunnan valinnassa käytetään apuna hyvyysfunktiota, jolla voidaan painottaa erilaisia ominaisuuksia vapaista suunnista. % TODO: (Tähän ehkä esimerkkikaava hyvyysfunktiosta.)
-% TODOOOO
+% TODO selvennä.
 
-VFH+:sta vielä edelleen kehitetty VFH* käyttää A*-hakualgoritmia etsimään oikean valinnan saman laatuisista poluista, ja näkee täten hieman kauemmas. \cite{ulrich2002vfhstar} (Jatkoa seuraa...)
+VFH+:sta vielä edelleen kehitetty VFH* käyttää A*-hakualgoritmia etsimään oikean valinnan saman laatuisista poluista, ja näkee täten hieman kauemmas. VFH+ itsessään on täysin lokaali, ja saattaa väistää estettä umpikujaa päin, vaikka toiseen suuntaan väistäessä ei päädyttäisi umpikujaan. \cite{ulrich2002vfhstar} (Jatkoa seuraa...)
 
 % tääkin varmuusruudukkoon? varmuusruudukko on abstraktiokerros blaa blaa
 Algoritmin luonteeseen kuuluvan staattisen, jatkuvasti päivitettävän maailmankartan takia VFH ja sen johdannaiset soveltuvat sellaisenaan huonosti liikkuvien esteiden väistämiseen; eri hetkillä liikkuva esine havaitaan eri kohdissa, jolloin esine piirtää karttaan ``seinän'' reittinsä kohdalle. Varmemmilla sensoreilla voitaisiin laaja kartta unohtaa ja käyttää vain hetkittäisiä mittauksia histogrammin rakentamiseen. Näin liikkuvien esteiden vanhat sijainnit eivät vaikuttaisi.
@@ -403,7 +429,7 @@ Schäferin ym. \cite{schafer2005stereo} nelipyöräinen robotti on varustettu stere
 
 Toisessa tutkimuksessa Schäfer ym. \cite{schafer20083d} tutkivat nimenomaan kasvillisuuspainotteista maastoa, jossa harvojen kasviesteiden tunnistaminen on haastavampaa. Tässä stereonäön ja laserskannauksen avuksi on liitetty kosketusanturi robotin eteen. Kun edessä huomataan harvaa ja mahdollisesti joustavaa kasvillisuutta, edetään silti eteenpäin mutta hidastetaan huomattavasti, jolloin kosketusanturi ehtii ilmoittaa turvallisesti mahdollisesta törmäyksestä kiinteään kappaleeseen kasvillisuuden sisällä. Jatkoa seuraa...
 
-
+% Tässä yhteydessä on ulkotiloissa otettava huomioon maaston epätasaisuus, sillä muutoin oletetaan tutkan olevan saman suuntainen maatason kanssa ja vino maasto joka saa robotin kallistumaan tekee mittaukset hyödyttömiksi.
 \subsection{Liikkuvat esteet}
 
 Aiemmin esitellyt menetelmät soveltuvat liikkuvienkin esteiden väistämiseen, sillä niitä lasketaan jatkuvasti aina uudelleen uusista havainnoista. Kun esteiden sijainnit muuttuvat, myös esteenväistön tuottama ohjaus robotille muuttuu. Jos tiedetään ennalta esteiden sijaintien lisäksi niiden nopeudet, niin voidaan ennakoida koko ympäristön käyttäytymistä ja osittain kumota myöhemmin tapahtuvan liikettä monimutkaistavan esteenväistön tarvetta oikealla reitin valinnalla. Esimerkiksi risteystilanteessa omaa reittiä vasten kohtisuoraan sivusta tuleva este voi aiheuttaa jarruttamisen tarvetta mikäli robotti väistää sitä vasta lähelle päästyään. Ennakoiden voidaan kääntää reittiä siten, että ei nopeutta ei tarvitse vähentää ja päästään esteen edestä tai takaa siten, että törmäystä ei synny. [TODO: selvennä.]
@@ -493,6 +519,9 @@ Ulkotiloissa järkevä anturointi on kolmiulotteinen laserskannaus yhdistettynä yh
 Jos tiedetään ennalta millaiseen ympäristöön robotti viedään, voidaan tehdä yksinkertaistavia heuristiikkoja anturidatalle sekä esteille. Henkilöautoa automatisoidessa voidaan hyvin suurella todennäköisyydellä olettaa, että se ajaa autoteillä ja siten etsiä maanpinnasta kaistaviivoja (jolloin ohjaus ei tosin toimi lumella) sekä kiinnittää huomiota ennalta mm. risteystilanteisiin ja kaistanvaihtoihin. Kävelytiellä kulkeva robotti taas voisi yrittää etsiä talon seinää vierestä, joka auttaisi kulkemaan suoraan. Haastavassa maastossa on muistettava maaston kuopat ja vinot mäet sekä kasvillisuus jonka läpi saattaa kyetä ajamaan vaikka kasvit olisivatkin korkeita.
 
 Lisää...
+
+Universaalia aivan kaikkialle sopivaa lokaalia esteenväistöä ja/tai liikkeensuunnittelua ei ole, koska mahdollinen työalue voi olla mitä vain tehdastiloista kaupunkimaastoon. On tosin useita yleisiä sovellettavia menetelmiä ja tilannekohtaisia heuristiikkoja. Myös monista tavoista yhdistelemällä voidaan saada kehittyneempiä tapoja kartoittamalla kaikkien heikkoudet ja soveltamalla tiettyyn ympäristöön. Monia tutkimuksia on testattu käytännössä, toisia simuloimalla ja jotkut ovat jääneet vain teoreettisiksi pohdinnoiksi ja kaavoiksi. 
+
 
 \clearpage
 \addcontentsline{toc}{section}{Viitteet}

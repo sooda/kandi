@@ -1,4 +1,5 @@
-all: ps
+all: pdf
+	okular kandi.pdf
 
 ps: kandi.tex
 	latex kandi
@@ -12,6 +13,7 @@ pdf: kandi.tex
 	bibtex kandi
 	pdflatex kandi
 	pdflatex kandi
+
 
 clean:
 	rm -f *.aux *.bbl *.blg *.log *.toc
