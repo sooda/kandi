@@ -185,7 +185,7 @@ Referenssejä!
 
 Esteenväistö ja liikkeensuunnittelu ovat klassisia ongelmia joihin on oleellisesti kiinnitettävä huomiota aina itsenäisesti liikkuvaa robottia suunnitellessa. Robotin on osattava navigoida itsenäisesti ja sen on päästävä perille nopeasti vahingoittamatta itseään tai ympäristöään. Robotilla on tietty konfiguraatioavaruus (configuration space), eli joukko mahdollisista sijaintien, asentojen ja nopeuksien yhdistelmistä eli periaatteessa kaikesta vapaasta tilasta; esteet ovat konfiguraatioavaruuden ulkopuolella. Lokaaliin anturipohjaiseen esteenväistöön on luonnollisesti monia eri menetelmiä, joiden hyödyllisyys ja soveltuvuus riippuu robotin ympäristöstä ja anturien laadusta \cite{hwang1992gross, desouza2002vision, bonin2008visual}.
 
-Ympäristöä havainnoidaan jatkuvasti robotin antureilla, ja kun esteitä aistitaan, pyritään laskemaan väistämissuunnitelma mahdollisimman nopeasti. Jotkin väistötavat liittyvät tiettyihin antureihin ja reaaliaikaisuuteen, ja anturien hyvät ja huonot puolet on muutenkin otettava huomioon mm. havaitsemisetäisyyden, kohinan ja epävarmuuksien takia [REF]. Havainnointimenetelmiä ovat mm. ultraääni- ja infrapuna-anturit, laserskannerit ja videokamerat. Hyvillä menetelmillä anturointi onnistuu jatkuvasti; toisilla robotti joutuu välillä pysähtymään mittauksia varten. Pyritään siihen, että robotti voi ajaa jatkuvasti pysähtymättä.
+Ympäristöä havainnoidaan jatkuvasti robotin antureilla, ja kun esteitä aistitaan, pyritään laskemaan väistämissuunnitelma mahdollisimman nopeasti. Jotkin väistötavat soveltuvat erityisesti tiettyihin antureihin ja reaaliaikaisuuteen, ja anturien hyvät ja huonot puolet on muutenkin otettava huomioon mm. havaitsemisetäisyyden, kohinan ja epävarmuuksien takia. Toisaalta havainnoinnin ja esteiden tulkinnan väliin voi luoda abstraktiokerroksen, jonka avulla mitatut havainnoinnit esitetään \cite{elfes2002occugrid}. Havainnointimenetelmiä ovat mm. ultraääni- ja infrapuna-anturit, laserskannerit ja videokamerat. Hyvillä menetelmillä anturointi onnistuu jatkuvasti; toisilla robotti joutuu välillä pysähtymään mittauksia varten. Pyritään siihen, että robotti voi ajaa jatkuvasti pysähtymättä.
 
 Esteiden ohi selviämisen lisäksi robotin on pysyttävä reitillään ja sen on jotenkin saatava tietoa sijainnistaan ja suunnastaan, mikäli tavoitteena on päästä tavoitepisteeseen eikä harhailla sokeasti. Tämänkin toteutus riippuu robotin sijaintiantureista ja niiden sopivuudesta ympäristöön. Yleisesti soveltuvia tapoja paikannukseen ovat odometria, maamerkit, gps ja radiomajakat. Näkyviä maanmuotoja voidaan myös verrata karttaan robotin paikoittamiseksi \cite{borenstein1997postech}. Kaikki tavat ovat jossain määrin epätarkkoja, joten virhearviot on otettava huomioon ja mielellään käytettävä montaa tapaa rinnakkain. Kalman-suodin onkin suosittu apu reitin ja sijainnin tarkastelun yhteydessä \cite{jetto2002kalman}.
 
@@ -212,14 +212,14 @@ Itse esteiden väistämisen aiheuttaman reitin lokaali suunnittelu on puhtaan lask
 
 \subsection{Paikannus ja anturointi}
 
-Olennainen ongelma liikkuville roboteille on itsensä paikannus \cite{borenstein1996whereami}. Kun robotin oletetaan tietävän kohdepiste tarkasti, pitää myös tietää missä itse robotti sijaitsee. Tähän voidaan käyttää tapauksesta riippuen esim. odometriaa \cite{borenstein1001umbmark}, inertiasuunnistusta \cite{barshan1995inertial}, radiomajakoita \cite{borenstein1997postech} tai maamerkkejä (kamerakuvalla tai maanpinnasta ``kosketuksella'' havaittavia) \cite{betke2002mobilelandmarks, desouza2002vision}. Maamerkkejä kannattaa suhteuttaa myös ennalta tunnettuun karttaan, mikäli sellainen on saatavilla \cite{leonard199geombeac}. Sensorifuusiota Kalman-suotimella voidaan myös hyödyntää, jolloin saadaan tarkempi tulos monen anturin yhdistetystä mittauksesta \cite{jetto2002kalman}. Usein uutta karttatietoa kerätään samalla kun antureilta saadaan dataa (simultaneous localization and mapping, SLAM) \cite{se2002mobilelocalization, wang2003online}.
+Olennainen ongelma liikkuville roboteille on itsensä paikannus \cite{borenstein1996whereami}. Kun robotin oletetaan tietävän kohdepiste tarkasti, pitää myös tietää missä itse robotti sijaitsee. Tähän voidaan käyttää tapauksesta riippuen esim. odometriaa \cite{borenstein1001umbmark}, inertiasuunnistusta \cite{barshan1995inertial}, radiomajakoita \cite{borenstein1997postech} tai maamerkkejä (kamerakuvalla tai maanpinnasta ``kosketuksella'' havaittavia) \cite{betke2002mobilelandmarks, desouza2002vision}. Maamerkkejä kannattaa suhteuttaa myös ennalta tunnettuun karttaan, mikäli sellainen on saatavilla -- tällöin voidaan tarkentaa paikkatietoa löydetyistä maamerkeistä ja niiden oletetuista sijainneista; myös mikäli havaittu ympäristö ei vastaa kartasta tulkittavaa oletettua näkymää, on havaittu este \cite{leonard199geombeac, ohya2002vision}. Sensorifuusiota Kalman-suotimella voidaan myös hyödyntää, jolloin saadaan tarkempi tulos monen anturin yhdistetystä mittauksesta \cite{jetto2002kalman}. Usein uutta karttatietoa kerätään samalla kun antureilta saadaan dataa (simultaneous localization and mapping, SLAM) \cite{se2002mobilelocalization, wang2003online}.
 
 Esteet on havainnoitava robotin lähistöltä jollain lailla. Infrapunaheijastuksiin ja ultraäänikaikuun perustuvat sensorit ovat yksinkertaisuutensa ja edullisuutensa ansiosta hyvin yleisesti käytettyjä, mutta myös häiriöalttiita ja epävarmoja \cite{benet2002usinginfrared, borenstein1988obstacleus}. Ne toimivat tutkamaisesti lähettämällä signaalin ja seuraamalla kaikua esteestä, johon siten arvioidaan etäisyys kaiun matkaan kuluneen ajan perusteella. Näitä antureita on tyypillisesti useita robotin ympärillä osoittamassa eri suuntiin.
 
 Laserskannerit ja kamerat ovat tarkkoja ja näkevät kauas: niitä käytetään monesti ulkotiloissa \cite{bonin2008visual}. Kaksiulotteinen laserskanneri on myös tutkamainen ja kuvaa automaattisesti joka suuntaa 360 asteen keilalla; kolmiulotteinen laserskanneri kuvaa eteenpäin kahdella akselilla ja tuottaa kameran kaltaisen kuvan syvyyksistä \cite{guivant2000localization, surmann2003autonomous}. Vielä tarkempaa kuvaa saadaan videokameroilla, joiden kanssa tarvitaan laskentatehoakin huomattavasti edellä mainittuja enemmän. Konenäkö on ylivoimainen, kun tarvitaan tarkempaa tietoa edessä olevista pinnoista, kuten kuviointia tai asentoa. Kahdella oikein sijoitellulla kameralla saadaan aikaan syvyysnäkö \cite{murray2002stereo}.
 
 
-\subsection{Lokaali esteenväistö}
+\subsection{Lokaali esteenväistö} % TODO: parempi
 
 Esteenväistön ensimmäinen askel on esteiden sijainnin etsiminen. Tästä eteenpäin oletetaan, että esteet ja muu lähiympäristön informaatio sekä robotin sijainti suhteessa referenssikoordinaatistoon on havaittu jollain menetelmällä, ja tietyllä varmuudella tiedetään ympäristön muoto ja mahdollisesti reitillä olevat esteet -- havainnointimenetelmään sen enempää ottamatta kantaa mitä siitä välttämättä tarvitsee huomioida. Liikkumismenetelmäkin oletetaan hoidetuksi sekä reitti annetuksi ylemmältä taholta. Seuraavassa käsitellään itse esteiden ohittamista.
 
@@ -235,7 +235,7 @@ Kuvan tilanteessa robotin on suotuisinta jatkaa matkaa keskellä olevan neliön oh
 
 % \clearpage
 
-\section{Yleisiä esteenväistötapoja}
+\section{Yleinen esteenväistö}
 
 \subsection{Alkuolettamuksia}
 
@@ -396,17 +396,65 @@ VFH+:sta vielä edelleen kehitetty VFH* \cite{ulrich2002vfhstar} käyttää A*-hakua
 Algoritmin luonteeseen kuuluvan staattisen, jatkuvasti päivitettävän maailmankartan takia VFH ja sen johdannaiset soveltuvat sellaisenaan huonosti liikkuvien esteiden väistämiseen; eri hetkillä liikkuva esine havaitaan eri kohdissa, jolloin esine piirtää karttaan ``seinän'' reittinsä kohdalle. Varmemmilla sensoreilla voitaisiin laaja kartta unohtaa ja käyttää vain hetkittäisiä mittauksia histogrammin rakentamiseen. Näin liikkuvien esteiden vanhat sijainnit eivät vaikuttaisi.
 
 
-\subsection{Törmäyskeila}
+%\subsection{Törmäyskeila}
 % (Tämä osa vaatii selvennystä.) PALJON. TODO TODO.
 
-Chakravarthyn ja Ghosen \cite{chakravarthy2002cone} trigonometrinen törmäyskeilamenetelmä kuvaa hyvin abstraktilla tasolla, miten kaksi liikkuvaa pistettä, ympyrää tai lopulta mielivaltaisen muotoista kappaletta törmäävät. Pisteen ja toisen kappaleen välinen ``huono'' kulkualue muodostaa kolmion, jonka yhdessä kulmassa on piste ja toiset kulmat ovat kappaleen ulkoreunoilla siten, että koko kappale mahtuu näin muodostuvaan sektoriin. Menetelmä kertoo, missä kulmissa robotin keskipiste voi kulkea törmäämisen estämiseksi. Jos robotin suuntaa ajatellaan kolmion kärjestä lähtevänä nopeusvektorina, se ei saa olla sektorin sisällä. Väistösuunnan valinta on siis yksinkertaisesti nopeuden valinta sellaiseen suuntaan, joka ei osu keilan (tai keilojen, kun esteitä on useita) sisälle.
+%Chakravarthyn ja Ghosen \cite{chakravarthy2002cone} trigonometrinen törmäyskeilamenetelmä kuvaa hyvin abstraktilla tasolla, miten kaksi liikkuvaa pistettä, ympyrää tai lopulta mielivaltaisen muotoista kappaletta törmäävät. Pisteen ja toisen kappaleen välinen ``huono'' kulkualue muodostaa kolmion, jonka yhdessä kulmassa on piste ja toiset kulmat ovat kappaleen ulkoreunoilla siten, että koko kappale mahtuu näin muodostuvaan sektoriin. Menetelmä kertoo, missä kulmissa robotin keskipiste voi kulkea törmäämisen estämiseksi. Jos robotin suuntaa ajatellaan kolmion kärjestä lähtevänä nopeusvektorina, se ei saa olla sektorin sisällä. Väistösuunnan valinta on siis yksinkertaisesti nopeuden valinta sellaiseen suuntaan, joka ei osu keilan (tai keilojen, kun esteitä on useita) sisälle.
 
-Sellaisenaan menetelmä vaatii, että robotin ympäristön esteet tunnetaan kokonaisina kappaleina pistemäisten mittausten sijaan, ellei pistemäisiä mittauksia approksimoida jonkin kokoisiksi ympyröiksi. Lisäksi kappaleiden nopeudet on estimoitava pelkästään etäisyystiedon perusteella. Chakravarthy ja Ghose toisaalta esittävät samalla yksinkertaistavia approksimaatioita mielivaltaisen muotoisille kappaleille, jolloin voidaan käyttää pelkkiä ympyröitä ja laskenta helpottuu.
+%Sellaisenaan menetelmä vaatii, että robotin ympäristön esteet tunnetaan kokonaisina kappaleina pistemäisten mittausten sijaan, ellei pistemäisiä mittauksia approksimoida jonkin kokoisiksi ympyröiksi. Lisäksi kappaleiden nopeudet on estimoitava pelkästään etäisyystiedon perusteella. Chakravarthy ja Ghose toisaalta esittävät samalla yksinkertaistavia approksimaatioita mielivaltaisen muotoisille kappaleille, jolloin voidaan käyttää pelkkiä ympyröitä ja laskenta helpottuu.
+
+
+
+\subsection{Liikkuvat esteet}
+
+Aiemmin esitellyt menetelmät soveltuvat liikkuvienkin esteiden väistämiseen, sillä niitä lasketaan jatkuvasti aina uudelleen uusista havainnoista. Kun esteiden sijainnit muuttuvat, myös esteenväistön tuottama ohjaus robotille muuttuu. Jos tiedetään ennalta esteiden sijaintien lisäksi niiden nopeudet, niin voidaan ennakoida koko ympäristön käyttäytymistä ja osittain kumota myöhemmin tapahtuvan liikettä monimutkaistavan esteenväistön tarvetta oikealla reitin valinnalla. Esimerkiksi risteystilanteessa omaa reittiä vasten kohtisuoraan sivusta tuleva este voi aiheuttaa jarruttamisen tarvetta mikäli robotti väistää sitä vasta lähelle päästyään. Ennakoiden voidaan kääntää reittiä siten, että ei nopeutta ei tarvitse vähentää ja päästään esteen edestä tai takaa siten, että törmäystä ei synny. [TODO: selvennä.]
+
+\subsubsection{Havainnointi}
+
+Riittävän tarkoista mittauksista voidaan estimoida perättäisten mittausten eroista ympäristön muutoksia, kun robotin nopeudesta tiedetään, millä lailla paikallaan seisovien esteiden havainnointi muuttuisi robotin liikkuessa. 
+
+Prassler ym. \cite{prassler2002roboticswheelchair} käyttävät varausruudukon kaltaista aikaleimakarttaa havaintopisteiden varastoimiseen ja erottelevat siitä liikkuvat esteet paikallaan olevista tutkimalla kartan historiatietoa. Edellisten ajanhetkien ruudukoista etsitään ruudukon nykyhetken tiettyä mittaussolua vastaava solu, ja verrataan sen lähistöllä olevia mittauksia. Riittävän lähellä oleva mittaus lasketaan stationääriseksi; kaukana oleva taas on todennäköisimmin liikkuva kappale.
+
+Riittää, että kartasta tunnistetaan liikkuvat esteet pistemäisinä; varausruudukon pisteet approksimoidaan tällöin ruudun kokoiseksi ympyräksi. Laskemista nopeuttaa, jos esteet tunnistetaan kokonaisina, sillä tällöin väistettäviä esteitä on vähemmän.
+
+\subsubsection{Nopeuseste}
+
+Chakravarthy ja Ghose \cite{chakravarthy2002cone} esittävät trigonometrisen törmäyskeilamenetelmän (collision cone) abstraktin muotoisten liikkuvien esteiden väistämiseksi. <BLA BLA> Menetelmä ottaa huomioon esteiden nopeudet ja muodostaa robotin ja esteiden nopeusvektorien keskinäisestä suhteesta ``keilan'', joka kuvaa mihin suuntaan liikkuminen aiheuttaa törmäyksen ja mihin suuntiin kulkemalla taataan turvallinen reitti.
+
+Menetelmä ei ota kantaa esteiden havainnointitapaan vaan olettaa esteille tunnetut nopeudet, joista lasketaan suhteellinen nopeus itse robottiin nähden, oletetaan nopeudet vakioiksi ja lasketaan, millä robotin nopeusvektoreilla törmäys aiheutuisi johonkin aikaan tulevaisuudessa nykyhetkestä laskien. Robotti ei kuitenkaan kulje suoraa linjaa, eivätkä tosielämässä esteidenkään nopeudet ole välttämättä vakioita -- mallia lasketaan uudelleen tihein aikavälein, jolloin ennakoidaan esteen väistäminen hyvissä ajoin.
+
+Yleisemmin tunnettu ja sovellettu, törmäyskeilaa vastaava Fiorinin ja Shillerin \cite{fiorini1998motion, fiorini2002motion} esittämä nopeusestemalli (velocity obstacle), myös suhteellisen nopeuden mallina (relative velocity approach) tunnettu, yksinkertaistaa robotin pisteeksi ja esteet ympyröiksi.
+
+% Mallia käytetään yksinkertaistettuna pistemäiselle robotille ja ympyrän muotoisille esteille -- approksimoimalla molemmat ympyröiksi voidaan siirtää robotin oma koko esteisiin suurentamalla esteiden sädettä robotin säteellä [REF]. 
+
+\begin{figure}[h!tb]
+\centering \includegraphics[width=0.6\textwidth]{velobj}
+\caption{Prasslerin ym. \cite{prassler2002roboticswheelchair} nopeusestekuva. Robotti on pisteessä $A$, estettä kuvaa ympyrä pisteessä $B$. Törmäyskeila $CC_{A,B}$ ja $B$:stä johtuva nopeuseste $VO_B$. \label{fig:velobj}}
+\end{figure}
+
+% TODO: symbolit!
+
+Kuvassa \ref{fig:velobj} nopeusvektorit ($v_a$ robotin nopeus, $v_b$ esteen nopeus), törmäyskeila ja nopeuseste. Törmäyskeilaa rajaavat $B$:n $A$:n kautta piirretyt tangentit $\lambda_r$ ja $\lambda_t$; nopeusesteelle vastaavat reunat ovat $\delta_r$ ja $\delta_t$. Nopeusvektorin kärki ei saa olla esteen sisässä eli nopeusvektorista jatkettu suora $\lambda_{A,B}$ ei saa leikata esteympyrää, jottei törmäystä tapahtuisi jollain ajanhetkellä tulevaisuudessa. Törmäysvapaata suuntaa valittaessa on huomioitava myös robotin maksiminopeus; $v_a$:lla on jokin maksimipituus \cite{fiorini1998motion}. Nopeusvektori ei myöskään voi muuttua mielivaltaisen nopeasti johtuen robotin massasta ja maksimikiihtyvyydestä.
+
+Matemaattisesti nopeuseste koostuu niiden nopeuksien joukosta robotille, joilla törmäys esteeseen tapahtuu jollakin tulevalla ajanhetkellä. Nopeuseste lasketaan Minkowskin summana törmäyskeilasta ja $v_b$:stä \cite{fiorini1998motion}. Geometrisesti ajateltuna törmäyskeilaa vain siirretään $v_b$:n verran. Formaalisti tämä määritellään seuraavasti:
+
+\begin{equation}
+\bigoplus
+\end{equation}
+
+Kun näin on saatu aikaan kartta hyväksyttävistä nopeuksista, valitaan niistä suosituin. On otettava huomioon, että vain nopeusvektorin lähistöllä olevat alueet ovat kelvollisia -- robotin massan ja sitä mukaa maksimikiihtyvyyden mukaan karttaan approksimoidaan monesti suorakaide nykyhetken nopeusvektorin pään ympärille \cite{fiorini1998motion, prassler2002roboticswheelchair, van2008reciprocal}. Fiorini ja Shiller \cite{fiorini1998motion} esittävät nopeuden valintaan heuristiikkoja: valitaan tilanteen mukaan suurin mahdollinen nopeus suoraan kohdetta päin, suurin nopeus joka saattaa erota hieman optimaalisesta suunnasta siten, että nopeus maksimoituu, tai nopeus jolla erityisesti kuljetaan esteen takaa. Toimintamalli valitaan tilannekohtaisesti ja se voi vaihdella prioriteettien mukaan.
+
+Koska etäisyysanturoinnit ovat monesti pisteluonteisia, sopii ympyräapproksimaatio väistöön varsin hyvin; peräkkäiset pisteet tuottavat näin vastaavan estoliikkeen kuin kaikkien pisteiden muotoinen viiva tai suorakaide. [REF]
+
+Fulgenzi ym. \cite{fulgenzi2007dynamic} simuloivat nopeusesteitä laajennettuna todennäköisyyksillä ja varausruudukolla ja huomioivat lisäksi epävarmojen ja tuntemattomien tilojen vaikutuksen: esimerkiksi nurkan taakse ei voi nähdä, jolloin nurkkaa lähestytään hitaalla nopeudella siten, että törmäys voidaan estää jarruttamalla mikäli liikkuva este yhtäkkiä havaitaan.
+
+Van den Berg ym. \cite{van2008reciprocal} kehittivät nopeusesteitä edelleen pienin parannuksin ``keskinäisiksi'' nopeusesteiksi, ja lukuisilla kappaleilla simuloidut tulokset esittävät luotettavaa ja sileää käytöstä kun vastaavissa tilanteissa alkuperäinen nopeusestemenetelmä saa aikaan värähtelyä. Keskinäiset nopeusesteet olettavat, että muutkin liikkuvat esteet käyttäytyvät suurin piirtein samalla tavalla kohdatessaan esteen. Tällä tiedolla kompensoidaan ohjaus siten, että kaikkien robottien keskinäisten ohjausten tuloksena on jokaiselle törmäyksetön rata. Koska malli kuvaa läheisesti ihmisten liikettä, sillä saadaan robotti liikkumaan ihmisten lähistöllä sulavasti.
+
 
 
 \subsection{Muuta}
 
-Alunperin vihivaunut eli automaattitrukit käyttivät mekaanisia hätä-seis-kytkimiä huomaamaan törmäämiset [ref,ref]. Tällainen tunnistaminen ei kuitenkaan sovellu ennaltaehkäisevään esteenväistöön, sillä mekaanisen havaitsemisen yhteydessä esteeseen on jo törmätty. Esteenväistön rinnalla voidaan toisaalta käyttää hätä-seis-kytkimiä, jos ei voida olla varmoja siitä, voiko esim. kasvillisuuden läpi mennä vai tuleeko siellä vastaan huomaamaton este \cite{\cite{schafer20083d}.
+Alunperin vihivaunut eli automaattitrukit käyttivät mekaanisia hätä-seis-kytkimiä huomaamaan törmäämiset [ref,ref]. Tällainen tunnistaminen ei kuitenkaan sovellu ennaltaehkäisevään esteenväistöön, sillä mekaanisen havaitsemisen yhteydessä esteeseen on jo törmätty. Esteenväistön rinnalla voidaan toisaalta käyttää hätä-seis-kytkimiä, jos ei voida olla varmoja siitä, voiko esim. kasvillisuuden läpi mennä vai tuleeko siellä vastaan huomaamaton este \cite{schafer20083d}.
 
 Tietynlaista yleistä heuristiikkaakin on tutkittu mm. sumean logiikan avulla [ref]. Sumea logiikka käyttää hyväkseen ihmisille tuttuja ohjaussääntöjä: jos edessä vasemmalla näkyy este, renkaita ohjataan oikealle. Jos este on lähellä, hidastetaan vauhtia. jos este on hyvin lähellä, hidastetaan entistäkin kovempaa.
 
@@ -432,70 +480,32 @@ Schäferin ym. \cite{schafer2005stereo} nelipyöräinen robotti on varustettu stere
 Toisessa tutkimuksessa Schäfer ym. \cite{schafer20083d} tutkivat nimenomaan kasvillisuuspainotteista maastoa, jossa harvojen kasviesteiden tunnistaminen on haastavampaa. Tässä stereonäön ja laserskannauksen avuksi on liitetty kosketusanturi robotin eteen. Kun edessä huomataan harvaa ja mahdollisesti joustavaa kasvillisuutta, edetään silti eteenpäin mutta hidastetaan huomattavasti, jolloin kosketusanturi ehtii ilmoittaa turvallisesti mahdollisesta törmäyksestä kiinteään kappaleeseen kasvillisuuden sisällä. Jatkoa seuraa...
 
 % Tässä yhteydessä on ulkotiloissa otettava huomioon maaston epätasaisuus, sillä muutoin oletetaan tutkan olevan saman suuntainen maatason kanssa ja vino maasto joka saa robotin kallistumaan tekee mittaukset hyödyttömiksi.
-\subsection{Liikkuvat esteet}
-
-Aiemmin esitellyt menetelmät soveltuvat liikkuvienkin esteiden väistämiseen, sillä niitä lasketaan jatkuvasti aina uudelleen uusista havainnoista. Kun esteiden sijainnit muuttuvat, myös esteenväistön tuottama ohjaus robotille muuttuu. Jos tiedetään ennalta esteiden sijaintien lisäksi niiden nopeudet, niin voidaan ennakoida koko ympäristön käyttäytymistä ja osittain kumota myöhemmin tapahtuvan liikettä monimutkaistavan esteenväistön tarvetta oikealla reitin valinnalla. Esimerkiksi risteystilanteessa omaa reittiä vasten kohtisuoraan sivusta tuleva este voi aiheuttaa jarruttamisen tarvetta mikäli robotti väistää sitä vasta lähelle päästyään. Ennakoiden voidaan kääntää reittiä siten, että ei nopeutta ei tarvitse vähentää ja päästään esteen edestä tai takaa siten, että törmäystä ei synny. [TODO: selvennä.]
-
-\subsubsection{Havainnointi}
-
-Riittävän tarkoista mittauksista voidaan estimoida perättäisten mittausten eroista ympäristön muutoksia, kun robotin nopeudesta tiedetään, millä lailla paikallaan seisovien esteiden havainnointi muuttuisi robotin liikkuessa. 
-
-Prassler ym. \cite{prassler2002roboticswheelchair} käyttävät varausruudukon kaltaista aikaleimakarttaa havaintopisteiden varastoimiseen ja erottelevat siitä liikkuvat esteet paikallaan olevista tutkimalla kartan historiatietoa. Edellisten ajanhetkien ruudukoista etsitään ruudukon nykyhetken tiettyä mittaussolua vastaava solu, ja verrataan sen lähistöllä olevia mittauksia. Riittävän lähellä oleva mittaus lasketaan stationääriseksi; kaukana oleva taas on todennäköisimmin liikkuva kappale.
-
-\subsubsection{Väistäminen}
-
-Liikkuville esteille käytetty, Fiorinin ja Shillerin \cite{fiorini1998motion, fiorini2002motion} esittämä nopeusestemalli (velocity obstacle), myös suhteellisen nopeuden mallina (relative velocity approach) tunnettu, jatkaa törmäyskeilaideaa erityisesti liikkuville esteille. Malli ottaa huomioon esteiden nopeudet ja muodostaa nopeusvektorien keskinäisestä suhteesta toisen keilan, joka kuvaa mihin suuntaan liikkuminen aiheuttaa törmäyksen ja mihin suuntiin kulkemalla taataan turvallinen reitti.
-
-Mallia käytetään yksinkertaistettuna pistemäiselle robotille ja ympyrän muotoisille esteille -- approksimoimalla molemmat ympyröiksi voidaan siirtää robotin oma koko esteisiin suurentamalla esteiden sädettä robotin säteellä [REF]. Malli ei ota kantaa esteiden havainnointitapaan vaan olettaa esteille tunnetut nopeudet, joista lasketaan suhteellinen nopeus itse robottiin nähden, oletetaan nopeudet vakioiksi ja lasketaan, millä robotin nopeusvektoreilla törmäys aiheutuisi johonkin aikaan tulevaisuudessa nykyhetkestä laskien. Robotti ei kuitenkaan kulje suoraa linjaa, eivätkä tosielämässä esteidenkään nopeusvektorit ole välttämättä vakioita -- menetelmää lasketaan uudelleen tihein aikavälein, jolloin ennakoidaan esteen väistäminen hyvissä ajoin.
-
-Matemaattisesti nopeuseste koostuu niiden nopeuksien joukosta robotille, joilla törmäys esteeseen tapahtuu jollakin tulevalla ajanhetkellä.
-
-\begin{figure}[h!tb]
-\centering \includegraphics[width=0.6\textwidth]{velobj}
-\caption{Törmäyskeila $CC_{A,B}$ ja nopeuseste $VO_B$. Robotti on pisteessä $A$, estettä kuvaa ympyrä pisteessä $B$. \cite{prassler2002roboticswheelchair}. \label{fig:velobj}}
-\end{figure}
-
-% TODO: symbolit!
-
-Kuvassa \ref{fig:velobj} nopeusvektorit ($v_a$ robotin nopeus, $v_b$ esteen nopeus), törmäyskeila ja nopeuseste. Nopeusvektorin kärki ei saa olla esteen sisässä, jottei törmäystä tapahtuisi jollain ajanhetkellä tulevaisuudessa. On huomioitava myös robotin maksiminopeus; $v_a$:lla on jokin maksimipituus. Nopeuseste lasketaan Minkowskin summana törmäyskeilasta ja $v_b$:stä \cite{van2008reciprocal}. Formaalisti tämä määritellään seuraavasti:
-
-(Tähän pari peruskaavaa.)
-
-Kun näin on saatu aikaan kartta hyväksyttävistä nopeuksista, valitaan niistä suosituin [MITEN?]. On otettava huomioon, että vain nopeusvektorin lähistöllä olevat alueet ovat kelvollisia -- robotin massan ja sitä mukaa maksimikiihtyvyyden mukaan karttaan approksimoidaan monesti suorakaide nykyhetken nopeusvektorin pään ympärille.
-
-Koska etäisyysanturoinnit ovat monesti pisteluonteisia, sopii ympyräapproksimaatio väistöön varsin hyvin; peräkkäiset pisteet tuottavat näin vastaavan estoliikkeen kuin kaikkien pisteiden muotoinen viiva tai suorakaide. [REF]
-
-Fulgenzi ym. \cite{fulgenzi2007dynamic} simuloivat nopeusesteitä laajennettuna todennäköisyyksillä ja varausruudukolla.
-
-Van den Berg ym. kehittivät nopeusesteitä edelleen pienin parannuksin, ja lukuisilla kappaleilla simuloidut tulokset esittävät luotettavaa ja sileää käytöstä \cite{van2008reciprocal}. Tässä oletetaan, että muutkin liikkuvat esteet käyttäytyvät suurin piirtein samalla tavalla kohdatessaan esteen. Jne...
 
 
-\subsection{Lokaali ja globaali reititys}
+\subsection{Kokonaisia järjestelmiä} % TODO rename? konenäkömenetelmiä?
 
-(Tai jotain yleisempää. Osiota mietittävä. Avaa lisää! Kaava/kuva?)
+Stentz ja Hebert \cite{stentz1995complete} esittävät Humvee-ajoneuvoon asennetun, laserskannerilla havainnoivan ja gps:n ja odometrian yhdistelmällä paikkaa seuraavan järjestelmän. Järjestelmä yhdistää globaalin ja lokaalin navigoinnin. Se käyttää D*-algoritmia (kuten A* \cite{hart1968formal}, mutta tehokkuusparannuksilla dynaamiseen ympäristöön kun reittiä joudutaan laskemaan useasti) etsimään ennakkotietoon pohjautuvasta tiedosta optimaalisen globaalin reitin tavoitteeseen. Samalla sen lokaali navigointi antaa vihjeitä paikallisista esteistä laserskannauksen avulla. Globaalin ja lokaalin reitittäjän ohjaustulokista lasketaan painotettu keskiarvo siten, että lokaalia esteenväistöä painotetaan reitinhakua enemmän, jolloin pysytään reitillä mutta mennään esteiden ohitse \cite[s. 18]{stentz1995complete}.
 
-Stentz ja Hebert \cite{stentz1995complete} esittävät jeeppiin asennetun, laserskannerilla havainnoivan ja gps:n ja odometrian yhdistelmällä paikkaa seuraavan järjestelmän. Järjestelmä yhdistää globaalin ja lokaalin navigoinnin. Se käyttää D*-algoritmia (kuten A*, mutta parannuksilla dynaamiseen ympäristöön kun reittiä joudutaan laskemaan useasti [todocite]) etsimään ennakkotietoon pohjautuvasta tiedosta optimaalisen globaalin reitin tavoitteeseen. Samalla sen lokaali navigointi antaa vihjeitä paikallisista esteistä laserskannauksen avulla. Erillinen välittäjäosa [HÄH?] ohjaa näiden molempien tietojen perusteella renkaita: molemmat antavat vihjeen kääntyä vasemmalle tai oikealle. Esteenväistöä painotetaan globaalia reitinhakua enemmän, jolloin pysytään reitillä mutta mennään esteiden ohitse \cite[s. 18]{stentz1995complete}.
+Myös Kelly \cite{kelly1995intelligent} esittää tutkimuksessaan Humveehen kytketyn navigaattorin, joka ottaa ennustavasti huomioon useita eri uhkia joita valittavalla reitillä saattaa tulla vastaan \cite[s. 337]{kelly1995intelligent}. Algoritmi ottaa huomioon törmäysten ja tavoitteen haun lisäksi mm. liian suuren kääntökulman, jarrutustehon ja muut kinematiikasta aiheutuvat rajoitteet kaarinopeusmetodin lailla.
 
-Myös Kelly \cite{kelly1995intelligent} esittää tutkimuksessaan jeeppiin kytketyn navigaattorin, joka ottaa ennustavasti huomioon useita eri uhkia joita valittavalla reitillä saattaa tulla vastaan \cite[s. 337]{kelly1995intelligent}. Algoritmi ottaa huomioon törmäysten ja tavoitteen haun lisäksi mm. liian suuren kääntökulman, jarrutustehon ja muut kinematiikasta aiheutuvat rajoitteet kaarinopeusmetodin lailla.
+Koska edellä mainituissa on kyseessä ``tavallinen'' auto, algoritmi ehdottaa suoraa vauhtia sekä eturenkaille tiettyä kääntökulmaa, jota ennustetaan tietty lyhyt matka eteenpäin \cite[s. 45]{kelly1995intelligent}. Eri kääntökulmista seuraavat polut tutkitaan kartasta, ja näille lasketaan haastavuusarvot uhkista kulmapohjaiseksi histogrammiksi VFH+:n lailla. Histogrammit summataan yhteen jolloin paras yhteinen hyvyysarvo valitsee suuntakulman. Kelly väittää menetelmän toimivan 15 km/h vauhdissa \cite[s. 335]{kelly1995intelligent}.
 
-Koska kyseessä on ``tavallinen'' auto, algoritmi ehdottaa suoraa vauhtia sekä eturenkaille tiettyä kääntökulmaa, jota ennustetaan tietty lyhyt matka eteenpäin. Eri kääntökulmista seuraavat polut tutkitaan kartasta, ja näille lasketaan haastavuusarvot histogrammiksi. Histogrammit summataan yhteen jolloin paras yhteinen hyvyysarvo valitsee suuntakulman [jätä pois? Ranger.]. Antureina tässä jeepissä ovat laseretäisyysanturi ja stereokamera. Näiden tuottamista informaatiosta etsitään adaptiivisesti jyrkkiä reunoja, joiden ympäristöä tarkastellaan [??]. Kelly väittää menetelmän toimivan 15 km/h vauhdissa \cite[s. 335]{kelly1995intelligent}.
+Antureina tässä ajoneuvossa on laseretäisyysanturi ja stereokamera. Näiden tuottamista informaatiosta Kellyn algoritmi etsii adaptiivisesti jyrkkiä reunoja, joiden ympäristöä tarkastellaan maanpinnan vaihteluiden varalta pysyäkseen tasaisella maalla \cite[s. 211]{kelly1995intelligent}.
 
 Aiempia vastaavalla tavalla toimii myös Singhin ym. \cite{singh2002recent} kuvaama navigointi, joka yhdistää lokaalin ja globaalin liikkeensuunnittelun. Globaalisti käytetään D*:ä kuten aiemmin. Lokaali suunnittelija perustuu Kellyn tutkimukseen ja arvioi lähiympäristön kaaren muotoisten reittien kustannuksia. Suunnittelija ottaa lisäksi huomioon ympäristön epävarmuuden; kartan pisteillä on varmuusarvoja, jotka vanhenevat robotin liikkuessa suhteessa matkan pituuteen, ja samalla uusille mittauksille alustetaan varmempi arvo. Varmuusruudukon arvot siis ``unohtuvat'' ajan kuluessa.
 
-% TODO: konenäköä:
+Michels ym. \cite{michels2005high} käyttävät vahvistusoppimista yhden kameran konenäöllä. Järjestelmälle opetetaan ennalta kamerakuvien ja laserskannerilla mitattujen etäisyyksien korrelaatiota, minkä jälkeen kauko-ohjattava auto väistää esteitä pelkän kameran avulla. Vahvistusoppimisessa algoritmi saa ``palkkion'' tekemänsä toiminnon mukaan ja korjautuu täten adaptiivisesti paremmaksi. Michelsin ym. algoritmi saa palkkiota siitä, että se pitää oikean nopeuden ja on törmäämättä esteisiin.
 
-Michels ym. Yhdelläkin kameralla tyydyttäviä tuloksia opettamalla järjestelmälle ennalta otetuista kuvista syvyyksiä. \cite{michels2005high}
-
-Anturien yhdistelyä jotenkin \cite{ohya2002vision}
+Anturien yhdistelyä jotenkin 
 
 
-\subsection{Neuroverkot}
+%\subsection{Neuroverkot}
 
-Neuroverkot perustuvat ihmisten aivojen imitoimiseen ja koostuvat tietystä määrästä sisään- ja ulostuloneuroneja sekä välissä olevasta kerroksesta, joka voi sisältää mielivaltaisen määrän neuroneja päättelyjen tekemiseen. Tapa on puhtaan matemaattinen ja toimii matalalla tasolla: neuroni saa syötteeksi lukuja, ja mikäli niistä laskettu painotettu summa ylittää raja-arvon, neuroni antaa ulostuloksi esimerkiksi luvun 1, muutoin luvun 0.
+%Neuroverkot perustuvat ihmisten aivojen imitoimiseen ja koostuvat tietystä määrästä sisään- ja ulostuloneuroneja sekä välissä olevasta kerroksesta, joka voi sisältää mielivaltaisen määrän neuroneja päättelyjen tekemiseen. Tapa on puhtaan matemaattinen ja toimii matalalla tasolla: neuroni saa syötteeksi lukuja, ja mikäli niistä laskettu painotettu summa ylittää raja-arvon, neuroni antaa ulostuloksi esimerkiksi luvun 1, muutoin luvun 0.
 
-Neuroverkkoja on sovellettu sekä liikkuville roboteille että manipulaattoreille \cite{glasius1995neural}. Tapa ei ole erityisen nopea ja vaatii verkon ennalta opettamisen, jotta tietty syöte tuottaisi oikeanlaisen vasteen. Toisaalta on saatu myös reaaliaikaiseen laskemiseen kykeneviä tuloksia dynaamisessa ympäristössä \cite{yang2000neural}.
+%Neuroverkkoja on sovellettu sekä liikkuville roboteille että manipulaattoreille \cite{glasius1995neural}. Tapa ei ole erityisen nopea ja vaatii verkon ennalta opettamisen, jotta tietty syöte tuottaisi oikeanlaisen vasteen. Toisaalta on saatu myös reaaliaikaiseen laskemiseen kykeneviä tuloksia dynaamisessa ympäristössä \cite{yang2000neural}.
 
-Myös täysin toisenlaista lähtökohtaa on ehdotettu robotin reitillä pysymiseen; Pomerleaun neuroverkolla toimiva konenäköjärjestelmä seuraa autotietä syöttämällä kuvan yläreunan pisteet verkolle, joka antaa vasteena hyvyysarvon eri suuntiin kääntymiselle \cite{pomerleau1989alvinn}. Tämä tapa ei väistä itse esteitä mitenkään. Tämä tekniikka saattaa olla hieman yliampuva tähän tarkoitukseen -- yhtä hyvin voitaisiin jaotella kuvan ylälaita kolmeen osaan, josta keskimmäinen kuvaa tietä, ja tästä tutkittaisiin kuinka lähellä kuvan keskiosaa tie kulkee.
+%Myös täysin toisenlaista lähtökohtaa on ehdotettu robotin reitillä pysymiseen; Pomerleaun neuroverkolla toimiva konenäköjärjestelmä seuraa autotietä syöttämällä kuvan yläreunan pisteet verkolle, joka antaa vasteena hyvyysarvon eri suuntiin kääntymiselle \cite{pomerleau1989alvinn}. Tämä tapa ei väistä itse esteitä mitenkään. Tämä tekniikka saattaa olla hieman yliampuva tähän tarkoitukseen -- yhtä hyvin voitaisiin jaotella kuvan ylälaita kolmeen osaan, josta keskimmäinen kuvaa tietä, ja tästä tutkittaisiin kuinka lähellä kuvan keskiosaa tie kulkee.
 
 % nää ei sovellu lokaaliin ollenkaan
 %\subsection{Geneettiset algoritmit}
@@ -514,7 +524,7 @@ Lähes kaikki robottien lähialueen liikkeensuunnittelualgoritmit pohjautuvat joss
 
 Erilaisista mahdollisista reiteistä voidaan valita suosituin eri kriteereillä VFH+:n käyttämän hyvyysfunktion lailla. Aina ei välttämättä kannata ajaa suoraan tavoitepistettä kohti, jos toinen reitti minimoisi jarruttelun, liikkuvien esteiden läheltä kulkemisen, maaston haastavuuden tai muun reitin lyhyyden sijaan optimoitavan kriteerin.
 
-Liikkuvat kappaleet tuskin koskaan ovat vain yhden mittauspisteen kokoisia, jolloin lähekkäisiä pisteitä voidaan yhdistää vertaamalla niiden keskinäisiä nopeuksia: suunnilleen saman nopeuksiset pisteet luultavasti kuuluvat samaan kappaleeseen. Tästä voidaan sitten estimoida keskikohta massakeskipisteen avulla. Täten väistämisen suhteen tutkittavia esteitä on vähemmän.
+Liikkuvat kappaleet tuskin koskaan ovat vain yhden mittauspisteen kokoisia, jolloin lähekkäisiä pisteitä voidaan yhdistää vertaamalla niiden keskinäisiä nopeuksia: suunnilleen saman nopeuksiset pisteet luultavasti kuuluvat samaan kappaleeseen. Tästä voidaan estimoida keskikohta massakeskipisteen avulla. Täten väistämisen suhteen tutkittavia esteitä on vähemmän.
 
 Liikkuviin esteisiin tulee kiinnittää huomiota pääasiassa kahdella eri tavalla: ensinnäkin liikkumaan kykenevän esteen ei voi olettaa olevan samassa kohdassa, mikäli kohtaan palataan myöhemmin -- jos jonkinlaista karttaa rakennetaan, on sensoreilta saataville karttapisteille hahmoteltava varmuusluvut jotka ikääntyvät pikkuhiljaa, jolloin epävarmat esteet unohdetaan eikä niiden pohjalta voi pitkän ajan päästä suunnitella reittiä. Toisekseen, jos robotilla on erityinen kiire tai jos haetaan esim. ihmisten lähellä hyvin toimivaa käyttäytymistä, voidaan tunnistaa liikkuvat objektit jo havainnointivaiheessa ja esim. risteystilanteessa odottaa hetki, että nopeampi sivulta päin tuleva este menisi ohi.
 
