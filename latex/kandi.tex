@@ -378,7 +378,9 @@ Kuvassa \ref{fig:histogram} havainnollistetaan karkeasti vektorikenttähistogramm
 
 
 % Tätä voitaisiin hieman korjata ottamalla huomioon robotin sijainti ruutunsa sisällä sen sijaan, että ainoastaan laskettaisiin vain näiden suurten (esim. 10*10 cm) ruutujen etäisyyksiä. Voitaisiin myös kompensoida ohjauksen vaihtelua lisäämällä algoritmiin heuristiikkaa esim. suoraan ajamisesta: jos turvallisen lähestymisen laakson suunta ei suuremmin eroa nykysuunnasta, ei suuntaa kannata merkittävästi vaihtaa. [TODO: pohdintoihin, siisti konditionaaleja]
+
 \subsubsection{Parannuksia}
+
 VFH ei ota huomioon robotin kinematiikkaa millään lailla, vaan olettaa että robotti on pistemäinen ja voi vaihtaa kulkusuuntaansa välittömästi. Borenstein ja Ulrich esittävät VFH+-algoritmin, joka korjaa tämän ongelman \cite{ulrich2002vfh+}. He tutkivat ihmisvoimin työnnettävää, differentiaaliajoa (kaksi erillistä vetävää pyörää) käyttävää robottia ohjaamaan sokkoa ihmistä. Tämä eroaa kinematiikaltaan oleellisesti aiemmin käytetystä, joka suuntaan ajavasta robotista.
 
 VFH+ tuo seuraavat parannukset: Robotti oletetaan pistemäiseksi ja esteitä vastaavasti kasvatetaan robotin koon ja muodon tuomien rajoitteiden mukaan, jolloin alipäästösuodinta ei tarvita \cite{ulrich2002vfh+}. Histogrammikartasta tehdään ensin binäärinen kartta kahden kynnysarvon avulla. Tämän jälkeen karttaa laajennetaan edelleen poistamaan ne suunnat, joihin robotti ei ehdi kääntymään kinematiikkansa takia. Nämä lasketaan tässä tilanteessa kääntösäteen avulla. Lisäksi ohjaussuunnan valinnassa käytetään apuna hyvyysfunktiota, jolla voidaan painottaa erilaisia ominaisuuksia vapaista suunnista. Eri suuntia ovat eri kapeat käytävät, sekä leveistä käytävistä on valittava ajetaanko keskeltä vai reunoista, jos reuna olisi lähempänä kohdetta PLPLFKOFSDF TODO selkeämpi teksti. Borenstein ja Ulrich esittävät hyvyysfunktioksi seuraavaa:
@@ -388,7 +390,7 @@ g(c) = \mu_1 \delta(c, k_t) + \mu_2 \delta(c, \theta_i / \alpha) + \mu_3 \delta(
 
 % TODO selvennä.
 
-VFH+:sta vielä edelleen kehitetty VFH* käyttää A*-hakualgoritmia etsimään oikean valinnan saman laatuisista poluista, ja näkee täten hieman kauemmas. VFH+ itsessään on täysin lokaali, ja saattaa väistää estettä umpikujaa päin, vaikka toiseen suuntaan väistäessä ei päädyttäisi umpikujaan. \cite{ulrich2002vfhstar} (Jatkoa seuraa...)
+VFH+:sta vielä edelleen kehitetty VFH* \cite{ulrich2002vfhstar} käyttää A*-hakualgoritmia \cite{hart1968formal} etsimään optimaalisen valinnan saman laatuisista hetkellisistä ohjaussuunnista, ja näkee täten hieman kauemmas. VFH+ itsessään on täysin lokaali, ja saattaa väistää estettä umpikujaa päin, vaikka toiseen suuntaan väistäessä ei päädyttäisi umpikujaan; VFH* laskee reittiä joka kierroksella tietyn määrän askelia eteenpäin eri suuntakandidaateille ja evaluoi VFH+:ssa esitetyn hyvyysfunktion reitiltä, jolloin muodostuu askelmäärän syvyinen puu \cite{ulrich2002vfh+}. Puusta valitaan paras reitti hyvyysfunktion avulla, ja parhaaseen reittiin johtava suunta valitaan.
 
 % tääkin varmuusruudukkoon? varmuusruudukko on abstraktiokerros blaa blaa
 Algoritmin luonteeseen kuuluvan staattisen, jatkuvasti päivitettävän maailmankartan takia VFH ja sen johdannaiset soveltuvat sellaisenaan huonosti liikkuvien esteiden väistämiseen; eri hetkillä liikkuva esine havaitaan eri kohdissa, jolloin esine piirtää karttaan ``seinän'' reittinsä kohdalle. Varmemmilla sensoreilla voitaisiin laaja kartta unohtaa ja käyttää vain hetkittäisiä mittauksia histogrammin rakentamiseen. Näin liikkuvien esteiden vanhat sijainnit eivät vaikuttaisi.
@@ -404,7 +406,7 @@ Sellaisenaan menetelmä vaatii, että robotin ympäristön esteet tunnetaan kokonais
 
 \subsection{Muuta}
 
-Alunperin vihivaunut eli automaattitrukit käyttivät mekaanisia hätä-seis-kytkimiä huomaamaan törmäämiset [ref,ref]. Tällainen tunnistaminen ei kuitenkaan sovellu ennaltaehkäisevään esteenväistöön, sillä mekaanisen havaitsemisen yhteydessä esteeseen on jo törmätty. Myös esteenväistön rinnalla voidaan käyttää hätä-seis-kytkimiä, jos ei voida olla varmoja siitä, voiko esim. kasvillisuuden läpi mennä vai tuleeko siellä vastaan huomaamaton este [se yks ref].
+Alunperin vihivaunut eli automaattitrukit käyttivät mekaanisia hätä-seis-kytkimiä huomaamaan törmäämiset [ref,ref]. Tällainen tunnistaminen ei kuitenkaan sovellu ennaltaehkäisevään esteenväistöön, sillä mekaanisen havaitsemisen yhteydessä esteeseen on jo törmätty. Esteenväistön rinnalla voidaan toisaalta käyttää hätä-seis-kytkimiä, jos ei voida olla varmoja siitä, voiko esim. kasvillisuuden läpi mennä vai tuleeko siellä vastaan huomaamaton este \cite{\cite{schafer20083d}.
 
 Tietynlaista yleistä heuristiikkaakin on tutkittu mm. sumean logiikan avulla [ref]. Sumea logiikka käyttää hyväkseen ihmisille tuttuja ohjaussääntöjä: jos edessä vasemmalla näkyy este, renkaita ohjataan oikealle. Jos este on lähellä, hidastetaan vauhtia. jos este on hyvin lähellä, hidastetaan entistäkin kovempaa.
 
@@ -444,7 +446,9 @@ Prassler ym. \cite{prassler2002roboticswheelchair} käyttävät varausruudukon kalt
 
 Liikkuville esteille käytetty, Fiorinin ja Shillerin \cite{fiorini1998motion, fiorini2002motion} esittämä nopeusestemalli (velocity obstacle), myös suhteellisen nopeuden mallina (relative velocity approach) tunnettu, jatkaa törmäyskeilaideaa erityisesti liikkuville esteille. Malli ottaa huomioon esteiden nopeudet ja muodostaa nopeusvektorien keskinäisestä suhteesta toisen keilan, joka kuvaa mihin suuntaan liikkuminen aiheuttaa törmäyksen ja mihin suuntiin kulkemalla taataan turvallinen reitti.
 
-Mallia käytetään yksinkertaistettuna pistemäiselle robotille ja ympyrän muotoisille esteille -- approksimoimalla molemmat ympyröiksi voidaan siirtää robotin oma koko esteisiin suurentamalla esteiden sädettä robotin säteellä [REF]. Malli ei ota kantaa esteiden havainnointitapaan vaan olettaa esteille tunnetut nopeudet, joista lasketaan suhteellinen nopeus itse robottiin nähden, oletetaan nopeudet vakioiksi ja lasketaan, millä robotin nopeusvektoreilla törmäys aiheutuisi johonkin aikaan tulevaisuudessa nykyhetkestä laskien. Robotti ei kuitenkaan kulje suoraa linjaa, eivätkä tosielämässä esteidenkään nopeusvektorit ole välttämättä vakioita -- menetelmää iteroidaan tihein aikavälein, jolloin ennakoidaan esteen väistäminen hyvissä ajoin.
+Mallia käytetään yksinkertaistettuna pistemäiselle robotille ja ympyrän muotoisille esteille -- approksimoimalla molemmat ympyröiksi voidaan siirtää robotin oma koko esteisiin suurentamalla esteiden sädettä robotin säteellä [REF]. Malli ei ota kantaa esteiden havainnointitapaan vaan olettaa esteille tunnetut nopeudet, joista lasketaan suhteellinen nopeus itse robottiin nähden, oletetaan nopeudet vakioiksi ja lasketaan, millä robotin nopeusvektoreilla törmäys aiheutuisi johonkin aikaan tulevaisuudessa nykyhetkestä laskien. Robotti ei kuitenkaan kulje suoraa linjaa, eivätkä tosielämässä esteidenkään nopeusvektorit ole välttämättä vakioita -- menetelmää lasketaan uudelleen tihein aikavälein, jolloin ennakoidaan esteen väistäminen hyvissä ajoin.
+
+Matemaattisesti nopeuseste koostuu niiden nopeuksien joukosta robotille, joilla törmäys esteeseen tapahtuu jollakin tulevalla ajanhetkellä.
 
 \begin{figure}[h!tb]
 \centering \includegraphics[width=0.6\textwidth]{velobj}
