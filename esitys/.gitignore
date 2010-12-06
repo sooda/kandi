@@ -6,4 +6,5 @@
 *.out
 *.ps
 *.toc
-*.pdf
+*.nav
+*.snm
